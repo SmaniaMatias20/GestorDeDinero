@@ -29,20 +29,21 @@
         private void InitializeComponent()
         {
             this.panelVertical = new System.Windows.Forms.Panel();
+            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.buttonSalir = new System.Windows.Forms.Button();
             this.buttonAjustes = new System.Windows.Forms.Button();
             this.buttonInversiones = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.buttonInicio = new System.Windows.Forms.Button();
             this.panelHorizontal = new System.Windows.Forms.Panel();
-            this.labelNombreUsuario = new System.Windows.Forms.Label();
             this.pictureBoxUsuario = new System.Windows.Forms.PictureBox();
+            this.labelNombreUsuario = new System.Windows.Forms.Label();
             this.panelInicio = new System.Windows.Forms.Panel();
-            this.buttonSalir = new System.Windows.Forms.Button();
-            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.labelTitulo = new System.Windows.Forms.Label();
             this.panelVertical.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelHorizontal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUsuario)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // panelVertical
@@ -60,37 +61,71 @@
             this.panelVertical.Size = new System.Drawing.Size(150, 557);
             this.panelVertical.TabIndex = 0;
             // 
+            // pictureBoxLogo
+            // 
+            this.pictureBoxLogo.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxLogo.ImageLocation = "C:\\Users\\Smania Matias\\Desktop\\ICONOS\\ICONOS APLICACIONES\\OBS Studio.ico";
+            this.pictureBoxLogo.Location = new System.Drawing.Point(9, 21);
+            this.pictureBoxLogo.Name = "pictureBoxLogo";
+            this.pictureBoxLogo.Size = new System.Drawing.Size(132, 112);
+            this.pictureBoxLogo.TabIndex = 5;
+            this.pictureBoxLogo.TabStop = false;
+            // 
+            // buttonSalir
+            // 
+            this.buttonSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.buttonSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonSalir.FlatAppearance.BorderSize = 0;
+            this.buttonSalir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.buttonSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSalir.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSalir.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.buttonSalir.Image = global::CapaPresentacion.Properties.Resources.salir;
+            this.buttonSalir.Location = new System.Drawing.Point(0, 399);
+            this.buttonSalir.Name = "buttonSalir";
+            this.buttonSalir.Size = new System.Drawing.Size(150, 50);
+            this.buttonSalir.TabIndex = 4;
+            this.buttonSalir.Text = "Salir";
+            this.buttonSalir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonSalir.UseVisualStyleBackColor = false;
+            // 
             // buttonAjustes
             // 
             this.buttonAjustes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
             this.buttonAjustes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonAjustes.FlatAppearance.BorderSize = 0;
+            this.buttonAjustes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
             this.buttonAjustes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAjustes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAjustes.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAjustes.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.buttonAjustes.Image = global::CapaPresentacion.Properties.Resources.ajustes;
             this.buttonAjustes.Location = new System.Drawing.Point(0, 343);
             this.buttonAjustes.Name = "buttonAjustes";
             this.buttonAjustes.Size = new System.Drawing.Size(150, 50);
             this.buttonAjustes.TabIndex = 3;
             this.buttonAjustes.Text = "Ajustes";
-            this.buttonAjustes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonAjustes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonAjustes.UseVisualStyleBackColor = false;
             // 
             // buttonInversiones
             // 
-            this.buttonInversiones.BackColor = System.Drawing.Color.Black;
+            this.buttonInversiones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.buttonInversiones.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonInversiones.FlatAppearance.BorderSize = 0;
+            this.buttonInversiones.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.buttonInversiones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonInversiones.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonInversiones.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonInversiones.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.buttonInversiones.Image = global::CapaPresentacion.Properties.Resources.inversion;
             this.buttonInversiones.Location = new System.Drawing.Point(0, 290);
             this.buttonInversiones.Margin = new System.Windows.Forms.Padding(0);
             this.buttonInversiones.Name = "buttonInversiones";
             this.buttonInversiones.Size = new System.Drawing.Size(150, 50);
             this.buttonInversiones.TabIndex = 2;
-            this.buttonInversiones.Text = "Inversiones";
-            this.buttonInversiones.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonInversiones.Text = "Inversion";
+            this.buttonInversiones.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonInversiones.UseVisualStyleBackColor = false;
             // 
             // button2
@@ -98,9 +133,11 @@
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button2.Image = global::CapaPresentacion.Properties.Resources.gastos;
             this.button2.Location = new System.Drawing.Point(0, 240);
             this.button2.Margin = new System.Windows.Forms.Padding(0);
             this.button2.Name = "button2";
@@ -108,16 +145,19 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Gastos";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = false;
             // 
             // buttonInicio
             // 
-            this.buttonInicio.BackColor = System.Drawing.Color.Black;
+            this.buttonInicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.buttonInicio.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonInicio.FlatAppearance.BorderSize = 0;
+            this.buttonInicio.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.buttonInicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonInicio.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonInicio.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.buttonInicio.Image = global::CapaPresentacion.Properties.Resources.home;
             this.buttonInicio.Location = new System.Drawing.Point(0, 190);
             this.buttonInicio.Margin = new System.Windows.Forms.Padding(0);
             this.buttonInicio.Name = "buttonInicio";
@@ -125,13 +165,15 @@
             this.buttonInicio.TabIndex = 0;
             this.buttonInicio.Text = "Inicio";
             this.buttonInicio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonInicio.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonInicio.UseVisualStyleBackColor = false;
             // 
             // panelHorizontal
             // 
             this.panelHorizontal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
-            this.panelHorizontal.Controls.Add(this.labelNombreUsuario);
+            this.panelHorizontal.Controls.Add(this.labelTitulo);
             this.panelHorizontal.Controls.Add(this.pictureBoxUsuario);
+            this.panelHorizontal.Controls.Add(this.labelNombreUsuario);
             this.panelHorizontal.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.panelHorizontal.Location = new System.Drawing.Point(150, 0);
             this.panelHorizontal.Margin = new System.Windows.Forms.Padding(0);
@@ -139,58 +181,50 @@
             this.panelHorizontal.Size = new System.Drawing.Size(580, 64);
             this.panelHorizontal.TabIndex = 1;
             // 
+            // pictureBoxUsuario
+            // 
+            this.pictureBoxUsuario.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxUsuario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxUsuario.Cursor = System.Windows.Forms.Cursors.No;
+            this.pictureBoxUsuario.ImageLocation = "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Resource" +
+    "s\\usuario.png";
+            this.pictureBoxUsuario.Location = new System.Drawing.Point(421, 12);
+            this.pictureBoxUsuario.Name = "pictureBoxUsuario";
+            this.pictureBoxUsuario.Size = new System.Drawing.Size(46, 48);
+            this.pictureBoxUsuario.TabIndex = 0;
+            this.pictureBoxUsuario.TabStop = false;
+            this.pictureBoxUsuario.Click += new System.EventHandler(this.pictureBoxUsuario_Click);
+            // 
             // labelNombreUsuario
             // 
             this.labelNombreUsuario.AutoSize = true;
-            this.labelNombreUsuario.Location = new System.Drawing.Point(490, 50);
+            this.labelNombreUsuario.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNombreUsuario.Location = new System.Drawing.Point(473, 30);
             this.labelNombreUsuario.Name = "labelNombreUsuario";
-            this.labelNombreUsuario.Size = new System.Drawing.Size(83, 13);
+            this.labelNombreUsuario.Size = new System.Drawing.Size(98, 15);
             this.labelNombreUsuario.TabIndex = 1;
             this.labelNombreUsuario.Text = "Nombre Usuario";
             // 
-            // pictureBoxUsuario
-            // 
-            this.pictureBoxUsuario.BackColor = System.Drawing.Color.Black;
-            this.pictureBoxUsuario.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBoxUsuario.Location = new System.Drawing.Point(493, 0);
-            this.pictureBoxUsuario.Name = "pictureBoxUsuario";
-            this.pictureBoxUsuario.Size = new System.Drawing.Size(75, 48);
-            this.pictureBoxUsuario.TabIndex = 0;
-            this.pictureBoxUsuario.TabStop = false;
-            // 
             // panelInicio
             // 
-            this.panelInicio.BackColor = System.Drawing.Color.Black;
-            this.panelInicio.Location = new System.Drawing.Point(150, 67);
+            this.panelInicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.panelInicio.Location = new System.Drawing.Point(153, 67);
             this.panelInicio.Name = "panelInicio";
-            this.panelInicio.Size = new System.Drawing.Size(580, 490);
+            this.panelInicio.Size = new System.Drawing.Size(577, 490);
             this.panelInicio.TabIndex = 2;
             this.panelInicio.Paint += new System.Windows.Forms.PaintEventHandler(this.panelInicio_Paint);
             // 
-            // buttonSalir
+            // labelTitulo
             // 
-            this.buttonSalir.BackColor = System.Drawing.Color.Black;
-            this.buttonSalir.FlatAppearance.BorderSize = 0;
-            this.buttonSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSalir.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonSalir.Location = new System.Drawing.Point(0, 399);
-            this.buttonSalir.Name = "buttonSalir";
-            this.buttonSalir.Size = new System.Drawing.Size(150, 50);
-            this.buttonSalir.TabIndex = 4;
-            this.buttonSalir.Text = "Salir";
-            this.buttonSalir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonSalir.UseVisualStyleBackColor = false;
-            // 
-            // pictureBoxLogo
-            // 
-            this.pictureBoxLogo.BackColor = System.Drawing.Color.Black;
-            this.pictureBoxLogo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBoxLogo.Location = new System.Drawing.Point(9, 21);
-            this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(132, 112);
-            this.pictureBoxLogo.TabIndex = 5;
-            this.pictureBoxLogo.TabStop = false;
+            this.labelTitulo.AutoSize = true;
+            this.labelTitulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelTitulo.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitulo.Location = new System.Drawing.Point(216, 12);
+            this.labelTitulo.Name = "labelTitulo";
+            this.labelTitulo.Size = new System.Drawing.Size(102, 39);
+            this.labelTitulo.TabIndex = 2;
+            this.labelTitulo.Text = "Inicio";
+            this.labelTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormInicio
             // 
@@ -198,8 +232,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(730, 557);
-            this.Controls.Add(this.panelInicio);
             this.Controls.Add(this.panelHorizontal);
+            this.Controls.Add(this.panelInicio);
             this.Controls.Add(this.panelVertical);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
@@ -208,10 +242,10 @@
             this.Text = "Inicio";
             this.Load += new System.EventHandler(this.FormInicio_Load);
             this.panelVertical.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.panelHorizontal.ResumeLayout(false);
             this.panelHorizontal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUsuario)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -229,6 +263,7 @@
         private System.Windows.Forms.Label labelNombreUsuario;
         private System.Windows.Forms.Button buttonSalir;
         private System.Windows.Forms.PictureBox pictureBoxLogo;
+        private System.Windows.Forms.Label labelTitulo;
     }
 }
 

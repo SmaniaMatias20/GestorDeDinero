@@ -82,7 +82,7 @@
             // 
             this.panelIngreso.Location = new System.Drawing.Point(0, 27);
             this.panelIngreso.Name = "panelIngreso";
-            this.panelIngreso.Size = new System.Drawing.Size(234, 283);
+            this.panelIngreso.Size = new System.Drawing.Size(234, 334);
             this.panelIngreso.TabIndex = 1;
             // 
             // FormMovimientos
@@ -90,7 +90,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(234, 311);
+            this.ClientSize = new System.Drawing.Size(234, 361);
             this.Controls.Add(this.panelIngreso);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;

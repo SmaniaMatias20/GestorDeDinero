@@ -9,11 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaEntidades", "CapaEntida
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Archivos", "Archivos", "{B20C92F1-1FDA-4C48-BF99-40CB3E3CC939}"
 	ProjectSection(SolutionItems) = preProject
+		ConexionDB.json = ConexionDB.json
 		Usuarios.log = Usuarios.log
-		UsuariosRegistrados.json = UsuariosRegistrados.json
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaDatos", "CapaDatos\CapaDatos.csproj", "{93FFC29A-563E-4EAE-A111-88AB007B457D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaServicios", "CapaServicios\CapaServicios.csproj", "{05D032FD-C12D-459C-97CA-74ED970FDCEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{93FFC29A-563E-4EAE-A111-88AB007B457D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93FFC29A-563E-4EAE-A111-88AB007B457D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93FFC29A-563E-4EAE-A111-88AB007B457D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05D032FD-C12D-459C-97CA-74ED970FDCEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05D032FD-C12D-459C-97CA-74ED970FDCEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05D032FD-C12D-459C-97CA-74ED970FDCEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05D032FD-C12D-459C-97CA-74ED970FDCEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

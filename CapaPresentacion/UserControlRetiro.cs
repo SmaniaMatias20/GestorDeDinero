@@ -16,5 +16,21 @@ namespace CapaPresentacion
         {
             InitializeComponent();
         }
+
+        private void buttonAceptar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonBorrar_Click(object sender, EventArgs e)
+        {
+
+            textBoxRetiro.Text = "";
+        }
+
+        private void textBoxRetiro_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

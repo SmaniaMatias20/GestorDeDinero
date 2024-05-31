@@ -102,6 +102,82 @@ namespace CapaDatos
             }
         }
 
+        public void ActualizarFondosPorNombre(string nombreUsuario, double nuevosFondos)
+        {
+            try
+            {
+                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                {
+                    conexionDB.Open();
+                    string query = "UPDATE Usuario SET fondos = @NuevosFondos WHERE nombre = @NombreUsuario";
+                    using (SqlCommand comando = new SqlCommand(query, conexionDB))
+                    {
+                        comando.Parameters.AddWithValue("@NuevosFondos", nuevosFondos);
+                        comando.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
+                        comando.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al actualizar los fondos del usuario: " + ex.Message);
+            }
+        }
+
+        public void ActualizarUsuario(Usuario usuario)
+        {
+            try
+            {
+                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                {
+                    conexionDB.Open();
+                    string query = "UPDATE Usuario SET fondos = @FondosTotales WHERE nombre = @NombreUsuario";
+                    using (SqlCommand comando = new SqlCommand(query, conexionDB))
+                    {
+                        comando.Parameters.AddWithValue("@FondosTotales", usuario.FondosTotales);
+                        comando.Parameters.AddWithValue("@NombreUsuario", usuario.NombreUsuario);
+                        comando.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al actualizar los datos del usuario: " + ex.Message);
+            }
+        }
+
+        public Usuario ObtenerUsuarioPorNombre(string nombreUsuario)
+        {
+            Usuario usuario = null;
+            try
+            {
+                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                {
+                    conexionDB.Open();
+                    string query = "SELECT nombre, clave, fondos FROM Usuario WHERE nombre = @NombreUsuario";
+                    using (SqlCommand comando = new SqlCommand(query, conexionDB))
+                    {
+                        comando.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
+                        using (SqlDataReader reader = comando.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                usuario = new Usuario();
+                                usuario.NombreUsuario = Convert.ToString(reader["nombre"]);
+                                usuario.Clave = Convert.ToString(reader["clave"]);
+                                usuario.FondosTotales = Convert.ToDouble(reader["fondos"]);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener el usuario por nombre: " + ex.Message);
+            }
+            return usuario;
+        }
+
     }
 }
 

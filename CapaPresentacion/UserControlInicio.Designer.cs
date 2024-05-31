@@ -41,12 +41,13 @@
             this.buttonMovimiento.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonMovimiento.FlatAppearance.BorderSize = 0;
             this.buttonMovimiento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonMovimiento.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonMovimiento.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.buttonMovimiento.Location = new System.Drawing.Point(18, 150);
             this.buttonMovimiento.Name = "buttonMovimiento";
             this.buttonMovimiento.Size = new System.Drawing.Size(158, 38);
             this.buttonMovimiento.TabIndex = 0;
-            this.buttonMovimiento.Text = "Realizar movimiento";
+            this.buttonMovimiento.Text = "Movimiento";
             this.buttonMovimiento.UseVisualStyleBackColor = false;
             this.buttonMovimiento.Click += new System.EventHandler(this.buttonMovimiento_Click);
             // 
@@ -56,11 +57,11 @@
             this.labelCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
             this.labelCaja.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelCaja.Cursor = System.Windows.Forms.Cursors.No;
-            this.labelCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCaja.Font = new System.Drawing.Font("Cambria", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCaja.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.labelCaja.Location = new System.Drawing.Point(20, 76);
             this.labelCaja.Name = "labelCaja";
-            this.labelCaja.Size = new System.Drawing.Size(268, 57);
+            this.labelCaja.Size = new System.Drawing.Size(271, 59);
             this.labelCaja.TabIndex = 1;
             this.labelCaja.Text = "$1.000.000";
             // 
@@ -80,6 +81,7 @@
             this.buttonModificar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonModificar.FlatAppearance.BorderSize = 0;
             this.buttonModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonModificar.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonModificar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.buttonModificar.Location = new System.Drawing.Point(396, 452);
             this.buttonModificar.Name = "buttonModificar";
@@ -94,6 +96,7 @@
             this.buttonEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonEliminar.FlatAppearance.BorderSize = 0;
             this.buttonEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonEliminar.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonEliminar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.buttonEliminar.Location = new System.Drawing.Point(477, 452);
             this.buttonEliminar.Name = "buttonEliminar";
@@ -106,15 +109,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.buttonEliminar);
             this.Controls.Add(this.buttonModificar);
             this.Controls.Add(this.richTextBoxReservas);
             this.Controls.Add(this.labelCaja);
             this.Controls.Add(this.buttonMovimiento);
             this.Name = "UserControlInicio";
-            this.Size = new System.Drawing.Size(567, 496);
+            this.Size = new System.Drawing.Size(569, 498);
             this.ResumeLayout(false);
             this.PerformLayout();
 

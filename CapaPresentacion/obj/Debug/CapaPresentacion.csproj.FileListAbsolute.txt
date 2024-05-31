@@ -3,7 +3,6 @@ C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\bin\Deb
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\bin\Debug\CapaPresentacion.pdb
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.csproj.AssemblyReference.cache
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.FormLogin.resources
-C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.Properties.Resources.resources
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.csproj.GenerateResource.cache
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.csproj.CoreCompileInputs.cache
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.exe
@@ -30,3 +29,8 @@ C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Deb
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.UserControlRetiro.resources
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\bin\Debug\CapaDatos.dll
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\bin\Debug\CapaDatos.pdb
+C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.UserControlLogin.resources
+C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.UserControlRegistro.resources
+C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.Properties.Resources.resources
+C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\bin\Debug\CapaServicios.dll
+C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\bin\Debug\CapaServicios.pdb

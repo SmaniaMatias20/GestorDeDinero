@@ -68,6 +68,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UserControlIngreso.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -79,6 +84,18 @@
     </Compile>
     <Compile Include="UserControlInicio.Designer.cs">
       <DependentUpon>UserControlInicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlLogin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlLogin.Designer.cs">
+      <DependentUpon>UserControlLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlRegistro.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlRegistro.Designer.cs">
+      <DependentUpon>UserControlRegistro.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControlReserva.cs">
       <SubType>UserControl</SubType>
@@ -104,17 +121,18 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="UserControlIngreso.resx">
       <DependentUpon>UserControlIngreso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlInicio.resx">
       <DependentUpon>UserControlInicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlLogin.resx">
+      <DependentUpon>UserControlLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlRegistro.resx">
+      <DependentUpon>UserControlRegistro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlReserva.resx">
       <DependentUpon>UserControlReserva.cs</DependentUpon>
@@ -122,15 +140,6 @@
     <EmbeddedResource Include="UserControlRetiro.resx">
       <DependentUpon>UserControlRetiro.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -144,6 +153,28 @@
       <Project>{e6b2e17c-34d0-4835-b353-99d2b25bc0d5}</Project>
       <Name>CapaEntidades</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CapaServicios\CapaServicios.csproj">
+      <Project>{05d032fd-c12d-459c-97ca-74ed970fdcec}</Project>
+      <Name>CapaServicios</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usuario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ajustes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gastos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inversion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\salir.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

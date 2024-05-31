@@ -1,5 +1,8 @@
-﻿using System.Data.SqlClient;
-
+﻿using System;
+using System.Data.SqlClient;
+using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace CapaDatos
 {
@@ -7,8 +10,10 @@ namespace CapaDatos
     {
         private string cadenaConexion = "Data Source=DESKTOP-HEJ5SS0\\SQLEXPRESS;Initial Catalog=GestorDeDineroDB;Integrated Security=True;";
 
+        [JsonPropertyName("cadena")]
+        public string Cadena { get; set; }
 
-        public Conexion() 
+        public Conexion()
         {
         }
 
@@ -19,6 +24,6 @@ namespace CapaDatos
 
         
 
-
     }
-}
+
+}   

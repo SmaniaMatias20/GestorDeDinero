@@ -44,11 +44,11 @@ namespace CapaEntidades
         /// <param name="usuario">El primer usuario a comparar.</param>
         /// <param name="otroUsuario">El segundo usuario a comparar.</param>
         /// <returns>True si los usuarios son iguales, False en caso contrario.</returns>
-        public static bool operator ==(Usuario usuario, Usuario otroUsuario) 
-        {
-            // Compara los nombres de usuario y claves de los dos usuarios
-            return usuario.NombreUsuario == otroUsuario.NombreUsuario && usuario.Clave == otroUsuario.Clave;
-        }
+        //public static bool operator ==(Usuario usuario, Usuario otroUsuario) 
+        //{
+        //    // Compara los nombres de usuario y claves de los dos usuarios
+        //    return usuario.NombreUsuario == otroUsuario.NombreUsuario && usuario.Clave == otroUsuario.Clave;
+        //}
 
         /// <summary>
         /// Comprueba si dos usuarios son diferentes comparando sus nombres de usuario y claves.
@@ -56,11 +56,11 @@ namespace CapaEntidades
         /// <param name="usuario">El primer usuario a comparar.</param>
         /// <param name="otroUsuario">El segundo usuario a comparar.</param>
         /// <returns>True si los usuarios son diferentes, False en caso contrario.</returns>
-        public static bool operator !=(Usuario usuario, Usuario otroUsuario)
-        {
-            // Retorna el resultado opuesto de la comparación de igualdad entre los usuarios
-            return !(usuario == otroUsuario);
-        }
+        //public static bool operator !=(Usuario usuario, Usuario otroUsuario)
+        //{
+        //    // Retorna el resultado opuesto de la comparación de igualdad entre los usuarios
+        //    return !(usuario == otroUsuario);
+        //}
 
 
     }

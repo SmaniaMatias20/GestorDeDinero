@@ -40,19 +40,19 @@ namespace CapaPresentacion
             // 
             this.labelIngresoTitulo.AutoSize = true;
             this.labelIngresoTitulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelIngresoTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelIngresoTitulo.Font = new System.Drawing.Font("Cambria", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelIngresoTitulo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.labelIngresoTitulo.Location = new System.Drawing.Point(34, 100);
+            this.labelIngresoTitulo.Location = new System.Drawing.Point(39, 110);
             this.labelIngresoTitulo.Name = "labelIngresoTitulo";
-            this.labelIngresoTitulo.Size = new System.Drawing.Size(161, 27);
+            this.labelIngresoTitulo.Size = new System.Drawing.Size(134, 34);
             this.labelIngresoTitulo.TabIndex = 0;
-            this.labelIngresoTitulo.Text = "Ingresar Dinero";
+            this.labelIngresoTitulo.Text = "Ingresar...";
             // 
             // textBoxIngreso
             // 
-            this.textBoxIngreso.Location = new System.Drawing.Point(39, 165);
+            this.textBoxIngreso.Location = new System.Drawing.Point(39, 171);
             this.textBoxIngreso.Name = "textBoxIngreso";
-            this.textBoxIngreso.Size = new System.Drawing.Size(154, 20);
+            this.textBoxIngreso.Size = new System.Drawing.Size(160, 20);
             this.textBoxIngreso.TabIndex = 1;
             this.textBoxIngreso.TextChanged += new System.EventHandler(this.textBoxIngreso_TextChanged);
             // 
@@ -62,6 +62,7 @@ namespace CapaPresentacion
             this.buttonAceptarIngreso.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonAceptarIngreso.FlatAppearance.BorderSize = 0;
             this.buttonAceptarIngreso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAceptarIngreso.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAceptarIngreso.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.buttonAceptarIngreso.Location = new System.Drawing.Point(39, 207);
             this.buttonAceptarIngreso.Name = "buttonAceptarIngreso";
@@ -77,8 +78,9 @@ namespace CapaPresentacion
             this.buttonBorrarIngreso.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonBorrarIngreso.FlatAppearance.BorderSize = 0;
             this.buttonBorrarIngreso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonBorrarIngreso.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBorrarIngreso.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonBorrarIngreso.Location = new System.Drawing.Point(118, 207);
+            this.buttonBorrarIngreso.Location = new System.Drawing.Point(124, 207);
             this.buttonBorrarIngreso.Name = "buttonBorrarIngreso";
             this.buttonBorrarIngreso.Size = new System.Drawing.Size(75, 23);
             this.buttonBorrarIngreso.TabIndex = 3;
