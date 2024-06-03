@@ -10,7 +10,8 @@ namespace CapaPresentacion
     {
         // Atributos
         private Usuario _usuario = new Usuario();
-        private CS_Usuario csUsuario; 
+        private CS_Usuario _csUsuario; 
+        private CS_Movimiento _csMovimiento;
 
         // Eventos
         public event EventHandler AceptarClick;
@@ -28,7 +29,8 @@ namespace CapaPresentacion
             // Inicializa los componentes visuales del control de usuario
             InitializeComponent();
             // Crea una nueva instancia de la clase CS_Usuario para manejar la lógica relacionada con el usuario
-            csUsuario = new CS_Usuario();
+            _csUsuario = new CS_Usuario();
+            _csMovimiento = new CS_Movimiento();
         }
 
         /// <summary>
@@ -90,7 +92,10 @@ namespace CapaPresentacion
             double ingreso = ValidarTextBoxIngreso();
 
             // Actualizar los fondos del usuario
-            csUsuario.ActualizarFondos(Usuario.NombreUsuario, ingreso, true); 
+            _csUsuario.ActualizarFondos(Usuario.NombreUsuario, ingreso, true);
+
+            // Registra el movimiento
+            _csMovimiento.RegistrarMovimiento(Usuario.Id, ingreso, "ingreso");
 
             // Notificar que los fondos han sido actualizados
             MessageBox.Show("Los fondos han sido actualizados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);

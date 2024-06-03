@@ -10,12 +10,14 @@ namespace CapaServicios
     {
         // Atributos
         private CD_Usuario cdUsuario;
+        
 
 
         public CS_Usuario()
         {
             // Inicializa una nueva instancia de CD_Usuario para acceder a la capa de datos.
             cdUsuario = new CD_Usuario();
+            
         }
 
         /// <summary>

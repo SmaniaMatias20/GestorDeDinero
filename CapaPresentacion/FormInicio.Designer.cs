@@ -36,10 +36,11 @@
             this.button2 = new System.Windows.Forms.Button();
             this.buttonInicio = new System.Windows.Forms.Button();
             this.panelHorizontal = new System.Windows.Forms.Panel();
+            this.labelFecha = new System.Windows.Forms.Label();
+            this.labelTitulo = new System.Windows.Forms.Label();
             this.pictureBoxUsuario = new System.Windows.Forms.PictureBox();
             this.labelNombreUsuario = new System.Windows.Forms.Label();
             this.panelInicio = new System.Windows.Forms.Panel();
-            this.labelTitulo = new System.Windows.Forms.Label();
             this.panelVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelHorizontal.SuspendLayout();
@@ -171,6 +172,7 @@
             // panelHorizontal
             // 
             this.panelHorizontal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
+            this.panelHorizontal.Controls.Add(this.labelFecha);
             this.panelHorizontal.Controls.Add(this.labelTitulo);
             this.panelHorizontal.Controls.Add(this.pictureBoxUsuario);
             this.panelHorizontal.Controls.Add(this.labelNombreUsuario);
@@ -180,6 +182,28 @@
             this.panelHorizontal.Name = "panelHorizontal";
             this.panelHorizontal.Size = new System.Drawing.Size(580, 64);
             this.panelHorizontal.TabIndex = 1;
+            // 
+            // labelFecha
+            // 
+            this.labelFecha.AutoSize = true;
+            this.labelFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFecha.Location = new System.Drawing.Point(474, 48);
+            this.labelFecha.Name = "labelFecha";
+            this.labelFecha.Size = new System.Drawing.Size(51, 12);
+            this.labelFecha.TabIndex = 3;
+            this.labelFecha.Text = "03/26/2024";
+            // 
+            // labelTitulo
+            // 
+            this.labelTitulo.AutoSize = true;
+            this.labelTitulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelTitulo.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitulo.Location = new System.Drawing.Point(216, 12);
+            this.labelTitulo.Name = "labelTitulo";
+            this.labelTitulo.Size = new System.Drawing.Size(102, 39);
+            this.labelTitulo.TabIndex = 2;
+            this.labelTitulo.Text = "Inicio";
+            this.labelTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBoxUsuario
             // 
@@ -213,18 +237,6 @@
             this.panelInicio.Size = new System.Drawing.Size(577, 490);
             this.panelInicio.TabIndex = 2;
             this.panelInicio.Paint += new System.Windows.Forms.PaintEventHandler(this.panelInicio_Paint);
-            // 
-            // labelTitulo
-            // 
-            this.labelTitulo.AutoSize = true;
-            this.labelTitulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelTitulo.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitulo.Location = new System.Drawing.Point(216, 12);
-            this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(102, 39);
-            this.labelTitulo.TabIndex = 2;
-            this.labelTitulo.Text = "Inicio";
-            this.labelTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormInicio
             // 
@@ -264,6 +276,7 @@
         private System.Windows.Forms.Button buttonSalir;
         private System.Windows.Forms.PictureBox pictureBoxLogo;
         private System.Windows.Forms.Label labelTitulo;
+        private System.Windows.Forms.Label labelFecha;
     }
 }
 

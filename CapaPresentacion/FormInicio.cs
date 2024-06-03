@@ -23,7 +23,9 @@ namespace CapaPresentacion
             // Inicializa los componentes del formulario
             InitializeComponent();
 
-           
+            DateTime ahora = DateTime.Now;
+            labelFecha.Text = ahora.ToString("yyyy-MM-dd HH:mm");
+
         }
 
         /// <summary>
@@ -83,5 +85,6 @@ namespace CapaPresentacion
         {
 
         }
+
     }
 }

@@ -29,7 +29,7 @@ namespace CapaDatos
                     conexionDB.Open();
 
                     // Consulta SQL para obtener los usuarios
-                    string query = "SELECT nombre, clave, fondos FROM usuario";
+                    string query = "SELECT id, nombre, clave, caja FROM usuario";
 
                     // Crear un comando SQL para ejecutar la consulta
                     using (SqlCommand comando = new SqlCommand(query, conexionDB))
@@ -44,9 +44,10 @@ namespace CapaDatos
                                 Usuario usuario = new Usuario();
 
                                 // Asignar los valores de las columnas del resultado a las propiedades del objeto Usuario
+                                usuario.Id = Convert.ToInt32(reader["id"]); 
                                 usuario.NombreUsuario = Convert.ToString(reader["nombre"]);
                                 usuario.Clave = Convert.ToString(reader["clave"]);
-                                usuario.FondosTotales = Convert.ToDouble(reader["fondos"]);
+                                usuario.FondosTotales = Convert.ToDouble(reader["caja"]);
 
                                 // Agregar el usuario a la lista
                                 lista.Add(usuario);
@@ -131,7 +132,7 @@ namespace CapaDatos
                 using (SqlConnection conexionDB = conexion.ObtenerConexion())
                 {
                     conexionDB.Open();
-                    string query = "UPDATE Usuario SET fondos = @FondosTotales WHERE nombre = @NombreUsuario";
+                    string query = "UPDATE Usuario SET caja = @FondosTotales WHERE nombre = @NombreUsuario";
                     using (SqlCommand comando = new SqlCommand(query, conexionDB))
                     {
                         comando.Parameters.AddWithValue("@FondosTotales", usuario.FondosTotales);
@@ -154,7 +155,7 @@ namespace CapaDatos
                 using (SqlConnection conexionDB = conexion.ObtenerConexion())
                 {
                     conexionDB.Open();
-                    string query = "SELECT nombre, clave, fondos FROM Usuario WHERE nombre = @NombreUsuario";
+                    string query = "SELECT nombre, clave, caja FROM Usuario WHERE nombre = @NombreUsuario";
                     using (SqlCommand comando = new SqlCommand(query, conexionDB))
                     {
                         comando.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
@@ -165,7 +166,7 @@ namespace CapaDatos
                                 usuario = new Usuario();
                                 usuario.NombreUsuario = Convert.ToString(reader["nombre"]);
                                 usuario.Clave = Convert.ToString(reader["clave"]);
-                                usuario.FondosTotales = Convert.ToDouble(reader["fondos"]);
+                                usuario.FondosTotales = Convert.ToDouble(reader["caja"]);
                             }
                         }
                     }

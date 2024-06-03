@@ -10,7 +10,8 @@ namespace CapaPresentacion
     {
         // Atributos
         private Usuario _usuario = new Usuario();
-        private CS_Usuario csUsuario;
+        private CS_Usuario _csUsuario;
+        private CS_Movimiento _csMovimiento;
 
         // Eventos
         public event EventHandler AceptarClick;
@@ -27,7 +28,8 @@ namespace CapaPresentacion
             // Llama al método que inicializa los componentes visuales del control de usuario.
             InitializeComponent();
             // Crea una instancia de la clase CS_Usuario para manejar la lógica relacionada con el usuario.
-            csUsuario = new CS_Usuario();
+            _csUsuario = new CS_Usuario();
+            _csMovimiento = new CS_Movimiento();
         }
 
         /// <summary>
@@ -44,8 +46,8 @@ namespace CapaPresentacion
 
 
             // Actualizar el label con los fondos formateados
-            double fondosActuales = csUsuario.ObtenerFondosTotales(Usuario);
-            string fondosFormateados = csUsuario.FormatearMoneda(fondosActuales);
+            double fondosActuales = _csUsuario.ObtenerFondosTotales(Usuario);
+            string fondosFormateados = _csUsuario.FormatearMoneda(fondosActuales);
             labelFondos.Text = $"Fondos: {fondosFormateados}";
         }
 
@@ -99,16 +101,19 @@ namespace CapaPresentacion
             double retiro = ValidarTextBoxRetiro();
 
             // Actualizar los fondos del usuario
-            csUsuario.ActualizarFondos(Usuario.NombreUsuario, retiro, false);
+            _csUsuario.ActualizarFondos(Usuario.NombreUsuario, retiro, false);
 
             // Obtiene los fondos actuales del usuario después del retiro
-            double fondosActuales = csUsuario.ObtenerFondosTotales(Usuario);
+            double fondosActuales = _csUsuario.ObtenerFondosTotales(Usuario);
 
             // Formatea los fondos actuales a una representación de moneda
-            string fondosFormateados = csUsuario.FormatearMoneda(fondosActuales);
+            string fondosFormateados = _csUsuario.FormatearMoneda(fondosActuales);
 
             // Actualizar el label con los fondos formateados
             labelFondos.Text = $"Fondos: {fondosFormateados}";
+
+            // Registra el movimiento
+            _csMovimiento.RegistrarMovimiento(Usuario.Id, retiro, "retiro");
 
             // Notificar que los fondos han sido actualizados
             MessageBox.Show("Los fondos han sido actualizados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -136,7 +141,7 @@ namespace CapaPresentacion
             }
 
             // Actualizar el label con los fondos formateados
-            double fondosActuales = csUsuario.ObtenerFondosTotales(Usuario);
+            double fondosActuales = _csUsuario.ObtenerFondosTotales(Usuario);
             // Validar que el retiro sea menor o igual a los fondos totales actualmente
             if (retiro <= fondosActuales)
             {
