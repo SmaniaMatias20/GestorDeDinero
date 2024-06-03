@@ -1,7 +1,7 @@
-﻿using CapaDatos;
-using CapaEntidades;
+﻿using CapaEntidades;
 using CapaServicios;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace CapaPresentacion
@@ -10,7 +10,9 @@ namespace CapaPresentacion
     {
         // Atributos
         private Usuario _usuario = new Usuario();
-        private CS_Usuario csUsuario; // Cambio: Utiliza CS_Usuario en lugar de CD_Usuario
+        private CS_Usuario csUsuario; 
+
+        // Eventos
         public event EventHandler AceptarClick;
 
         // Propiedades
@@ -18,11 +20,14 @@ namespace CapaPresentacion
 
 
         /// <summary>
-        /// Constructor por defecto
+        /// Constructor por defecto de la clase UserControlIngreso.
+        /// Inicializa los componentes visuales y crea una nueva instancia de la clase CS_Usuario.
         /// </summary>
         public UserControlIngreso()
         {
+            // Inicializa los componentes visuales del control de usuario
             InitializeComponent();
+            // Crea una nueva instancia de la clase CS_Usuario para manejar la lógica relacionada con el usuario
             csUsuario = new CS_Usuario();
         }
 
@@ -49,11 +54,20 @@ namespace CapaPresentacion
         }
 
         /// <summary>
-        /// Maneja el evento KeyPress del textBoxIngreso para permitir solo números y la tecla de retroceso
+        /// Maneja el evento KeyPress del textBoxIngreso para permitir solo números, un punto decimal y la tecla de retroceso.
         /// </summary>
+        /// <param name="sender">El control que generó el evento.</param>
+        /// <param name="e">Los datos del evento KeyPress.</param>
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            // Verifica si el carácter no es una tecla de control, un dígito ni un punto decimal
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
+            {
+                e.Handled = true;
+            }
+
+            // Si ya hay un punto decimal en el texto y se presiona otro, se ignora el evento
+            if (e.KeyChar == ',' && (sender as TextBox).Text.Contains(','))
             {
                 e.Handled = true;
             }
@@ -72,28 +86,46 @@ namespace CapaPresentacion
         /// </summary>
         private void buttonAceptarIngreso_Click(object sender, EventArgs e)
         {
-            // Validar que el campo de ingreso no esté vacío
-            if (string.IsNullOrWhiteSpace(textBoxIngreso.Text))
-            {
-                MessageBox.Show("Por favor ingrese un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
-            // Validar que el campo de ingreso contenga un número válido
-            if (!double.TryParse(textBoxIngreso.Text, out double ingreso))
-            {
-                MessageBox.Show("Ingrese un número válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            double ingreso = ValidarTextBoxIngreso();
 
             // Actualizar los fondos del usuario
-            csUsuario.ActualizarFondos(Usuario.NombreUsuario, ingreso); // Cambio: Utiliza CS_Usuario en lugar de CD_Usuario
+            csUsuario.ActualizarFondos(Usuario.NombreUsuario, ingreso, true); 
 
             // Notificar que los fondos han sido actualizados
             MessageBox.Show("Los fondos han sido actualizados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Dispara el evento AceptarClick cuando se presiona el botón "Aceptar"
             AceptarClick?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Valida el contenido del TextBox de ingreso, asegurándose de que no esté vacío
+        /// y que contenga un número válido.
+        /// </summary>
+        /// <returns>El valor numérico del ingreso si es válido; de lo contrario, muestra un mensaje de advertencia.</returns>
+        private double ValidarTextBoxIngreso() 
+        {
+            // Verifica que el campo de ingreso no esté vacío
+            if (string.IsNullOrWhiteSpace(textBoxIngreso.Text))
+            {
+                // Muestra un mensaje de advertencia si el campo está vacío
+                MessageBox.Show("Por favor ingrese un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return 0;
+
+            }
+
+            // Verifica que el campo de ingreso contenga un número válido
+            if (!double.TryParse(textBoxIngreso.Text, out double ingreso))
+            {
+                // Muestra un mensaje de advertencia si el valor ingresado no es un número válido
+                MessageBox.Show("Ingrese un número válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return 0;
+
+            }
+
+            // Si todas las validaciones son exitosas, devuelve el valor numérico del ingreso
+            return ingreso;
         }
 
     }

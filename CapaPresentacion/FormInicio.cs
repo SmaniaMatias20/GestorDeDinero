@@ -25,15 +25,24 @@ namespace CapaPresentacion
 
            
         }
+
+        /// <summary>
+        /// Maneja el evento de carga del formulario FormInicio.
+        /// Inicializa una nueva instancia de la clase Conexion.
+        /// </summary>
+        /// <param name="sender">El origen del evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void FormInicio_Load(object sender, EventArgs e)
         {
+            // Inicializa una nueva instancia de la clase Conexion
             Conexion conexion = new Conexion(); 
         }
 
         /// <summary>
-        /// 
+        /// Constructor para la clase FormInicio que acepta un objeto Usuario.
+        /// Inicializa los componentes visuales del formulario y configura la pantalla de inicio con los datos del usuario.
         /// </summary>
-        /// <param name="usuario"></param>
+        /// <param name="usuario">El objeto Usuario que representa al usuario actual.</param>
         public FormInicio(Usuario usuario) : this() 
         { 
             // Asigna el usuario recibido por parametro al atributo

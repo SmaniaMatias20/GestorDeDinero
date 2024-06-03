@@ -8,10 +8,13 @@ namespace CapaServicios
 {
     public class CS_Usuario
     {
+        // Atributos
         private CD_Usuario cdUsuario;
+
 
         public CS_Usuario()
         {
+            // Inicializa una nueva instancia de CD_Usuario para acceder a la capa de datos.
             cdUsuario = new CD_Usuario();
         }
 
@@ -116,8 +119,8 @@ namespace CapaServicios
         /// Actualiza los fondos del usuario en la base de datos.
         /// </summary>
         /// <param name="nombreUsuario">Nombre de usuario cuyos fondos se actualizarán.</param>
-        /// <param name="ingreso">Cantidad a agregar a los fondos actuales del usuario.</param>
-        public void ActualizarFondos(string nombreUsuario, double ingreso)
+        /// <param name="importe">Cantidad a agregar a los fondos actuales del usuario.</param>
+        public void ActualizarFondos(string nombreUsuario, double importe, bool ingreso)
         {
             // Aquí puedes implementar la lógica para actualizar los fondos del usuario en la base de datos.
             // Por ahora, simularemos que actualizamos los fondos en la base de datos CD_Usuario.
@@ -126,15 +129,35 @@ namespace CapaServicios
             Usuario usuario = cdUsuario.ObtenerUsuarioPorNombre(nombreUsuario);
 
             // Si el usuario existe, actualizamos sus fondos
-            if (usuario != null)
+            if (usuario != null && ingreso)
             {
-                usuario.FondosTotales += ingreso;
+                usuario.FondosTotales += importe;
                 cdUsuario.ActualizarUsuario(usuario); // Método para actualizar el usuario en la base de datos.
             }
-            else
+            else if (usuario != null && !ingreso)
+            {
+                if (importe <= usuario.FondosTotales)
+                {
+                    usuario.FondosTotales -= importe;
+                    cdUsuario.ActualizarUsuario(usuario); // Método para actualizar el usuario en la base de datos.   
+                }
+            }
+            else 
             {
                 throw new Exception("Usuario no encontrado.");
             }
+        }
+
+        public string FormatearMoneda(double cantidad)
+        {
+            // Obtiene el formato de número específico para la cultura de Argentina (es-AR)
+            var nfi = new System.Globalization.CultureInfo("es-AR", false).NumberFormat;
+
+            // Configura para que no se muestren decimales en el formato de moneda
+            nfi.CurrencyDecimalDigits = 2;
+
+            // Convierte la cantidad a una cadena con formato de moneda utilizando la configuración de formato
+            return cantidad.ToString("C", nfi);
         }
     }
 }

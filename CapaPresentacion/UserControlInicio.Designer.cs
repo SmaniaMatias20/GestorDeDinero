@@ -67,7 +67,7 @@
             // 
             // richTextBoxReservas
             // 
-            this.richTextBoxReservas.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.richTextBoxReservas.BackColor = System.Drawing.SystemColors.ControlLight;
             this.richTextBoxReservas.Location = new System.Drawing.Point(18, 207);
             this.richTextBoxReservas.Name = "richTextBoxReservas";
             this.richTextBoxReservas.ReadOnly = true;
