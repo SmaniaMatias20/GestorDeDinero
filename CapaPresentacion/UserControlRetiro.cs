@@ -113,10 +113,10 @@ namespace CapaPresentacion
             labelFondos.Text = $"Fondos: {fondosFormateados}";
 
             // Registra el movimiento
-            _csMovimiento.RegistrarMovimiento(Usuario.Id, retiro, "retiro");
+            string mensaje = _csMovimiento.RegistrarMovimiento(Usuario.Id, retiro, "retiro");
 
             // Notificar que los fondos han sido actualizados
-            MessageBox.Show("Los fondos han sido actualizados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Dispara el evento AceptarClick cuando se presiona el botón "Aceptar"
             AceptarClick?.Invoke(this, EventArgs.Empty);

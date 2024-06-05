@@ -12,6 +12,7 @@ namespace CapaPresentacion
         // Atributos
         private CS_Usuario _csUsuario;
         private CS_Movimiento _csMovimiento;
+        private bool _fondosVisibles = true;
 
         // Propiedades
         public Usuario Usuario { get; set; }
@@ -148,5 +149,19 @@ namespace CapaPresentacion
             MostrarMovimientos();
         }
 
+        private void buttonOcultar_Click(object sender, EventArgs e)
+        {
+            _fondosVisibles = !_fondosVisibles;
+
+            if (_fondosVisibles)
+            {
+                ActualizarValorEnCaja();
+            }
+            else 
+            { 
+                labelCaja.Text = "$******";
+            }
+
+        }
     }
 }

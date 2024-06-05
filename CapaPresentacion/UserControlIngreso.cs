@@ -88,17 +88,16 @@ namespace CapaPresentacion
         /// </summary>
         private void buttonAceptarIngreso_Click(object sender, EventArgs e)
         {
-
             double ingreso = ValidarTextBoxIngreso();
 
             // Actualizar los fondos del usuario
             _csUsuario.ActualizarFondos(Usuario.Nombre, ingreso, true);
 
             // Registra el movimiento
-            _csMovimiento.RegistrarMovimiento(Usuario.Id, ingreso, "ingreso");
+            string mensaje = _csMovimiento.RegistrarMovimiento(Usuario.Id, ingreso, "ingreso");
 
             // Notificar que los fondos han sido actualizados
-            MessageBox.Show("Los fondos han sido actualizados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Dispara el evento AceptarClick cuando se presiona el botón "Aceptar"
             AceptarClick?.Invoke(this, EventArgs.Empty);

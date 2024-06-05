@@ -16,11 +16,18 @@ namespace CapaServicios
             cdMovimiento = new CD_Movimiento();
         }
 
-        public void RegistrarMovimiento(int idUsuario, double importe, string tipo) 
+        public string RegistrarMovimiento(int idUsuario, double importe, string tipo) 
         {
             Movimiento movimiento = new Movimiento(tipo, importe);
-            
-            cdMovimiento.AgregarMovimiento(idUsuario, movimiento.Fecha, movimiento.Importe, movimiento.Tipo);
+            if (importe > 0)
+            {
+                cdMovimiento.AgregarMovimiento(idUsuario, movimiento.Fecha, movimiento.Importe, movimiento.Tipo);
+                return "Los fondos han sido actualizados correctamente";
+            }
+            else
+            {
+                return "Ingrese un importe distinto a 0(cero)";
+            }
         }
 
         public List<Movimiento> ObtenerMovimientosPorId(int idUsuario) 

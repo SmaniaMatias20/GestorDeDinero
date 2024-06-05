@@ -7,11 +7,11 @@ namespace CapaPresentacion
     public partial class UserControlRegistro : UserControl
     {
         // Atributos
-        private Usuario _usuario = new Usuario();
+        //private Usuario _usuario = new Usuario();
         private CS_Usuario csUsuario;
 
         // Propiedades
-        public Usuario Usuario { get; set; }
+        //public Usuario Usuario { get; set; }
 
         public UserControlRegistro()
         {
@@ -25,25 +25,30 @@ namespace CapaPresentacion
 
         private void buttonRegistrarse_Click(object sender, System.EventArgs e)
         {
+
+            // Optimizar
             if (textBoxUsuario.Text != "")
             {
-                if (textBoxClave.Text == textBoxClave2.Text && textBoxClave.Text != "")
+                if (textBoxClave.Text != "" || textBoxClave2.Text != "")
                 {
-                    Usuario.Nombre = textBoxUsuario.Text; 
-                    Usuario.Clave = textBoxClave.Text;
-
-                    string mensaje = csUsuario.RegistrarUsuario(Usuario.Nombre, Usuario.Clave);
-                    MessageBox.Show(mensaje);
+                    if (textBoxClave.Text == textBoxClave2.Text)
+                    {
+                        string mensaje = csUsuario.RegistrarUsuario(textBoxUsuario.Text, textBoxClave.Text);
+                        MessageBox.Show(mensaje);  
+                    }
+                    else
+                    {
+                        MessageBox.Show("Las contrseñas no coinciden", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Las contraseñas no coinciden");
-
+                    MessageBox.Show("Ingrese el campo de contraseña", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("Ingrese un nombre de usuario");
+                MessageBox.Show("Ingrese un nombre de usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
 

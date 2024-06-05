@@ -33,6 +33,7 @@
             this.buttonModificar = new System.Windows.Forms.Button();
             this.buttonEliminar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.buttonOcultar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,12 +106,27 @@
             this.dataGridView1.Size = new System.Drawing.Size(534, 224);
             this.dataGridView1.TabIndex = 8;
             // 
+            // buttonOcultar
+            // 
+            this.buttonOcultar.BackColor = System.Drawing.Color.Gray;
+            this.buttonOcultar.FlatAppearance.BorderSize = 0;
+            this.buttonOcultar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonOcultar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.buttonOcultar.Location = new System.Drawing.Point(20, 50);
+            this.buttonOcultar.Name = "buttonOcultar";
+            this.buttonOcultar.Size = new System.Drawing.Size(62, 23);
+            this.buttonOcultar.TabIndex = 9;
+            this.buttonOcultar.Text = "Ocultar";
+            this.buttonOcultar.UseVisualStyleBackColor = false;
+            this.buttonOcultar.Click += new System.EventHandler(this.buttonOcultar_Click);
+            // 
             // UserControlInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.buttonOcultar);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonEliminar);
             this.Controls.Add(this.buttonModificar);
@@ -131,5 +147,6 @@
         private System.Windows.Forms.Button buttonModificar;
         private System.Windows.Forms.Button buttonEliminar;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button buttonOcultar;
     }
 }

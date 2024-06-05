@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Security.Claims;
 using CapaDatos;
 using CapaEntidades;
 
@@ -48,19 +47,32 @@ namespace CapaServicios
             usuario.Nombre = nombre;
             usuario.Clave = clave;
 
+            // Si el usuario no se encuentra registrado
             if (ValidarUsuarioRegistrarse(usuario))
             {
+
                 if (ValidarNombreUsuario(usuario.Nombre))
                 {
                     if (ValidarClave(usuario.Clave))
                     { 
                         cdUsuario.AgregarUsuario(usuario.Nombre, usuario.Clave);
                     }
+                    else
+                    {
+                        return "La contraseña debe tener entre 5 y 20 caracteres, sin espacios";
+                    }
                 }
-                
+                else
+                {
+                    return "El nombre de usuario debe tener entre 10 y 20 caracteres, sin espacios";
+                }
+                return "Su registro fue exitoso";
+            }
+            else
+            {
+                return "El usuario ya se encuentra registrado";
             }
 
-            return "El usuario ya se encuentra registrado";
         }
 
         private bool ValidarUsuarioRegistrarse(Usuario nuevoUsuario) 
@@ -81,14 +93,14 @@ namespace CapaServicios
 
         }
 
-        private bool ValidarNombreUsuario(string nombreUsuario) 
-        { 
-            // Logica para validar nombre de usuario
+        private bool ValidarNombreUsuario(string nombreUsuario)
+        {
+            return 20 >= nombreUsuario.Length && nombreUsuario.Length >= 10 && !nombreUsuario.Contains(" ");
         }
 
-        private bool ValidarClave(string clave) 
-        { 
-            // Logica paravalidar clave
+        private bool ValidarClave(string clave)
+        {
+            return 20 >= clave.Length && clave.Length >= 5 && !clave.Contains(" ");
         }
 
         /// <summary>
