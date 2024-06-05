@@ -9,7 +9,8 @@ namespace CapaPresentacion
     {
         // Atributos
         private Usuario _usuario = new Usuario();
-        private CS_Usuario csUsuario;
+        private CS_Usuario _csUsuario;
+        private bool _claveVisible = false;
 
         // Propiedades
         public Usuario Usuario { get; set; }
@@ -23,7 +24,7 @@ namespace CapaPresentacion
             // Inicializa los componentes visuales del control de usuario
             InitializeComponent();
             // Crea una nueva instancia de CS_Usuario para manejar la lógica relacionada con el usuario
-            csUsuario = new CS_Usuario();
+            _csUsuario = new CS_Usuario();
         }
 
         private void textBoxUsuario_TextChanged(object sender, EventArgs e)
@@ -48,7 +49,7 @@ namespace CapaPresentacion
                 formInicio.Show();
 
                 // Registra el acceso del usuario actual
-                csUsuario.RegistrarAccesoUsuario(textBoxUsuario.Text);
+                _csUsuario.RegistrarAccesoUsuario(textBoxUsuario.Text);
 
                 // Oculta el formulario de inicio de sesión actual
                 this.Hide();
@@ -103,7 +104,7 @@ namespace CapaPresentacion
         private bool ValidarUsuario()
         {
             // Utiliza el método ValidarUsuario de CS_Usuario para verificar las credenciales ingresadas
-            Usuario usuario = csUsuario.ValidarUsuarioIniciarSesion(textBoxUsuario.Text, textBoxClave.Text);
+            Usuario usuario = _csUsuario.ValidarUsuarioIniciarSesion(textBoxUsuario.Text, textBoxClave.Text);
             // Si se encontró un usuario válido, actualiza el atributo Usuario de la clase y devuelve true
             if (usuario != null)
             {
@@ -114,10 +115,28 @@ namespace CapaPresentacion
             return false;
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón "Ocultar".
+        /// Este método alterna la visibilidad de la contraseña en el TextBox textBoxClave.
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento (en este caso, el botón "Ocultar").</param>
+        /// <param name="e">Argumentos del evento.</param>
+        private void buttonOcultar_Click(object sender, EventArgs e)
+        {
+            // Alterna el estado de visibilidad de la contraseña
+            _claveVisible = !_claveVisible;
 
-
-
-
-
+            // Verifica el estado de visibilidad de la contraseña y ajusta la propiedad PasswordChar en consecuencia.
+            if (!_claveVisible) 
+            {
+                // Si la contraseña no está visible, se establece un carácter de contraseña para ocultarla.
+                textBoxClave.PasswordChar = 'o';
+            }
+            else
+            {
+                // Si la contraseña está visible, se elimina cualquier carácter de contraseña para que sea visible.
+                textBoxClave.PasswordChar = '\0';
+            }
+        }
     }
 }

@@ -35,6 +35,7 @@
             this.labelClave = new System.Windows.Forms.Label();
             this.labelUsuario = new System.Windows.Forms.Label();
             this.labelTitulo = new System.Windows.Forms.Label();
+            this.buttonOcultar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonBorrar
@@ -120,11 +121,21 @@
             this.labelTitulo.TabIndex = 13;
             this.labelTitulo.Text = "Iniciar...";
             // 
+            // buttonOcultar
+            // 
+            this.buttonOcultar.Location = new System.Drawing.Point(199, 211);
+            this.buttonOcultar.Name = "buttonOcultar";
+            this.buttonOcultar.Size = new System.Drawing.Size(21, 20);
+            this.buttonOcultar.TabIndex = 14;
+            this.buttonOcultar.UseVisualStyleBackColor = true;
+            this.buttonOcultar.Click += new System.EventHandler(this.buttonOcultar_Click);
+            // 
             // UserControlLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
+            this.Controls.Add(this.buttonOcultar);
             this.Controls.Add(this.labelTitulo);
             this.Controls.Add(this.buttonBorrar);
             this.Controls.Add(this.buttonIniciar);
@@ -148,5 +159,6 @@
         private System.Windows.Forms.Label labelClave;
         private System.Windows.Forms.Label labelUsuario;
         private System.Windows.Forms.Label labelTitulo;
+        private System.Windows.Forms.Button buttonOcultar;
     }
 }

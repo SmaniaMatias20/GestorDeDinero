@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using CapaDatos;
 using CapaEntidades;
 
@@ -41,7 +42,7 @@ namespace CapaServicios
             return null;
         }
 
-        public string RegistrarUsuario(string nombre, string clave) 
+        public string RegistrarUsuario(string nombre, string clave, string segundaClave) 
         {
             Usuario usuario = new Usuario();
             usuario.Nombre = nombre;
@@ -50,31 +51,40 @@ namespace CapaServicios
             // Si el usuario no se encuentra registrado
             if (ValidarUsuarioRegistrarse(usuario))
             {
-
-                if (ValidarNombreUsuario(usuario.Nombre))
+                if (ValidarNombreUsuario(usuario.Nombre) == usuario.Nombre)
                 {
-                    if (ValidarClave(usuario.Clave))
-                    { 
+                    if (ValidarClave(usuario.Clave, segundaClave) == usuario.Clave)
+                    {
                         cdUsuario.AgregarUsuario(usuario.Nombre, usuario.Clave);
+                        return "Se registró exitosamente...";
                     }
                     else
                     {
-                        return "La contraseña debe tener entre 5 y 20 caracteres, sin espacios";
+                        return ValidarClave(usuario.Clave, segundaClave);
                     }
                 }
                 else
                 {
-                    return "El nombre de usuario debe tener entre 10 y 20 caracteres, sin espacios";
+                    return ValidarNombreUsuario(usuario.Nombre);
                 }
-                return "Su registro fue exitoso";
             }
             else
             {
-                return "El usuario ya se encuentra registrado";
+                return "Ya existe el Usuario registrado";
             }
+
 
         }
 
+        /// <summary>
+        /// Valida si un nuevo usuario puede registrarse.
+        /// Verifica que el nombre de usuario no esté ya registrado en la base de datos.
+        /// </summary>
+        /// <param name="nuevoUsuario">El objeto Usuario que contiene los datos del nuevo usuario a registrar.</param>
+        /// <returns>
+        /// Devuelve true si el nombre de usuario no está en uso y el registro puede proceder; 
+        /// de lo contrario, devuelve false.
+        /// </returns>
         private bool ValidarUsuarioRegistrarse(Usuario nuevoUsuario) 
         {
             // Obtener la lista de usuarios desde la base de datos
@@ -83,24 +93,67 @@ namespace CapaServicios
             // Recorre la lista de usuarios para verificar las credenciales ingresadas
             foreach (Usuario usuario in listaDeUsuarios)
             {
+                // Comprueba si el nombre del nuevo usuario ya existe en la lista de usuarios.
                 if (nuevoUsuario.Nombre == usuario.Nombre)
                 {
+                    // Si se encuentra un nombre de usuario coincidente, devuelve false indicando que el usuario no puede registrarse.
                     return false;
                 }
             }
 
+            // Si no se encuentra un nombre de usuario coincidente, devuelve true indicando que el usuario puede registrarse.
             return true;
 
         }
 
-        private bool ValidarNombreUsuario(string nombreUsuario)
+        /// <summary>
+        /// Valida si el nombre de usuario cumple con los requisitos especificados.
+        /// Verifica que la longitud del nombre de usuario esté entre 10 y 20 caracteres,
+        /// que no contenga espacios ni caracteres especiales, y que solo contenga letras y números.
+        /// </summary>
+        /// <param name="nombreUsuario">El nombre de usuario a validar.</param>
+        /// <returns>
+        /// Devuelve true si el nombre de usuario cumple con los requisitos;
+        /// de lo contrario, devuelve false.
+        /// </returns>
+        private string ValidarNombreUsuario(string nombreUsuario)
         {
-            return 20 >= nombreUsuario.Length && nombreUsuario.Length >= 10 && !nombreUsuario.Contains(" ");
+            if (nombreUsuario == "")
+            {
+                return "Ingrese un nombre de Usuario";
+            }
+            else if (nombreUsuario.Length > 20 || nombreUsuario.Length < 10)
+            {
+                return "El nombre de Usuario debe tener un minimo de 10 caracteres y un maximo de 20";
+            }
+            else if (nombreUsuario.Contains(" ") || !nombreUsuario.All(char.IsLetterOrDigit)) 
+            {
+                return "El nombre de Usuario no debe contener espacios o caracteres especiales";
+            }
+
+            return nombreUsuario;
         }
 
-        private bool ValidarClave(string clave)
+        private string ValidarClave(string clave, string segundaClave)
         {
-            return 20 >= clave.Length && clave.Length >= 5 && !clave.Contains(" ");
+            if (clave == "" || segundaClave == "")
+            {
+                return "Debe ingresar las claves";
+            }
+            else if (clave != segundaClave)
+            {
+                return "Las claves no coinciden";
+            }
+            else if (clave.Length > 20 || clave.Length < 5)
+            {
+                return "La clave debe tener un minimo de 5 caracteres y un maximo de 20";
+            }
+            else if (clave.Contains(" ")) 
+            {
+                return "La clave no puede contener espacios";
+            }
+
+            return clave;
         }
 
         /// <summary>

@@ -108,8 +108,8 @@
             // 
             // buttonOcultar
             // 
-            this.buttonOcultar.BackColor = System.Drawing.Color.Gray;
-            this.buttonOcultar.FlatAppearance.BorderSize = 0;
+            this.buttonOcultar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
+            this.buttonOcultar.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.buttonOcultar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonOcultar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.buttonOcultar.Location = new System.Drawing.Point(20, 50);

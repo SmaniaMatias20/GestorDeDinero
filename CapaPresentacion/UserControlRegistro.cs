@@ -7,15 +7,14 @@ namespace CapaPresentacion
     public partial class UserControlRegistro : UserControl
     {
         // Atributos
-        //private Usuario _usuario = new Usuario();
         private CS_Usuario csUsuario;
 
-        // Propiedades
-        //public Usuario Usuario { get; set; }
-
+        /// <summary>
+        /// Constructor del control de usuario UserControlRegistro.
+        /// </summary>
         public UserControlRegistro()
         {
-            //
+            // Inicializa los componentes visuales del control de usuario.
             InitializeComponent();
 
             // Crea una nueva instancia de CS_Usuario para manejar la lógica relacionada con el usuario
@@ -25,35 +24,8 @@ namespace CapaPresentacion
 
         private void buttonRegistrarse_Click(object sender, System.EventArgs e)
         {
-
-            // Optimizar
-            if (textBoxUsuario.Text != "")
-            {
-                if (textBoxClave.Text != "" || textBoxClave2.Text != "")
-                {
-                    if (textBoxClave.Text == textBoxClave2.Text)
-                    {
-                        string mensaje = csUsuario.RegistrarUsuario(textBoxUsuario.Text, textBoxClave.Text);
-                        MessageBox.Show(mensaje);  
-                    }
-                    else
-                    {
-                        MessageBox.Show("Las contrseñas no coinciden", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Ingrese el campo de contraseña", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Ingrese un nombre de usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-
-
-
-            
+            string mensaje = csUsuario.RegistrarUsuario(textBoxUsuario.Text, textBoxClave.Text, textBoxClave2.Text);
+            MessageBox.Show(mensaje);  
         }
     }
 }
