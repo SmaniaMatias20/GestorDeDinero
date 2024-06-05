@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Claims;
 using CapaDatos;
 using CapaEntidades;
 
@@ -10,8 +11,6 @@ namespace CapaServicios
     {
         // Atributos
         private CD_Usuario cdUsuario;
-        
-
 
         public CS_Usuario()
         {
@@ -26,7 +25,7 @@ namespace CapaServicios
         /// <param name="nombreUsuario">Nombre del usuario</param>
         /// <param name="clave">Clave del usuario</param>
         /// <returns>El usuario validado si las credenciales son válidas; de lo contrario, null.</returns>
-        public Usuario ValidarUsuario(string nombreUsuario, string clave)
+        public Usuario ValidarUsuarioIniciarSesion(string nombreUsuario, string clave)
         {
             // Obtener la lista de usuarios desde la base de datos
             List<Usuario> listaDeUsuarios = cdUsuario.ListarUsuarios();
@@ -34,13 +33,62 @@ namespace CapaServicios
             // Recorre la lista de usuarios para verificar las credenciales ingresadas
             foreach (Usuario usuario in listaDeUsuarios)
             {
-                if (usuario.NombreUsuario == nombreUsuario && usuario.Clave == clave)
+                if (usuario.Nombre == nombreUsuario && usuario.Clave == clave)
                 {
                     return usuario;
                 }
             }
 
             return null;
+        }
+
+        public string RegistrarUsuario(string nombre, string clave) 
+        {
+            Usuario usuario = new Usuario();
+            usuario.Nombre = nombre;
+            usuario.Clave = clave;
+
+            if (ValidarUsuarioRegistrarse(usuario))
+            {
+                if (ValidarNombreUsuario(usuario.Nombre))
+                {
+                    if (ValidarClave(usuario.Clave))
+                    { 
+                        cdUsuario.AgregarUsuario(usuario.Nombre, usuario.Clave);
+                    }
+                }
+                
+            }
+
+            return "El usuario ya se encuentra registrado";
+        }
+
+        private bool ValidarUsuarioRegistrarse(Usuario nuevoUsuario) 
+        {
+            // Obtener la lista de usuarios desde la base de datos
+            List<Usuario> listaDeUsuarios = cdUsuario.ListarUsuarios();
+
+            // Recorre la lista de usuarios para verificar las credenciales ingresadas
+            foreach (Usuario usuario in listaDeUsuarios)
+            {
+                if (nuevoUsuario.Nombre == usuario.Nombre)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+
+        }
+
+        private bool ValidarNombreUsuario(string nombreUsuario) 
+        { 
+            // Logica para validar nombre de usuario
+        }
+
+        private bool ValidarClave(string clave) 
+        { 
+            // Logica paravalidar clave
         }
 
         /// <summary>
@@ -111,7 +159,7 @@ namespace CapaServicios
             List<Usuario> listaDeUsuarios = cdUsuario.ListarUsuarios();
 
             // Buscamos al usuario específico en la lista
-            Usuario usuarioEncontrado = listaDeUsuarios.Find(u => u.NombreUsuario == usuario.NombreUsuario);
+            Usuario usuarioEncontrado = listaDeUsuarios.Find(u => u.Nombre == usuario.Nombre);
 
             // Si encontramos al usuario, devolvemos sus fondos totales. De lo contrario, devolvemos 0.
             return usuarioEncontrado != null ? usuarioEncontrado.FondosTotales : 0;

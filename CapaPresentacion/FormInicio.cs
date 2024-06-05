@@ -29,18 +29,6 @@ namespace CapaPresentacion
         }
 
         /// <summary>
-        /// Maneja el evento de carga del formulario FormInicio.
-        /// Inicializa una nueva instancia de la clase Conexion.
-        /// </summary>
-        /// <param name="sender">El origen del evento.</param>
-        /// <param name="e">Los datos del evento.</param>
-        private void FormInicio_Load(object sender, EventArgs e)
-        {
-            // Inicializa una nueva instancia de la clase Conexion
-            Conexion conexion = new Conexion(); 
-        }
-
-        /// <summary>
         /// Constructor para la clase FormInicio que acepta un objeto Usuario.
         /// Inicializa los componentes visuales del formulario y configura la pantalla de inicio con los datos del usuario.
         /// </summary>
@@ -57,9 +45,22 @@ namespace CapaPresentacion
             MostrarFormulario(_userControlInicio);
 
             // Coloca el nombre de Usuario en el label
-            labelNombreUsuario.Text = Usuario.NombreUsuario;
+            labelNombreUsuario.Text = Usuario.Nombre;
 
         }
+
+        /// <summary>
+        /// Maneja el evento de carga del formulario FormInicio.
+        /// Inicializa una nueva instancia de la clase Conexion.
+        /// </summary>
+        /// <param name="sender">El origen del evento.</param>
+        /// <param name="e">Los datos del evento.</param>
+        private void FormInicio_Load(object sender, EventArgs e)
+        {
+            // Inicializa una nueva instancia de la clase Conexion
+            Conexion conexion = new Conexion(); 
+        }
+
 
         /// <summary>
         /// Limpia los controles actuales en el panelInicio y agrega un nuevo formulario a él.

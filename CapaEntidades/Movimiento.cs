@@ -23,5 +23,10 @@ namespace CapaEntidades
             Tipo = tipo;    
             Importe = importe;  
         }
+
+        public override string ToString()
+        {
+            return $"ID: {Id} - Tipo: {Tipo} - Importe: {Importe} - Fecha: {Fecha}";
+        }
     }
 }

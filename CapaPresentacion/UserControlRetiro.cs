@@ -101,7 +101,7 @@ namespace CapaPresentacion
             double retiro = ValidarTextBoxRetiro();
 
             // Actualizar los fondos del usuario
-            _csUsuario.ActualizarFondos(Usuario.NombreUsuario, retiro, false);
+            _csUsuario.ActualizarFondos(Usuario.Nombre, retiro, false);
 
             // Obtiene los fondos actuales del usuario después del retiro
             double fondosActuales = _csUsuario.ObtenerFondosTotales(Usuario);

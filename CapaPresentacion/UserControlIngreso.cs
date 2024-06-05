@@ -92,7 +92,7 @@ namespace CapaPresentacion
             double ingreso = ValidarTextBoxIngreso();
 
             // Actualizar los fondos del usuario
-            _csUsuario.ActualizarFondos(Usuario.NombreUsuario, ingreso, true);
+            _csUsuario.ActualizarFondos(Usuario.Nombre, ingreso, true);
 
             // Registra el movimiento
             _csMovimiento.RegistrarMovimiento(Usuario.Id, ingreso, "ingreso");

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CapaEntidades;
 using System.Data.SqlClient;
+using System.Collections;
 
 namespace CapaDatos
 {
@@ -9,6 +10,41 @@ namespace CapaDatos
     {
         // Atributos
         private Conexion conexion = new Conexion();
+
+        public void AgregarUsuario(string nombre, string clave) 
+        {
+            try
+            {
+                // Abrir conexión
+                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                {
+                    // Abrir la conexión a la base de datos
+                    conexionDB.Open();
+
+                    // Consulta SQL para obtener los usuarios
+                    string query = "INSERT INTO usuario (nombre, clave, caja) VALUES (@Nombre, @Clave, 0)";
+
+                    // Crear un comando SQL para ejecutar la consulta
+                    using (SqlCommand comando = new SqlCommand(query, conexionDB))
+                    {
+
+                        // Agregar los parámetros
+                        comando.Parameters.AddWithValue("@Nombre", nombre);
+                        comando.Parameters.AddWithValue("@Clave", clave);
+
+                        // Ejecutar la consulta
+                        comando.ExecuteNonQuery();
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones: Mostrar un mensaje de error en la consola
+                Console.WriteLine("Error al agregar usuario: " + ex.Message);
+            }
+
+        }
 
 
         /// <summary>
@@ -45,7 +81,7 @@ namespace CapaDatos
 
                                 // Asignar los valores de las columnas del resultado a las propiedades del objeto Usuario
                                 usuario.Id = Convert.ToInt32(reader["id"]); 
-                                usuario.NombreUsuario = Convert.ToString(reader["nombre"]);
+                                usuario.Nombre = Convert.ToString(reader["nombre"]);
                                 usuario.Clave = Convert.ToString(reader["clave"]);
                                 usuario.FondosTotales = Convert.ToDouble(reader["caja"]);
 
@@ -136,7 +172,7 @@ namespace CapaDatos
                     using (SqlCommand comando = new SqlCommand(query, conexionDB))
                     {
                         comando.Parameters.AddWithValue("@FondosTotales", usuario.FondosTotales);
-                        comando.Parameters.AddWithValue("@NombreUsuario", usuario.NombreUsuario);
+                        comando.Parameters.AddWithValue("@NombreUsuario", usuario.Nombre);
                         comando.ExecuteNonQuery();
                     }
                 }
@@ -164,7 +200,7 @@ namespace CapaDatos
                             if (reader.Read())
                             {
                                 usuario = new Usuario();
-                                usuario.NombreUsuario = Convert.ToString(reader["nombre"]);
+                                usuario.Nombre = Convert.ToString(reader["nombre"]);
                                 usuario.Clave = Convert.ToString(reader["clave"]);
                                 usuario.FondosTotales = Convert.ToDouble(reader["caja"]);
                             }

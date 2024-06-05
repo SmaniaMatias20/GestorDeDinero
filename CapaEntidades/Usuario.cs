@@ -7,10 +7,11 @@ namespace CapaEntidades
     {
         // Propiedades
         public int Id { get; set; }
-        public string NombreUsuario { get; set; }
+        public string Nombre { get; set; }
         public string Clave { get; set; }
         public double FondosTotales { get; set; }
         public List<Reserva> Reservas { get; set; }
+        public List<Movimiento> Movimientos { get; set; }   
 
 
         /// <summary>
@@ -20,6 +21,7 @@ namespace CapaEntidades
         {
             // Inicializa la lista de reservas del usuario
             Reservas = new List<Reserva>();
+            Movimientos = new List<Movimiento>();
         }
 
         /// <summary>
@@ -31,7 +33,7 @@ namespace CapaEntidades
         public Usuario(string nombreUsuario, string clave, double fondosTotales) : this() 
         {
             // Asigna los valores proporcionados a las propiedades del usuario
-            NombreUsuario = nombreUsuario;
+            Nombre = nombreUsuario;
             Clave = clave; 
             FondosTotales = fondosTotales; 
         }

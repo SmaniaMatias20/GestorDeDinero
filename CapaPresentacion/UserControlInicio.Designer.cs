@@ -30,9 +30,10 @@
         {
             this.buttonMovimiento = new System.Windows.Forms.Button();
             this.labelCaja = new System.Windows.Forms.Label();
-            this.richTextBoxReservas = new System.Windows.Forms.RichTextBox();
             this.buttonModificar = new System.Windows.Forms.Button();
             this.buttonEliminar = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonMovimiento
@@ -65,16 +66,6 @@
             this.labelCaja.TabIndex = 1;
             this.labelCaja.Text = "$1.000.000";
             // 
-            // richTextBoxReservas
-            // 
-            this.richTextBoxReservas.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.richTextBoxReservas.Location = new System.Drawing.Point(18, 207);
-            this.richTextBoxReservas.Name = "richTextBoxReservas";
-            this.richTextBoxReservas.ReadOnly = true;
-            this.richTextBoxReservas.Size = new System.Drawing.Size(534, 238);
-            this.richTextBoxReservas.TabIndex = 4;
-            this.richTextBoxReservas.Text = "";
-            // 
             // buttonModificar
             // 
             this.buttonModificar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
@@ -104,6 +95,15 @@
             this.buttonEliminar.TabIndex = 7;
             this.buttonEliminar.Text = "Eliminar";
             this.buttonEliminar.UseVisualStyleBackColor = false;
+            this.buttonEliminar.Click += new System.EventHandler(this.buttonEliminar_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(18, 206);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(534, 224);
+            this.dataGridView1.TabIndex = 8;
             // 
             // UserControlInicio
             // 
@@ -111,13 +111,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonEliminar);
             this.Controls.Add(this.buttonModificar);
-            this.Controls.Add(this.richTextBoxReservas);
             this.Controls.Add(this.labelCaja);
             this.Controls.Add(this.buttonMovimiento);
             this.Name = "UserControlInicio";
             this.Size = new System.Drawing.Size(569, 498);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,8 +128,8 @@
 
         private System.Windows.Forms.Button buttonMovimiento;
         private System.Windows.Forms.Label labelCaja;
-        private System.Windows.Forms.RichTextBox richTextBoxReservas;
         private System.Windows.Forms.Button buttonModificar;
         private System.Windows.Forms.Button buttonEliminar;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

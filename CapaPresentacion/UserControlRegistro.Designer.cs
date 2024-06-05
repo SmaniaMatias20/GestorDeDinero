@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.labelTitulo = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxUsuario = new System.Windows.Forms.TextBox();
+            this.textBoxClave = new System.Windows.Forms.TextBox();
+            this.textBoxClave2 = new System.Windows.Forms.TextBox();
             this.labelUsuario = new System.Windows.Forms.Label();
             this.labelClave = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelClave2 = new System.Windows.Forms.Label();
             this.buttonRegistrarse = new System.Windows.Forms.Button();
             this.buttonBorrar = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -50,26 +50,28 @@
             this.labelTitulo.TabIndex = 0;
             this.labelTitulo.Text = "Registrarse...";
             // 
-            // textBox1
+            // textBoxUsuario
             // 
-            this.textBox1.Location = new System.Drawing.Point(32, 115);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(160, 20);
-            this.textBox1.TabIndex = 1;
+            this.textBoxUsuario.Location = new System.Drawing.Point(32, 115);
+            this.textBoxUsuario.Name = "textBoxUsuario";
+            this.textBoxUsuario.Size = new System.Drawing.Size(160, 20);
+            this.textBoxUsuario.TabIndex = 1;
             // 
-            // textBox2
+            // textBoxClave
             // 
-            this.textBox2.Location = new System.Drawing.Point(32, 175);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(160, 20);
-            this.textBox2.TabIndex = 2;
+            this.textBoxClave.Location = new System.Drawing.Point(32, 175);
+            this.textBoxClave.Name = "textBoxClave";
+            this.textBoxClave.PasswordChar = 'o';
+            this.textBoxClave.Size = new System.Drawing.Size(160, 20);
+            this.textBoxClave.TabIndex = 2;
             // 
-            // textBox3
+            // textBoxClave2
             // 
-            this.textBox3.Location = new System.Drawing.Point(32, 235);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(160, 20);
-            this.textBox3.TabIndex = 3;
+            this.textBoxClave2.Location = new System.Drawing.Point(32, 235);
+            this.textBoxClave2.Name = "textBoxClave2";
+            this.textBoxClave2.PasswordChar = 'o';
+            this.textBoxClave2.Size = new System.Drawing.Size(160, 20);
+            this.textBoxClave2.TabIndex = 3;
             // 
             // labelUsuario
             // 
@@ -93,16 +95,16 @@
             this.labelClave.TabIndex = 5;
             this.labelClave.Text = "Clave";
             // 
-            // label1
+            // labelClave2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(32, 208);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 15);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Repetir clave";
+            this.labelClave2.AutoSize = true;
+            this.labelClave2.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelClave2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelClave2.Location = new System.Drawing.Point(32, 208);
+            this.labelClave2.Name = "labelClave2";
+            this.labelClave2.Size = new System.Drawing.Size(79, 15);
+            this.labelClave2.TabIndex = 6;
+            this.labelClave2.Text = "Repetir clave";
             // 
             // buttonRegistrarse
             // 
@@ -117,6 +119,7 @@
             this.buttonRegistrarse.TabIndex = 7;
             this.buttonRegistrarse.Text = "Registrarse";
             this.buttonRegistrarse.UseVisualStyleBackColor = false;
+            this.buttonRegistrarse.Click += new System.EventHandler(this.buttonRegistrarse_Click);
             // 
             // buttonBorrar
             // 
@@ -139,12 +142,12 @@
             this.BackColor = System.Drawing.Color.Black;
             this.Controls.Add(this.buttonBorrar);
             this.Controls.Add(this.buttonRegistrarse);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelClave2);
             this.Controls.Add(this.labelClave);
             this.Controls.Add(this.labelUsuario);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxClave2);
+            this.Controls.Add(this.textBoxClave);
+            this.Controls.Add(this.textBoxUsuario);
             this.Controls.Add(this.labelTitulo);
             this.Name = "UserControlRegistro";
             this.Size = new System.Drawing.Size(250, 400);
@@ -156,12 +159,12 @@
         #endregion
 
         private System.Windows.Forms.Label labelTitulo;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxUsuario;
+        private System.Windows.Forms.TextBox textBoxClave;
+        private System.Windows.Forms.TextBox textBoxClave2;
         private System.Windows.Forms.Label labelUsuario;
         private System.Windows.Forms.Label labelClave;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelClave2;
         private System.Windows.Forms.Button buttonRegistrarse;
         private System.Windows.Forms.Button buttonBorrar;
     }

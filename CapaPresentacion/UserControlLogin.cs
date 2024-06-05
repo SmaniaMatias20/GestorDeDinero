@@ -103,7 +103,7 @@ namespace CapaPresentacion
         private bool ValidarUsuario()
         {
             // Utiliza el método ValidarUsuario de CS_Usuario para verificar las credenciales ingresadas
-            Usuario usuario = csUsuario.ValidarUsuario(textBoxUsuario.Text, textBoxClave.Text);
+            Usuario usuario = csUsuario.ValidarUsuarioIniciarSesion(textBoxUsuario.Text, textBoxClave.Text);
             // Si se encontró un usuario válido, actualiza el atributo Usuario de la clase y devuelve true
             if (usuario != null)
             {

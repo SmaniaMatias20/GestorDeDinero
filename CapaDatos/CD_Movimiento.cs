@@ -18,7 +18,7 @@ namespace CapaDatos
         /// <returns>Una lista de objetos Usuario que contiene el nombre y la clave de cada usuario.</returns>
         public List<Movimiento> ListarMovimientos(int idUsuario)
         {
-            // Nuevo objeto de tipo lista de usuarios
+            // Nuevo objeto de tipo lista de movimientos
             List<Movimiento> lista = new List<Movimiento>();
 
             try
@@ -29,31 +29,31 @@ namespace CapaDatos
                     // Abrir la conexión a la base de datos
                     conexionDB.Open();
 
-                    // Consulta SQL para obtener los usuarios
-                    string query = "SELECT id, tipo, importe, fecha FROM movimiento WHERE id_usuario == @idUsuario";
+                    // Consulta SQL para obtener los movimientos
+                    string query = "SELECT id, tipo, importe, fecha FROM movimiento WHERE id_usuario = @idUsuario";
 
                     // Crear un comando SQL para ejecutar la consulta
                     using (SqlCommand comando = new SqlCommand(query, conexionDB))
                     {
+                        // Agregar el parámetro al comando SQL
+                        comando.Parameters.AddWithValue("@idUsuario", idUsuario);
+
                         // Ejecutar la consulta y obtener los resultados en un SqlDataReader
                         using (SqlDataReader reader = comando.ExecuteReader())
                         {
-                            // Recorrer los resultados y agregar los usuarios a la lista
+                            // Recorrer los resultados y agregar los movimientos a la lista
                             while (reader.Read())
                             {
-                                // Crear una nueva instancia de Usuario
+                                // Crear una nueva instancia de Movimiento
                                 Movimiento movimiento = new Movimiento();
 
-                                // Asignar los valores de las columnas del resultado a las propiedades del objeto Usuario
+                                // Asignar los valores de las columnas del resultado a las propiedades del objeto Movimiento
                                 movimiento.Id = Convert.ToInt32(reader["id"]);
                                 movimiento.Tipo = Convert.ToString(reader["tipo"]);
                                 movimiento.Importe = Convert.ToDouble(reader["importe"]);
                                 movimiento.Fecha = Convert.ToString(reader["fecha"]);
 
-                                // Agregar los parámetros
-                                comando.Parameters.AddWithValue("@idUsuario", idUsuario);
-
-                                // Agregar el usuario a la lista
+                                // Agregar el movimiento a la lista
                                 lista.Add(movimiento);
                             }
                         }
@@ -66,7 +66,7 @@ namespace CapaDatos
                 Console.WriteLine("Error al listar movimientos: " + ex.Message);
             }
 
-            // Devolver la lista de usuarios
+            // Devolver la lista de movimientos
             return lista;
         }
 
@@ -101,6 +101,38 @@ namespace CapaDatos
             {
                 // Manejo de excepciones
                 Console.WriteLine("Error al agregar un nuevo movimiento: " + ex.Message);
+            }
+        }
+
+        public void EliminarMovimiento(int idMovimiento)
+        {
+            try
+            {
+                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                {
+                    conexionDB.Open();
+
+                    string query = "DELETE FROM movimiento WHERE id = @idMovimiento";
+
+                    using (SqlCommand comando = new SqlCommand(query, conexionDB))
+                    {
+                        comando.Parameters.AddWithValue("@idMovimiento", idMovimiento);
+                        int filasAfectadas = comando.ExecuteNonQuery();
+
+                        if (filasAfectadas > 0)
+                        {
+                            Console.WriteLine("Movimiento eliminado correctamente.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("No se encontró el movimiento con el ID especificado.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al eliminar movimiento: " + ex.Message);
             }
         }
     }

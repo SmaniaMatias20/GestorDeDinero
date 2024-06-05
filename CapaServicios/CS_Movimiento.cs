@@ -1,6 +1,7 @@
 ﻿
 using CapaEntidades;
 using CapaDatos;
+using System.Collections.Generic;
 
 namespace CapaServicios
 {
@@ -21,5 +22,18 @@ namespace CapaServicios
             
             cdMovimiento.AgregarMovimiento(idUsuario, movimiento.Fecha, movimiento.Importe, movimiento.Tipo);
         }
+
+        public List<Movimiento> ObtenerMovimientosPorId(int idUsuario) 
+        { 
+            List<Movimiento> listaDeMovimientos = cdMovimiento.ListarMovimientos(idUsuario);  
+
+            return listaDeMovimientos;
+        }
+
+        public void EliminarMovimientoPorId(int idMovimiento) 
+        {
+            cdMovimiento.EliminarMovimiento(idMovimiento);
+        }
+
     }
 }
