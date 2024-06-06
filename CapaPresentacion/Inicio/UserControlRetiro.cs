@@ -98,11 +98,8 @@ namespace CapaPresentacion
         /// <param name="e">Los datos del evento.</param>
         private void buttonAceptarRetiro_Click(object sender, EventArgs e)
         {
-            // Valida el contenido del TextBox de retiro y lo convierte a un valor de tipo double
-            double retiro = ValidarTextBoxRetiro();
-
             // Actualizar los fondos del usuario
-            _csUsuario.ActualizarFondos(Usuario.Nombre, retiro, ETipoMovimiento.Retiro);
+            double movimientoValidado = _csUsuario.ActualizarFondos(Usuario.Nombre, textBoxRetiro.Text, ETipoMovimiento.Retiro);
 
             // Obtiene los fondos actuales del usuario después del retiro
             double fondosActuales = _csUsuario.ObtenerFondosTotales(Usuario);
@@ -114,46 +111,15 @@ namespace CapaPresentacion
             labelFondos.Text = $"Fondos: {fondosFormateados}";
 
             // Registra el movimiento
-            string mensaje = _csMovimiento.RegistrarMovimiento(Usuario.Id, retiro, ETipoMovimiento.Retiro);
+            string mensaje = _csMovimiento.RegistrarMovimiento(Usuario.Id, movimientoValidado, ETipoMovimiento.Retiro);
 
             // Notificar que los fondos han sido actualizados
-            MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Dispara el evento AceptarClick cuando se presiona el botón "Aceptar"
             AceptarClick?.Invoke(this, EventArgs.Empty);
 
 
-        }
-
-        private double ValidarTextBoxRetiro()
-        {
-            // Validar que el campo de ingreso no esté vacío
-            if (string.IsNullOrWhiteSpace(textBoxRetiro.Text))
-            {
-                MessageBox.Show("Por favor ingrese un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-            }
-
-            // Validar que el campo de ingreso contenga un número válido
-            if (!double.TryParse(textBoxRetiro.Text, out double retiro))
-            {
-                MessageBox.Show("Ingrese un número válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-            }
-
-            // Actualizar el label con los fondos formateados
-            double fondosActuales = _csUsuario.ObtenerFondosTotales(Usuario);
-            // Validar que el retiro sea menor o igual a los fondos totales actualmente
-            if (retiro <= fondosActuales)
-            {
-                return retiro;
-            }
-            else
-            {
-                MessageBox.Show("Ingrese un número menor al total de fondos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-
-            return 0;
         }
 
 

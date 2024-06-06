@@ -59,6 +59,7 @@ namespace CapaPresentacion
         {
             // Registra el controlador de eventos para el evento ColumnHeaderMouseClick
             dataGridView1.ColumnHeaderMouseClick += DataGridView1_ColumnHeaderMouseClick;
+            radioButtonMovimientos.Checked = true;
         }
 
         /// <summary>
@@ -213,7 +214,7 @@ namespace CapaPresentacion
                 // Llamar al método para eliminar la reserva por su ID de la base de datos
                 _csReserva.EliminarReservaPorId(reserva.IdReserva);
 
-                _csUsuario.ActualizarFondos(Usuario.Nombre, reserva.Importe, CapaEntidades.Enums.ETipoMovimiento.Ingreso);
+                _csUsuario.ActualizarFondos(Usuario.Nombre, reserva.Importe.ToString(), CapaEntidades.Enums.ETipoMovimiento.Ingreso);
                 ActualizarValorEnCaja();
             }
 

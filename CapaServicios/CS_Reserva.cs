@@ -16,6 +16,7 @@ namespace CapaServicios
 
         public string RegistrarReserva(int idUsuario, double importe, string nombre)
         {
+
             Reserva reserva = new Reserva(nombre, importe);  
             if (importe > 0)
             {

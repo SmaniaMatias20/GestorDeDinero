@@ -57,11 +57,8 @@ namespace CapaPresentacion
 
         private void buttonAceptarReserva_Click(object sender, System.EventArgs e)
         {
-            // Valida el contenido del TextBox de reserva y lo convierte a un valor de tipo double
-            double reserva = ValidarTextBoxReserva();
-
             // Actualizar los fondos del usuario
-            _csUsuario.ActualizarFondos(Usuario.Nombre, reserva, ETipoMovimiento.Reserva);
+            double movimientoValidado = _csUsuario.ActualizarFondos(Usuario.Nombre, textBoxReserva.Text, ETipoMovimiento.Reserva);
 
             // Obtiene los fondos actuales del usuario después del retiro
             double fondosActuales = _csUsuario.ObtenerFondosTotales(Usuario);
@@ -73,10 +70,10 @@ namespace CapaPresentacion
             labelFondos.Text = $"Fondos: {fondosFormateados}";
 
             // Registra el movimiento
-            string mensaje = _csReserva.RegistrarReserva(Usuario.Id, reserva, textBoxNombre.Text);
+            string mensaje = _csReserva.RegistrarReserva(Usuario.Id, movimientoValidado, textBoxNombre.Text);
 
             // Notificar que los fondos han sido actualizados
-            MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Dispara el evento AceptarClick cuando se presiona el botón "Aceptar"
             AceptarClick?.Invoke(this, EventArgs.Empty);
@@ -101,37 +98,6 @@ namespace CapaPresentacion
             {
                 e.Handled = true;
             }
-        }
-
-        private double ValidarTextBoxReserva()
-        {
-            // Validar que el campo de ingreso no esté vacío
-            if (string.IsNullOrWhiteSpace(textBoxReserva.Text))
-            {
-                MessageBox.Show("Por favor ingrese un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-            }
-
-            // Validar que el campo de ingreso contenga un número válido
-            if (!double.TryParse(textBoxReserva.Text, out double retiro))
-            {
-                MessageBox.Show("Ingrese un número válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-            }
-
-            // Actualizar el label con los fondos formateados
-            double fondosActuales = _csUsuario.ObtenerFondosTotales(Usuario);
-            // Validar que el retiro sea menor o igual a los fondos totales actualmente
-            if (retiro <= fondosActuales)
-            {
-                return retiro;
-            }
-            else
-            {
-                MessageBox.Show("Ingrese un número menor al total de fondos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-
-            return 0;
         }
     }
 }

@@ -89,50 +89,23 @@ namespace CapaPresentacion
         /// </summary>
         private void buttonAceptarIngreso_Click(object sender, EventArgs e)
         {
-            double ingreso = ValidarTextBoxIngreso();
-
             // Actualizar los fondos del usuario
-            _csUsuario.ActualizarFondos(Usuario.Nombre, ingreso, ETipoMovimiento.Ingreso);
+            double movimientoValidado =_csUsuario.ActualizarFondos(Usuario.Nombre, textBoxIngreso.Text, ETipoMovimiento.Ingreso);
+
+            // DEBE RETORNAR EL TEXTBOXINGRESO EN FORMATO DOUBLE PARA REGISTRAR EL MOVIMIENTO
+
 
             // Registra el movimiento
-            //string mensaje = _csMovimiento.RegistrarMovimiento(Usuario.Id, ingreso, "ingreso");
-            string mensaje = _csMovimiento.RegistrarMovimiento(Usuario.Id, ingreso, ETipoMovimiento.Ingreso);
+            string mensaje = _csMovimiento.RegistrarMovimiento(Usuario.Id, movimientoValidado, ETipoMovimiento.Ingreso);
 
             // Notificar que los fondos han sido actualizados
-            MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Dispara el evento AceptarClick cuando se presiona el botón "Aceptar"
             AceptarClick?.Invoke(this, EventArgs.Empty);
         }
 
-        /// <summary>
-        /// Valida el contenido del TextBox de ingreso, asegurándose de que no esté vacío
-        /// y que contenga un número válido.
-        /// </summary>
-        /// <returns>El valor numérico del ingreso si es válido; de lo contrario, muestra un mensaje de advertencia.</returns>
-        private double ValidarTextBoxIngreso() 
-        {
-            // Verifica que el campo de ingreso no esté vacío
-            if (string.IsNullOrWhiteSpace(textBoxIngreso.Text))
-            {
-                // Muestra un mensaje de advertencia si el campo está vacío
-                MessageBox.Show("Por favor ingrese un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return 0;
-
-            }
-
-            // Verifica que el campo de ingreso contenga un número válido
-            if (!double.TryParse(textBoxIngreso.Text, out double ingreso))
-            {
-                // Muestra un mensaje de advertencia si el valor ingresado no es un número válido
-                MessageBox.Show("Ingrese un número válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return 0;
-
-            }
-
-            // Si todas las validaciones son exitosas, devuelve el valor numérico del ingreso
-            return ingreso;
-        }
+       
 
     }
 }

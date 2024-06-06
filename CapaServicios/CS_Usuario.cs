@@ -235,41 +235,78 @@ namespace CapaServicios
         /// Actualiza los fondos del usuario en la base de datos.
         /// </summary>
         /// <param name="nombreUsuario">Nombre de usuario cuyos fondos se actualizarán.</param>
-        /// <param name="importe">Cantidad a agregar a los fondos actuales del usuario.</param>
-        public void ActualizarFondos(string nombreUsuario, double importe, ETipoMovimiento tipoMovimiento)
+        /// <param name="importe">Cantidad a agregar o retirar de los fondos actuales del usuario.</param>
+        /// <param name="tipoMovimiento">El tipo de movimiento a realizar (Ingreso, Retiro, Reserva).</param>
+        /// <returns>El importe validado que se ha agregado o retirado.</returns>
+        /// <exception cref="Exception">Lanzada cuando el usuario no es encontrado.</exception>
+        public double ActualizarFondos(string nombreUsuario, string importe, ETipoMovimiento tipoMovimiento)
         {
-            // Aquí puedes implementar la lógica para actualizar los fondos del usuario en la base de datos.
-            // Por ahora, simularemos que actualizamos los fondos en la base de datos CD_Usuario.
+            // Valida y convierte el importe ingresado a un valor double
+            double importeValidado = ValidarImporteIngresado(importe);
 
             // Obtener el usuario desde la base de datos
             Usuario usuario = cdUsuario.ObtenerUsuarioPorNombre(nombreUsuario);
 
-            // Si el usuario existe, actualizamos sus fondos
+            // Si el usuario existe y el tipo de movimiento es Ingreso, actualizamos sus fondos sumando el importe validado
             if (usuario != null && tipoMovimiento == ETipoMovimiento.Ingreso)
             {
-                usuario.FondosTotales += importe;
-                cdUsuario.ActualizarUsuario(usuario); // Método para actualizar el usuario en la base de datos.
+                usuario.FondosTotales += importeValidado;
+                cdUsuario.ActualizarUsuario(usuario);
+                // Devuelve el importe validado
+                return importeValidado;
             }
-            else if (usuario != null && tipoMovimiento == ETipoMovimiento.Retiro)
+            // Si el usuario existe y el tipo de movimiento es Retiro o Reserva, restamos el importe validado de los fondos
+            else if (usuario != null && (tipoMovimiento == ETipoMovimiento.Retiro || tipoMovimiento == ETipoMovimiento.Reserva))
             {
-                if (importe <= usuario.FondosTotales)
+                // Verificamos que el usuario tenga fondos suficientes antes de realizar la operación
+                if (importeValidado <= usuario.FondosTotales)
                 {
-                    usuario.FondosTotales -= importe;
-                    cdUsuario.ActualizarUsuario(usuario); // Método para actualizar el usuario en la base de datos.   
+                    usuario.FondosTotales -= importeValidado;
+                    cdUsuario.ActualizarUsuario(usuario);
+                    // Devuelve el importe validado
+                    return importeValidado;
                 }
-            }
-            else if (usuario != null && tipoMovimiento == ETipoMovimiento.Reserva)
-            {
-                if (importe <= usuario.FondosTotales)
+                else
                 {
-                    usuario.FondosTotales -= importe;
-                    cdUsuario.ActualizarUsuario(usuario); // Método para actualizar el usuario en la base de datos.   
+                    // Devuelve -1 si el importe ingresado es mayor que los fondos totales del usuario
+                    return -1;
                 }
             }
             else 
             {
+                // Si el usuario no es encontrado, lanzamos una excepción
                 throw new Exception("Usuario no encontrado.");
             }
+        }
+
+        private double ValidarImporteIngresado(string importeIngresado) 
+        {
+            // Verifica que el campo de ingreso no esté vacío
+            if (string.IsNullOrWhiteSpace(importeIngresado))
+            {
+                return 0;
+            }
+
+            // Verifica que el campo de ingreso contenga un número válido
+            if (!double.TryParse(importeIngresado, out double importeValidado))
+            {
+                return 0;
+            }
+
+            // Verifica que el importe sea mayor a 0(cero)
+            if (importeValidado <= 0)
+            {
+                return 0;
+            }
+
+            if (importeValidado >= 1000000)
+            {
+                return -2;
+            }
+
+            // Si todas las validaciones son exitosas, devuelve el valor numérico del ingreso
+            return importeValidado;
+
         }
 
         public string FormatearMoneda(double cantidad)
