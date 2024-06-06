@@ -48,22 +48,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormMovimientos.cs">
+    <Compile Include="Inicio\FormMovimientos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMovimientos.Designer.cs">
+    <Compile Include="Inicio\FormMovimientos.Designer.cs">
       <DependentUpon>FormMovimientos.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormInicio.cs">
+    <Compile Include="Inicio\FormInicio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormInicio.Designer.cs">
+    <Compile Include="Inicio\FormInicio.Designer.cs">
       <DependentUpon>FormInicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormLogin.cs">
+    <Compile Include="Login\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormLogin.Designer.cs">
+    <Compile Include="Login\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -73,89 +73,89 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="UserControlGastos.cs">
+    <Compile Include="Gastos\UserControlGastos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControlGastos.Designer.cs">
+    <Compile Include="Gastos\UserControlGastos.Designer.cs">
       <DependentUpon>UserControlGastos.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControlIngreso.cs">
+    <Compile Include="Inicio\UserControlIngreso.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControlIngreso.Designer.cs">
+    <Compile Include="Inicio\UserControlIngreso.Designer.cs">
       <DependentUpon>UserControlIngreso.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControlInicio.cs">
+    <Compile Include="Inicio\UserControlInicio.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControlInicio.Designer.cs">
+    <Compile Include="Inicio\UserControlInicio.Designer.cs">
       <DependentUpon>UserControlInicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControlInversion.cs">
+    <Compile Include="Inversion\UserControlInversion.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControlInversion.Designer.cs">
+    <Compile Include="Inversion\UserControlInversion.Designer.cs">
       <DependentUpon>UserControlInversion.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControlLogin.cs">
+    <Compile Include="Login\UserControlLogin.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControlLogin.Designer.cs">
+    <Compile Include="Login\UserControlLogin.Designer.cs">
       <DependentUpon>UserControlLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControlRegistro.cs">
+    <Compile Include="Login\UserControlRegistro.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControlRegistro.Designer.cs">
+    <Compile Include="Login\UserControlRegistro.Designer.cs">
       <DependentUpon>UserControlRegistro.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControlReserva.cs">
+    <Compile Include="Inicio\UserControlReserva.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControlReserva.Designer.cs">
+    <Compile Include="Inicio\UserControlReserva.Designer.cs">
       <DependentUpon>UserControlReserva.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControlRetiro.cs">
+    <Compile Include="Inicio\UserControlRetiro.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControlRetiro.Designer.cs">
+    <Compile Include="Inicio\UserControlRetiro.Designer.cs">
       <DependentUpon>UserControlRetiro.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FormMovimientos.resx">
+    <EmbeddedResource Include="Inicio\FormMovimientos.resx">
       <DependentUpon>FormMovimientos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormInicio.resx">
+    <EmbeddedResource Include="Inicio\FormInicio.resx">
       <DependentUpon>FormInicio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormLogin.resx">
+    <EmbeddedResource Include="Login\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControlGastos.resx">
+    <EmbeddedResource Include="Gastos\UserControlGastos.resx">
       <DependentUpon>UserControlGastos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControlIngreso.resx">
+    <EmbeddedResource Include="Inicio\UserControlIngreso.resx">
       <DependentUpon>UserControlIngreso.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControlInicio.resx">
+    <EmbeddedResource Include="Inicio\UserControlInicio.resx">
       <DependentUpon>UserControlInicio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControlInversion.resx">
+    <EmbeddedResource Include="Inversion\UserControlInversion.resx">
       <DependentUpon>UserControlInversion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControlLogin.resx">
+    <EmbeddedResource Include="Login\UserControlLogin.resx">
       <DependentUpon>UserControlLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControlRegistro.resx">
+    <EmbeddedResource Include="Login\UserControlRegistro.resx">
       <DependentUpon>UserControlRegistro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControlReserva.resx">
+    <EmbeddedResource Include="Inicio\UserControlReserva.resx">
       <DependentUpon>UserControlReserva.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControlRetiro.resx">
+    <EmbeddedResource Include="Inicio\UserControlRetiro.resx">
       <DependentUpon>UserControlRetiro.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -194,5 +194,6 @@
   <ItemGroup>
     <None Include="Resources\salir.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

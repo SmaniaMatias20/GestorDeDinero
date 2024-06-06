@@ -46,9 +46,9 @@
             this.buttonBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBorrar.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBorrar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonBorrar.Location = new System.Drawing.Point(122, 249);
+            this.buttonBorrar.Location = new System.Drawing.Point(254, 205);
             this.buttonBorrar.Name = "buttonBorrar";
-            this.buttonBorrar.Size = new System.Drawing.Size(72, 23);
+            this.buttonBorrar.Size = new System.Drawing.Size(88, 33);
             this.buttonBorrar.TabIndex = 12;
             this.buttonBorrar.Text = "Borrar";
             this.buttonBorrar.UseVisualStyleBackColor = false;
@@ -62,9 +62,9 @@
             this.buttonIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonIniciar.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonIniciar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonIniciar.Location = new System.Drawing.Point(33, 249);
+            this.buttonIniciar.Location = new System.Drawing.Point(254, 143);
             this.buttonIniciar.Name = "buttonIniciar";
-            this.buttonIniciar.Size = new System.Drawing.Size(73, 23);
+            this.buttonIniciar.Size = new System.Drawing.Size(88, 33);
             this.buttonIniciar.TabIndex = 11;
             this.buttonIniciar.Text = "Iniciar";
             this.buttonIniciar.UseVisualStyleBackColor = false;
@@ -144,7 +144,7 @@
             this.Controls.Add(this.labelClave);
             this.Controls.Add(this.labelUsuario);
             this.Name = "UserControlLogin";
-            this.Size = new System.Drawing.Size(250, 350);
+            this.Size = new System.Drawing.Size(380, 334);
             this.ResumeLayout(false);
             this.PerformLayout();
 

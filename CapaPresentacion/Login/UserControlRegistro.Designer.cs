@@ -113,11 +113,11 @@
             this.buttonRegistrarse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRegistrarse.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonRegistrarse.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonRegistrarse.Location = new System.Drawing.Point(32, 274);
+            this.buttonRegistrarse.Location = new System.Drawing.Point(261, 115);
             this.buttonRegistrarse.Name = "buttonRegistrarse";
-            this.buttonRegistrarse.Size = new System.Drawing.Size(75, 23);
+            this.buttonRegistrarse.Size = new System.Drawing.Size(88, 33);
             this.buttonRegistrarse.TabIndex = 7;
-            this.buttonRegistrarse.Text = "Registrarse";
+            this.buttonRegistrarse.Text = "Confirmar";
             this.buttonRegistrarse.UseVisualStyleBackColor = false;
             this.buttonRegistrarse.Click += new System.EventHandler(this.buttonRegistrarse_Click);
             // 
@@ -128,18 +128,19 @@
             this.buttonBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBorrar.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBorrar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonBorrar.Location = new System.Drawing.Point(117, 274);
+            this.buttonBorrar.Location = new System.Drawing.Point(261, 173);
             this.buttonBorrar.Name = "buttonBorrar";
-            this.buttonBorrar.Size = new System.Drawing.Size(75, 23);
+            this.buttonBorrar.Size = new System.Drawing.Size(88, 33);
             this.buttonBorrar.TabIndex = 8;
             this.buttonBorrar.Text = "Borrar";
             this.buttonBorrar.UseVisualStyleBackColor = false;
+            this.buttonBorrar.Click += new System.EventHandler(this.buttonBorrar_Click);
             // 
             // UserControlRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
             this.Controls.Add(this.buttonBorrar);
             this.Controls.Add(this.buttonRegistrarse);
             this.Controls.Add(this.labelClave2);
@@ -150,7 +151,7 @@
             this.Controls.Add(this.textBoxUsuario);
             this.Controls.Add(this.labelTitulo);
             this.Name = "UserControlRegistro";
-            this.Size = new System.Drawing.Size(250, 400);
+            this.Size = new System.Drawing.Size(380, 334);
             this.ResumeLayout(false);
             this.PerformLayout();
 

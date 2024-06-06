@@ -43,9 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\Enum.cs" />
-    <Compile Include="Movimiento.cs" />
-    <Compile Include="Reserva.cs" />
-    <Compile Include="Usuario.cs" />
+    <Compile Include="Entidades\Movimiento.cs" />
+    <Compile Include="Entidades\Reserva.cs" />
+    <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

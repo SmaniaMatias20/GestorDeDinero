@@ -9,7 +9,6 @@ namespace CapaPresentacion
         // Atributos
         private CS_Usuario _csUsuario;
         private CS_Movimiento _csMovimiento;
-        private bool _fondosVisibles = true;
 
         // Propiedades
         public Usuario Usuario { get; set; }

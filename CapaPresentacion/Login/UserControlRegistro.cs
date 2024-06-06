@@ -1,5 +1,4 @@
-﻿using CapaEntidades;
-using CapaServicios;
+﻿using CapaServicios;
 using System.Windows.Forms;
 
 namespace CapaPresentacion
@@ -26,6 +25,13 @@ namespace CapaPresentacion
         {
             string mensaje = csUsuario.RegistrarUsuario(textBoxUsuario.Text, textBoxClave.Text, textBoxClave2.Text);
             MessageBox.Show(mensaje);  
+        }
+
+        private void buttonBorrar_Click(object sender, System.EventArgs e)
+        {
+            textBoxUsuario.Text = "";
+            textBoxClave.Text = "";
+            textBoxClave2.Text = "";
         }
     }
 }
