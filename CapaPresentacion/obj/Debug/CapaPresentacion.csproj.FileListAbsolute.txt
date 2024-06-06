@@ -34,3 +34,5 @@ C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Deb
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.Properties.Resources.resources
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\bin\Debug\CapaServicios.dll
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\bin\Debug\CapaServicios.pdb
+C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.UserControlGastos.resources
+C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.UserControlInversion.resources

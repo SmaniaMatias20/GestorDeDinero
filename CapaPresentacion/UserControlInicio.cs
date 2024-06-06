@@ -2,6 +2,8 @@
 using CapaServicios;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 
 
@@ -44,6 +46,17 @@ namespace CapaPresentacion
             ActualizarValorEnCaja();
             //
             MostrarMovimientos();
+        }
+
+        /// <summary>
+        /// Este método se ejecuta cuando el control del usuario se carga.
+        /// </summary>
+        /// <param name="sender">El objeto que generó el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void UserControlInicio_Load(object sender, EventArgs e)
+        {
+            // Registra el controlador de eventos para el evento ColumnHeaderMouseClick
+            dataGridView1.ColumnHeaderMouseClick += DataGridView1_ColumnHeaderMouseClick;
         }
 
         /// <summary>
@@ -149,19 +162,74 @@ namespace CapaPresentacion
             MostrarMovimientos();
         }
 
+        /// <summary>
+        /// Maneja el evento de clic en el botón "Ocultar/Ver".
+        /// </summary>
+        /// <param name="sender">El objeto que generó el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void buttonOcultar_Click(object sender, EventArgs e)
         {
+            // Cambia el estado de la visibilidad de los fondos
             _fondosVisibles = !_fondosVisibles;
 
+            // Si los fondos son visibles
             if (_fondosVisibles)
             {
+                // Actualiza el valor en la caja de texto
                 ActualizarValorEnCaja();
+                // Cambia el texto del botón a "Ocultar"
+                buttonOcultar.Text = "Ocultar";
             }
-            else 
-            { 
+            else // Si los fondos están ocultos
+            {
+                // Actualiza el texto de la etiqueta de la caja a "$******"
                 labelCaja.Text = "$******";
+                // Cambia el texto del botón a "Ver"
+                buttonOcultar.Text = "Ver";
             }
 
         }
+
+        /// <summary>
+        /// Maneja el evento de clic en el encabezado de columna del DataGridView para ordenar los datos.
+        /// </summary>
+        /// <param name="sender">El objeto que generó el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void DataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            // Obtiene la columna que se ha clicado
+            DataGridViewColumn columnaClicada = dataGridView1.Columns[e.ColumnIndex];
+
+            // Obtiene el nombre de la propiedad que corresponde a la columna clicada
+            string nombrePropiedad = columnaClicada.DataPropertyName;
+
+            // Obtiene los datos actuales del DataGridView
+            List<Movimiento> datos = (List<Movimiento>)dataGridView1.DataSource;
+
+            // Ordena los datos manualmente según la columna clicada
+            if (columnaClicada.SortMode != DataGridViewColumnSortMode.NotSortable)
+            {
+                // Obtiene el estado actual de ordenación del DataGridView
+                SortOrder sortOrder = dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection;
+
+                // Ordena los datos manualmente según la columna clicada
+                if (sortOrder == SortOrder.Ascending)
+                {
+                    // Ordena los datos de forma descendente
+                    dataGridView1.DataSource = datos.OrderByDescending(x => x.GetType().GetProperty(nombrePropiedad).GetValue(x, null)).ToList();
+                    // Actualiza el estado de ordenación del DataGridView a descendente
+                    dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Descending;
+                }
+                else
+                {
+                    // Ordena los datos de forma ascendente
+                    dataGridView1.DataSource = datos.OrderBy(x => x.GetType().GetProperty(nombrePropiedad).GetValue(x, null)).ToList();
+                    // Actualiza el estado de ordenación del DataGridView a ascendente
+                    dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Ascending;
+                }
+            }
+        }
+
     }
 }

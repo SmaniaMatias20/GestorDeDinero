@@ -134,6 +134,7 @@
             this.Controls.Add(this.buttonMovimiento);
             this.Name = "UserControlInicio";
             this.Size = new System.Drawing.Size(569, 498);
+            this.Load += new System.EventHandler(this.UserControlInicio_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

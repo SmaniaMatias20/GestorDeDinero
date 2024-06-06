@@ -2,6 +2,7 @@
 using CapaEntidades;
 using CapaDatos;
 using System.Collections.Generic;
+using CapaEntidades.Enums;
 
 namespace CapaServicios
 {
@@ -16,7 +17,7 @@ namespace CapaServicios
             cdMovimiento = new CD_Movimiento();
         }
 
-        public string RegistrarMovimiento(int idUsuario, double importe, string tipo) 
+        public string RegistrarMovimiento(int idUsuario, double importe, ETipoMovimiento tipo) 
         {
             Movimiento movimiento = new Movimiento(tipo, importe);
             if (importe > 0)

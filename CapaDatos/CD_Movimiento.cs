@@ -1,9 +1,9 @@
 ﻿
-
 using CapaEntidades;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System;
+using CapaEntidades.Enums;
 
 namespace CapaDatos
 {
@@ -49,7 +49,10 @@ namespace CapaDatos
 
                                 // Asignar los valores de las columnas del resultado a las propiedades del objeto Movimiento
                                 movimiento.Id = Convert.ToInt32(reader["id"]);
-                                movimiento.Tipo = Convert.ToString(reader["tipo"]);
+                                if (Enum.TryParse(reader["tipo"].ToString(), out ETipoMovimiento tipoMovimiento))
+                                {
+                                    movimiento.Tipo = tipoMovimiento;
+                                }
                                 movimiento.Importe = Convert.ToDouble(reader["importe"]);
                                 movimiento.Fecha = Convert.ToString(reader["fecha"]);
 
@@ -63,14 +66,14 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 // Manejo de excepciones: Mostrar un mensaje de error en la consola
-                Console.WriteLine("Error al listar movimientos: " + ex.Message);
+                throw new Exception("Entra aca");
             }
 
             // Devolver la lista de movimientos
             return lista;
         }
 
-        public void AgregarMovimiento(int idUsuario, string fecha, double importe, string tipo)
+        public void AgregarMovimiento(int idUsuario, string fecha, double importe, ETipoMovimiento tipo)
         {
             try
             {

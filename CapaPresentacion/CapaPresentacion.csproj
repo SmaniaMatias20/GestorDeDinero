@@ -73,6 +73,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UserControlGastos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlGastos.Designer.cs">
+      <DependentUpon>UserControlGastos.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControlIngreso.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -84,6 +90,12 @@
     </Compile>
     <Compile Include="UserControlInicio.Designer.cs">
       <DependentUpon>UserControlInicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlInversion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlInversion.Designer.cs">
+      <DependentUpon>UserControlInversion.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControlLogin.cs">
       <SubType>UserControl</SubType>
@@ -122,11 +134,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControlGastos.resx">
+      <DependentUpon>UserControlGastos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControlIngreso.resx">
       <DependentUpon>UserControlIngreso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlInicio.resx">
       <DependentUpon>UserControlInicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlInversion.resx">
+      <DependentUpon>UserControlInversion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlLogin.resx">
       <DependentUpon>UserControlLogin.cs</DependentUpon>

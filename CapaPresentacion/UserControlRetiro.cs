@@ -1,4 +1,5 @@
 ﻿using CapaEntidades;
+using CapaEntidades.Enums;
 using CapaServicios;
 using System;
 using System.Linq;
@@ -113,7 +114,7 @@ namespace CapaPresentacion
             labelFondos.Text = $"Fondos: {fondosFormateados}";
 
             // Registra el movimiento
-            string mensaje = _csMovimiento.RegistrarMovimiento(Usuario.Id, retiro, "retiro");
+            string mensaje = _csMovimiento.RegistrarMovimiento(Usuario.Id, retiro, ETipoMovimiento.Retiro);
 
             // Notificar que los fondos han sido actualizados
             MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);

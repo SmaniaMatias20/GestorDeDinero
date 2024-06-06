@@ -1,4 +1,5 @@
 ﻿using System;
+using CapaEntidades.Enums;
 
 namespace CapaEntidades
 {
@@ -6,11 +7,12 @@ namespace CapaEntidades
     {
         public int Id { get; set; }
 
-        public string Tipo { get; set; }
+        public ETipoMovimiento Tipo { get; set; }
 
         public double Importe { get; set; }
 
         public string Fecha { get; set; }
+
 
         public Movimiento() 
         {
@@ -18,7 +20,7 @@ namespace CapaEntidades
             Fecha = ahora.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
-        public Movimiento(string tipo, double importe) : this()
+        public Movimiento(ETipoMovimiento tipo, double importe) : this()
         {
             Tipo = tipo;    
             Importe = importe;  

@@ -1,4 +1,5 @@
 ﻿using CapaEntidades;
+using CapaEntidades.Enums;
 using CapaServicios;
 using System;
 using System.Linq;
@@ -94,7 +95,8 @@ namespace CapaPresentacion
             _csUsuario.ActualizarFondos(Usuario.Nombre, ingreso, true);
 
             // Registra el movimiento
-            string mensaje = _csMovimiento.RegistrarMovimiento(Usuario.Id, ingreso, "ingreso");
+            //string mensaje = _csMovimiento.RegistrarMovimiento(Usuario.Id, ingreso, "ingreso");
+            string mensaje = _csMovimiento.RegistrarMovimiento(Usuario.Id, ingreso, ETipoMovimiento.Ingreso);
 
             // Notificar que los fondos han sido actualizados
             MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);

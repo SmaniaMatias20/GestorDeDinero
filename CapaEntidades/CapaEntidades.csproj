@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\Enum.cs" />
     <Compile Include="Movimiento.cs" />
     <Compile Include="Reserva.cs" />
     <Compile Include="Usuario.cs" />
