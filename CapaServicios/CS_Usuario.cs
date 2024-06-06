@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using CapaDatos;
 using CapaEntidades;
+using CapaEntidades.Enums;
 
 namespace CapaServicios
 {
@@ -235,7 +236,7 @@ namespace CapaServicios
         /// </summary>
         /// <param name="nombreUsuario">Nombre de usuario cuyos fondos se actualizarán.</param>
         /// <param name="importe">Cantidad a agregar a los fondos actuales del usuario.</param>
-        public void ActualizarFondos(string nombreUsuario, double importe, bool ingreso)
+        public void ActualizarFondos(string nombreUsuario, double importe, ETipoMovimiento tipoMovimiento)
         {
             // Aquí puedes implementar la lógica para actualizar los fondos del usuario en la base de datos.
             // Por ahora, simularemos que actualizamos los fondos en la base de datos CD_Usuario.
@@ -244,12 +245,20 @@ namespace CapaServicios
             Usuario usuario = cdUsuario.ObtenerUsuarioPorNombre(nombreUsuario);
 
             // Si el usuario existe, actualizamos sus fondos
-            if (usuario != null && ingreso)
+            if (usuario != null && tipoMovimiento == ETipoMovimiento.Ingreso)
             {
                 usuario.FondosTotales += importe;
                 cdUsuario.ActualizarUsuario(usuario); // Método para actualizar el usuario en la base de datos.
             }
-            else if (usuario != null && !ingreso)
+            else if (usuario != null && tipoMovimiento == ETipoMovimiento.Retiro)
+            {
+                if (importe <= usuario.FondosTotales)
+                {
+                    usuario.FondosTotales -= importe;
+                    cdUsuario.ActualizarUsuario(usuario); // Método para actualizar el usuario en la base de datos.   
+                }
+            }
+            else if (usuario != null && tipoMovimiento == ETipoMovimiento.Reserva)
             {
                 if (importe <= usuario.FondosTotales)
                 {

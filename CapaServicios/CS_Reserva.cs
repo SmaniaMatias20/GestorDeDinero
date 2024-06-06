@@ -1,5 +1,4 @@
 ﻿using CapaDatos;
-using CapaEntidades.Enums;
 using CapaEntidades;
 using System.Collections.Generic;
 

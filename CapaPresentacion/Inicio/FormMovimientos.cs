@@ -97,9 +97,11 @@ namespace CapaPresentacion
         private void reservarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Instancia un nuevo control de usuario para la reserva
-            _userControlReserva = new UserControlReserva();
+            _userControlReserva = new UserControlReserva(Usuario);
             // Muestra el control de usuario de reserva en el formulario principal
             MostrarUserControl(_userControlReserva);
+            // Suscribe el método UserControlRetiro_AceptarClick al evento AceptarClick del control de usuario de reserva
+            _userControlReserva.AceptarClick += UserControlReserva_AceptarClick;
         }
 
         /// <summary>
@@ -143,5 +145,10 @@ namespace CapaPresentacion
             this.Close();
         }
 
+        private void UserControlReserva_AceptarClick(object sender, EventArgs e)
+        {
+            // Cierra el formulario principal cuando se presiona el botón "Aceptar" en el control de usuario de reserva
+            this.Close();
+        }
     }
 }

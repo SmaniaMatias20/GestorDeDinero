@@ -34,7 +34,11 @@
             this.buttonEliminar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.buttonOcultar = new System.Windows.Forms.Button();
+            this.groupBoxInicio = new System.Windows.Forms.GroupBox();
+            this.radioButtonMovimientos = new System.Windows.Forms.RadioButton();
+            this.radioButtonReservas = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBoxInicio.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonMovimiento
@@ -120,12 +124,50 @@
             this.buttonOcultar.UseVisualStyleBackColor = false;
             this.buttonOcultar.Click += new System.EventHandler(this.buttonOcultar_Click);
             // 
+            // groupBoxInicio
+            // 
+            this.groupBoxInicio.Controls.Add(this.radioButtonReservas);
+            this.groupBoxInicio.Controls.Add(this.radioButtonMovimientos);
+            this.groupBoxInicio.Location = new System.Drawing.Point(396, 138);
+            this.groupBoxInicio.Name = "groupBoxInicio";
+            this.groupBoxInicio.Size = new System.Drawing.Size(156, 62);
+            this.groupBoxInicio.TabIndex = 10;
+            this.groupBoxInicio.TabStop = false;
+            this.groupBoxInicio.Text = "groupBox1";
+            // 
+            // radioButtonMovimientos
+            // 
+            this.radioButtonMovimientos.AutoSize = true;
+            this.radioButtonMovimientos.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.radioButtonMovimientos.Location = new System.Drawing.Point(63, 16);
+            this.radioButtonMovimientos.Name = "radioButtonMovimientos";
+            this.radioButtonMovimientos.Size = new System.Drawing.Size(84, 17);
+            this.radioButtonMovimientos.TabIndex = 0;
+            this.radioButtonMovimientos.TabStop = true;
+            this.radioButtonMovimientos.Text = "Movimientos";
+            this.radioButtonMovimientos.UseVisualStyleBackColor = true;
+            this.radioButtonMovimientos.CheckedChanged += new System.EventHandler(this.radioButtonMovimientos_CheckedChanged);
+            // 
+            // radioButtonReservas
+            // 
+            this.radioButtonReservas.AutoSize = true;
+            this.radioButtonReservas.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.radioButtonReservas.Location = new System.Drawing.Point(63, 39);
+            this.radioButtonReservas.Name = "radioButtonReservas";
+            this.radioButtonReservas.Size = new System.Drawing.Size(70, 17);
+            this.radioButtonReservas.TabIndex = 11;
+            this.radioButtonReservas.TabStop = true;
+            this.radioButtonReservas.Text = "Reservas";
+            this.radioButtonReservas.UseVisualStyleBackColor = true;
+            this.radioButtonReservas.CheckedChanged += new System.EventHandler(this.radioButtonReservas_CheckedChanged);
+            // 
             // UserControlInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.groupBoxInicio);
             this.Controls.Add(this.buttonOcultar);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonEliminar);
@@ -136,6 +178,8 @@
             this.Size = new System.Drawing.Size(577, 490);
             this.Load += new System.EventHandler(this.UserControlInicio_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBoxInicio.ResumeLayout(false);
+            this.groupBoxInicio.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,5 +193,8 @@
         private System.Windows.Forms.Button buttonEliminar;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button buttonOcultar;
+        private System.Windows.Forms.GroupBox groupBoxInicio;
+        private System.Windows.Forms.RadioButton radioButtonMovimientos;
+        private System.Windows.Forms.RadioButton radioButtonReservas;
     }
 }

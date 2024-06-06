@@ -1,5 +1,4 @@
-﻿
-using CapaEntidades;
+﻿using CapaEntidades;
 using CapaEntidades.Enums;
 using CapaServicios;
 using System;
@@ -59,10 +58,10 @@ namespace CapaPresentacion
         private void buttonAceptarReserva_Click(object sender, System.EventArgs e)
         {
             // Valida el contenido del TextBox de reserva y lo convierte a un valor de tipo double
-            double retiro = ValidarTextBoxReserva();
+            double reserva = ValidarTextBoxReserva();
 
             // Actualizar los fondos del usuario
-            _csUsuario.ActualizarFondos(Usuario.Nombre, retiro, false);
+            _csUsuario.ActualizarFondos(Usuario.Nombre, reserva, ETipoMovimiento.Reserva);
 
             // Obtiene los fondos actuales del usuario después del retiro
             double fondosActuales = _csUsuario.ObtenerFondosTotales(Usuario);
@@ -74,7 +73,7 @@ namespace CapaPresentacion
             labelFondos.Text = $"Fondos: {fondosFormateados}";
 
             // Registra el movimiento
-            string mensaje = _csReserva.RegistrarReserva(Usuario.Id, retiro, textBoxNombre.Text);
+            string mensaje = _csReserva.RegistrarReserva(Usuario.Id, reserva, textBoxNombre.Text);
 
             // Notificar que los fondos han sido actualizados
             MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);

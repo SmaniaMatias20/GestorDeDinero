@@ -13,6 +13,7 @@ namespace CapaPresentacion
         // Atributos
         private CS_Usuario _csUsuario;
         private CS_Movimiento _csMovimiento;
+        private CS_Reserva _csReserva;
         private bool _fondosVisibles = true;
 
         // Propiedades
@@ -28,8 +29,10 @@ namespace CapaPresentacion
             InitializeComponent();
             // Crea una nueva instancia de CS_Usuario para manejar la lógica relacionada con el usuario
             _csUsuario = new CS_Usuario();
-            // Crea una nueva instancia de CS_Usuario para manejar la lógica relacionada con los movimientos
+            // Crea una nueva instancia de CS_Movimiento para manejar la lógica relacionada con los movimientos
             _csMovimiento = new CS_Movimiento();
+            // Crea una nueva instancia de CS_Reserva para manejar la lógica relacionada con las reservas
+            _csReserva = new CS_Reserva();
         }
 
         /// <summary>
@@ -122,6 +125,17 @@ namespace CapaPresentacion
             dataGridView1.DataSource = Usuario.Movimientos;
         }
 
+        private void MostrarReservas() 
+        {
+            // Obtener la lista de movimientos para el usuario actual
+            Usuario.Reservas = _csReserva.ObtenerReservasPorId(Usuario.Id);
+            // Ajustar las columnas del DataGridView para que ocupen todo el ancho disponible
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            // Establecer la lista de movimientos como la fuente de datos del DataGridView
+            dataGridView1.DataSource = Usuario.Reservas;
+
+        }
+
         /// <summary>
         /// Maneja el evento Click del botón de eliminar.
         /// Recorre las filas seleccionadas en el DataGridView, elimina los movimientos correspondientes
@@ -131,6 +145,20 @@ namespace CapaPresentacion
         /// <param name="e">Los datos del evento.</param>
         private void buttonEliminar_Click(object sender, EventArgs e)
         {
+            if (radioButtonMovimientos.Checked)
+            {
+                EliminarMovimiento();
+                
+            }
+            else if (radioButtonReservas.Checked)
+            {
+                EliminarReserva();
+            }
+            
+        }
+
+        private void EliminarMovimiento() 
+        {
             // Crear una lista para almacenar los IDs de los movimientos que se van a eliminar
             List<int> idsMovimientosAEliminar = new List<int>();
 
@@ -138,7 +166,7 @@ namespace CapaPresentacion
             foreach (DataGridViewRow row in dataGridView1.SelectedRows)
             {
                 // Evitar eliminar filas de nueva entrada
-                if (!row.IsNewRow) 
+                if (!row.IsNewRow)
                 {
                     int idMovimiento;
                     // Intentar obtener el ID del movimiento de la celda correspondiente
@@ -149,7 +177,6 @@ namespace CapaPresentacion
                     }
                 }
             }
-
             // Recorrer la lista de IDs de movimientos a eliminar
             foreach (int idMovimiento in idsMovimientosAEliminar)
             {
@@ -159,6 +186,39 @@ namespace CapaPresentacion
 
             // Actualizar el DataGridView
             MostrarMovimientos();
+
+        }
+
+        private void EliminarReserva()
+        {
+            // Crear una lista para almacenar los IDs y los importes de las reservas que se van a eliminar
+            List<(int IdReserva, double Importe)> reservasAEliminar = new List<(int, double)>();
+
+            // Recorrer las filas seleccionadas en el DataGridView
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                int idReserva;
+                double importe;
+                // Intentar obtener el ID del movimiento y el importe de las celdas correspondientes
+                if (int.TryParse(row.Cells["Id"].Value.ToString(), out idReserva) &&
+                    double.TryParse(row.Cells["Importe"].Value.ToString(), out importe))
+                {
+                    // Agregar el ID del movimiento y el importe a la lista de reservas a eliminar
+                    reservasAEliminar.Add((idReserva, importe));
+                }
+            }
+
+            foreach (var reserva in reservasAEliminar)
+            {
+                // Llamar al método para eliminar la reserva por su ID de la base de datos
+                _csReserva.EliminarReservaPorId(reserva.IdReserva);
+
+                _csUsuario.ActualizarFondos(Usuario.Nombre, reserva.Importe, CapaEntidades.Enums.ETipoMovimiento.Ingreso);
+                ActualizarValorEnCaja();
+            }
+
+            MostrarReservas();
+
         }
 
         /// <summary>
@@ -227,6 +287,22 @@ namespace CapaPresentacion
                     // Actualiza el estado de ordenación del DataGridView a ascendente
                     dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Ascending;
                 }
+            }
+        }
+
+        private void radioButtonMovimientos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonMovimientos.Checked) 
+            {
+                MostrarMovimientos();
+            }
+        }
+
+        private void radioButtonReservas_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonReservas.Checked)
+            {
+                MostrarReservas();
             }
         }
     }

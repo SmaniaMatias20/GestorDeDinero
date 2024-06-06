@@ -1,7 +1,4 @@
-﻿
-
-using CapaEntidades.Enums;
-using System;
+﻿using System;
 
 namespace CapaEntidades
 {
