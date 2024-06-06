@@ -37,7 +37,7 @@
             this.BackColor = System.Drawing.Color.Purple;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Name = "UserControlInversion";
-            this.Size = new System.Drawing.Size(567, 496);
+            this.Size = new System.Drawing.Size(577, 490);
             this.ResumeLayout(false);
 
         }

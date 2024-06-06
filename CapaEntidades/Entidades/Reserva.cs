@@ -1,5 +1,6 @@
 ﻿
 
+using CapaEntidades.Enums;
 using System;
 
 namespace CapaEntidades
@@ -17,8 +18,19 @@ namespace CapaEntidades
             Fecha = ahora.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
+        public Reserva(string nombre, double importe) : this()
+        {
+            Nombre = nombre;
+            Importe = importe;
+        }
+
+        public override string ToString()
+        {
+            return $"ID: {Id} - Nombre: {Nombre} - Importe: {Importe} - Fecha: {Fecha}";
+        }
 
 
-      
+
+
     }
 }

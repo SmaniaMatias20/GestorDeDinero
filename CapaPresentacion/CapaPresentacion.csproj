@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ajustes\UserControlAjustes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ajustes\UserControlAjustes.Designer.cs">
+      <DependentUpon>UserControlAjustes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inicio\FormMovimientos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,9 @@
     <Compile Include="Inicio\UserControlRetiro.Designer.cs">
       <DependentUpon>UserControlRetiro.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Ajustes\UserControlAjustes.resx">
+      <DependentUpon>UserControlAjustes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Inicio\FormMovimientos.resx">
       <DependentUpon>FormMovimientos.cs</DependentUpon>
     </EmbeddedResource>

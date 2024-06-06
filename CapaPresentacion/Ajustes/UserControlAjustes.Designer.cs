@@ -1,6 +1,6 @@
-﻿namespace CapaPresentacion
+﻿namespace CapaPresentacion.Ajustes
 {
-    partial class UserControlGastos
+    partial class UserControlAjustes
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -30,13 +30,11 @@
         {
             this.SuspendLayout();
             // 
-            // UserControlGastos
+            // UserControlAjustes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Name = "UserControlGastos";
+            this.Name = "UserControlAjustes";
             this.Size = new System.Drawing.Size(577, 490);
             this.ResumeLayout(false);
 

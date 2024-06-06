@@ -1,5 +1,6 @@
 ﻿using CapaDatos;
 using CapaEntidades;
+using CapaPresentacion.Ajustes;
 using System;
 using System.Windows.Forms;
 
@@ -11,9 +12,8 @@ namespace CapaPresentacion
         private UserControlInicio _userControlInicio;
         private UserControlGastos _userControlGastos;
         private UserControlInversion _userControlInversion;
-
-        //private Usuario _usuario = new Usuario();   
-
+        private UserControlAjustes _userControlAjustes;
+ 
         // Propiedades
         public Usuario Usuario { get; set; }
 
@@ -128,6 +128,18 @@ namespace CapaPresentacion
         private void buttonSalir_Click(object sender, EventArgs e)
         {
             this.Close();   
+        }
+
+        private void buttonAjustes_Click(object sender, EventArgs e)
+        {
+            // Crea una instancia del control de usuario para la pantalla de inicio
+            _userControlAjustes = new UserControlAjustes(Usuario);
+
+            // Muestra el control de inicio en el formulario
+            MostrarUserControl(_userControlAjustes);
+
+            labelTitulo.Text = "Ajustes";
+
         }
     }
 }

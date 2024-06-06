@@ -1,5 +1,4 @@
-﻿
-using CapaEntidades;
+﻿using CapaEntidades;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System;

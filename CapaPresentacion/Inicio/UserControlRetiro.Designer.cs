@@ -41,7 +41,7 @@
             this.labelRetiro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelRetiro.Font = new System.Drawing.Font("Cambria", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelRetiro.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.labelRetiro.Location = new System.Drawing.Point(39, 103);
+            this.labelRetiro.Location = new System.Drawing.Point(33, 103);
             this.labelRetiro.Name = "labelRetiro";
             this.labelRetiro.Size = new System.Drawing.Size(119, 34);
             this.labelRetiro.TabIndex = 0;
@@ -49,7 +49,7 @@
             // 
             // textBoxRetiro
             // 
-            this.textBoxRetiro.Location = new System.Drawing.Point(39, 171);
+            this.textBoxRetiro.Location = new System.Drawing.Point(33, 171);
             this.textBoxRetiro.Name = "textBoxRetiro";
             this.textBoxRetiro.Size = new System.Drawing.Size(160, 20);
             this.textBoxRetiro.TabIndex = 1;
@@ -63,7 +63,7 @@
             this.buttonAceptarRetiro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAceptarRetiro.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAceptarRetiro.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonAceptarRetiro.Location = new System.Drawing.Point(39, 207);
+            this.buttonAceptarRetiro.Location = new System.Drawing.Point(33, 207);
             this.buttonAceptarRetiro.Name = "buttonAceptarRetiro";
             this.buttonAceptarRetiro.Size = new System.Drawing.Size(75, 23);
             this.buttonAceptarRetiro.TabIndex = 2;
@@ -79,7 +79,7 @@
             this.buttonBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBorrar.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBorrar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonBorrar.Location = new System.Drawing.Point(124, 207);
+            this.buttonBorrar.Location = new System.Drawing.Point(118, 207);
             this.buttonBorrar.Name = "buttonBorrar";
             this.buttonBorrar.Size = new System.Drawing.Size(75, 23);
             this.buttonBorrar.TabIndex = 3;
@@ -92,7 +92,7 @@
             this.labelFondos.AutoSize = true;
             this.labelFondos.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFondos.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.labelFondos.Location = new System.Drawing.Point(36, 153);
+            this.labelFondos.Location = new System.Drawing.Point(30, 153);
             this.labelFondos.Name = "labelFondos";
             this.labelFondos.Size = new System.Drawing.Size(53, 15);
             this.labelFondos.TabIndex = 4;
@@ -109,7 +109,7 @@
             this.Controls.Add(this.textBoxRetiro);
             this.Controls.Add(this.labelRetiro);
             this.Name = "UserControlRetiro";
-            this.Size = new System.Drawing.Size(250, 350);
+            this.Size = new System.Drawing.Size(234, 334);
             this.ResumeLayout(false);
             this.PerformLayout();
 

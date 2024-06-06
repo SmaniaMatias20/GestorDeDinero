@@ -2,9 +2,9 @@
 using CapaServicios;
 using System.Windows.Forms;
 
-namespace CapaPresentacion
+namespace CapaPresentacion.Ajustes
 {
-    public partial class UserControlGastos : UserControl
+    public partial class UserControlAjustes : UserControl
     {
         // Atributos
         private CS_Usuario _csUsuario;
@@ -14,7 +14,7 @@ namespace CapaPresentacion
         public Usuario Usuario { get; set; }
 
 
-        public UserControlGastos()
+        public UserControlAjustes()
         {
             // Inicializa los componentes visuales del control de usuario
             InitializeComponent();
@@ -24,12 +24,11 @@ namespace CapaPresentacion
             _csMovimiento = new CS_Movimiento();
         }
 
-        public UserControlGastos(Usuario usuario) : this()
+        public UserControlAjustes(Usuario usuario) : this()
         {
             // Asigna el usuario recibido por parámetro al atributo de la clase
             Usuario = usuario;
 
         }
-
     }
 }

@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             this.panelVertical = new System.Windows.Forms.Panel();
-            this.panelHorizontal = new System.Windows.Forms.Panel();
-            this.labelFecha = new System.Windows.Forms.Label();
-            this.labelTitulo = new System.Windows.Forms.Label();
-            this.labelNombreUsuario = new System.Windows.Forms.Label();
-            this.panelInicio = new System.Windows.Forms.Panel();
-            this.pictureBoxUsuario = new System.Windows.Forms.PictureBox();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.buttonSalir = new System.Windows.Forms.Button();
             this.buttonAjustes = new System.Windows.Forms.Button();
             this.buttonInversiones = new System.Windows.Forms.Button();
             this.buttonGastos = new System.Windows.Forms.Button();
             this.buttonInicio = new System.Windows.Forms.Button();
+            this.panelHorizontal = new System.Windows.Forms.Panel();
+            this.labelFecha = new System.Windows.Forms.Label();
+            this.labelTitulo = new System.Windows.Forms.Label();
+            this.pictureBoxUsuario = new System.Windows.Forms.PictureBox();
+            this.labelNombreUsuario = new System.Windows.Forms.Label();
+            this.panelInicio = new System.Windows.Forms.Panel();
             this.panelVertical.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelHorizontal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUsuario)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // panelVertical
@@ -61,75 +61,6 @@
             this.panelVertical.Name = "panelVertical";
             this.panelVertical.Size = new System.Drawing.Size(150, 557);
             this.panelVertical.TabIndex = 0;
-            // 
-            // panelHorizontal
-            // 
-            this.panelHorizontal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
-            this.panelHorizontal.Controls.Add(this.labelFecha);
-            this.panelHorizontal.Controls.Add(this.labelTitulo);
-            this.panelHorizontal.Controls.Add(this.pictureBoxUsuario);
-            this.panelHorizontal.Controls.Add(this.labelNombreUsuario);
-            this.panelHorizontal.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panelHorizontal.Location = new System.Drawing.Point(150, 0);
-            this.panelHorizontal.Margin = new System.Windows.Forms.Padding(0);
-            this.panelHorizontal.Name = "panelHorizontal";
-            this.panelHorizontal.Size = new System.Drawing.Size(580, 64);
-            this.panelHorizontal.TabIndex = 1;
-            // 
-            // labelFecha
-            // 
-            this.labelFecha.AutoSize = true;
-            this.labelFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFecha.Location = new System.Drawing.Point(447, 39);
-            this.labelFecha.Name = "labelFecha";
-            this.labelFecha.Size = new System.Drawing.Size(51, 12);
-            this.labelFecha.TabIndex = 3;
-            this.labelFecha.Text = "03/26/2024";
-            // 
-            // labelTitulo
-            // 
-            this.labelTitulo.AutoSize = true;
-            this.labelTitulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelTitulo.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitulo.Location = new System.Drawing.Point(15, 12);
-            this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(102, 39);
-            this.labelTitulo.TabIndex = 2;
-            this.labelTitulo.Text = "Inicio";
-            this.labelTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // labelNombreUsuario
-            // 
-            this.labelNombreUsuario.AutoSize = true;
-            this.labelNombreUsuario.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNombreUsuario.Location = new System.Drawing.Point(446, 21);
-            this.labelNombreUsuario.Name = "labelNombreUsuario";
-            this.labelNombreUsuario.Size = new System.Drawing.Size(98, 15);
-            this.labelNombreUsuario.TabIndex = 1;
-            this.labelNombreUsuario.Text = "Nombre Usuario";
-            // 
-            // panelInicio
-            // 
-            this.panelInicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.panelInicio.Location = new System.Drawing.Point(153, 67);
-            this.panelInicio.Name = "panelInicio";
-            this.panelInicio.Size = new System.Drawing.Size(577, 490);
-            this.panelInicio.TabIndex = 2;
-            this.panelInicio.Paint += new System.Windows.Forms.PaintEventHandler(this.panelInicio_Paint);
-            // 
-            // pictureBoxUsuario
-            // 
-            this.pictureBoxUsuario.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxUsuario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBoxUsuario.Cursor = System.Windows.Forms.Cursors.No;
-            this.pictureBoxUsuario.ImageLocation = "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Resource" +
-    "s\\usuario.png";
-            this.pictureBoxUsuario.Location = new System.Drawing.Point(395, 12);
-            this.pictureBoxUsuario.Name = "pictureBoxUsuario";
-            this.pictureBoxUsuario.Size = new System.Drawing.Size(46, 48);
-            this.pictureBoxUsuario.TabIndex = 0;
-            this.pictureBoxUsuario.TabStop = false;
-            this.pictureBoxUsuario.Click += new System.EventHandler(this.pictureBoxUsuario_Click);
             // 
             // pictureBoxLogo
             // 
@@ -179,6 +110,7 @@
             this.buttonAjustes.Text = "Ajustes";
             this.buttonAjustes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonAjustes.UseVisualStyleBackColor = false;
+            this.buttonAjustes.Click += new System.EventHandler(this.buttonAjustes_Click);
             // 
             // buttonInversiones
             // 
@@ -242,6 +174,75 @@
             this.buttonInicio.UseVisualStyleBackColor = false;
             this.buttonInicio.Click += new System.EventHandler(this.buttonInicio_Click);
             // 
+            // panelHorizontal
+            // 
+            this.panelHorizontal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
+            this.panelHorizontal.Controls.Add(this.labelFecha);
+            this.panelHorizontal.Controls.Add(this.labelTitulo);
+            this.panelHorizontal.Controls.Add(this.pictureBoxUsuario);
+            this.panelHorizontal.Controls.Add(this.labelNombreUsuario);
+            this.panelHorizontal.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panelHorizontal.Location = new System.Drawing.Point(150, 0);
+            this.panelHorizontal.Margin = new System.Windows.Forms.Padding(0);
+            this.panelHorizontal.Name = "panelHorizontal";
+            this.panelHorizontal.Size = new System.Drawing.Size(580, 64);
+            this.panelHorizontal.TabIndex = 1;
+            // 
+            // labelFecha
+            // 
+            this.labelFecha.AutoSize = true;
+            this.labelFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFecha.Location = new System.Drawing.Point(447, 39);
+            this.labelFecha.Name = "labelFecha";
+            this.labelFecha.Size = new System.Drawing.Size(51, 12);
+            this.labelFecha.TabIndex = 3;
+            this.labelFecha.Text = "03/26/2024";
+            // 
+            // labelTitulo
+            // 
+            this.labelTitulo.AutoSize = true;
+            this.labelTitulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelTitulo.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitulo.Location = new System.Drawing.Point(15, 12);
+            this.labelTitulo.Name = "labelTitulo";
+            this.labelTitulo.Size = new System.Drawing.Size(102, 39);
+            this.labelTitulo.TabIndex = 2;
+            this.labelTitulo.Text = "Inicio";
+            this.labelTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBoxUsuario
+            // 
+            this.pictureBoxUsuario.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxUsuario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxUsuario.Cursor = System.Windows.Forms.Cursors.No;
+            this.pictureBoxUsuario.ImageLocation = "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Resource" +
+    "s\\usuario.png";
+            this.pictureBoxUsuario.Location = new System.Drawing.Point(395, 12);
+            this.pictureBoxUsuario.Name = "pictureBoxUsuario";
+            this.pictureBoxUsuario.Size = new System.Drawing.Size(46, 48);
+            this.pictureBoxUsuario.TabIndex = 0;
+            this.pictureBoxUsuario.TabStop = false;
+            this.pictureBoxUsuario.Click += new System.EventHandler(this.pictureBoxUsuario_Click);
+            // 
+            // labelNombreUsuario
+            // 
+            this.labelNombreUsuario.AutoSize = true;
+            this.labelNombreUsuario.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNombreUsuario.Location = new System.Drawing.Point(446, 21);
+            this.labelNombreUsuario.Name = "labelNombreUsuario";
+            this.labelNombreUsuario.Size = new System.Drawing.Size(98, 15);
+            this.labelNombreUsuario.TabIndex = 1;
+            this.labelNombreUsuario.Text = "Nombre Usuario";
+            // 
+            // panelInicio
+            // 
+            this.panelInicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.panelInicio.Location = new System.Drawing.Point(153, 67);
+            this.panelInicio.Name = "panelInicio";
+            this.panelInicio.Size = new System.Drawing.Size(577, 490);
+            this.panelInicio.TabIndex = 2;
+            this.panelInicio.Paint += new System.Windows.Forms.PaintEventHandler(this.panelInicio_Paint);
+            // 
             // FormInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -258,10 +259,10 @@
             this.Text = "Inicio";
             this.Load += new System.EventHandler(this.FormInicio_Load);
             this.panelVertical.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.panelHorizontal.ResumeLayout(false);
             this.panelHorizontal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUsuario)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
