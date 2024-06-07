@@ -279,6 +279,11 @@ namespace CapaServicios
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="importeIngresado"></param>
+        /// <returns></returns>
         private double ValidarImporteIngresado(string importeIngresado) 
         {
             // Verifica que el campo de ingreso no esté vacío
@@ -299,7 +304,8 @@ namespace CapaServicios
                 return 0;
             }
 
-            if (importeValidado >= 1000000)
+            // Verifica que el importe sea menor o igual a $1.000.000
+            if (importeValidado > 1000000)
             {
                 return -2;
             }
@@ -309,6 +315,11 @@ namespace CapaServicios
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cantidad"></param>
+        /// <returns></returns>
         public string FormatearMoneda(double cantidad)
         {
             // Obtiene el formato de número específico para la cultura de Argentina (es-AR)

@@ -32,11 +32,16 @@ namespace CapaPresentacion
 
         }
 
-        // Controlador de eventos para el evento CargaFinalizada
+        /// <summary>
+        /// Método que se ejecuta cuando la carga se ha completado.
+        /// </summary>
+        /// <param name="sender">El origen del evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void UserControlPresentacion_CargaFinalizada(object sender, EventArgs e)
         {
-            // Abre el UserControlLogin
+            // Crea una nueva instancia de UserControlLogin
             _userControlLogin = new UserControlLogin();
+            // Muestra el UserControlLogin
             MostrarUserControl(_userControlLogin);
         }
 

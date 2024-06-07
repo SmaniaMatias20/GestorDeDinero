@@ -29,36 +29,40 @@ namespace CapaServicios
         /// <returns>Un mensaje indicando el resultado de la operación.</returns>
         public string RegistrarMovimiento(int idUsuario, double importe, ETipoMovimiento tipo) 
         {
-            // Crea una nueva instancia de Movimiento con el tipo y el importe especificados
-            Movimiento movimiento = new Movimiento(tipo, importe);
-
-            // Verifica si el importe es mayor a cero
-            if (importe > 0)
+            if (ValidarImporteDeMovimiento(importe) == "Fondos actualizados correctamente")
             {
-                // Agrega el movimiento a la base de datos para el usuario especificado
+                // Crea una nueva instancia de Movimiento con el tipo y el importe especificados
+                Movimiento movimiento = new Movimiento(tipo, importe);
+                //Agrega el movimiento a la base de datos para el usuario especificado
                 _cdMovimiento.AgregarMovimiento(idUsuario, movimiento.Fecha, movimiento.Importe, movimiento.Tipo);
                 // Devuelve un mensaje indicando que los fondos han sido actualizados correctamente
-                return "Los fondos han sido actualizados correctamente";
-            }
-            else if (importe == 0)  // Verifica si el importe es igual a cero
-            {
-                // Devuelve un mensaje indicando que el importe debe ser mayor a cero
-                return "Ingrese un importe mayor a 0(cero)";
-            }
-            else if (importe == -1)  // Maneja el caso en que el importe sea mayor a los fondos totales
-            {
-                // Devuelve un mensaje indicando que el importe debe ser menor a los fondos totales
-                return "Debe ingresar un importe menor a los fondos totales";
-            }
-            else if (importe == -2)  // Maneja el caso en que el importe sea mayor a los fondos totales
-            {
-                // Devuelve un mensaje indicando que el importe debe ser menor a $1.000.000
-                return "No se permiten transacciones de mas de $1.000.000";
+                return ValidarImporteDeMovimiento(importe);
             }
             else
             {
-                return "Otro error";
+                return ValidarImporteDeMovimiento(importe);
             }
+        }
+
+        private string ValidarImporteDeMovimiento(double importe) 
+        {
+            if (importe > 0)
+            {
+                return "Fondos actualizados correctamente";
+            }
+            else if (importe == 0)
+            {
+                return "Ingrese un importe mayor a 0(cero)";
+            }
+            else if (importe == -1)
+            {
+                return "Ingrese un importe menor a los fondos totales";
+            }
+            else
+            {
+                return "No se aceptan transacciones mayores a $1.000.000";
+            }
+
         }
 
         /// <summary>

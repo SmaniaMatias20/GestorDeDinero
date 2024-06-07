@@ -47,6 +47,8 @@ namespace CapaPresentacion
             // Actualiza el valor en la caja al inicializar el control
             ActualizarValorEnCaja();
             //
+            radioButtonMovimientos.Checked = true;
+            //
             MostrarMovimientos();
         }
 
@@ -59,7 +61,6 @@ namespace CapaPresentacion
         {
             // Registra el controlador de eventos para el evento ColumnHeaderMouseClick
             dataGridView1.ColumnHeaderMouseClick += DataGridView1_ColumnHeaderMouseClick;
-            radioButtonMovimientos.Checked = true;
         }
 
         /// <summary>
@@ -124,6 +125,8 @@ namespace CapaPresentacion
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             // Establecer la lista de movimientos como la fuente de datos del DataGridView
             dataGridView1.DataSource = Usuario.Movimientos;
+            // Deshabilita el boton modificar
+            buttonModificar.Enabled = false;
         }
 
         private void MostrarReservas() 
@@ -134,7 +137,8 @@ namespace CapaPresentacion
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             // Establecer la lista de movimientos como la fuente de datos del DataGridView
             dataGridView1.DataSource = Usuario.Reservas;
-
+            // Habilita el boton modificar
+            buttonModificar.Enabled = true;
         }
 
         /// <summary>
@@ -149,7 +153,6 @@ namespace CapaPresentacion
             if (radioButtonMovimientos.Checked)
             {
                 EliminarMovimiento();
-                
             }
             else if (radioButtonReservas.Checked)
             {
@@ -257,23 +260,40 @@ namespace CapaPresentacion
         /// <param name="e">Los argumentos del evento.</param>
         private void DataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            // Verifica si el radio button de Movimientos está seleccionado
+            if (radioButtonMovimientos.Checked)
+            {
+                // Si está seleccionado, ordena los datos de movimientos
+                OrdenarDataGrid(e, Usuario.Movimientos);
+            }
+            else
+            {
+                // Si no está seleccionado, ordena los datos de reservas
+                OrdenarDataGrid(e, Usuario.Reservas);
+            }
+        }
 
-            // Obtiene la columna que se ha clicado
-            DataGridViewColumn columnaClicada = dataGridView1.Columns[e.ColumnIndex];
+        /// <summary>
+        /// Ordena los datos en el DataGridView según la columna clicada.
+        /// </summary>
+        /// <typeparam name="T">El tipo de los datos en la lista.</typeparam>
+        /// <param name="e">Los argumentos del evento del clic del encabezado de la columna.</param>
+        /// <param name="datos">La lista de datos a ordenar.</param>
+        private void OrdenarDataGrid<T>(DataGridViewCellMouseEventArgs e, List<T> datos)
+        {
+            // Obtiene la columna que se ha seleccionado
+            DataGridViewColumn columnaSeleccionada = dataGridView1.Columns[e.ColumnIndex];
 
-            // Obtiene el nombre de la propiedad que corresponde a la columna clicada
-            string nombrePropiedad = columnaClicada.DataPropertyName;
+            // Obtiene el nombre de la propiedad que corresponde a la columna seleccionada
+            string nombrePropiedad = columnaSeleccionada.DataPropertyName;
 
-            // Obtiene los datos actuales del DataGridView
-            List<Movimiento> datos = (List<Movimiento>)dataGridView1.DataSource;
-
-            // Ordena los datos manualmente según la columna clicada
-            if (columnaClicada.SortMode != DataGridViewColumnSortMode.NotSortable)
+            // Ordena los datos manualmente según la columna seleccionada
+            if (columnaSeleccionada.SortMode != DataGridViewColumnSortMode.NotSortable)
             {
                 // Obtiene el estado actual de ordenación del DataGridView
                 SortOrder sortOrder = dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection;
 
-                // Ordena los datos manualmente según la columna clicada
+                // Ordena los datos manualmente según la columna seleccionada
                 if (sortOrder == SortOrder.Ascending)
                 {
                     // Ordena los datos de forma descendente
@@ -289,20 +309,35 @@ namespace CapaPresentacion
                     dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Ascending;
                 }
             }
+
         }
 
+        /// <summary>
+        /// Maneja el evento de cambio de selección del radio button de Movimientos.
+        /// </summary>
+        /// <param name="sender">El objeto que generó el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void radioButtonMovimientos_CheckedChanged(object sender, EventArgs e)
         {
+            // Verifica si el radio button de Movimientos está seleccionado
             if (radioButtonMovimientos.Checked) 
             {
+                // Si está seleccionado, muestra los movimientos
                 MostrarMovimientos();
             }
         }
 
+        /// <summary>
+        /// Maneja el evento de cambio de selección del radio button de Reservas.
+        /// </summary>
+        /// <param name="sender">El objeto que generó el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void radioButtonReservas_CheckedChanged(object sender, EventArgs e)
         {
+            // Verifica si el radio button de Reservas está seleccionado
             if (radioButtonReservas.Checked)
             {
+                // Si está seleccionado, muestra las reservas
                 MostrarReservas();
             }
         }
