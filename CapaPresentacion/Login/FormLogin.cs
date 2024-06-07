@@ -1,9 +1,6 @@
-﻿using System;
-using System.IO;
+﻿using CapaPresentacion.Login;
+using System;
 using System.Windows.Forms;
-using CapaEntidades;
-using System.Collections.Generic;
-using CapaDatos;
 
 namespace CapaPresentacion
 {
@@ -12,6 +9,7 @@ namespace CapaPresentacion
         // Atributos
         private UserControlLogin _userControlLogin;
         private UserControlRegistro _userControlRegistro;
+        private UserControlPresentacion _userControlPresentacion;
 
         /// <summary>
         /// Constructor de la clase FormLogin.
@@ -23,11 +21,23 @@ namespace CapaPresentacion
             InitializeComponent();
 
             // Crea una instancia del control de usuario de inicio de sesión
-            _userControlLogin = new UserControlLogin();
+            _userControlPresentacion = new UserControlPresentacion();
+
+            // Suscribe el controlador de eventos para el evento CargaFinalizada
+            _userControlPresentacion.CargaFinalizada += UserControlPresentacion_CargaFinalizada;
+
 
             // Muestra el control de usuario de inicio de sesión en el formulario
-            MostrarUserControl(_userControlLogin);
+            MostrarUserControl(_userControlPresentacion);
 
+        }
+
+        // Controlador de eventos para el evento CargaFinalizada
+        private void UserControlPresentacion_CargaFinalizada(object sender, EventArgs e)
+        {
+            // Abre el UserControlLogin
+            _userControlLogin = new UserControlLogin();
+            MostrarUserControl(_userControlLogin);
         }
 
         /// <summary>

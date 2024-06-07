@@ -50,6 +50,13 @@ namespace CapaPresentacion
             // Coloca el nombre de Usuario en el label
             labelNombreUsuario.Text = Usuario.Nombre;
 
+            // Oculta los paneles de los botones
+            panel1.Visible = false;
+            panel2.Visible = false;
+            panel3.Visible = false;
+            panel4.Visible = false;
+            panel5.Visible = false;
+
         }
 
         /// <summary>
@@ -61,7 +68,80 @@ namespace CapaPresentacion
         private void FormInicio_Load(object sender, EventArgs e)
         {
             // Inicializa una nueva instancia de la clase Conexion
-            Conexion conexion = new Conexion(); 
+            Conexion conexion = new Conexion();
+
+            buttonInicio.MouseEnter += new EventHandler(button_MouseEnter);
+            buttonInicio.MouseLeave += new EventHandler(button_MouseLeave);
+            buttonGastos.MouseEnter += new EventHandler(button_MouseEnter);
+            buttonGastos.MouseLeave += new EventHandler(button_MouseLeave);
+            buttonAjustes.MouseEnter += new EventHandler(button_MouseEnter);
+            buttonAjustes.MouseLeave += new EventHandler(button_MouseLeave);
+            buttonInversiones.MouseEnter += new EventHandler(button_MouseEnter);
+            buttonInversiones.MouseLeave += new EventHandler(button_MouseLeave);
+            buttonSalir.MouseEnter += new EventHandler(button_MouseEnter);
+            buttonSalir.MouseLeave += new EventHandler(button_MouseLeave);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_MouseEnter(object sender, EventArgs e)
+        {
+            // Obtener el botón que activó el evento
+            Button button = sender as Button;
+
+            // Determinar qué panel corresponde al botón y hacerlo visible
+            switch (button.Name)
+            {
+                case "buttonInicio":
+                    panel1.Visible = true;
+                    break;
+                case "buttonGastos":
+                    panel2.Visible = true;
+                    break;
+                case "buttonInversiones":
+                    panel3.Visible = true;
+                    break;
+                case "buttonAjustes":
+                    panel4.Visible = true;
+                    break;
+                case "buttonSalir":
+                    panel5.Visible = true;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_MouseLeave(object sender, EventArgs e)
+        {
+            // Obtener el botón que activó el evento
+            Button button = sender as Button;
+
+            // Determinar qué panel corresponde al botón y ocultarlo
+            switch (button.Name)
+            {
+                case "buttonInicio":
+                    panel1.Visible = false;
+                    break;
+                case "buttonGastos":
+                    panel2.Visible = false;
+                    break;
+                case "buttonInversiones":
+                    panel3.Visible = false;
+                    break;
+                case "buttonAjustes":
+                    panel4.Visible = false;
+                    break;
+                case "buttonSalir":
+                    panel5.Visible = false;
+                    break;
+            }
         }
 
 
@@ -79,17 +159,6 @@ namespace CapaPresentacion
             panelInicio.Controls.Add(control);
         }
 
-
-        private void panelInicio_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pictureBoxUsuario_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonGastos_Click(object sender, EventArgs e)
         {
             // Crea una instancia del control de usuario para la pantalla de gastos
@@ -98,6 +167,7 @@ namespace CapaPresentacion
             // Muestra el control de inicio en el formulario
             MostrarUserControl(_userControlGastos);
 
+            // Modifica el titulo 
             labelTitulo.Text = "Gastos";
 
         }
@@ -110,6 +180,7 @@ namespace CapaPresentacion
             // Muestra el control de inicio en el formulario
             MostrarUserControl(_userControlInicio);
 
+            // Modifica el titulo 
             labelTitulo.Text = "Inicio";
 
         }
@@ -122,14 +193,9 @@ namespace CapaPresentacion
             // Muestra el control de inicio en el formulario
             MostrarUserControl(_userControlInversion);
 
+            // Modifica el titulo 
             labelTitulo.Text = "Inversiones";
         }
-
-        private void buttonSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();   
-        }
-
         private void buttonAjustes_Click(object sender, EventArgs e)
         {
             // Crea una instancia del control de usuario para la pantalla de inicio
@@ -138,8 +204,20 @@ namespace CapaPresentacion
             // Muestra el control de inicio en el formulario
             MostrarUserControl(_userControlAjustes);
 
+            // Modifica el titulo 
             labelTitulo.Text = "Ajustes";
 
         }
+
+        private void buttonSalir_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("¿Está seguro que quieres salir?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            // Si el usuario hace clic en "Sí", cerrar la aplicación
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
     }
 }

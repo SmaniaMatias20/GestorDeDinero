@@ -37,3 +37,4 @@ C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\bin\Deb
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.UserControlGastos.resources
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.UserControlInversion.resources
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.Ajustes.UserControlAjustes.resources
+C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.Login.UserControlPresentacion.resources
