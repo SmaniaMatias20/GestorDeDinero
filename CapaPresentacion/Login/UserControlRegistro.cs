@@ -28,7 +28,7 @@ namespace CapaPresentacion
         private void buttonRegistrarse_Click(object sender, System.EventArgs e)
         {
             string mensaje = csUsuario.RegistrarUsuario(textBoxUsuario.Text, textBoxClave.Text, textBoxClave2.Text);
-            MessageBox.Show(mensaje);  
+            MessageBox.Show(mensaje, "Mensaje");  
         }
 
         private void buttonBorrar_Click(object sender, System.EventArgs e)

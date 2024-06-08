@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-
 namespace CapaPresentacion
 {
     public partial class UserControlInicio : UserControl
@@ -60,7 +59,7 @@ namespace CapaPresentacion
         private void UserControlInicio_Load(object sender, EventArgs e)
         {
             // Registra el controlador de eventos para el evento ColumnHeaderMouseClick
-            dataGridView1.ColumnHeaderMouseClick += DataGridView1_ColumnHeaderMouseClick;
+            dataGridViewMovimientos.ColumnHeaderMouseClick += DataGridView1_ColumnHeaderMouseClick;
         }
 
         /// <summary>
@@ -71,17 +70,27 @@ namespace CapaPresentacion
         /// <param name="e">Los datos del evento.</param>
         private void buttonMovimiento_Click(object sender, EventArgs e)
         {
+            AbrirFormularioMovimiento();
+        }
+
+        private FormMovimientos AbrirFormularioMovimiento() 
+        {
             // Verifica si el formulario de movimientos no está abierto ya
             if (Application.OpenForms["formMovimientos"] == null)
             {
-                // Crea una instancia del formulario de movimientos y lo muestra
+                // Crea una instancia del formulario de movimientos
                 FormMovimientos formMovimientos = new FormMovimientos(Usuario);
+                // Muestra el formulario movimientos
                 formMovimientos.Show();
                 // Suscribe el método FormMovimientos_FormClosed al evento FormClosed del formulario de movimientos
                 formMovimientos.FormClosed += FormMovimientos_FormClosed;
                 // Deshabilita el formulario principal mientras el formulario de movimientos esté abierto
                 this.Enabled = false;
+
+                return formMovimientos;
             }
+
+            return null;
         }
 
         /// <summary>
@@ -122,9 +131,9 @@ namespace CapaPresentacion
             // Obtener la lista de movimientos para el usuario actual
             Usuario.Movimientos = _csMovimiento.ObtenerMovimientosPorId(Usuario.Id);
             // Ajustar las columnas del DataGridView para que ocupen todo el ancho disponible
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewMovimientos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             // Establecer la lista de movimientos como la fuente de datos del DataGridView
-            dataGridView1.DataSource = Usuario.Movimientos;
+            dataGridViewMovimientos.DataSource = Usuario.Movimientos;
             // Deshabilita el boton modificar
             buttonModificar.Enabled = false;
         }
@@ -134,9 +143,9 @@ namespace CapaPresentacion
             // Obtener la lista de movimientos para el usuario actual
             Usuario.Reservas = _csReserva.ObtenerReservasPorId(Usuario.Id);
             // Ajustar las columnas del DataGridView para que ocupen todo el ancho disponible
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewMovimientos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             // Establecer la lista de movimientos como la fuente de datos del DataGridView
-            dataGridView1.DataSource = Usuario.Reservas;
+            dataGridViewMovimientos.DataSource = Usuario.Reservas;
             // Habilita el boton modificar
             buttonModificar.Enabled = true;
         }
@@ -150,13 +159,28 @@ namespace CapaPresentacion
         /// <param name="e">Los datos del evento.</param>
         private void buttonEliminar_Click(object sender, EventArgs e)
         {
+            // Si el radioButtonMovimientos está checkeado
             if (radioButtonMovimientos.Checked)
             {
-                EliminarMovimiento();
+                DialogResult result = MessageBox.Show("¿Está seguro que quieres eliminar el movimiento?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                // Si el usuario hace clic en "Sí", cerrar la aplicación
+                if (result == DialogResult.Yes)
+                {
+                    // Eliminamos el movimiento
+                    EliminarMovimiento();
+                }
+
             }
-            else if (radioButtonReservas.Checked)
+            else if (radioButtonReservas.Checked) // Si el radioButtonReservas está checkeado
             {
-                EliminarReserva();
+                DialogResult result = MessageBox.Show("¿Está seguro que quieres eliminar la reserva?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                // Si el usuario hace clic en "Sí", cerrar la aplicación
+                if (result == DialogResult.Yes)
+                {
+                    // Eliminamos la reserva
+                    EliminarReserva();
+                }
+                
             }
             
         }
@@ -167,7 +191,7 @@ namespace CapaPresentacion
             List<int> idsMovimientosAEliminar = new List<int>();
 
             // Recorrer las filas seleccionadas en el DataGridView
-            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            foreach (DataGridViewRow row in dataGridViewMovimientos.SelectedRows)
             {
                 // Evitar eliminar filas de nueva entrada
                 if (!row.IsNewRow)
@@ -199,7 +223,7 @@ namespace CapaPresentacion
             List<(int IdReserva, double Importe)> reservasAEliminar = new List<(int, double)>();
 
             // Recorrer las filas seleccionadas en el DataGridView
-            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            foreach (DataGridViewRow row in dataGridViewMovimientos.SelectedRows)
             {
                 int idReserva;
                 double importe;
@@ -216,13 +240,14 @@ namespace CapaPresentacion
             {
                 // Llamar al método para eliminar la reserva por su ID de la base de datos
                 _csReserva.EliminarReservaPorId(reserva.IdReserva);
-
+                // Actualiza los fondos del usuario
                 _csUsuario.ActualizarFondos(Usuario.Nombre, reserva.Importe.ToString(), CapaEntidades.Enums.ETipoMovimiento.Ingreso);
+                // Actualiza el valor de la caja
                 ActualizarValorEnCaja();
             }
 
+            // Muestra las reservas
             MostrarReservas();
-
         }
 
         /// <summary>
@@ -282,7 +307,7 @@ namespace CapaPresentacion
         private void OrdenarDataGrid<T>(DataGridViewCellMouseEventArgs e, List<T> datos)
         {
             // Obtiene la columna que se ha seleccionado
-            DataGridViewColumn columnaSeleccionada = dataGridView1.Columns[e.ColumnIndex];
+            DataGridViewColumn columnaSeleccionada = dataGridViewMovimientos.Columns[e.ColumnIndex];
 
             // Obtiene el nombre de la propiedad que corresponde a la columna seleccionada
             string nombrePropiedad = columnaSeleccionada.DataPropertyName;
@@ -291,22 +316,22 @@ namespace CapaPresentacion
             if (columnaSeleccionada.SortMode != DataGridViewColumnSortMode.NotSortable)
             {
                 // Obtiene el estado actual de ordenación del DataGridView
-                SortOrder sortOrder = dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection;
+                SortOrder sortOrder = dataGridViewMovimientos.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection;
 
                 // Ordena los datos manualmente según la columna seleccionada
                 if (sortOrder == SortOrder.Ascending)
                 {
                     // Ordena los datos de forma descendente
-                    dataGridView1.DataSource = datos.OrderByDescending(x => x.GetType().GetProperty(nombrePropiedad).GetValue(x, null)).ToList();
+                    dataGridViewMovimientos.DataSource = datos.OrderByDescending(x => x.GetType().GetProperty(nombrePropiedad).GetValue(x, null)).ToList();
                     // Actualiza el estado de ordenación del DataGridView a descendente
-                    dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Descending;
+                    dataGridViewMovimientos.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Descending;
                 }
                 else
                 {
                     // Ordena los datos de forma ascendente
-                    dataGridView1.DataSource = datos.OrderBy(x => x.GetType().GetProperty(nombrePropiedad).GetValue(x, null)).ToList();
+                    dataGridViewMovimientos.DataSource = datos.OrderBy(x => x.GetType().GetProperty(nombrePropiedad).GetValue(x, null)).ToList();
                     // Actualiza el estado de ordenación del DataGridView a ascendente
-                    dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Ascending;
+                    dataGridViewMovimientos.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Ascending;
                 }
             }
 
@@ -340,6 +365,37 @@ namespace CapaPresentacion
                 // Si está seleccionado, muestra las reservas
                 MostrarReservas();
             }
+        }
+
+        private void buttonModificar_Click(object sender, EventArgs e)
+        {
+            
+            if (dataGridViewMovimientos.SelectedRows.Count > 0)
+            {
+                // Obtener la fila seleccionada
+                DataGridViewRow filaSeleccionada = dataGridViewMovimientos.SelectedRows[0];
+
+                // Extraer los datos de la reserva desde la fila seleccionada
+                Reserva reservaSeleccionada = new Reserva
+                {
+                    Id = Convert.ToInt32(filaSeleccionada.Cells["id"].Value),
+                    Nombre = Convert.ToString(filaSeleccionada.Cells["nombre"].Value),
+                    Importe = Convert.ToDouble(filaSeleccionada.Cells["importe"].Value),
+                    Fecha = Convert.ToString(filaSeleccionada.Cells["fecha"].Value)
+                };
+
+                // Crear una instancia del formulario de movimientos
+                FormMovimientos formMovimientos = AbrirFormularioMovimiento();
+
+                // Crear una instancia del UserControlReserva con el usuario actual y los datos de la reserva
+                UserControlReserva userControlReserva = new UserControlReserva(Usuario, reservaSeleccionada);
+
+                // Mostrar el UserControlReserva en el FormMovimientos
+                formMovimientos.MostrarUserControl(userControlReserva);
+
+                MostrarReservas();
+            }
+
         }
     }
 }

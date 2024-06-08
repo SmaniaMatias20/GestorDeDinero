@@ -217,10 +217,7 @@ namespace CapaServicios
         /// <param name="usuario">El usuario del cual obtener los fondos totales.</param>
         /// <returns>Los fondos totales del usuario.</returns>
         public double ObtenerFondosTotales(Usuario usuario)
-        {
-            // Podrías obtener los fondos totales directamente desde la base de datos o implementar lógica adicional aquí.
-            // Por ahora, simularemos que obtenemos los fondos totales desde la base de datos.
-
+        { 
             // Supongamos que la base de datos devuelve una lista de usuarios donde podemos buscar al usuario específico.
             List<Usuario> listaDeUsuarios = cdUsuario.ListarUsuarios();
 
@@ -299,7 +296,7 @@ namespace CapaServicios
             }
 
             // Verifica que el importe sea mayor a 0(cero)
-            if (importeValidado <= 0)
+            if (importeValidado == 0)
             {
                 return 0;
             }

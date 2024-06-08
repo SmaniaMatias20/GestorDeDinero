@@ -15,6 +15,7 @@ namespace CapaPresentacion
 
         // Propiedades
         public Usuario Usuario { get; set; }
+        public UserControlReserva UserControlReserva { get; }
 
         /// <summary>
         /// Constructor para la clase FormMovimientos.
@@ -64,7 +65,7 @@ namespace CapaPresentacion
         /// Limpia los controles actuales en el panelInicio y agrega un nuevo formulario a él.
         /// </summary>
         /// <param name="control">El Control que representa el formulario a mostrar en el panelInicio.</param>
-        private void MostrarUserControl(Control control)
+        public void MostrarUserControl(Control control)
         {
             // Limpia todos los controles existentes del panelInicio
             panelIngreso.Controls.Clear();

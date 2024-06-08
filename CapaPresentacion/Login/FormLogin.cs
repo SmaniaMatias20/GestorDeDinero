@@ -23,6 +23,9 @@ namespace CapaPresentacion
             // Crea una instancia del control de usuario de inicio de sesión
             _userControlPresentacion = new UserControlPresentacion();
 
+            // Oculta la barra de menu
+            menuLogin.Visible = false;
+
             // Suscribe el controlador de eventos para el evento CargaFinalizada
             _userControlPresentacion.CargaFinalizada += UserControlPresentacion_CargaFinalizada;
 
@@ -43,6 +46,8 @@ namespace CapaPresentacion
             _userControlLogin = new UserControlLogin();
             // Muestra el UserControlLogin
             MostrarUserControl(_userControlLogin);
+            // Muestra la barra de menu
+            menuLogin.Visible = true;
         }
 
         /// <summary>

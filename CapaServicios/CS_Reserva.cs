@@ -15,16 +15,24 @@ namespace CapaServicios
             _cdReserva = new CD_Reserva();
         }
 
-        public string RegistrarReserva(int idUsuario, double importe, string nombre)
-        {
-            //Reserva reserva = new Reserva(nombre, importe);    
+        public string RegistrarReserva(string nombre, double importe, int idUsuario = 0, int idReserva = 0, bool modificar = false)
+        {   
             if (ValidarNombreDeReserva(nombre) == nombre)
             {
 
                 if (ValidarImporteDeReserva(importe) == "Fondos actualizados correctamente")
                 {
                     Reserva reserva = new Reserva(nombre, importe);
-                    _cdReserva.AgregarReserva(idUsuario, reserva.Fecha, reserva.Importe, reserva.Nombre);
+                    if (!modificar)
+                    {
+                        _cdReserva.AgregarReserva(idUsuario, reserva.Fecha, reserva.Importe, reserva.Nombre);
+                    }
+                    else 
+                    { 
+                        _cdReserva.ModificarReserva(idReserva, reserva.Nombre, reserva.Importe, reserva.Fecha);
+                    }
+
+
                     return ValidarImporteDeReserva(importe);
                 }
                 else
@@ -49,6 +57,7 @@ namespace CapaServicios
         {
             _cdReserva.EliminarReserva(idReserva);
         }
+
 
         private string ValidarImporteDeReserva(double importe) 
         {

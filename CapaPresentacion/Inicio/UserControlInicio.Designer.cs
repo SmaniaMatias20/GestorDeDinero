@@ -32,12 +32,12 @@
             this.labelCaja = new System.Windows.Forms.Label();
             this.buttonModificar = new System.Windows.Forms.Button();
             this.buttonEliminar = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewMovimientos = new System.Windows.Forms.DataGridView();
             this.buttonOcultar = new System.Windows.Forms.Button();
             this.groupBoxInicio = new System.Windows.Forms.GroupBox();
-            this.radioButtonMovimientos = new System.Windows.Forms.RadioButton();
             this.radioButtonReservas = new System.Windows.Forms.RadioButton();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.radioButtonMovimientos = new System.Windows.Forms.RadioButton();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMovimientos)).BeginInit();
             this.groupBoxInicio.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,6 +85,7 @@
             this.buttonModificar.TabIndex = 6;
             this.buttonModificar.Text = "Modificar";
             this.buttonModificar.UseVisualStyleBackColor = false;
+            this.buttonModificar.Click += new System.EventHandler(this.buttonModificar_Click);
             // 
             // buttonEliminar
             // 
@@ -102,13 +103,13 @@
             this.buttonEliminar.UseVisualStyleBackColor = false;
             this.buttonEliminar.Click += new System.EventHandler(this.buttonEliminar_Click);
             // 
-            // dataGridView1
+            // dataGridViewMovimientos
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(18, 206);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(534, 224);
-            this.dataGridView1.TabIndex = 8;
+            this.dataGridViewMovimientos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMovimientos.Location = new System.Drawing.Point(18, 206);
+            this.dataGridViewMovimientos.Name = "dataGridViewMovimientos";
+            this.dataGridViewMovimientos.Size = new System.Drawing.Size(534, 224);
+            this.dataGridViewMovimientos.TabIndex = 8;
             // 
             // buttonOcultar
             // 
@@ -135,19 +136,6 @@
             this.groupBoxInicio.TabStop = false;
             this.groupBoxInicio.Text = "groupBox1";
             // 
-            // radioButtonMovimientos
-            // 
-            this.radioButtonMovimientos.AutoSize = true;
-            this.radioButtonMovimientos.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.radioButtonMovimientos.Location = new System.Drawing.Point(63, 16);
-            this.radioButtonMovimientos.Name = "radioButtonMovimientos";
-            this.radioButtonMovimientos.Size = new System.Drawing.Size(84, 17);
-            this.radioButtonMovimientos.TabIndex = 0;
-            this.radioButtonMovimientos.TabStop = true;
-            this.radioButtonMovimientos.Text = "Movimientos";
-            this.radioButtonMovimientos.UseVisualStyleBackColor = true;
-            this.radioButtonMovimientos.CheckedChanged += new System.EventHandler(this.radioButtonMovimientos_CheckedChanged);
-            // 
             // radioButtonReservas
             // 
             this.radioButtonReservas.AutoSize = true;
@@ -161,6 +149,19 @@
             this.radioButtonReservas.UseVisualStyleBackColor = true;
             this.radioButtonReservas.CheckedChanged += new System.EventHandler(this.radioButtonReservas_CheckedChanged);
             // 
+            // radioButtonMovimientos
+            // 
+            this.radioButtonMovimientos.AutoSize = true;
+            this.radioButtonMovimientos.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.radioButtonMovimientos.Location = new System.Drawing.Point(63, 16);
+            this.radioButtonMovimientos.Name = "radioButtonMovimientos";
+            this.radioButtonMovimientos.Size = new System.Drawing.Size(84, 17);
+            this.radioButtonMovimientos.TabIndex = 0;
+            this.radioButtonMovimientos.TabStop = true;
+            this.radioButtonMovimientos.Text = "Movimientos";
+            this.radioButtonMovimientos.UseVisualStyleBackColor = true;
+            this.radioButtonMovimientos.CheckedChanged += new System.EventHandler(this.radioButtonMovimientos_CheckedChanged);
+            // 
             // UserControlInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -169,7 +170,7 @@
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.groupBoxInicio);
             this.Controls.Add(this.buttonOcultar);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewMovimientos);
             this.Controls.Add(this.buttonEliminar);
             this.Controls.Add(this.buttonModificar);
             this.Controls.Add(this.labelCaja);
@@ -177,7 +178,7 @@
             this.Name = "UserControlInicio";
             this.Size = new System.Drawing.Size(577, 490);
             this.Load += new System.EventHandler(this.UserControlInicio_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMovimientos)).EndInit();
             this.groupBoxInicio.ResumeLayout(false);
             this.groupBoxInicio.PerformLayout();
             this.ResumeLayout(false);
@@ -191,7 +192,7 @@
         private System.Windows.Forms.Label labelCaja;
         private System.Windows.Forms.Button buttonModificar;
         private System.Windows.Forms.Button buttonEliminar;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewMovimientos;
         private System.Windows.Forms.Button buttonOcultar;
         private System.Windows.Forms.GroupBox groupBoxInicio;
         private System.Windows.Forms.RadioButton radioButtonMovimientos;

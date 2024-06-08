@@ -59,7 +59,7 @@ namespace CapaDatos
                     }
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 // Manejo de excepciones: Mostrar un mensaje de error en la consola
                 throw new Exception("Error al listar las reservas");
@@ -96,7 +96,7 @@ namespace CapaDatos
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 // Manejo de excepciones: Mostrar un mensaje de error en la consola
                 throw new Exception("Error al insertar la reserva");
@@ -117,22 +117,40 @@ namespace CapaDatos
                     {
                         comando.Parameters.AddWithValue("@idReserva", idReserva);
                         int filasAfectadas = comando.ExecuteNonQuery();
-
-                        if (filasAfectadas > 0)
-                        {
-                            Console.WriteLine("Reserva eliminado correctamente.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("No se encontró el movimiento con el ID especificado.");
-                        }
                     }
                 }
             }
-            catch (Exception ex)
+            catch 
             {
-                Console.WriteLine("Error al eliminar movimiento: " + ex.Message);
+                throw new Exception("Error al eliminar la reserva");  
             }
+        }
+
+        public void ModificarReserva(int idReserva, string nuevoNombre, double nuevoImporte, string nuevaFecha) 
+        {
+            try
+            {
+                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                {
+                    conexionDB.Open();
+                    string query = "UPDATE reserva SET nombre = @nuevoNombre, importe = @nuevoImporte, fecha = @nuevaFecha WHERE id = @idReserva";
+
+                    using (SqlCommand comando = new SqlCommand(query, conexionDB))
+                    {
+                        comando.Parameters.AddWithValue("@idReserva", idReserva);
+                        comando.Parameters.AddWithValue("@nuevoNombre", nuevoNombre);
+                        comando.Parameters.AddWithValue("@nuevoImporte", nuevoImporte);
+                        comando.Parameters.AddWithValue("@nuevaFecha", nuevaFecha);
+
+                        comando.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch
+            {
+                throw new Exception("Error al modificar la reserva");
+            }
+
         }
     }
 }

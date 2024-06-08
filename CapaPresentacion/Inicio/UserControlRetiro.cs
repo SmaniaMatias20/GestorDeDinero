@@ -98,26 +98,34 @@ namespace CapaPresentacion
         /// <param name="e">Los datos del evento.</param>
         private void buttonAceptarRetiro_Click(object sender, EventArgs e)
         {
-            // Actualizar los fondos del usuario
-            double movimientoValidado = _csUsuario.ActualizarFondos(Usuario.Nombre, textBoxRetiro.Text, ETipoMovimiento.Retiro);
+            DialogResult result = MessageBox.Show("¿Está seguro que quieres realizar el retiro?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            // Si el usuario hace clic en "Sí"
+            if (result == DialogResult.Yes) 
+            { 
+                // Actualizar los fondos del usuario
+                double movimientoValidado = _csUsuario.ActualizarFondos(Usuario.Nombre, textBoxRetiro.Text, ETipoMovimiento.Retiro);
 
-            // Obtiene los fondos actuales del usuario después del retiro
-            double fondosActuales = _csUsuario.ObtenerFondosTotales(Usuario);
+                // Obtiene los fondos actuales del usuario después del retiro
+                double fondosActuales = _csUsuario.ObtenerFondosTotales(Usuario);
 
-            // Formatea los fondos actuales a una representación de moneda
-            string fondosFormateados = _csUsuario.FormatearMoneda(fondosActuales);
+                // Formatea los fondos actuales a una representación de moneda
+                string fondosFormateados = _csUsuario.FormatearMoneda(fondosActuales);
 
-            // Actualizar el label con los fondos formateados
-            labelFondos.Text = $"Fondos: {fondosFormateados}";
+                // Actualizar el label con los fondos formateados
+                labelFondos.Text = $"Fondos: {fondosFormateados}";
 
-            // Registra el movimiento
-            string mensaje = _csMovimiento.RegistrarMovimiento(Usuario.Id, movimientoValidado, ETipoMovimiento.Retiro);
+                // Registra el movimiento
+                string mensaje = _csMovimiento.RegistrarMovimiento(Usuario.Id, movimientoValidado, ETipoMovimiento.Retiro);
 
-            // Notificar que los fondos han sido actualizados
-            MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Notificar que los fondos han sido actualizados
+                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // Dispara el evento AceptarClick cuando se presiona el botón "Aceptar"
-            AceptarClick?.Invoke(this, EventArgs.Empty);
+                if (mensaje == "Fondos actualizados correctamente")
+                {
+                    // Dispara el evento AceptarClick cuando se presiona el botón "Aceptar"
+                    AceptarClick?.Invoke(this, EventArgs.Empty);
+                }
+            }
 
 
         }

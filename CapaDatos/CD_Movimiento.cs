@@ -62,7 +62,7 @@ namespace CapaDatos
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 // Manejo de excepciones: Mostrar un mensaje de error en la consola
                 throw new Exception("Entra aca");

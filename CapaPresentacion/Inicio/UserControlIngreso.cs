@@ -89,20 +89,29 @@ namespace CapaPresentacion
         /// </summary>
         private void buttonAceptarIngreso_Click(object sender, EventArgs e)
         {
-            // Actualizar los fondos del usuario
-            double movimientoValidado =_csUsuario.ActualizarFondos(Usuario.Nombre, textBoxIngreso.Text, ETipoMovimiento.Ingreso);
+            DialogResult result = MessageBox.Show("¿Está seguro que quieres realizar el ingreso?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            // Si el usuario hace clic en "Sí"
+            if (result == DialogResult.Yes)
+            {
+                // Actualizar los fondos del usuario
+                double movimientoValidado =_csUsuario.ActualizarFondos(Usuario.Nombre, textBoxIngreso.Text, ETipoMovimiento.Ingreso);
 
-            // DEBE RETORNAR EL TEXTBOXINGRESO EN FORMATO DOUBLE PARA REGISTRAR EL MOVIMIENTO
+                // Registra el movimiento
+                string mensaje = _csMovimiento.RegistrarMovimiento(Usuario.Id, movimientoValidado, ETipoMovimiento.Ingreso);
+
+                // Notificar que los fondos han sido actualizados
+                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (mensaje == "Fondos actualizados correctamente")
+                {
+                    // Dispara el evento AceptarClick cuando se presiona el botón "Aceptar"
+                    AceptarClick?.Invoke(this, EventArgs.Empty);
+                }
+                
+            }
 
 
-            // Registra el movimiento
-            string mensaje = _csMovimiento.RegistrarMovimiento(Usuario.Id, movimientoValidado, ETipoMovimiento.Ingreso);
 
-            // Notificar que los fondos han sido actualizados
-            MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            // Dispara el evento AceptarClick cuando se presiona el botón "Aceptar"
-            AceptarClick?.Invoke(this, EventArgs.Empty);
         }
 
        
