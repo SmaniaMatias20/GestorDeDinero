@@ -1,5 +1,4 @@
-﻿using CapaEntidades.Enums;
-using CapaEntidades;
+﻿using CapaEntidades;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System;
@@ -69,6 +68,14 @@ namespace CapaDatos
             return lista;
         }
 
+        /// <summary>
+        /// Agrega una nueva reserva a la base de datos con los valores proporcionados.
+        /// </summary>
+        /// <param name="idUsuario">El ID del usuario que realiza la reserva.</param>
+        /// <param name="fecha">La fecha de la reserva.</param>
+        /// <param name="importe">El importe de la reserva.</param>
+        /// <param name="nombre">El nombre de la reserva.</param>
+        /// <exception cref="Exception">Lanza una excepción si ocurre un error durante la inserción de la reserva.</exception>
         public void AgregarReserva(int idUsuario, string fecha, double importe, string nombre)
         {
             try
@@ -98,56 +105,80 @@ namespace CapaDatos
             }
             catch
             {
-                // Manejo de excepciones: Mostrar un mensaje de error en la consola
+                // Manejo de excepciones: Lanzar una excepción si ocurre un error
                 throw new Exception("Error al insertar la reserva");
             }
         }
 
+        /// <summary>
+        /// Elimina una reserva de la base de datos según el ID proporcionado.
+        /// </summary>
+        /// <param name="idReserva">El ID de la reserva a eliminar.</param>
+        /// <exception cref="Exception">Lanza una excepción si ocurre un error durante la eliminación de la reserva.</exception>
         public void EliminarReserva(int idReserva)
         {
             try
             {
+                // Establece una conexión con la base de datos
                 using (SqlConnection conexionDB = conexion.ObtenerConexion())
                 {
+                    // Abre la conexión
                     conexionDB.Open();
-
+                    // Define la consulta SQL para eliminar la reserva
                     string query = "DELETE FROM reserva WHERE id = @idReserva";
-
+                    // Crea un comando SQL con la consulta y la conexión
                     using (SqlCommand comando = new SqlCommand(query, conexionDB))
                     {
+                        // Agrega el parámetro al comando
                         comando.Parameters.AddWithValue("@idReserva", idReserva);
+                        // Ejecuta la consulta SQL y obtiene el número de filas afectadas
                         int filasAfectadas = comando.ExecuteNonQuery();
                     }
                 }
             }
             catch 
             {
+                // Lanza una excepción si ocurre un error
                 throw new Exception("Error al eliminar la reserva");  
             }
         }
 
+        /// <summary>
+        /// Modifica una reserva en la base de datos con los nuevos valores proporcionados.
+        /// </summary>
+        /// <param name="idReserva">El ID de la reserva a modificar.</param>
+        /// <param name="nuevoNombre">El nuevo nombre de la reserva.</param>
+        /// <param name="nuevoImporte">El nuevo importe de la reserva.</param>
+        /// <param name="nuevaFecha">La nueva fecha de la reserva.</param>
+        /// <exception cref="Exception">Lanza una excepción si ocurre un error durante la modificación de la reserva.</exception>
         public void ModificarReserva(int idReserva, string nuevoNombre, double nuevoImporte, string nuevaFecha) 
         {
             try
             {
+                // Establece una conexión con la base de datos
                 using (SqlConnection conexionDB = conexion.ObtenerConexion())
                 {
+                    // Abre la conexión
                     conexionDB.Open();
+                    // Define la consulta SQL para actualizar la reserva
                     string query = "UPDATE reserva SET nombre = @nuevoNombre, importe = @nuevoImporte, fecha = @nuevaFecha WHERE id = @idReserva";
 
+                    // Crea un comando SQL con la consulta y la conexión
                     using (SqlCommand comando = new SqlCommand(query, conexionDB))
                     {
+                        // Agrega los parámetros al comando
                         comando.Parameters.AddWithValue("@idReserva", idReserva);
                         comando.Parameters.AddWithValue("@nuevoNombre", nuevoNombre);
                         comando.Parameters.AddWithValue("@nuevoImporte", nuevoImporte);
                         comando.Parameters.AddWithValue("@nuevaFecha", nuevaFecha);
-
+                        // Ejecuta la consulta SQL
                         comando.ExecuteNonQuery();
                     }
                 }
             }
             catch
             {
+                // Lanza una excepción si ocurre un error
                 throw new Exception("Error al modificar la reserva");
             }
 

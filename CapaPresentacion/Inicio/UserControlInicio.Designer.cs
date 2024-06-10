@@ -129,12 +129,13 @@
             // 
             this.groupBoxInicio.Controls.Add(this.radioButtonReservas);
             this.groupBoxInicio.Controls.Add(this.radioButtonMovimientos);
+            this.groupBoxInicio.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBoxInicio.Location = new System.Drawing.Point(396, 138);
             this.groupBoxInicio.Name = "groupBoxInicio";
             this.groupBoxInicio.Size = new System.Drawing.Size(156, 62);
             this.groupBoxInicio.TabIndex = 10;
             this.groupBoxInicio.TabStop = false;
-            this.groupBoxInicio.Text = "groupBox1";
+            this.groupBoxInicio.Text = "Eleccion";
             // 
             // radioButtonReservas
             // 
@@ -177,7 +178,6 @@
             this.Controls.Add(this.buttonMovimiento);
             this.Name = "UserControlInicio";
             this.Size = new System.Drawing.Size(577, 490);
-            this.Load += new System.EventHandler(this.UserControlInicio_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMovimientos)).EndInit();
             this.groupBoxInicio.ResumeLayout(false);
             this.groupBoxInicio.PerformLayout();

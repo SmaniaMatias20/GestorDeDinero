@@ -30,5 +30,10 @@ namespace CapaPresentacion
             Usuario = usuario;
 
         }
+
+        private void label6_Click(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

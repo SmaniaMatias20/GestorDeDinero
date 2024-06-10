@@ -11,7 +11,7 @@ namespace CapaPresentacion
         private UserControlIngreso _userControlIngreso;
         private UserControlReserva _userControlReserva;
         private UserControlRetiro _userControlRetiro;
-        private Usuario _usuario = new Usuario();    
+        //private Usuario _usuario = new Usuario();    
 
         // Propiedades
         public Usuario Usuario { get; set; }
@@ -146,7 +146,7 @@ namespace CapaPresentacion
             this.Close();
         }
 
-        private void UserControlReserva_AceptarClick(object sender, EventArgs e)
+        public void UserControlReserva_AceptarClick(object sender, EventArgs e)
         {
             // Cierra el formulario principal cuando se presiona el botón "Aceptar" en el control de usuario de reserva
             this.Close();

@@ -45,19 +45,10 @@ namespace CapaPresentacion
             Usuario = usuario;
             // Actualiza el valor en la caja al inicializar el control
             ActualizarValorEnCaja();
-            //
+            // Setea en true el radiobutton de movimientos
             radioButtonMovimientos.Checked = true;
-            //
+            // Mostrar los movimientos 
             MostrarMovimientos();
-        }
-
-        /// <summary>
-        /// Este método se ejecuta cuando el control del usuario se carga.
-        /// </summary>
-        /// <param name="sender">El objeto que generó el evento.</param>
-        /// <param name="e">Los argumentos del evento.</param>
-        private void UserControlInicio_Load(object sender, EventArgs e)
-        {
             // Registra el controlador de eventos para el evento ColumnHeaderMouseClick
             dataGridViewMovimientos.ColumnHeaderMouseClick += DataGridView1_ColumnHeaderMouseClick;
         }
@@ -70,6 +61,7 @@ namespace CapaPresentacion
         /// <param name="e">Los datos del evento.</param>
         private void buttonMovimiento_Click(object sender, EventArgs e)
         {
+            // Abre el formulario movimiento
             AbrirFormularioMovimiento();
         }
 
@@ -105,8 +97,8 @@ namespace CapaPresentacion
             this.Enabled = true;
             // Actualiza el valor en la caja al cerrar el formulario de movimientos.
             ActualizarValorEnCaja();
-            // Muestra los movimientos del usuario.
-            MostrarMovimientos();
+            // Chequea el radioButton chequeado y muestra/actualiza movimientos/reservas
+            VerificarRadioButton();       
         }
 
         /// <summary>
@@ -173,6 +165,7 @@ namespace CapaPresentacion
             }
             else if (radioButtonReservas.Checked) // Si el radioButtonReservas está checkeado
             {
+                //
                 DialogResult result = MessageBox.Show("¿Está seguro que quieres eliminar la reserva?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 // Si el usuario hace clic en "Sí", cerrar la aplicación
                 if (result == DialogResult.Yes)
@@ -236,6 +229,7 @@ namespace CapaPresentacion
                 }
             }
 
+            // Recorre la lista de reservas a eliminar
             foreach (var reserva in reservasAEliminar)
             {
                 // Llamar al método para eliminar la reserva por su ID de la base de datos
@@ -339,37 +333,50 @@ namespace CapaPresentacion
 
         /// <summary>
         /// Maneja el evento de cambio de selección del radio button de Movimientos.
+        /// Llama al método VerificarRadioButton para realizar las acciones necesarias cuando
+        /// el estado del radio button cambia.
         /// </summary>
         /// <param name="sender">El objeto que generó el evento.</param>
         /// <param name="e">Los argumentos del evento.</param>
         private void radioButtonMovimientos_CheckedChanged(object sender, EventArgs e)
         {
-            // Verifica si el radio button de Movimientos está seleccionado
-            if (radioButtonMovimientos.Checked) 
-            {
-                // Si está seleccionado, muestra los movimientos
-                MostrarMovimientos();
-            }
+            // Verificar el estado del radio button y realizar las acciones correspondientes
+            VerificarRadioButton();
         }
 
         /// <summary>
         /// Maneja el evento de cambio de selección del radio button de Reservas.
+        /// Llama al método VerificarRadioButton para realizar las acciones necesarias cuando
+        /// el estado del radio button cambia.
         /// </summary>
         /// <param name="sender">El objeto que generó el evento.</param>
         /// <param name="e">Los argumentos del evento.</param>
         private void radioButtonReservas_CheckedChanged(object sender, EventArgs e)
         {
-            // Verifica si el radio button de Reservas está seleccionado
-            if (radioButtonReservas.Checked)
-            {
-                // Si está seleccionado, muestra las reservas
-                MostrarReservas();
-            }
+            // Verificar el estado del radio button y realizar las acciones correspondientes
+            VerificarRadioButton();
         }
 
+        /// <summary>
+        /// Evento click del botón para modificar una reserva.
+        /// Llama al método ModificarReserva para manejar la modificación de la reserva seleccionada.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void buttonModificar_Click(object sender, EventArgs e)
         {
-            
+            // Modifica la reserva seleccionada
+            ModificarReserva();
+        }
+
+        /// <summary>
+        /// Maneja la modificación de una reserva seleccionada del DataGridView.
+        /// Si una reserva está seleccionada, extrae los datos de la reserva de la fila seleccionada,
+        /// abre un formulario para modificar la reserva y actualiza la visualización de las reservas.
+        /// </summary>
+        private void ModificarReserva() 
+        {
+            //
             if (dataGridViewMovimientos.SelectedRows.Count > 0)
             {
                 // Obtener la fila seleccionada
@@ -393,7 +400,32 @@ namespace CapaPresentacion
                 // Mostrar el UserControlReserva en el FormMovimientos
                 formMovimientos.MostrarUserControl(userControlReserva);
 
+                // Cerrar el formMovimientos
+                userControlReserva.AceptarClick += formMovimientos.UserControlReserva_AceptarClick;
+
+                // Mostrar las reservas actualizadas
                 MostrarReservas();
+            }
+
+        }
+
+        /// <summary>
+        /// Verifica cuál radio button está seleccionado y realiza la acción correspondiente.
+        /// Si el radio button de Reservas está seleccionado, muestra las reservas.
+        /// Si el radio button de Movimientos está seleccionado, muestra los movimientos.
+        /// </summary>
+        private void VerificarRadioButton() 
+        {
+            // Verifica si el radio button de Reservas está seleccionado
+            if (radioButtonReservas.Checked)
+            {
+                // Si está seleccionado, muestra las reservas
+                MostrarReservas();
+            }
+            else if (radioButtonMovimientos.Checked) // Verifica si el radio button de Movimientos está seleccionado
+            {
+                // Si está seleccionado, muestra los movimientos
+                MostrarMovimientos();
             }
 
         }

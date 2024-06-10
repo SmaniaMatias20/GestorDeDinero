@@ -31,5 +31,9 @@ namespace CapaPresentacion
 
         }
 
+        private void groupBoxGastos_Enter(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

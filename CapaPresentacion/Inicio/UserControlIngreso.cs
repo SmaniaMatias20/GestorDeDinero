@@ -10,7 +10,7 @@ namespace CapaPresentacion
     public partial class UserControlIngreso : UserControl
     {
         // Atributos
-        private Usuario _usuario = new Usuario();
+        //private Usuario _usuario = new Usuario();
         private CS_Usuario _csUsuario; 
         private CS_Movimiento _csMovimiento;
 
