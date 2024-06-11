@@ -1,24 +1,25 @@
-﻿using CapaEntidades;
+﻿using CapaEntidades.Enums;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System;
-using CapaEntidades.Enums;
+using CapaEntidades.Entidades;
 
 namespace CapaDatos
 {
-    public class CD_Movimiento
+    public class CD_Gasto
     {
         // Atributos
         private Conexion conexion = new Conexion();
+
 
         /// <summary>
         /// Obtiene una lista de usuarios desde la base de datos.
         /// </summary>
         /// <returns>Una lista de objetos Usuario que contiene el nombre y la clave de cada usuario.</returns>
-        public List<Movimiento> ListarMovimientos(int idUsuario)
+        public List<Gasto> ListarGastos(int idUsuario)
         {
-            // Nuevo objeto de tipo lista de movimientos
-            List<Movimiento> lista = new List<Movimiento>();
+            // Nuevo objeto de tipo lista de gastos
+            List<Gasto> lista = new List<Gasto>();
 
             try
             {
@@ -28,8 +29,8 @@ namespace CapaDatos
                     // Abrir la conexión a la base de datos
                     conexionDB.Open();
 
-                    // Consulta SQL para obtener los movimientos
-                    string query = "SELECT id, tipo, importe, fecha FROM movimiento WHERE id_usuario = @idUsuario";
+                    // Consulta SQL para obtener los gastos
+                    string query = "SELECT id, tipo, importe, pago, descripcion, fecha FROM gasto WHERE id_usuario = @idUsuario";
 
                     // Crear un comando SQL para ejecutar la consulta
                     using (SqlCommand comando = new SqlCommand(query, conexionDB))
@@ -43,20 +44,25 @@ namespace CapaDatos
                             // Recorrer los resultados y agregar los movimientos a la lista
                             while (reader.Read())
                             {
-                                // Crear una nueva instancia de Movimiento
-                                Movimiento movimiento = new Movimiento();
+                                // Crear una nueva instancia de Gasto
+                                Gasto gasto = new Gasto();
 
-                                // Asignar los valores de las columnas del resultado a las propiedades del objeto Movimiento
-                                movimiento.Id = Convert.ToInt32(reader["id"]);
-                                if (Enum.TryParse(reader["tipo"].ToString(), out ETipoMovimiento tipoMovimiento))
+                                // Asignar los valores de las columnas del resultado a las propiedades del objeto Gasto
+                                gasto.Id = Convert.ToInt32(reader["id"]);
+                                if (Enum.TryParse(reader["tipo"].ToString(), out ETipoGasto tipoGasto))
                                 {
-                                    movimiento.Tipo = tipoMovimiento;
+                                    gasto.Tipo = tipoGasto;
                                 }
-                                movimiento.Importe = Convert.ToDouble(reader["importe"]);
-                                movimiento.Fecha = Convert.ToString(reader["fecha"]);
+                                gasto.Importe = Convert.ToDouble(reader["importe"]);
+                                if (Enum.TryParse(reader["pago"].ToString(), out ETipoPago tipoPago))
+                                {
+                                    gasto.Pago = tipoPago;
+                                }
+                                gasto.Descripcion = Convert.ToString(reader["descripcion"]);
+                                gasto.Fecha = Convert.ToString(reader["fecha"]);
 
-                                // Agregar el movimiento a la lista
-                                lista.Add(movimiento);
+                                // Agregar el gasto a la lista
+                                lista.Add(gasto);
                             }
                         }
                     }
@@ -68,11 +74,11 @@ namespace CapaDatos
                 throw new Exception("Entra aca");
             }
 
-            // Devolver la lista de movimientos
+            // Devolver la lista de gastos
             return lista;
         }
 
-        public void AgregarMovimiento(int idUsuario, string fecha, double importe, ETipoMovimiento tipo)
+        public void AgregarGasto(int idUsuario, string fecha, double importe, ETipoGasto tipo, ETipoPago pago, string descripcion)
         {
             try
             {
@@ -82,8 +88,8 @@ namespace CapaDatos
                     // Abrir la conexión a la base de datos
                     conexionDB.Open();
 
-                    // Consulta SQL para insertar un nuevo registro en la tabla movimiento
-                    string query = "INSERT INTO movimiento (tipo, importe, fecha, id_usuario) VALUES (@tipo, @importe, @fecha, @idUsuario);";
+                    // Consulta SQL para insertar un nuevo registro en la tabla gasto
+                    string query = "INSERT INTO gasto (tipo, importe, fecha, id_usuario, pago, descripcion) VALUES (@tipo, @importe, @fecha, @idUsuario, @pago, @descripcion);";
 
                     // Crear un comando SQL para ejecutar la consulta
                     using (SqlCommand comando = new SqlCommand(query, conexionDB))
@@ -93,20 +99,22 @@ namespace CapaDatos
                         comando.Parameters.AddWithValue("@importe", importe);
                         comando.Parameters.AddWithValue("@fecha", fecha);
                         comando.Parameters.AddWithValue("@idUsuario", idUsuario);
+                        comando.Parameters.AddWithValue("@pago", pago);
+                        comando.Parameters.AddWithValue("@descripcion", descripcion);
 
                         // Ejecutar la consulta
                         comando.ExecuteNonQuery();
                     }
                 }
             }
-            catch 
+            catch
             {
                 // Manejo de excepciones
-                throw new Exception("Error al agregar el movimiento");
+                throw new Exception("Error al agregar el gasto");
             }
         }
 
-        public void EliminarMovimiento(int idMovimiento)
+        public void EliminarGasto(int idGasto)
         {
             try
             {
@@ -114,18 +122,18 @@ namespace CapaDatos
                 {
                     conexionDB.Open();
 
-                    string query = "DELETE FROM movimiento WHERE id = @idMovimiento";
+                    string query = "DELETE FROM gasto WHERE id = @idGasto";
 
                     using (SqlCommand comando = new SqlCommand(query, conexionDB))
                     {
-                        comando.Parameters.AddWithValue("@idMovimiento", idMovimiento);
+                        comando.Parameters.AddWithValue("@idGasto", idGasto);
                         int filasAfectadas = comando.ExecuteNonQuery();
                     }
                 }
             }
             catch 
             {
-                throw new Exception("Error al eliminar el movimiento");
+                throw new Exception("Error al eliminar un gasto");
             }
         }
     }

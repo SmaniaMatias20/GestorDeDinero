@@ -110,6 +110,7 @@
             // buttonRegistrarse
             // 
             this.buttonRegistrarse.BackColor = System.Drawing.Color.Green;
+            this.buttonRegistrarse.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonRegistrarse.FlatAppearance.BorderSize = 0;
             this.buttonRegistrarse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRegistrarse.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -125,6 +126,7 @@
             // buttonBorrar
             // 
             this.buttonBorrar.BackColor = System.Drawing.Color.Maroon;
+            this.buttonBorrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonBorrar.FlatAppearance.BorderSize = 0;
             this.buttonBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBorrar.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -139,6 +141,7 @@
             // 
             // buttonOcultar
             // 
+            this.buttonOcultar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonOcultar.Location = new System.Drawing.Point(198, 255);
             this.buttonOcultar.Name = "buttonOcultar";
             this.buttonOcultar.Size = new System.Drawing.Size(23, 20);

@@ -34,6 +34,10 @@
             this.textBoxConversion = new System.Windows.Forms.TextBox();
             this.textBoxMoneda = new System.Windows.Forms.TextBox();
             this.groupBoxSimulador = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.labelDias = new System.Windows.Forms.Label();
+            this.labelImporte = new System.Windows.Forms.Label();
+            this.textBoxImporte = new System.Windows.Forms.TextBox();
             this.panelResultado = new System.Windows.Forms.Panel();
             this.labelFecha = new System.Windows.Forms.Label();
             this.labelInteres = new System.Windows.Forms.Label();
@@ -45,10 +49,6 @@
             this.labelTitulo = new System.Windows.Forms.Label();
             this.pictureBoxImagen = new System.Windows.Forms.PictureBox();
             this.buttonContinuar = new System.Windows.Forms.Button();
-            this.textBoxImporte = new System.Windows.Forms.TextBox();
-            this.labelImporte = new System.Windows.Forms.Label();
-            this.labelDias = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBoxConversion.SuspendLayout();
             this.groupBoxSimulador.SuspendLayout();
             this.panelResultado.SuspendLayout();
@@ -71,6 +71,7 @@
             // 
             // comboBoxConversion
             // 
+            this.comboBoxConversion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.comboBoxConversion.FormattingEnabled = true;
             this.comboBoxConversion.Location = new System.Drawing.Point(421, 19);
             this.comboBoxConversion.Name = "comboBoxConversion";
@@ -79,6 +80,7 @@
             // 
             // comboBoxMoneda
             // 
+            this.comboBoxMoneda.Cursor = System.Windows.Forms.Cursors.Hand;
             this.comboBoxMoneda.FormattingEnabled = true;
             this.comboBoxMoneda.Location = new System.Drawing.Point(155, 20);
             this.comboBoxMoneda.Name = "comboBoxMoneda";
@@ -116,6 +118,41 @@
             this.groupBoxSimulador.TabStop = false;
             this.groupBoxSimulador.Text = "Simulador de Plazo Fijo";
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dateTimePicker1.Location = new System.Drawing.Point(19, 132);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(211, 20);
+            this.dateTimePicker1.TabIndex = 5;
+            // 
+            // labelDias
+            // 
+            this.labelDias.AutoSize = true;
+            this.labelDias.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDias.Location = new System.Drawing.Point(15, 97);
+            this.labelDias.Name = "labelDias";
+            this.labelDias.Size = new System.Drawing.Size(152, 22);
+            this.labelDias.TabIndex = 4;
+            this.labelDias.Text = "¿A cuántos días?";
+            // 
+            // labelImporte
+            // 
+            this.labelImporte.AutoSize = true;
+            this.labelImporte.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelImporte.Location = new System.Drawing.Point(15, 33);
+            this.labelImporte.Name = "labelImporte";
+            this.labelImporte.Size = new System.Drawing.Size(223, 22);
+            this.labelImporte.TabIndex = 3;
+            this.labelImporte.Text = "¿Cuánto querés invertir?";
+            // 
+            // textBoxImporte
+            // 
+            this.textBoxImporte.Location = new System.Drawing.Point(19, 68);
+            this.textBoxImporte.Name = "textBoxImporte";
+            this.textBoxImporte.Size = new System.Drawing.Size(211, 20);
+            this.textBoxImporte.TabIndex = 2;
+            // 
             // panelResultado
             // 
             this.panelResultado.BackColor = System.Drawing.Color.White;
@@ -143,7 +180,6 @@
             this.labelFecha.Size = new System.Drawing.Size(85, 15);
             this.labelFecha.TabIndex = 8;
             this.labelFecha.Text = "10/07/2024";
-            this.labelFecha.Click += new System.EventHandler(this.label6_Click);
             // 
             // labelInteres
             // 
@@ -234,6 +270,7 @@
             // buttonContinuar
             // 
             this.buttonContinuar.BackColor = System.Drawing.Color.Green;
+            this.buttonContinuar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonContinuar.FlatAppearance.BorderSize = 0;
             this.buttonContinuar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonContinuar.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -243,40 +280,6 @@
             this.buttonContinuar.TabIndex = 0;
             this.buttonContinuar.Text = "Continuar";
             this.buttonContinuar.UseVisualStyleBackColor = false;
-            // 
-            // textBoxImporte
-            // 
-            this.textBoxImporte.Location = new System.Drawing.Point(19, 68);
-            this.textBoxImporte.Name = "textBoxImporte";
-            this.textBoxImporte.Size = new System.Drawing.Size(211, 20);
-            this.textBoxImporte.TabIndex = 2;
-            // 
-            // labelImporte
-            // 
-            this.labelImporte.AutoSize = true;
-            this.labelImporte.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelImporte.Location = new System.Drawing.Point(15, 33);
-            this.labelImporte.Name = "labelImporte";
-            this.labelImporte.Size = new System.Drawing.Size(223, 22);
-            this.labelImporte.TabIndex = 3;
-            this.labelImporte.Text = "¿Cuánto querés invertir?";
-            // 
-            // labelDias
-            // 
-            this.labelDias.AutoSize = true;
-            this.labelDias.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDias.Location = new System.Drawing.Point(15, 97);
-            this.labelDias.Name = "labelDias";
-            this.labelDias.Size = new System.Drawing.Size(152, 22);
-            this.labelDias.TabIndex = 4;
-            this.labelDias.Text = "¿A cuántos días?";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(19, 132);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(211, 20);
-            this.dateTimePicker1.TabIndex = 5;
             // 
             // UserControlInversion
             // 

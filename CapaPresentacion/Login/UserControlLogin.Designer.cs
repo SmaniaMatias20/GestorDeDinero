@@ -113,6 +113,7 @@
             // 
             // buttonOcultar
             // 
+            this.buttonOcultar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonOcultar.Location = new System.Drawing.Point(199, 263);
             this.buttonOcultar.Name = "buttonOcultar";
             this.buttonOcultar.Size = new System.Drawing.Size(21, 20);

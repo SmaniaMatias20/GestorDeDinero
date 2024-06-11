@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CapaEntidades.Entidades;
+using System.Collections.Generic;
 
 
 namespace CapaEntidades
@@ -11,7 +12,8 @@ namespace CapaEntidades
         public string Clave { get; set; }
         public double FondosTotales { get; set; }
         public List<Reserva> Reservas { get; set; }
-        public List<Movimiento> Movimientos { get; set; }   
+        public List<Movimiento> Movimientos { get; set; } 
+        public List<Gasto> Gastos { get; set; } 
 
 
         /// <summary>
@@ -22,6 +24,7 @@ namespace CapaEntidades
             // Inicializa la lista de reservas del usuario
             Reservas = new List<Reserva>();
             Movimientos = new List<Movimiento>();
+            Gastos = new List<Gasto>(); 
         }
 
         /// <summary>

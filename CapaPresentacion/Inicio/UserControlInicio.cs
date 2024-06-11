@@ -48,9 +48,13 @@ namespace CapaPresentacion
             // Setea en true el radiobutton de movimientos
             radioButtonMovimientos.Checked = true;
             // Mostrar los movimientos 
-            MostrarMovimientos();
+            ActualizarMovimientos();
             // Registra el controlador de eventos para el evento ColumnHeaderMouseClick
-            dataGridViewMovimientos.ColumnHeaderMouseClick += DataGridView1_ColumnHeaderMouseClick;
+            dataGridViewMovimientos.ColumnHeaderMouseClick += DataGridViewMovimientos_ColumnHeaderMouseClick;
+            // Ajustar las columnas del DataGridView para que ocupen todo el ancho disponible
+            dataGridViewMovimientos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            // Scroll horizontal
+            dataGridViewMovimientos.ScrollBars = ScrollBars.Horizontal;
         }
 
         /// <summary>
@@ -118,24 +122,19 @@ namespace CapaPresentacion
         /// Obtiene la lista de movimientos para el usuario actual y la establece como la fuente de datos
         /// del DataGridView. También ajusta las columnas del DataGridView para que ocupen todo el ancho disponible.
         /// </summary>
-        private void MostrarMovimientos() 
+        private void ActualizarMovimientos() 
         {
             // Obtener la lista de movimientos para el usuario actual
             Usuario.Movimientos = _csMovimiento.ObtenerMovimientosPorId(Usuario.Id);
-            // Ajustar las columnas del DataGridView para que ocupen todo el ancho disponible
-            dataGridViewMovimientos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             // Establecer la lista de movimientos como la fuente de datos del DataGridView
             dataGridViewMovimientos.DataSource = Usuario.Movimientos;
             // Deshabilita el boton modificar
             buttonModificar.Enabled = false;
         }
-
-        private void MostrarReservas() 
+        private void ActualizarReservas() 
         {
             // Obtener la lista de movimientos para el usuario actual
             Usuario.Reservas = _csReserva.ObtenerReservasPorId(Usuario.Id);
-            // Ajustar las columnas del DataGridView para que ocupen todo el ancho disponible
-            dataGridViewMovimientos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             // Establecer la lista de movimientos como la fuente de datos del DataGridView
             dataGridViewMovimientos.DataSource = Usuario.Reservas;
             // Habilita el boton modificar
@@ -180,54 +179,22 @@ namespace CapaPresentacion
 
         private void EliminarMovimiento() 
         {
-            // Crear una lista para almacenar los IDs de los movimientos que se van a eliminar
-            List<int> idsMovimientosAEliminar = new List<int>();
-
-            // Recorrer las filas seleccionadas en el DataGridView
-            foreach (DataGridViewRow row in dataGridViewMovimientos.SelectedRows)
-            {
-                // Evitar eliminar filas de nueva entrada
-                if (!row.IsNewRow)
-                {
-                    int idMovimiento;
-                    // Intentar obtener el ID del movimiento de la celda correspondiente
-                    if (int.TryParse(row.Cells["Id"].Value.ToString(), out idMovimiento))
-                    {
-                        // Agregar el ID del movimiento a la lista de movimientos a eliminar
-                        idsMovimientosAEliminar.Add(idMovimiento);
-                    }
-                }
-            }
+            List<(int Id, double Importe)> MovimientosAEliminar = ObtenerSeleccionadosDataGrid(dataGridViewMovimientos);
             // Recorrer la lista de IDs de movimientos a eliminar
-            foreach (int idMovimiento in idsMovimientosAEliminar)
+            foreach (var Movimiento in MovimientosAEliminar)
             {
                 // Llamar al método para eliminar el movimiento por su ID de la base de datos
-                _csMovimiento.EliminarMovimientoPorId(idMovimiento);
+                _csMovimiento.EliminarMovimientoPorId(Movimiento.Id);
             }
 
             // Actualizar el DataGridView
-            MostrarMovimientos();
+            ActualizarMovimientos();
 
         }
 
         private void EliminarReserva()
         {
-            // Crear una lista para almacenar los IDs y los importes de las reservas que se van a eliminar
-            List<(int IdReserva, double Importe)> reservasAEliminar = new List<(int, double)>();
-
-            // Recorrer las filas seleccionadas en el DataGridView
-            foreach (DataGridViewRow row in dataGridViewMovimientos.SelectedRows)
-            {
-                int idReserva;
-                double importe;
-                // Intentar obtener el ID del movimiento y el importe de las celdas correspondientes
-                if (int.TryParse(row.Cells["Id"].Value.ToString(), out idReserva) &&
-                    double.TryParse(row.Cells["Importe"].Value.ToString(), out importe))
-                {
-                    // Agregar el ID del movimiento y el importe a la lista de reservas a eliminar
-                    reservasAEliminar.Add((idReserva, importe));
-                }
-            }
+            List<(int IdReserva, double Importe)> reservasAEliminar = ObtenerSeleccionadosDataGrid(dataGridViewMovimientos);
 
             // Recorre la lista de reservas a eliminar
             foreach (var reserva in reservasAEliminar)
@@ -241,7 +208,35 @@ namespace CapaPresentacion
             }
 
             // Muestra las reservas
-            MostrarReservas();
+            ActualizarReservas();
+        }
+
+        /// <summary>
+        /// Obtiene una lista de tuplas que contienen el ID y el importe de las filas seleccionadas en un DataGridView.
+        /// </summary>
+        /// <param name="dataGrid">El DataGridView del cual se obtendrán las filas seleccionadas.</param>
+        /// <returns>Una lista de tuplas (int Id, double Importe) con los datos de las filas seleccionadas.</returns>
+        private List<(int Id, double Importe)> ObtenerSeleccionadosDataGrid(DataGridView dataGrid)
+        {
+            // Crear una lista para almacenar los IDs y los importes de las reservas que se van a eliminar
+            List<(int Id, double Importe)> elementosAEliminar = new List<(int, double)>();
+
+            // Recorrer las filas seleccionadas en el DataGridView
+            foreach (DataGridViewRow row in dataGridViewMovimientos.SelectedRows)
+            {
+                int id;
+                double importe;
+                // Intentar obtener el ID y el importe de las celdas correspondientes
+                if (int.TryParse(row.Cells["Id"].Value.ToString(), out id) &&
+                    double.TryParse(row.Cells["Importe"].Value.ToString(), out importe))
+                {
+                    // Agregar el ID del movimiento y el importe a la lista de reservas a eliminar
+                    elementosAEliminar.Add((id, importe));
+                }
+            }
+
+            // Retornar la lista de elementos seleccionados
+            return elementosAEliminar;
         }
 
         /// <summary>
@@ -277,7 +272,7 @@ namespace CapaPresentacion
         /// </summary>
         /// <param name="sender">El objeto que generó el evento.</param>
         /// <param name="e">Los argumentos del evento.</param>
-        private void DataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void DataGridViewMovimientos_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             // Verifica si el radio button de Movimientos está seleccionado
             if (radioButtonMovimientos.Checked)
@@ -404,7 +399,7 @@ namespace CapaPresentacion
                 userControlReserva.AceptarClick += formMovimientos.UserControlReserva_AceptarClick;
 
                 // Mostrar las reservas actualizadas
-                MostrarReservas();
+                ActualizarReservas();
             }
 
         }
@@ -420,12 +415,12 @@ namespace CapaPresentacion
             if (radioButtonReservas.Checked)
             {
                 // Si está seleccionado, muestra las reservas
-                MostrarReservas();
+                ActualizarReservas();
             }
             else if (radioButtonMovimientos.Checked) // Verifica si el radio button de Movimientos está seleccionado
             {
                 // Si está seleccionado, muestra los movimientos
-                MostrarMovimientos();
+                ActualizarMovimientos();
             }
 
         }

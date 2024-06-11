@@ -7,9 +7,9 @@ namespace CapaEntidades.Entidades
     {
         // Propiedades
         public int Id { get; set; }
-        public ETipoGasto TipoGasto { get; set; }
+        public ETipoGasto Tipo { get; set; }
         public double Importe { get; set; } 
-        public ETipoPago MetodoPago { get; set; }
+        public ETipoPago Pago { get; set; }
         public string Descripcion { get; set; } 
         public string Fecha { get; set; }   
 
@@ -28,10 +28,10 @@ namespace CapaEntidades.Entidades
         /// <param name="metodoPago"></param>
         /// <param name="descripcion"></param>
         public Gasto(ETipoGasto tipoGasto, double importe, ETipoPago metodoPago, string descripcion, string fecha) : this()
-        { 
-            TipoGasto = tipoGasto;
+        {
+            Tipo = tipoGasto;
             Importe = importe;
-            MetodoPago = metodoPago;
+            Pago = metodoPago;
             Descripcion = descripcion;
             Fecha = fecha;
         }
@@ -43,7 +43,8 @@ namespace CapaEntidades.Entidades
         public override string ToString()
         {
             //
-            return $"{Id}-{TipoGasto}-{Importe}-{MetodoPago}-{Descripcion}-{Fecha}";
+            return $"{Id}-{Tipo}-{Importe}-{Pago}-{Descripcion}-{Fecha}";
         }
+
     }
 }

@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CD_Gasto.cs" />
     <Compile Include="CD_Movimiento.cs" />
     <Compile Include="CD_Reserva.cs" />
     <Compile Include="CD_Usuario.cs" />
