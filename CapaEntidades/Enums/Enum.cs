@@ -36,7 +36,8 @@ namespace CapaEntidades.Enums
         Efectivo,
         Credito,
         Debito,
-        Transferencia
+        Transferencia,
+        MercadoPago
     }
     
 }

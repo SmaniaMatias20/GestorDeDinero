@@ -34,7 +34,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.buttonSalir = new System.Windows.Forms.Button();
             this.buttonAjustes = new System.Windows.Forms.Button();
             this.buttonInversiones = new System.Windows.Forms.Button();
@@ -46,21 +45,22 @@
             this.pictureBoxUsuario = new System.Windows.Forms.PictureBox();
             this.labelNombreUsuario = new System.Windows.Forms.Label();
             this.panelInicio = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelVertical.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelHorizontal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUsuario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelVertical
             // 
             this.panelVertical.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
+            this.panelVertical.Controls.Add(this.pictureBox1);
             this.panelVertical.Controls.Add(this.panel2);
             this.panelVertical.Controls.Add(this.panel3);
             this.panelVertical.Controls.Add(this.panel5);
             this.panelVertical.Controls.Add(this.panel4);
             this.panelVertical.Controls.Add(this.panel1);
-            this.panelVertical.Controls.Add(this.pictureBoxLogo);
             this.panelVertical.Controls.Add(this.buttonSalir);
             this.panelVertical.Controls.Add(this.buttonAjustes);
             this.panelVertical.Controls.Add(this.buttonInversiones);
@@ -111,17 +111,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(5, 50);
             this.panel1.TabIndex = 0;
-            // 
-            // pictureBoxLogo
-            // 
-            this.pictureBoxLogo.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBoxLogo.ImageLocation = "C:\\Users\\Smania Matias\\Desktop\\ICONOS\\ICONOS APLICACIONES\\OBS Studio.ico";
-            this.pictureBoxLogo.Location = new System.Drawing.Point(9, 21);
-            this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(132, 112);
-            this.pictureBoxLogo.TabIndex = 5;
-            this.pictureBoxLogo.TabStop = false;
             // 
             // buttonSalir
             // 
@@ -296,6 +285,16 @@
             this.panelInicio.Size = new System.Drawing.Size(577, 490);
             this.panelInicio.TabIndex = 2;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::CapaPresentacion.Properties.Resources.nuevoLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(-11, 21);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(170, 141);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            // 
             // FormInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -312,10 +311,10 @@
             this.Text = "Inicio";
             this.Load += new System.EventHandler(this.FormInicio_Load);
             this.panelVertical.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.panelHorizontal.ResumeLayout(false);
             this.panelHorizontal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUsuario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -332,7 +331,6 @@
         private System.Windows.Forms.PictureBox pictureBoxUsuario;
         private System.Windows.Forms.Label labelNombreUsuario;
         private System.Windows.Forms.Button buttonSalir;
-        private System.Windows.Forms.PictureBox pictureBoxLogo;
         private System.Windows.Forms.Label labelTitulo;
         private System.Windows.Forms.Label labelFecha;
         private System.Windows.Forms.Panel panel1;
@@ -340,6 +338,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

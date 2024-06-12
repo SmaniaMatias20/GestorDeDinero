@@ -1,9 +1,11 @@
 ﻿using CapaEntidades;
+using CapaEntidades.Entidades;
 using CapaServicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+
 
 namespace CapaPresentacion
 {
@@ -12,9 +14,11 @@ namespace CapaPresentacion
         // Atributos
         private CS_Usuario _csUsuario;
         private CS_Gasto _csGasto;
+        public bool estadoModificacion = false;
+        public int idGasto = 0;
 
         // Propiedades
-        public Usuario Usuario { get; set; }
+        public Usuario Usuario { get; set; } 
 
         /// <summary>
         /// 
@@ -26,7 +30,7 @@ namespace CapaPresentacion
             // Crea una nueva instancia de CS_Usuario para manejar la lógica relacionada con el usuario
             _csUsuario = new CS_Usuario();
             // Crea una nueva instancia de CS_Usuario para manejar la lógica relacionada con los gastos
-            _csGasto = new CS_Gasto();  
+            _csGasto = new CS_Gasto();
         }
 
         /// <summary>
@@ -41,18 +45,16 @@ namespace CapaPresentacion
             ActualizarGastos();
             // Registra el controlador de eventos para el evento ColumnHeaderMouseClick
             dataGridViewGastos.ColumnHeaderMouseClick += DataGridViewGastos_ColumnHeaderMouseClick;
-            // Deshabilita el boton modificar
-            buttonModificar.Enabled = false;
             // Asigna el metodo para solamente poder ingresar numeros
             textBoxImporte.KeyPress += textBox_KeyPress;
         }
         private void UserControlGastos_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         /// <summary>
-        /// 
+        /// Actualiza los gastos del usuario actual y establece la fuente de datos del DataGridView a la lista de gastos actualizada.
         /// </summary>
         private void ActualizarGastos()
         {
@@ -63,21 +65,22 @@ namespace CapaPresentacion
         }
 
         /// <summary>
-        /// 
+        /// Maneja el evento de clic del encabezado de columna del DataGridView de gastos.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">El origen del evento.</param>
+        /// <param name="e">Los datos del evento del clic en el encabezado de columna del DataGridView.</param>
         private void DataGridViewGastos_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            // Llama al método OrdenarDataGrid con los parámetros del evento y la lista de gastos del usuario
             OrdenarDataGrid(e, Usuario.Gastos);
         }
 
         /// <summary>
-        /// 
+        /// Ordena los datos del DataGridView según la columna seleccionada.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="e"></param>
-        /// <param name="datos"></param>
+        /// <typeparam name="T">El tipo de los datos en la lista.</typeparam>
+        /// <param name="e">Los datos del evento del clic en el encabezado de columna del DataGridView.</param>
+        /// <param name="datos">La lista de datos que se va a ordenar.</param>
         private void OrdenarDataGrid<T>(DataGridViewCellMouseEventArgs e, List<T> datos)
         {
             // Obtiene la columna que se ha seleccionado
@@ -125,53 +128,64 @@ namespace CapaPresentacion
             }
 
             // Si ya hay un punto decimal en el texto y se presiona otro, se ignora el evento
-            if (e.KeyChar == ',' && (sender as TextBox).Text.Contains(','))
+            if (e.KeyChar == ',' && (sender as System.Windows.Forms.TextBox).Text.Contains(','))
             {
                 e.Handled = true;
             }
         }
 
         /// <summary>
-        /// 
+        /// Maneja el evento de clic del botón "Aceptar".
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">El origen del evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void buttonAceptar_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("¿Está seguro que quieres agregar un nuevo gasto?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            // Muestra un cuadro de diálogo para confirmar la operación
+            DialogResult result = MessageBox.Show("¿Quiere confirmar la operación?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             // Si el usuario hace clic en "Sí"
             if (result == DialogResult.Yes)
             {
                 // Registra el gasto
-                string mensaje = _csGasto.RegistrarGasto(Usuario.Id, double.Parse(textBoxImporte.Text), comboBoxGasto.Text, dateTimePickerFecha.Text, comboBoxPago.Text,textBoxDescripcion.Text);
+                string mensaje = _csGasto.RegistrarGasto(Usuario.Id, textBoxImporte.Text, comboBoxGasto.Text, dateTimePickerFecha.Text, comboBoxPago.Text, textBoxDescripcion.Text, estadoModificacion, idGasto);
 
                 // Notificar que los fondos han sido actualizados
                 MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                //Vaciar los campos
-                VaciarCampos();
-
-                // Muestra y actualiza los gastos
-                ActualizarGastos();
+                if (mensaje == "Gasto registrado" || mensaje == "Gasto modificado")
+                {
+                    //Vaciar los campos
+                    VaciarCampos();
+                    // Muestra y actualiza los gastos
+                    ActualizarGastos();
+                    // Cambia el estado de modificacion
+                    estadoModificacion = false;
+                }
             }
-
         }
 
-        private void VaciarCampos() 
+        /// <summary>
+        /// Vacía los campos del formulario de registro de gastos.
+        /// </summary>
+        private void VaciarCampos()
         {
+            // Limpiar el campo de texto de la descripción
             textBoxDescripcion.Text = "";
-            comboBoxGasto.Text = "";
-            dateTimePickerFecha.Text = "";
-            comboBoxPago.Text = "";
+            // Limpiar la selección del comboBox de gasto
+            comboBoxGasto.Text = string.Empty;
+            // Limpiar la selección del comboBox de pago
+            comboBoxPago.Text = string.Empty;
+            // Limpiar el campo de texto del importe
             textBoxImporte.Text = "";
+            // Limpiar nuevamente el campo de texto de la descripción (esto es redundante)
             textBoxDescripcion.Text = "";
         }
 
         /// <summary>
-        /// 
+        /// Maneja el evento de clic del botón "Eliminar".
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">El origen del evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void buttonEliminar_Click(object sender, EventArgs e)
         {
             // Realiza una pregunta al usuario
@@ -179,8 +193,9 @@ namespace CapaPresentacion
             // Si el usuario hace clic en "Sí", cerrar la aplicación
             if (result == DialogResult.Yes)
             {
-                // Eliminamos el gasto
+                // Elimina el gasto
                 string mensaje = EliminarGasto();
+                // Muestra un mensaje indicando el resultado de la eliminación
                 MessageBox.Show(mensaje, "Mensaje");
             }
         }
@@ -188,10 +203,11 @@ namespace CapaPresentacion
         /// <summary>
         /// 
         /// </summary>
-        private string EliminarGasto() 
+        private string EliminarGasto()
         {
             // Obtiene los elementos seleccionados en el dataGrid
             List<(int Id, double Importe)> gastosAEliminar = ObtenerSeleccionadosDataGrid(dataGridViewGastos);
+            // Verifica si hay elementos seleccionados
             if (gastosAEliminar.Count > 0)
             {
                 // Recorre los elementos seleccionados
@@ -202,10 +218,12 @@ namespace CapaPresentacion
                 }
                 // Actualiza el dataGrid
                 ActualizarGastos();
+                // Retorna un mensaje
                 return "Registro eliminado exitosamente...";
             }
             else
             {
+                // Retorna un mensaje
                 return "No ha seleccionado ningun registro...";
             }
         }
@@ -236,6 +254,48 @@ namespace CapaPresentacion
 
             // Retorna la lista
             return elementosAEliminar;
+        }
+
+        /// <summary>
+        /// Maneja el evento de clic del botón "Modificar".
+        /// </summary>
+        /// <param name="sender">El origen del evento.</param>
+        /// <param name="e">Los datos del evento.</param>
+        private void buttonModificar_Click(object sender, EventArgs e)
+        {
+            // Cambia el estado de modificación a verdadero
+            estadoModificacion = true;
+            // Obtiene el ID del gasto a modificar llamando al método ModificarGasto
+            idGasto = ModificarGasto();
+        }
+
+        /// <summary>
+        /// Obtiene el gasto seleccionado y llena los campos del formulario con sus datos para su modificación.
+        /// </summary>
+        /// <returns>El ID del gasto seleccionado o 0 si no hay una selección válida.</returns>
+        private int ModificarGasto()
+        {
+            // Verifica si hay filas seleccionadas en el DataGridView
+            if (dataGridViewGastos.SelectedRows.Count > 0)
+            {
+                // Obtiene la primera fila seleccionada
+                DataGridViewRow filaSeleccionada = dataGridViewGastos.SelectedRows[0];
+                // Obtiene el ID del gasto seleccionado de la celda "id"
+                int idGastoSeleccionado = Convert.ToInt32(filaSeleccionada.Cells["id"].Value);
+                // Obtiene el gasto de la base de datos utilizando el ID
+                Gasto gasto = _csGasto.ObtenerGastoPorId(idGastoSeleccionado);
+
+                // Llena los campos del formulario con los datos del gasto obtenido
+                textBoxImporte.Text = gasto.Importe.ToString();
+                textBoxDescripcion.Text = gasto.Descripcion;
+                comboBoxGasto.Text = gasto.Tipo.ToString();
+                comboBoxPago.Text = gasto.Pago.ToString();  
+                dateTimePickerFecha.Text = gasto.Fecha.ToString();
+                // Retorna el ID del gasto seleccionado
+                return gasto.Id;
+            }
+            // Si no hay filas seleccionadas, retorna 0
+            return 0;
         }
     }
 }

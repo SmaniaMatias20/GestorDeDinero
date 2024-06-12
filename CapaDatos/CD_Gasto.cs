@@ -78,6 +78,16 @@ namespace CapaDatos
             return lista;
         }
 
+        /// <summary>
+        /// Agrega un nuevo gasto a la base de datos.
+        /// </summary>
+        /// <param name="idUsuario">El ID del usuario asociado al gasto.</param>
+        /// <param name="fecha">La fecha del gasto.</param>
+        /// <param name="importe">El importe del gasto.</param>
+        /// <param name="tipo">El tipo de gasto.</param>
+        /// <param name="pago">El método de pago del gasto.</param>
+        /// <param name="descripcion">La descripción del gasto.</param>
+        /// <exception cref="Exception">Se lanza una excepción si ocurre un error durante la inserción del gasto en la base de datos.</exception>
         public void AgregarGasto(int idUsuario, string fecha, double importe, ETipoGasto tipo, ETipoPago pago, string descripcion)
         {
             try
@@ -109,31 +119,137 @@ namespace CapaDatos
             }
             catch
             {
-                // Manejo de excepciones
+                // Si ocurre un error, se lanza una excepción con un mensaje descriptivo
                 throw new Exception("Error al agregar el gasto");
             }
         }
 
+        /// <summary>
+        /// Elimina un gasto de la base de datos dado su ID.
+        /// </summary>
+        /// <param name="idGasto">El ID del gasto que se desea eliminar.</param>
+        /// <exception cref="Exception">Se lanza una excepción si ocurre un error durante la eliminación del gasto en la base de datos.</exception>
         public void EliminarGasto(int idGasto)
         {
             try
             {
+                // Obtener la conexión a la base de datos
                 using (SqlConnection conexionDB = conexion.ObtenerConexion())
                 {
+                    // Abrir la conexión a la base de datos
                     conexionDB.Open();
-
+                    // Consulta SQL para eliminar el registro de la tabla gasto
                     string query = "DELETE FROM gasto WHERE id = @idGasto";
-
+                    // Crear un comando SQL para ejecutar la consulta de eliminación
                     using (SqlCommand comando = new SqlCommand(query, conexionDB))
                     {
+                        // Agregar el parámetro del ID del gasto a la consulta
                         comando.Parameters.AddWithValue("@idGasto", idGasto);
+                        // Ejecutar la consulta para eliminar el gasto de la base de datos
                         int filasAfectadas = comando.ExecuteNonQuery();
                     }
                 }
             }
             catch 
             {
+                // Si ocurre un error, se lanza una excepción con un mensaje descriptivo
                 throw new Exception("Error al eliminar un gasto");
+            }
+        }
+
+        /// <summary>
+        /// Obtiene un gasto de la base de datos dado su ID.
+        /// </summary>
+        /// <param name="idGasto">El ID del gasto que se desea obtener.</param>
+        /// <returns>El objeto Gasto correspondiente al ID especificado.</returns>
+        /// <exception cref="Exception">Se lanza una excepción si ocurre un error durante la obtención del gasto en la base de datos.</exception>
+        public Gasto ObtenerGasto(int idGasto)
+        {
+            try
+            {
+                // Obtiene la conexión a la base de datos
+                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                {
+                    // Abre la conexión a la base de datos
+                    conexionDB.Open();
+                    // Consulta SQL para seleccionar el registro del gasto con el ID especificado
+                    string query = "SELECT * FROM gasto WHERE id = @idGasto";
+                    // Crea un comando SQL para ejecutar la consulta de selección
+                    using (SqlCommand comando = new SqlCommand(query, conexionDB))
+                    {
+                        // Agrega el parámetro del ID del gasto a la consulta
+                        comando.Parameters.AddWithValue("@idGasto", idGasto);
+                        // Ejecuta la consulta de selección y obtener los resultados
+                        using (SqlDataReader reader = comando.ExecuteReader())
+                        {
+                            // Verifica si se encontró un gasto con el ID especificado
+                            if (reader.Read())
+                            {
+                                // Crea un objeto Gasto y asignar sus propiedades con los valores obtenidos de la base de datos
+                                Gasto gasto = new Gasto()
+                                {
+                                    Id = (int)reader["id"],
+                                    Tipo = (ETipoGasto)Enum.Parse(typeof(ETipoGasto), reader["tipo"].ToString()),
+                                    Importe = (double)reader["importe"],
+                                    Pago = (ETipoPago)Enum.Parse(typeof(ETipoPago), reader["pago"].ToString()),
+                                    Descripcion = reader["descripcion"].ToString(),
+                                    Fecha = reader["fecha"].ToString()
+                                };
+                                // Asigna otros campos de la entidad Gasto según sea necesario
+                                return gasto;
+                            }
+                            else
+                            {
+                                // Si ocurre un error, se lanza una excepción con un mensaje descriptivo
+                                throw new Exception("Gasto no encontrado");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Si ocurre un error, se lanza una excepción con un mensaje descriptivo
+                throw new Exception("Error al obtener el gasto por ID: " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Actualiza un gasto en la base de datos con los nuevos valores proporcionados.
+        /// </summary>
+        /// <param name="gasto">El objeto Gasto con los nuevos valores.</param>
+        /// <exception cref="Exception">Se lanza una excepción si ocurre un error durante la actualización del gasto en la base de datos.</exception>
+        public void ActualizarGasto(Gasto gasto)
+        {
+            try
+            {
+                // Obtener la conexión a la base de datos
+                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                {
+                    // Abrir la conexión a la base de datos
+                    conexionDB.Open();
+                    // Consulta SQL para actualizar el registro del gasto con el ID especificado
+                    string query = "UPDATE gasto SET tipo = @tipo, importe = @importe, pago = @pago, descripcion = @descripcion, fecha = @fecha WHERE id = @idGasto";
+                    // Crear un comando SQL para ejecutar la consulta de actualización
+                    using (SqlCommand comando = new SqlCommand(query, conexionDB))
+                    {
+                        // Agregar los parámetros con los nuevos valores del gasto
+                        comando.Parameters.AddWithValue("@idGasto", gasto.Id);
+                        comando.Parameters.AddWithValue("@tipo", gasto.Tipo.ToString());
+                        comando.Parameters.AddWithValue("@importe", gasto.Importe);
+                        comando.Parameters.AddWithValue("@pago", gasto.Pago.ToString());
+                        comando.Parameters.AddWithValue("@descripcion", gasto.Descripcion);
+                        comando.Parameters.AddWithValue("@fecha", gasto.Fecha);
+                        // Ejecutar la consulta de actualización
+                        int filasAfectadas = comando.ExecuteNonQuery();
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Si ocurre un error, se lanza una excepción con un mensaje descriptivo
+                throw new Exception("Error al actualizar el gasto: " + ex.Message);
             }
         }
     }

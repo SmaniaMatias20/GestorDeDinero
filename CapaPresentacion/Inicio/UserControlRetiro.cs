@@ -130,6 +130,9 @@ namespace CapaPresentacion
 
         }
 
+        private void UserControlRetiro_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }

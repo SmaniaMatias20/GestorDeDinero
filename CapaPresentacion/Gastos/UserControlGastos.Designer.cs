@@ -118,6 +118,7 @@
             this.buttonModificar.TabIndex = 12;
             this.buttonModificar.Text = "Modificar";
             this.buttonModificar.UseVisualStyleBackColor = false;
+            this.buttonModificar.Click += new System.EventHandler(this.buttonModificar_Click);
             // 
             // buttonAceptar
             // 
@@ -232,7 +233,7 @@
             "Credito",
             "Debito",
             "Transferencia",
-            "Mercado Pago"});
+            "MercadoPago"});
             this.comboBoxPago.Location = new System.Drawing.Point(15, 144);
             this.comboBoxPago.Name = "comboBoxPago";
             this.comboBoxPago.Size = new System.Drawing.Size(177, 23);

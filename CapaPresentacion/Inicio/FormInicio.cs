@@ -218,6 +218,5 @@ namespace CapaPresentacion
                 Application.Exit();
             }
         }
-
     }
 }

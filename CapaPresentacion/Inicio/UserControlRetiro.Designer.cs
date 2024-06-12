@@ -28,28 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelRetiro = new System.Windows.Forms.Label();
             this.textBoxRetiro = new System.Windows.Forms.TextBox();
             this.buttonAceptarRetiro = new System.Windows.Forms.Button();
             this.buttonBorrar = new System.Windows.Forms.Button();
             this.labelFondos = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.labelRetiro = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // labelRetiro
-            // 
-            this.labelRetiro.AutoSize = true;
-            this.labelRetiro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelRetiro.Font = new System.Drawing.Font("Cambria", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRetiro.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.labelRetiro.Location = new System.Drawing.Point(33, 103);
-            this.labelRetiro.Name = "labelRetiro";
-            this.labelRetiro.Size = new System.Drawing.Size(119, 34);
-            this.labelRetiro.TabIndex = 0;
-            this.labelRetiro.Text = "Retirar...";
             // 
             // textBoxRetiro
             // 
-            this.textBoxRetiro.Location = new System.Drawing.Point(33, 171);
+            this.textBoxRetiro.Location = new System.Drawing.Point(336, 119);
             this.textBoxRetiro.Name = "textBoxRetiro";
             this.textBoxRetiro.Size = new System.Drawing.Size(160, 20);
             this.textBoxRetiro.TabIndex = 1;
@@ -63,7 +55,7 @@
             this.buttonAceptarRetiro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAceptarRetiro.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAceptarRetiro.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonAceptarRetiro.Location = new System.Drawing.Point(33, 207);
+            this.buttonAceptarRetiro.Location = new System.Drawing.Point(336, 155);
             this.buttonAceptarRetiro.Name = "buttonAceptarRetiro";
             this.buttonAceptarRetiro.Size = new System.Drawing.Size(75, 23);
             this.buttonAceptarRetiro.TabIndex = 2;
@@ -79,7 +71,7 @@
             this.buttonBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBorrar.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBorrar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonBorrar.Location = new System.Drawing.Point(118, 207);
+            this.buttonBorrar.Location = new System.Drawing.Point(421, 155);
             this.buttonBorrar.Name = "buttonBorrar";
             this.buttonBorrar.Size = new System.Drawing.Size(75, 23);
             this.buttonBorrar.TabIndex = 3;
@@ -92,35 +84,70 @@
             this.labelFondos.AutoSize = true;
             this.labelFondos.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFondos.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.labelFondos.Location = new System.Drawing.Point(30, 153);
+            this.labelFondos.Location = new System.Drawing.Point(333, 101);
             this.labelFondos.Name = "labelFondos";
             this.labelFondos.Size = new System.Drawing.Size(53, 15);
             this.labelFondos.TabIndex = 4;
             this.labelFondos.Text = "Fondos:";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(178, 258);
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.labelRetiro);
+            this.panel1.Location = new System.Drawing.Point(117, 98);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(197, 74);
+            this.panel1.TabIndex = 14;
+            // 
+            // labelRetiro
+            // 
+            this.labelRetiro.AutoSize = true;
+            this.labelRetiro.Font = new System.Drawing.Font("Cambria", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRetiro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
+            this.labelRetiro.Location = new System.Drawing.Point(59, 21);
+            this.labelRetiro.Name = "labelRetiro";
+            this.labelRetiro.Size = new System.Drawing.Size(117, 32);
+            this.labelRetiro.TabIndex = 5;
+            this.labelRetiro.Text = "Retirar...";
             // 
             // UserControlRetiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelFondos);
             this.Controls.Add(this.buttonBorrar);
             this.Controls.Add(this.buttonAceptarRetiro);
             this.Controls.Add(this.textBoxRetiro);
-            this.Controls.Add(this.labelRetiro);
             this.Name = "UserControlRetiro";
-            this.Size = new System.Drawing.Size(234, 334);
+            this.Size = new System.Drawing.Size(530, 258);
+            this.Load += new System.EventHandler(this.UserControlRetiro_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label labelRetiro;
         private System.Windows.Forms.TextBox textBoxRetiro;
         private System.Windows.Forms.Button buttonAceptarRetiro;
         private System.Windows.Forms.Button buttonBorrar;
         private System.Windows.Forms.Label labelFondos;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label labelRetiro;
     }
 }
