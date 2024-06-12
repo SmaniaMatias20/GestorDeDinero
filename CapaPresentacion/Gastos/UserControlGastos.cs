@@ -1,6 +1,4 @@
-﻿using CapaDatos;
-using CapaEntidades;
-using CapaEntidades.Enums;
+﻿using CapaEntidades;
 using CapaServicios;
 using System;
 using System.Collections.Generic;
@@ -47,11 +45,6 @@ namespace CapaPresentacion
             buttonModificar.Enabled = false;
             // Asigna el metodo para solamente poder ingresar numeros
             textBoxImporte.KeyPress += textBox_KeyPress;
-            // Ajustar las columnas del DataGridView para que ocupen todo el ancho disponible
-            dataGridViewGastos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            // Scroll horizontal
-            dataGridViewGastos.ScrollBars = ScrollBars.Horizontal;
-
         }
         private void UserControlGastos_Load(object sender, EventArgs e)
         {
@@ -155,12 +148,23 @@ namespace CapaPresentacion
                 // Notificar que los fondos han sido actualizados
                 MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                //Vaciar los textbox
+                //Vaciar los campos
+                VaciarCampos();
 
                 // Muestra y actualiza los gastos
                 ActualizarGastos();
             }
 
+        }
+
+        private void VaciarCampos() 
+        {
+            textBoxDescripcion.Text = "";
+            comboBoxGasto.Text = "";
+            dateTimePickerFecha.Text = "";
+            comboBoxPago.Text = "";
+            textBoxImporte.Text = "";
+            textBoxDescripcion.Text = "";
         }
 
         /// <summary>
@@ -170,31 +174,40 @@ namespace CapaPresentacion
         /// <param name="e"></param>
         private void buttonEliminar_Click(object sender, EventArgs e)
         {
-            //
+            // Realiza una pregunta al usuario
             DialogResult result = MessageBox.Show("¿Está seguro que quieres eliminar el gasto?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             // Si el usuario hace clic en "Sí", cerrar la aplicación
             if (result == DialogResult.Yes)
             {
                 // Eliminamos el gasto
-                EliminarGasto();
+                string mensaje = EliminarGasto();
+                MessageBox.Show(mensaje, "Mensaje");
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        private void EliminarGasto() 
+        private string EliminarGasto() 
         {
-            //
+            // Obtiene los elementos seleccionados en el dataGrid
             List<(int Id, double Importe)> gastosAEliminar = ObtenerSeleccionadosDataGrid(dataGridViewGastos);
-            //
-            foreach (var gasto in gastosAEliminar)
+            if (gastosAEliminar.Count > 0)
             {
-                //
-                _csGasto.EliminarGastoPorId(gasto.Id);
+                // Recorre los elementos seleccionados
+                foreach (var gasto in gastosAEliminar)
+                {
+                    // Elimina cada elemento seleccionado por su ID
+                    _csGasto.EliminarGastoPorId(gasto.Id);
+                }
+                // Actualiza el dataGrid
+                ActualizarGastos();
+                return "Registro eliminado exitosamente...";
             }
-            //
-            ActualizarGastos();
+            else
+            {
+                return "No ha seleccionado ningun registro...";
+            }
         }
 
         /// <summary>

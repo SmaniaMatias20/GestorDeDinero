@@ -42,7 +42,7 @@
             this.opcionesToolStripMenuItem});
             this.menuLogin.Location = new System.Drawing.Point(0, 0);
             this.menuLogin.Name = "menuLogin";
-            this.menuLogin.Size = new System.Drawing.Size(380, 24);
+            this.menuLogin.Size = new System.Drawing.Size(530, 24);
             this.menuLogin.TabIndex = 0;
             this.menuLogin.Text = "menuStrip1";
             // 
@@ -71,9 +71,9 @@
             // 
             // panelLogin
             // 
-            this.panelLogin.Location = new System.Drawing.Point(0, 28);
+            this.panelLogin.Location = new System.Drawing.Point(0, 0);
             this.panelLogin.Name = "panelLogin";
-            this.panelLogin.Size = new System.Drawing.Size(380, 334);
+            this.panelLogin.Size = new System.Drawing.Size(530, 258);
             this.panelLogin.TabIndex = 1;
             // 
             // FormLogin
@@ -81,9 +81,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(380, 357);
-            this.Controls.Add(this.panelLogin);
+            this.ClientSize = new System.Drawing.Size(530, 257);
             this.Controls.Add(this.menuLogin);
+            this.Controls.Add(this.panelLogin);
             this.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.menuLogin;

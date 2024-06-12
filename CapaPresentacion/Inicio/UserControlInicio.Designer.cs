@@ -109,10 +109,12 @@
             // 
             // dataGridViewMovimientos
             // 
+            this.dataGridViewMovimientos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewMovimientos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewMovimientos.Location = new System.Drawing.Point(24, 238);
             this.dataGridViewMovimientos.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dataGridViewMovimientos.Name = "dataGridViewMovimientos";
+            this.dataGridViewMovimientos.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dataGridViewMovimientos.Size = new System.Drawing.Size(529, 216);
             this.dataGridViewMovimientos.TabIndex = 8;
             // 

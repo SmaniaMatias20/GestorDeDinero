@@ -51,10 +51,7 @@ namespace CapaPresentacion
             ActualizarMovimientos();
             // Registra el controlador de eventos para el evento ColumnHeaderMouseClick
             dataGridViewMovimientos.ColumnHeaderMouseClick += DataGridViewMovimientos_ColumnHeaderMouseClick;
-            // Ajustar las columnas del DataGridView para que ocupen todo el ancho disponible
-            dataGridViewMovimientos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            // Scroll horizontal
-            dataGridViewMovimientos.ScrollBars = ScrollBars.Horizontal;
+       
         }
 
         /// <summary>

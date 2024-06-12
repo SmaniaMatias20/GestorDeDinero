@@ -8,7 +8,7 @@ namespace CapaPresentacion
     public partial class UserControlLogin : UserControl
     {
         // Atributos
-        private Usuario _usuario = new Usuario();
+        //private Usuario _usuario = new Usuario();
         private CS_Usuario _csUsuario;
         private bool _claveVisible = false;
 

@@ -52,9 +52,11 @@
             // 
             // dataGridViewGastos
             // 
+            this.dataGridViewGastos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dataGridViewGastos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewGastos.Location = new System.Drawing.Point(13, 226);
             this.dataGridViewGastos.Name = "dataGridViewGastos";
+            this.dataGridViewGastos.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dataGridViewGastos.Size = new System.Drawing.Size(547, 252);
             this.dataGridViewGastos.TabIndex = 0;
             // 
@@ -194,6 +196,7 @@
             // comboBoxGasto
             // 
             this.comboBoxGasto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboBoxGasto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxGasto.FormattingEnabled = true;
             this.comboBoxGasto.Items.AddRange(new object[] {
             "Alquiler",
@@ -222,12 +225,14 @@
             // comboBoxPago
             // 
             this.comboBoxPago.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboBoxPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPago.FormattingEnabled = true;
             this.comboBoxPago.Items.AddRange(new object[] {
             "Efectivo",
             "Credito",
             "Debito",
-            "Transferencia"});
+            "Transferencia",
+            "Mercado Pago"});
             this.comboBoxPago.Location = new System.Drawing.Point(15, 144);
             this.comboBoxPago.Name = "comboBoxPago";
             this.comboBoxPago.Size = new System.Drawing.Size(177, 23);
@@ -250,6 +255,7 @@
             // comboBoxFiltro
             // 
             this.comboBoxFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboBoxFiltro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFiltro.FormattingEnabled = true;
             this.comboBoxFiltro.Items.AddRange(new object[] {
             "Tipo de gasto",

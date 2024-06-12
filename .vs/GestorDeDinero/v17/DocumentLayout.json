@@ -3,43 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9EC8484E-7F00-478F-BEC3-A2466BE1546D}|CapaPresentacion\\CapaPresentacion.csproj|c:\\users\\smania matias\\desktop\\proyectos\\gestordedinero\\capapresentacion\\gastos\\usercontrolgastos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9EC8484E-7F00-478F-BEC3-A2466BE1546D}|CapaPresentacion\\CapaPresentacion.csproj|solutionrelative:capapresentacion\\gastos\\usercontrolgastos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9EC8484E-7F00-478F-BEC3-A2466BE1546D}|CapaPresentacion\\CapaPresentacion.csproj|c:\\users\\smania matias\\desktop\\proyectos\\gestordedinero\\capapresentacion\\inicio\\usercontrolinicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9EC8484E-7F00-478F-BEC3-A2466BE1546D}|CapaPresentacion\\CapaPresentacion.csproj|solutionrelative:capapresentacion\\inicio\\usercontrolinicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9EC8484E-7F00-478F-BEC3-A2466BE1546D}|CapaPresentacion\\CapaPresentacion.csproj|c:\\users\\smania matias\\desktop\\proyectos\\gestordedinero\\capapresentacion\\gastos\\usercontrolgastos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{9EC8484E-7F00-478F-BEC3-A2466BE1546D}|CapaPresentacion\\CapaPresentacion.csproj|solutionrelative:capapresentacion\\gastos\\usercontrolgastos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9EC8484E-7F00-478F-BEC3-A2466BE1546D}|CapaPresentacion\\CapaPresentacion.csproj|c:\\users\\smania matias\\desktop\\proyectos\\gestordedinero\\capapresentacion\\gastos\\usercontrolgastos.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9EC8484E-7F00-478F-BEC3-A2466BE1546D}|CapaPresentacion\\CapaPresentacion.csproj|solutionrelative:capapresentacion\\gastos\\usercontrolgastos.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9EC8484E-7F00-478F-BEC3-A2466BE1546D}|CapaPresentacion\\CapaPresentacion.csproj|c:\\users\\smania matias\\desktop\\proyectos\\gestordedinero\\capapresentacion\\inicio\\forminicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9EC8484E-7F00-478F-BEC3-A2466BE1546D}|CapaPresentacion\\CapaPresentacion.csproj|solutionrelative:capapresentacion\\inicio\\forminicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{05D032FD-C12D-459C-97CA-74ED970FDCEC}|CapaServicios\\CapaServicios.csproj|c:\\users\\smania matias\\desktop\\proyectos\\gestordedinero\\capaservicios\\cs_movimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{05D032FD-C12D-459C-97CA-74ED970FDCEC}|CapaServicios\\CapaServicios.csproj|solutionrelative:capaservicios\\cs_movimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93FFC29A-563E-4EAE-A111-88AB007B457D}|CapaDatos\\CapaDatos.csproj|c:\\users\\smania matias\\desktop\\proyectos\\gestordedinero\\capadatos\\cd_movimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93FFC29A-563E-4EAE-A111-88AB007B457D}|CapaDatos\\CapaDatos.csproj|solutionrelative:capadatos\\cd_movimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93FFC29A-563E-4EAE-A111-88AB007B457D}|CapaDatos\\CapaDatos.csproj|c:\\users\\smania matias\\desktop\\proyectos\\gestordedinero\\capadatos\\cd_gasto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93FFC29A-563E-4EAE-A111-88AB007B457D}|CapaDatos\\CapaDatos.csproj|solutionrelative:capadatos\\cd_gasto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{05D032FD-C12D-459C-97CA-74ED970FDCEC}|CapaServicios\\CapaServicios.csproj|c:\\users\\smania matias\\desktop\\proyectos\\gestordedinero\\capaservicios\\cs_gasto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{05D032FD-C12D-459C-97CA-74ED970FDCEC}|CapaServicios\\CapaServicios.csproj|solutionrelative:capaservicios\\cs_gasto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E6B2E17C-34D0-4835-B353-99D2B25BC0D5}|CapaEntidades\\CapaEntidades.csproj|c:\\users\\smania matias\\desktop\\proyectos\\gestordedinero\\capaentidades\\entidades\\movimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E6B2E17C-34D0-4835-B353-99D2B25BC0D5}|CapaEntidades\\CapaEntidades.csproj|solutionrelative:capaentidades\\entidades\\movimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9EC8484E-7F00-478F-BEC3-A2466BE1546D}|CapaPresentacion\\CapaPresentacion.csproj|c:\\users\\smania matias\\desktop\\proyectos\\gestordedinero\\capapresentacion\\inicio\\forminicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{9EC8484E-7F00-478F-BEC3-A2466BE1546D}|CapaPresentacion\\CapaPresentacion.csproj|C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\capapresentacion\\inicio\\forminicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{9EC8484E-7F00-478F-BEC3-A2466BE1546D}|CapaPresentacion\\CapaPresentacion.csproj|solutionrelative:capapresentacion\\inicio\\forminicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -47,16 +19,12 @@
       "RelativeMoniker": "D:0:0:{9EC8484E-7F00-478F-BEC3-A2466BE1546D}|CapaPresentacion\\CapaPresentacion.csproj|solutionrelative:capapresentacion\\inicio\\usercontrolinicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E6B2E17C-34D0-4835-B353-99D2B25BC0D5}|CapaEntidades\\CapaEntidades.csproj|c:\\users\\smania matias\\desktop\\proyectos\\gestordedinero\\capaentidades\\entidades\\gasto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E6B2E17C-34D0-4835-B353-99D2B25BC0D5}|CapaEntidades\\CapaEntidades.csproj|solutionrelative:capaentidades\\entidades\\gasto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{05D032FD-C12D-459C-97CA-74ED970FDCEC}|CapaServicios\\CapaServicios.csproj|c:\\users\\smania matias\\desktop\\proyectos\\gestordedinero\\capaservicios\\cs_gasto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{05D032FD-C12D-459C-97CA-74ED970FDCEC}|CapaServicios\\CapaServicios.csproj|solutionrelative:capaservicios\\cs_gasto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E6B2E17C-34D0-4835-B353-99D2B25BC0D5}|CapaEntidades\\CapaEntidades.csproj|c:\\users\\smania matias\\desktop\\proyectos\\gestordedinero\\capaentidades\\enums\\enum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E6B2E17C-34D0-4835-B353-99D2B25BC0D5}|CapaEntidades\\CapaEntidades.csproj|solutionrelative:capaentidades\\enums\\enum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E6B2E17C-34D0-4835-B353-99D2B25BC0D5}|CapaEntidades\\CapaEntidades.csproj|c:\\users\\smania matias\\desktop\\proyectos\\gestordedinero\\capaentidades\\entidades\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E6B2E17C-34D0-4835-B353-99D2B25BC0D5}|CapaEntidades\\CapaEntidades.csproj|solutionrelative:capaentidades\\entidades\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9EC8484E-7F00-478F-BEC3-A2466BE1546D}|CapaPresentacion\\CapaPresentacion.csproj|c:\\users\\smania matias\\desktop\\proyectos\\gestordedinero\\capapresentacion\\gastos\\usercontrolgastos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9EC8484E-7F00-478F-BEC3-A2466BE1546D}|CapaPresentacion\\CapaPresentacion.csproj|solutionrelative:capapresentacion\\gastos\\usercontrolgastos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,52 +34,53 @@
       "DocumentGroups": [
         {
           "DockedWidth": 218,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserControlInicio.cs",
-              "DocumentMoniker": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Inicio\\UserControlInicio.cs",
-              "RelativeDocumentMoniker": "CapaPresentacion\\Inicio\\UserControlInicio.cs",
-              "ToolTip": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Inicio\\UserControlInicio.cs",
-              "RelativeToolTip": "CapaPresentacion\\Inicio\\UserControlInicio.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAMEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T12:45:50.162Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "UserControlGastos.cs",
               "DocumentMoniker": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Gastos\\UserControlGastos.cs",
               "RelativeDocumentMoniker": "CapaPresentacion\\Gastos\\UserControlGastos.cs",
               "ToolTip": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Gastos\\UserControlGastos.cs",
               "RelativeToolTip": "CapaPresentacion\\Gastos\\UserControlGastos.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAwwKwAAAAOAAAA",
+              "ViewState": "AQIAAI0AAAAAAAAAAAAjwJYAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T12:31:12.354Z",
-              "IsPinned": true,
+              "WhenOpened": "2024-06-11T23:44:26.109Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UserControlGastos.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Gastos\\UserControlGastos.Designer.cs",
-              "RelativeDocumentMoniker": "CapaPresentacion\\Gastos\\UserControlGastos.Designer.cs",
-              "ToolTip": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Gastos\\UserControlGastos.Designer.cs",
-              "RelativeToolTip": "CapaPresentacion\\Gastos\\UserControlGastos.Designer.cs",
-              "ViewState": "AQIAAEsAAAAAAAAAAAAuwFoAAAA8AAAA",
+              "DocumentIndex": 0,
+              "Title": "UserControlGastos.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Gastos\\UserControlGastos.cs",
+              "RelativeDocumentMoniker": "CapaPresentacion\\Gastos\\UserControlGastos.cs",
+              "ToolTip": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Gastos\\UserControlGastos.cs [Dise\u00F1o]",
+              "RelativeToolTip": "CapaPresentacion\\Gastos\\UserControlGastos.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T19:38:19.264Z",
+              "WhenOpened": "2024-06-11T23:44:23.711Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FormInicio.cs",
+              "DocumentMoniker": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Inicio\\FormInicio.cs",
+              "RelativeDocumentMoniker": "CapaPresentacion\\Inicio\\FormInicio.cs",
+              "ToolTip": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Inicio\\FormInicio.cs",
+              "RelativeToolTip": "CapaPresentacion\\Inicio\\FormInicio.cs",
+              "ViewState": "AQIAAMUAAAAAAAAAAAAWwNgAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T23:38:23.555Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 2,
               "Title": "FormInicio.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Inicio\\FormInicio.cs",
               "RelativeDocumentMoniker": "CapaPresentacion\\Inicio\\FormInicio.cs",
@@ -122,135 +91,28 @@
               "EditorCaption": " [Dise\u00F1o]"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Enum.cs",
-              "DocumentMoniker": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaEntidades\\Enums\\Enum.cs",
-              "RelativeDocumentMoniker": "CapaEntidades\\Enums\\Enum.cs",
-              "ToolTip": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaEntidades\\Enums\\Enum.cs",
-              "RelativeToolTip": "CapaEntidades\\Enums\\Enum.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAQwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T14:08:36.749Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserControlGastos.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Gastos\\UserControlGastos.cs",
-              "RelativeDocumentMoniker": "CapaPresentacion\\Gastos\\UserControlGastos.cs",
-              "ToolTip": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Gastos\\UserControlGastos.cs [Dise\u00F1o]",
-              "RelativeToolTip": "CapaPresentacion\\Gastos\\UserControlGastos.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T13:37:34.282Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CD_Movimiento.cs",
-              "DocumentMoniker": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaDatos\\CD_Movimiento.cs",
-              "RelativeDocumentMoniker": "CapaDatos\\CD_Movimiento.cs",
-              "ToolTip": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaDatos\\CD_Movimiento.cs",
-              "RelativeToolTip": "CapaDatos\\CD_Movimiento.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAswH8AAABEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T13:19:07.664Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Movimiento.cs",
-              "DocumentMoniker": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaEntidades\\Entidades\\Movimiento.cs",
-              "RelativeDocumentMoniker": "CapaEntidades\\Entidades\\Movimiento.cs",
-              "ToolTip": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaEntidades\\Entidades\\Movimiento.cs",
-              "RelativeToolTip": "CapaEntidades\\Entidades\\Movimiento.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAA1wBMAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T13:13:47.131Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaEntidades\\Entidades\\Usuario.cs",
-              "RelativeDocumentMoniker": "CapaEntidades\\Entidades\\Usuario.cs",
-              "ToolTip": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaEntidades\\Entidades\\Usuario.cs",
-              "RelativeToolTip": "CapaEntidades\\Entidades\\Usuario.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAA9wBoAAAAoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T12:48:51.472Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
               "Title": "UserControlInicio.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Inicio\\UserControlInicio.cs",
               "RelativeDocumentMoniker": "CapaPresentacion\\Inicio\\UserControlInicio.cs",
               "ToolTip": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Inicio\\UserControlInicio.cs [Dise\u00F1o]",
               "RelativeToolTip": "CapaPresentacion\\Inicio\\UserControlInicio.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T12:45:46.615Z",
+              "WhenOpened": "2024-06-11T23:38:16.192Z",
               "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "CS_Movimiento.cs",
-              "DocumentMoniker": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaServicios\\CS_Movimiento.cs",
-              "RelativeDocumentMoniker": "CapaServicios\\CS_Movimiento.cs",
-              "ToolTip": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaServicios\\CS_Movimiento.cs",
-              "RelativeToolTip": "CapaServicios\\CS_Movimiento.cs",
-              "ViewState": "AQIAAD4AAAAAAAAAAAAwwFoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T12:42:38.996Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "CS_Gasto.cs",
               "DocumentMoniker": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaServicios\\CS_Gasto.cs",
               "RelativeDocumentMoniker": "CapaServicios\\CS_Gasto.cs",
               "ToolTip": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaServicios\\CS_Gasto.cs",
               "RelativeToolTip": "CapaServicios\\CS_Gasto.cs",
-              "ViewState": "AQIAACUAAAAAAAAAAAAIwD0AAAAMAAAA",
+              "ViewState": "AQIAACEAAAAAAAAAAAAowCsAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T12:42:27.255Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Gasto.cs",
-              "DocumentMoniker": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaEntidades\\Entidades\\Gasto.cs",
-              "RelativeDocumentMoniker": "CapaEntidades\\Entidades\\Gasto.cs",
-              "ToolTip": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaEntidades\\Entidades\\Gasto.cs",
-              "RelativeToolTip": "CapaEntidades\\Entidades\\Gasto.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAA0wCQAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T12:37:46.283Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CD_Gasto.cs",
-              "DocumentMoniker": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaDatos\\CD_Gasto.cs",
-              "RelativeDocumentMoniker": "CapaDatos\\CD_Gasto.cs",
-              "ToolTip": "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaDatos\\CD_Gasto.cs",
-              "RelativeToolTip": "CapaDatos\\CD_Gasto.cs",
-              "ViewState": "AQIAAHYAAAAAAAAAAAAuwIcAAABCAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T12:32:02.365Z",
+              "WhenOpened": "2024-06-11T23:31:20.602Z",
               "EditorCaption": ""
             }
           ]

@@ -13,11 +13,13 @@ namespace CapaServicios
         // Atributos
         private CD_Gasto _cdGasto;
 
+
         /// <summary>
         /// 
         /// </summary>
         public CS_Gasto() 
         { 
+            //
             _cdGasto = new CD_Gasto();
         }
 
@@ -37,25 +39,32 @@ namespace CapaServicios
 
         public string RegistrarGasto(int idUsuario, double importe, string tipo, string fecha, string pago, string descripcion)
         {
-            // Crea una nueva instancia de Gasto con el tipo y el importe especificados
+            if (tipo == "")
+            {
+                tipo = "Otros";
+            }
+
+
             if (Enum.TryParse(tipo, out ETipoGasto tipoGasto) && Enum.TryParse(pago, out ETipoPago tipoPago))
             {
+                if (descripcion == "")
+                {
+                    descripcion = "Sin descripción";  
+                }
+
+
                 Gasto gasto = new Gasto(tipoGasto, importe, tipoPago, descripcion, fecha);
-                // Faltan validaciones
+
                 _cdGasto.AgregarGasto(idUsuario, gasto.Fecha, gasto.Importe, gasto.Tipo, gasto.Pago, gasto.Descripcion);
 
                 return "Gasto registrado";
             }
-                
+
 
             return "No se pudo registrar el gasto";
         }
 
-        private bool ValidarGasto(string tipo) 
-        {
 
-            return true;
-        }
 
         public void EliminarGastoPorId(int idGasto)
         {
