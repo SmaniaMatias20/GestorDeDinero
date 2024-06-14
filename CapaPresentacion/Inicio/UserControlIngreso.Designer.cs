@@ -43,7 +43,7 @@ namespace CapaPresentacion
             // 
             // textBoxIngreso
             // 
-            this.textBoxIngreso.Location = new System.Drawing.Point(339, 119);
+            this.textBoxIngreso.Location = new System.Drawing.Point(271, 153);
             this.textBoxIngreso.Name = "textBoxIngreso";
             this.textBoxIngreso.Size = new System.Drawing.Size(160, 20);
             this.textBoxIngreso.TabIndex = 1;
@@ -57,7 +57,7 @@ namespace CapaPresentacion
             this.buttonAceptarIngreso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAceptarIngreso.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAceptarIngreso.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonAceptarIngreso.Location = new System.Drawing.Point(339, 155);
+            this.buttonAceptarIngreso.Location = new System.Drawing.Point(271, 189);
             this.buttonAceptarIngreso.Name = "buttonAceptarIngreso";
             this.buttonAceptarIngreso.Size = new System.Drawing.Size(75, 23);
             this.buttonAceptarIngreso.TabIndex = 2;
@@ -73,7 +73,7 @@ namespace CapaPresentacion
             this.buttonBorrarIngreso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBorrarIngreso.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBorrarIngreso.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonBorrarIngreso.Location = new System.Drawing.Point(424, 155);
+            this.buttonBorrarIngreso.Location = new System.Drawing.Point(356, 189);
             this.buttonBorrarIngreso.Name = "buttonBorrarIngreso";
             this.buttonBorrarIngreso.Size = new System.Drawing.Size(75, 23);
             this.buttonBorrarIngreso.TabIndex = 3;
@@ -83,18 +83,21 @@ namespace CapaPresentacion
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
+            this.pictureBox1.Image = global::CapaPresentacion.Properties.Resources.ingreso;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 21);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(178, 258);
+            this.pictureBox1.Size = new System.Drawing.Size(178, 237);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.labelIngreso);
-            this.panel1.Location = new System.Drawing.Point(117, 98);
+            this.panel1.Location = new System.Drawing.Point(117, 39);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(197, 74);
             this.panel1.TabIndex = 14;
@@ -103,7 +106,7 @@ namespace CapaPresentacion
             // 
             this.labelIngreso.AutoSize = true;
             this.labelIngreso.Font = new System.Drawing.Font("Cambria", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelIngreso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
+            this.labelIngreso.ForeColor = System.Drawing.Color.White;
             this.labelIngreso.Location = new System.Drawing.Point(59, 21);
             this.labelIngreso.Name = "labelIngreso";
             this.labelIngreso.Size = new System.Drawing.Size(132, 32);
@@ -115,7 +118,7 @@ namespace CapaPresentacion
             this.labelImporte.AutoSize = true;
             this.labelImporte.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelImporte.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.labelImporte.Location = new System.Drawing.Point(336, 98);
+            this.labelImporte.Location = new System.Drawing.Point(268, 132);
             this.labelImporte.Name = "labelImporte";
             this.labelImporte.Size = new System.Drawing.Size(57, 15);
             this.labelImporte.TabIndex = 16;

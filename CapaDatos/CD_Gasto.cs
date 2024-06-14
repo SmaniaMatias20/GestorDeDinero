@@ -79,6 +79,78 @@ namespace CapaDatos
         }
 
         /// <summary>
+        /// Obtiene una lista de gastos desde la base de datos según los parámetros proporcionados.
+        /// </summary>
+        /// <param name="idUsuario">ID del usuario.</param>
+        /// <param name="tipo">Tipo de gasto.</param>
+        /// <param name="pago">Tipo de pago.</param>
+        /// <param name="importeMin">Importe mínimo.</param>
+        /// <param name="importeMax">Importe máximo.</param>
+        /// <param name="fechaMin">Fecha mínima.</param>
+        /// <param name="fechaMax">Fecha máxima.</param>
+        /// <returns>Una lista de objetos Gasto que coinciden con los parámetros proporcionados.</returns>
+        public List<Gasto> ListarGastos(int idUsuario, List<SqlParameter> parametros, string query)
+        {
+            // Nuevo objeto de tipo lista de gastos
+            List<Gasto> lista = new List<Gasto>();
+
+            try
+            {
+                // Abrir conexión
+                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                {
+                    // Abrir la conexión a la base de datos
+                    conexionDB.Open();
+
+                    // Crear un comando SQL para ejecutar la consulta
+                    using (SqlCommand comando = new SqlCommand(query, conexionDB))
+                    {
+                        // Agregar los parámetros al comando SQL
+                        comando.Parameters.AddRange(parametros.ToArray());
+
+                        // Ejecutar la consulta y obtener los resultados en un SqlDataReader
+                        using (SqlDataReader reader = comando.ExecuteReader())
+                        {
+                            // Recorrer los resultados y agregar los movimientos a la lista
+                            while (reader.Read())
+                            {
+                                // Crear una nueva instancia de Gasto
+                                Gasto gasto = new Gasto
+                                {
+                                    Id = Convert.ToInt32(reader["id"]),
+                                    Importe = Convert.ToDouble(reader["importe"]),
+                                    Descripcion = Convert.ToString(reader["descripcion"]),
+                                    Fecha = Convert.ToString(reader["fecha"])
+                                };
+
+                                // Asignar los valores de las columnas del resultado a las propiedades del objeto Gasto
+                                if (Enum.TryParse(reader["tipo"].ToString(), out ETipoGasto tipoGasto))
+                                {
+                                    gasto.Tipo = tipoGasto;
+                                }
+                                if (Enum.TryParse(reader["pago"].ToString(), out ETipoPago tipoPago))
+                                {
+                                    gasto.Pago = tipoPago;
+                                }
+
+                                // Agregar el gasto a la lista
+                                lista.Add(gasto);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones: Mostrar un mensaje de error en la consola
+                throw new Exception("Error al listar los gastos.", ex);
+            }
+
+            // Devolver la lista de gastos
+            return lista;
+        }
+
+        /// <summary>
         /// Agrega un nuevo gasto a la base de datos.
         /// </summary>
         /// <param name="idUsuario">El ID del usuario asociado al gasto.</param>
@@ -105,11 +177,11 @@ namespace CapaDatos
                     using (SqlCommand comando = new SqlCommand(query, conexionDB))
                     {
                         // Agregar los parámetros
-                        comando.Parameters.AddWithValue("@tipo", tipo);
+                        comando.Parameters.AddWithValue("@tipo", tipo.ToString());
                         comando.Parameters.AddWithValue("@importe", importe);
                         comando.Parameters.AddWithValue("@fecha", fecha);
                         comando.Parameters.AddWithValue("@idUsuario", idUsuario);
-                        comando.Parameters.AddWithValue("@pago", pago);
+                        comando.Parameters.AddWithValue("@pago", pago.ToString());
                         comando.Parameters.AddWithValue("@descripcion", descripcion);
 
                         // Ejecutar la consulta
@@ -252,5 +324,7 @@ namespace CapaDatos
                 throw new Exception("Error al actualizar el gasto: " + ex.Message);
             }
         }
+
+        
     }
 }

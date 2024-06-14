@@ -283,6 +283,12 @@ namespace CapaServicios
         /// <returns></returns>
         private double ValidarImporteIngresado(string importeIngresado) 
         {
+            // Verifica que el importe sea mayor a 0(cero)
+            if (importeIngresado == "")
+            {
+                return 0;
+            }
+
             // Verifica que el campo de ingreso no esté vacío
             if (string.IsNullOrWhiteSpace(importeIngresado))
             {

@@ -46,7 +46,7 @@
             this.labelFondos.AutoSize = true;
             this.labelFondos.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFondos.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.labelFondos.Location = new System.Drawing.Point(333, 133);
+            this.labelFondos.Location = new System.Drawing.Point(338, 139);
             this.labelFondos.Name = "labelFondos";
             this.labelFondos.Size = new System.Drawing.Size(53, 15);
             this.labelFondos.TabIndex = 9;
@@ -60,7 +60,7 @@
             this.buttonBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBorrar.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBorrar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonBorrar.Location = new System.Drawing.Point(421, 196);
+            this.buttonBorrar.Location = new System.Drawing.Point(426, 202);
             this.buttonBorrar.Name = "buttonBorrar";
             this.buttonBorrar.Size = new System.Drawing.Size(75, 23);
             this.buttonBorrar.TabIndex = 8;
@@ -76,7 +76,7 @@
             this.buttonAceptarReserva.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAceptarReserva.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAceptarReserva.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonAceptarReserva.Location = new System.Drawing.Point(336, 196);
+            this.buttonAceptarReserva.Location = new System.Drawing.Point(341, 202);
             this.buttonAceptarReserva.Name = "buttonAceptarReserva";
             this.buttonAceptarReserva.Size = new System.Drawing.Size(75, 23);
             this.buttonAceptarReserva.TabIndex = 7;
@@ -86,7 +86,7 @@
             // 
             // textBoxReserva
             // 
-            this.textBoxReserva.Location = new System.Drawing.Point(336, 160);
+            this.textBoxReserva.Location = new System.Drawing.Point(341, 166);
             this.textBoxReserva.Name = "textBoxReserva";
             this.textBoxReserva.Size = new System.Drawing.Size(160, 20);
             this.textBoxReserva.TabIndex = 6;
@@ -96,7 +96,7 @@
             // 
             this.labelReserva.AutoSize = true;
             this.labelReserva.Font = new System.Drawing.Font("Cambria", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelReserva.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
+            this.labelReserva.ForeColor = System.Drawing.Color.White;
             this.labelReserva.Location = new System.Drawing.Point(59, 21);
             this.labelReserva.Name = "labelReserva";
             this.labelReserva.Size = new System.Drawing.Size(138, 32);
@@ -105,7 +105,7 @@
             // 
             // textBoxNombre
             // 
-            this.textBoxNombre.Location = new System.Drawing.Point(336, 98);
+            this.textBoxNombre.Location = new System.Drawing.Point(341, 104);
             this.textBoxNombre.Name = "textBoxNombre";
             this.textBoxNombre.Size = new System.Drawing.Size(160, 20);
             this.textBoxNombre.TabIndex = 10;
@@ -115,7 +115,7 @@
             this.labelNombre.AutoSize = true;
             this.labelNombre.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNombre.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.labelNombre.Location = new System.Drawing.Point(333, 72);
+            this.labelNombre.Location = new System.Drawing.Point(338, 78);
             this.labelNombre.Name = "labelNombre";
             this.labelNombre.Size = new System.Drawing.Size(126, 14);
             this.labelNombre.TabIndex = 11;
@@ -123,19 +123,23 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.labelReserva);
-            this.panel1.Location = new System.Drawing.Point(117, 98);
+            this.panel1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel1.Location = new System.Drawing.Point(117, 39);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(197, 74);
             this.panel1.TabIndex = 12;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
+            this.pictureBox1.Image = global::CapaPresentacion.Properties.Resources.reserva;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 27);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(178, 258);
+            this.pictureBox1.Size = new System.Drawing.Size(178, 231);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 

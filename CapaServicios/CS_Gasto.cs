@@ -3,6 +3,8 @@ using CapaEntidades.Entidades;
 using CapaEntidades.Enums;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Text;
 
 namespace CapaServicios
 {
@@ -50,6 +52,8 @@ namespace CapaServicios
         {
             // Realiza la validación del gasto
             string mensaje = ValidarGasto(idUsuario, importe, tipo, fecha, pago, descripcion, estadoModificacion, idGasto);
+
+
             // Retorna el mensaje resultante de la validación
             return mensaje;
         }
@@ -93,21 +97,30 @@ namespace CapaServicios
             {
                 // Crea un nuevo objeto Gasto con los datos proporcionados
                 Gasto gasto = new Gasto(tipoGasto, double.Parse(importe), tipoPago, descripcion, fecha);
-                // Si no se está modificando un gasto existente
-                if (!estadoModificacion)
+
+                try
                 {
-                    // Agrega el gasto a la capa de acceso a datos
-                    _cdGasto.AgregarGasto(idUsuario, gasto.Fecha, gasto.Importe, gasto.Tipo, gasto.Pago, gasto.Descripcion);
-                    return "Gasto registrado";
+                    // Si no se está modificando un gasto existente
+                    if (!estadoModificacion)
+                    {
+                        // Agrega el gasto a la capa de acceso a datos
+                        _cdGasto.AgregarGasto(idUsuario, gasto.Fecha, gasto.Importe, gasto.Tipo, gasto.Pago, gasto.Descripcion);
+                        return "Gasto registrado";
+                    }
+                    else
+                    {
+                        // Establece el ID del gasto y lo actualiza en la capa de acceso a datos
+                        gasto.Id = idGasto;
+                        // Actualiza la lista de gastos
+                        _cdGasto.ActualizarGasto(gasto);
+                        // Retorna un mensaje
+                        return "Gasto modificado";
+                    }
                 }
-                else
+                catch 
                 {
-                    // Establece el ID del gasto y lo actualiza en la capa de acceso a datos
-                    gasto.Id = idGasto;
-                    // Actualiza la lista de gastos
-                    _cdGasto.ActualizarGasto(gasto);
                     // Retorna un mensaje
-                    return "Gasto modificado";
+                    return "Error al procesar el gasto";
                 }
             }
             // Retorna un mensaje
@@ -133,6 +146,50 @@ namespace CapaServicios
         {
             // Utiliza la instancia de CD_Gasto para eliminar el gasto por su ID
             _cdGasto.EliminarGasto(idGasto);
+        }
+
+        public List<Gasto> BuscarGastoFiltrado(int idUsuario, string importeMin, string importeMax, string tipoGasto, string metodoPago) 
+        {
+            // Agregar validaciones, hay distintos listar gastos depende como filtre el usuario.
+            string query = ConstruirConsultaGasto(idUsuario, importeMin, importeMax, tipoGasto, metodoPago, out List<SqlParameter> parametros);
+            return _cdGasto.ListarGastos(idUsuario, parametros, query);
+        }
+
+        private string ConstruirConsultaGasto(int idUsuario, string importeMin, string importeMax, string tipoGasto, string metodoPago, out List<SqlParameter> parametros)
+        {
+            parametros = new List<SqlParameter>();
+            StringBuilder query = new StringBuilder("SELECT id, tipo, importe, pago, descripcion, fecha FROM gasto WHERE id_usuario = @idUsuario");
+            parametros.Add(new SqlParameter("@idUsuario", idUsuario));
+
+            // Validar y agregar el filtro de importe mínimo
+            if (!string.IsNullOrWhiteSpace(importeMin) && double.TryParse(importeMin, out double importeMinParsed))
+            {
+                query.Append(" AND importe >= @importeMin");
+                parametros.Add(new SqlParameter("@importeMin", importeMinParsed));
+            }
+
+            // Validar y agregar el filtro de importe máximo
+            if (!string.IsNullOrWhiteSpace(importeMax) && double.TryParse(importeMax, out double importeMaxParsed))
+            {
+                query.Append(" AND importe <= @importeMax");
+                parametros.Add(new SqlParameter("@importeMax", importeMaxParsed));
+            }
+
+            // Validar y agregar el filtro de tipo de gasto
+            if (!string.IsNullOrWhiteSpace(tipoGasto))
+            {
+                query.Append(" AND tipo = @tipoGasto");
+                parametros.Add(new SqlParameter("@tipoGasto", tipoGasto));
+            }
+
+            // Validar y agregar el filtro de método de pago
+            if (!string.IsNullOrWhiteSpace(metodoPago))
+            {
+                query.Append(" AND pago = @metodoPago");
+                parametros.Add(new SqlParameter("@metodoPago", metodoPago));
+            }
+
+            return query.ToString();
         }
     }
 }

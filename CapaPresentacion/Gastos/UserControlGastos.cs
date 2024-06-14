@@ -297,5 +297,18 @@ namespace CapaPresentacion
             // Si no hay filas seleccionadas, retorna 0
             return 0;
         }
+
+        private void buttonFiltrar_Click(object sender, EventArgs e)
+        {
+            dataGridViewGastos.DataSource = _csGasto.BuscarGastoFiltrado(
+                Usuario.Id,
+                textBoxFiltroImporteMin.Text,
+                textBoxFiltroImporteMax.Text,
+                comboBoxFiltroGasto.Text,
+                comboBoxFiltroPago.Text
+            );
+        }
+        
+        
     }
 }
