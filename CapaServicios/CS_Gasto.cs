@@ -53,10 +53,10 @@ namespace CapaServicios
             // Realiza la validación del gasto
             string mensaje = ValidarGasto(idUsuario, importe, tipo, fecha, pago, descripcion, estadoModificacion, idGasto);
 
-
             // Retorna el mensaje resultante de la validación
             return mensaje;
         }
+
 
         /// <summary>
         /// Valida los datos de un gasto y realiza la operación de registro o modificación según sea necesario.
@@ -70,37 +70,35 @@ namespace CapaServicios
         /// <param name="estadoModificacion">Indica si se está modificando un gasto existente.</param>
         /// <param name="idGasto">El ID del gasto que se está modificando, si es aplicable.</param>
         /// <returns>Un mensaje que indica el resultado de la operación de registro o modificación.</returns>
-        private string ValidarGasto(int idUsuario, string importe, string tipo, string fecha, string pago, string descripcion, bool estadoModificacion, int idGasto) 
+        private string ValidarGasto(int idUsuario, string importe, string tipo, string fecha, string pago, string descripcion, bool estadoModificacion, int idGasto)
         {
-            // Verifica si el importe está vacío
-            if (importe == "")
-            {
-                return "Ingrese un importe";
-            }
-            // Verifica si el tipo de gasto está vacío
-            if (tipo == "")
-            {
-                return "Ingrese un tipo de gasto";
-            }
-            // Verifica si el método de pago está vacío
-            if (pago == "")
-            {
-                return "Ingrese un metodo de pago";
-            }
+            // Mensajes de error
+            const string ErrorImporte = "Ingrese un importe";
+            const string ErrorTipo = "Ingrese un tipo de gasto";
+            const string ErrorPago = "Ingrese un método de pago";
+            const string ErrorImporteInvalido = "El importe no es válido";
+            const string ErrorProceso = "Error al procesar el gasto";
+            const string ErrorRegistro = "No se pudo registrar el gasto. Tipo o método de pago inválido";
+
+            // Verifica si los campos requeridos están vacíos
+            if (string.IsNullOrWhiteSpace(importe)) return ErrorImporte;
+            if (string.IsNullOrWhiteSpace(tipo)) return ErrorTipo;
+            if (string.IsNullOrWhiteSpace(pago)) return ErrorPago;
+
             // Si la descripción está vacía, la asigna como "Sin descripción"
-            if (descripcion == "")
-            {
-                descripcion = "Sin descripción";
-            }
+            if (string.IsNullOrWhiteSpace(descripcion)) descripcion = "Sin descripción";
+
             // Intenta convertir los strings de tipo y pago en enumeraciones
             if (Enum.TryParse(tipo, out ETipoGasto tipoGasto) && Enum.TryParse(pago, out ETipoPago tipoPago))
             {
+                // Verifica si el importe es un número válido
+                if (!double.TryParse(importe, out double importeParsed)) return ErrorImporteInvalido;
+
                 // Crea un nuevo objeto Gasto con los datos proporcionados
-                Gasto gasto = new Gasto(tipoGasto, double.Parse(importe), tipoPago, descripcion, fecha);
+                Gasto gasto = new Gasto(tipoGasto, importeParsed, tipoPago, descripcion, fecha);
 
                 try
                 {
-                    // Si no se está modificando un gasto existente
                     if (!estadoModificacion)
                     {
                         // Agrega el gasto a la capa de acceso a datos
@@ -111,20 +109,17 @@ namespace CapaServicios
                     {
                         // Establece el ID del gasto y lo actualiza en la capa de acceso a datos
                         gasto.Id = idGasto;
-                        // Actualiza la lista de gastos
                         _cdGasto.ActualizarGasto(gasto);
-                        // Retorna un mensaje
                         return "Gasto modificado";
                     }
                 }
-                catch 
+                catch (Exception ex)
                 {
-                    // Retorna un mensaje
-                    return "Error al procesar el gasto";
+                    return $"{ErrorProceso}: {ex.Message}";
                 }
             }
-            // Retorna un mensaje
-            return "No se pudo registrar el gasto";
+
+            return ErrorRegistro;
         }
 
         /// <summary>

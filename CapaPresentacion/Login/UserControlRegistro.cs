@@ -21,9 +21,6 @@ namespace CapaPresentacion
             csUsuario = new CS_Usuario();
            
         }
-        private void UserControlRegistro_Load(object sender, System.EventArgs e)
-        {
-        }
 
         private void buttonRegistrarse_Click(object sender, System.EventArgs e)
         {
@@ -31,6 +28,11 @@ namespace CapaPresentacion
             MessageBox.Show(mensaje, "Mensaje");  
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonBorrar_Click(object sender, System.EventArgs e)
         {
             textBoxUsuario.Text = "";
@@ -38,6 +40,11 @@ namespace CapaPresentacion
             textBoxClave2.Text = "";
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonOcultar_Click(object sender, System.EventArgs e)
         {
             // Alterna el estado de visibilidad de la contraseña

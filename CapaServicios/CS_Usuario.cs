@@ -13,6 +13,9 @@ namespace CapaServicios
         // Atributos
         private CD_Usuario cdUsuario;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public CS_Usuario()
         {
             // Inicializa una nueva instancia de CD_Usuario para acceder a la capa de datos.
@@ -34,47 +37,56 @@ namespace CapaServicios
             // Recorre la lista de usuarios para verificar las credenciales ingresadas
             foreach (Usuario usuario in listaDeUsuarios)
             {
+                // Compara el nombre de usuario y la clave con todos los usuarios registrados 
                 if (usuario.Nombre == nombreUsuario && usuario.Clave == clave)
                 {
+                    // Retorna el usuario
                     return usuario;
                 }
             }
-
+            // Retorna null
             return null;
         }
 
-        public string RegistrarUsuario(string nombre, string clave, string segundaClave) 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="clave"></param>
+        /// <param name="segundaClave"></param>
+        /// <returns></returns>
+        public string RegistrarUsuario(string nombre, string clave, string segundaClave)
         {
-            Usuario usuario = new Usuario();
-            usuario.Nombre = nombre;
-            usuario.Clave = clave;
-
-            // Si el usuario no se encuentra registrado
-            if (ValidarUsuarioRegistrarse(usuario))
+            // Crear una instancia de Usuario
+            Usuario usuario = new Usuario
             {
-                if (ValidarNombreUsuario(usuario.Nombre) == usuario.Nombre)
-                {
-                    if (ValidarClave(usuario.Clave, segundaClave) == usuario.Clave)
-                    {
-                        cdUsuario.AgregarUsuario(usuario.Nombre, usuario.Clave);
-                        return "Se registró exitosamente...";
-                    }
-                    else
-                    {
-                        return ValidarClave(usuario.Clave, segundaClave);
-                    }
-                }
-                else
-                {
-                    return ValidarNombreUsuario(usuario.Nombre);
-                }
-            }
-            else
+                Nombre = nombre,
+                Clave = clave
+            };
+
+            // Verificar si el usuario ya está registrado
+            if (!ValidarUsuarioRegistrarse(usuario))
             {
                 return "Ya existe el Usuario registrado";
             }
 
+            // Validar el nombre de usuario
+            string validacionNombre = ValidarNombreUsuario(usuario.Nombre);
+            if (validacionNombre != usuario.Nombre)
+            {
+                return validacionNombre;
+            }
 
+            // Validar la clave del usuario
+            string validacionClave = ValidarClave(usuario.Clave, segundaClave);
+            if (validacionClave != usuario.Clave)
+            {
+                return validacionClave;
+            }
+
+            // Agregar el usuario a la capa de datos
+            cdUsuario.AgregarUsuario(usuario.Nombre, usuario.Clave);
+            return "Se registró exitosamente...";
         }
 
         /// <summary>
@@ -119,97 +131,69 @@ namespace CapaServicios
         /// </returns>
         private string ValidarNombreUsuario(string nombreUsuario)
         {
-            if (nombreUsuario == "")
+            // Constantes para mensajes de error
+            const string ErrorNombreVacio = "Ingrese un nombre de usuario";
+            const string ErrorLongitudNombre = "El nombre de usuario debe tener un mínimo de 10 caracteres y un máximo de 20";
+            const string ErrorCaracteresNombre = "El nombre de usuario no debe contener espacios o caracteres especiales";
+
+            // Verifica si el nombre de usuario está vacío o contiene solo espacios en blanco
+            if (string.IsNullOrWhiteSpace(nombreUsuario))
             {
-                return "Ingrese un nombre de Usuario";
-            }
-            else if (nombreUsuario.Length > 20 || nombreUsuario.Length < 10)
-            {
-                return "El nombre de Usuario debe tener un minimo de 10 caracteres y un maximo de 20";
-            }
-            else if (nombreUsuario.Contains(" ") || !nombreUsuario.All(char.IsLetterOrDigit)) 
-            {
-                return "El nombre de Usuario no debe contener espacios o caracteres especiales";
+                return ErrorNombreVacio;
             }
 
+            // Verifica la longitud del nombre de usuario
+            if (nombreUsuario.Length > 20 || nombreUsuario.Length < 10)
+            {
+                return ErrorLongitudNombre;
+            }
+
+            // Verifica si el nombre de usuario contiene espacios o caracteres especiales
+            if (nombreUsuario.Contains(" ") || !nombreUsuario.All(char.IsLetterOrDigit))
+            {
+                return ErrorCaracteresNombre;
+            }
+
+            // Si todas las validaciones pasan, retorna el nombre de usuario
             return nombreUsuario;
         }
 
         private string ValidarClave(string clave, string segundaClave)
         {
-            if (clave == "" || segundaClave == "")
+            // Constantes para mensajes de error
+            const string ErrorClavesVacias = "Debe ingresar las claves";
+            const string ErrorClavesNoCoinciden = "Las claves no coinciden";
+            const string ErrorLongitudClave = "La clave debe tener un mínimo de 5 caracteres y un máximo de 20";
+            const string ErrorClaveConEspacios = "La clave no puede contener espacios";
+
+            // Verifica si las claves están vacías o contienen solo espacios en blanco
+            if (string.IsNullOrWhiteSpace(clave) || string.IsNullOrWhiteSpace(segundaClave))
             {
-                return "Debe ingresar las claves";
-            }
-            else if (clave != segundaClave)
-            {
-                return "Las claves no coinciden";
-            }
-            else if (clave.Length > 20 || clave.Length < 5)
-            {
-                return "La clave debe tener un minimo de 5 caracteres y un maximo de 20";
-            }
-            else if (clave.Contains(" ")) 
-            {
-                return "La clave no puede contener espacios";
+                return ErrorClavesVacias;
             }
 
+            // Verifica si las claves coinciden
+            if (clave != segundaClave)
+            {
+                return ErrorClavesNoCoinciden;
+            }
+
+            // Verifica la longitud de la clave
+            if (clave.Length > 20 || clave.Length < 5)
+            {
+                return ErrorLongitudClave;
+            }
+
+            // Verifica si la clave contiene espacios
+            if (clave.Contains(" "))
+            {
+                return ErrorClaveConEspacios;
+            }
+
+            // Si todas las validaciones pasan, retorna la clave
             return clave;
         }
 
-        /// <summary>
-        /// Registra el acceso de un usuario en un archivo de log.
-        /// </summary>
-        /// <param name="nombreUsuario">El nombre del usuario cuyo acceso se va a registrar.</param>
-        public void RegistrarAccesoUsuario(string nombreUsuario)
-        {
-            // Obtiene la ruta relativa del archivo de log
-            string rutaRelativa = ObtenerRutaRelativa(@"C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\Usuarios.log");
-
-            // Obtiene la fecha y hora actual en formato "yyyy-MM-dd HH:mm:ss"
-            string fechaHoraActual = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
-            // Crea la cadena con la información del usuario y la fecha y hora de acceso
-            string informacionUsuario = $"Usuario: {nombreUsuario}, Fecha y Hora de Acceso: {fechaHoraActual}";
-
-            try
-            {
-                // Abre el archivo de log para escritura (en modo adjuntar) y escribe la información del usuario
-                using (StreamWriter sw = new StreamWriter(rutaRelativa, true))
-                {
-                    sw.WriteLine(informacionUsuario);
-                }
-            }
-            catch (Exception ex)
-            {
-                // Muestra un mensaje de error si ocurre una excepción al intentar escribir en el archivo
-                throw new Exception($"Error al registrar el acceso del usuario: {ex.Message}");
-            }
-        }
-
-        /// <summary>
-        /// Obtiene la ruta relativa de un archivo dado su ruta absoluta.
-        /// </summary>
-        /// <param name="rutaAbsoluta">La ruta absoluta del archivo.</param>
-        /// <returns>La ruta relativa desde el directorio base del proyecto o ejecutable hasta el archivo.</returns>
-        private string ObtenerRutaRelativa(string rutaAbsoluta)
-        {
-            // Ruta del directorio base del proyecto o ejecutable
-            string directorioBase = AppDomain.CurrentDomain.BaseDirectory;
-
-            // Convertir las rutas a objetos Uri
-            Uri uriArchivo = new Uri(rutaAbsoluta);
-            Uri uriDirectorioBase = new Uri(directorioBase);
-
-            // Calcular la ruta relativa
-            Uri uriRelativa = uriDirectorioBase.MakeRelativeUri(uriArchivo);
-            string rutaRelativa = Uri.UnescapeDataString(uriRelativa.ToString());
-
-            // Convertir las barras diagonales a contrabarras si es necesario
-            rutaRelativa = rutaRelativa.Replace('/', '\\');
-
-            return rutaRelativa;
-        }
 
         /// <summary>
         /// Obtiene los fondos totales del usuario.

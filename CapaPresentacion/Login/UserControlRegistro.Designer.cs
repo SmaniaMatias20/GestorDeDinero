@@ -167,7 +167,6 @@
             this.Controls.Add(this.textBoxUsuario);
             this.Name = "UserControlRegistro";
             this.Size = new System.Drawing.Size(530, 258);
-            this.Load += new System.EventHandler(this.UserControlRegistro_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

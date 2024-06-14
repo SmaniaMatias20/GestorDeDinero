@@ -44,6 +44,8 @@
             this.comboBoxGasto = new System.Windows.Forms.ComboBox();
             this.comboBoxPago = new System.Windows.Forms.ComboBox();
             this.groupBoxFiltro = new System.Windows.Forms.GroupBox();
+            this.labelFiltroImporteMin = new System.Windows.Forms.Label();
+            this.textBoxFiltroImporteMin = new System.Windows.Forms.TextBox();
             this.labelFiltroImporteMax = new System.Windows.Forms.Label();
             this.labelFiltroGasto = new System.Windows.Forms.Label();
             this.labelFiltroPago = new System.Windows.Forms.Label();
@@ -51,8 +53,6 @@
             this.textBoxFiltroImporteMax = new System.Windows.Forms.TextBox();
             this.comboBoxFiltroPago = new System.Windows.Forms.ComboBox();
             this.buttonFiltrar = new System.Windows.Forms.Button();
-            this.labelFiltroImporteMin = new System.Windows.Forms.Label();
-            this.textBoxFiltroImporteMin = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGastos)).BeginInit();
             this.groupBoxGastos.SuspendLayout();
             this.groupBoxFiltro.SuspendLayout();
@@ -64,7 +64,6 @@
             this.dataGridViewGastos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewGastos.Location = new System.Drawing.Point(13, 299);
             this.dataGridViewGastos.Name = "dataGridViewGastos";
-            this.dataGridViewGastos.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dataGridViewGastos.Size = new System.Drawing.Size(547, 179);
             this.dataGridViewGastos.TabIndex = 0;
             // 
@@ -204,6 +203,7 @@
             // 
             // comboBoxGasto
             // 
+            this.comboBoxGasto.BackColor = System.Drawing.SystemColors.Window;
             this.comboBoxGasto.Cursor = System.Windows.Forms.Cursors.Hand;
             this.comboBoxGasto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxGasto.FormattingEnabled = true;
@@ -225,7 +225,8 @@
             "Mobiliario",
             "Regalos",
             "Mascotas",
-            "Otros"});
+            "Otros",
+            ""});
             this.comboBoxGasto.Location = new System.Drawing.Point(15, 98);
             this.comboBoxGasto.Name = "comboBoxGasto";
             this.comboBoxGasto.Size = new System.Drawing.Size(177, 23);
@@ -241,7 +242,8 @@
             "Credito",
             "Debito",
             "Transferencia",
-            "MercadoPago"});
+            "MercadoPago",
+            ""});
             this.comboBoxPago.Location = new System.Drawing.Point(15, 147);
             this.comboBoxPago.Name = "comboBoxPago";
             this.comboBoxPago.Size = new System.Drawing.Size(177, 23);
@@ -266,6 +268,22 @@
             this.groupBoxFiltro.TabIndex = 3;
             this.groupBoxFiltro.TabStop = false;
             this.groupBoxFiltro.Text = "Buscar";
+            // 
+            // labelFiltroImporteMin
+            // 
+            this.labelFiltroImporteMin.AutoSize = true;
+            this.labelFiltroImporteMin.Location = new System.Drawing.Point(39, 139);
+            this.labelFiltroImporteMin.Name = "labelFiltroImporteMin";
+            this.labelFiltroImporteMin.Size = new System.Drawing.Size(96, 15);
+            this.labelFiltroImporteMin.TabIndex = 33;
+            this.labelFiltroImporteMin.Text = "Importe desde";
+            // 
+            // textBoxFiltroImporteMin
+            // 
+            this.textBoxFiltroImporteMin.Location = new System.Drawing.Point(42, 157);
+            this.textBoxFiltroImporteMin.Name = "textBoxFiltroImporteMin";
+            this.textBoxFiltroImporteMin.Size = new System.Drawing.Size(134, 23);
+            this.textBoxFiltroImporteMin.TabIndex = 32;
             // 
             // labelFiltroImporteMax
             // 
@@ -362,22 +380,6 @@
             this.buttonFiltrar.Text = "Buscar";
             this.buttonFiltrar.UseVisualStyleBackColor = false;
             this.buttonFiltrar.Click += new System.EventHandler(this.buttonFiltrar_Click);
-            // 
-            // labelFiltroImporteMin
-            // 
-            this.labelFiltroImporteMin.AutoSize = true;
-            this.labelFiltroImporteMin.Location = new System.Drawing.Point(39, 139);
-            this.labelFiltroImporteMin.Name = "labelFiltroImporteMin";
-            this.labelFiltroImporteMin.Size = new System.Drawing.Size(96, 15);
-            this.labelFiltroImporteMin.TabIndex = 33;
-            this.labelFiltroImporteMin.Text = "Importe desde";
-            // 
-            // textBoxFiltroImporteMin
-            // 
-            this.textBoxFiltroImporteMin.Location = new System.Drawing.Point(42, 157);
-            this.textBoxFiltroImporteMin.Name = "textBoxFiltroImporteMin";
-            this.textBoxFiltroImporteMin.Size = new System.Drawing.Size(134, 23);
-            this.textBoxFiltroImporteMin.TabIndex = 32;
             // 
             // UserControlGastos
             // 

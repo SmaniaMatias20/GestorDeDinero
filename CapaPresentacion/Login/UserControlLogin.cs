@@ -8,7 +8,6 @@ namespace CapaPresentacion
     public partial class UserControlLogin : UserControl
     {
         // Atributos
-        //private Usuario _usuario = new Usuario();
         private CS_Usuario _csUsuario;
         private bool _claveVisible = false;
 
@@ -47,9 +46,6 @@ namespace CapaPresentacion
 
                 // Muestra el formulario principal
                 formInicio.Show();
-
-                // Registra el acceso del usuario actual
-                _csUsuario.RegistrarAccesoUsuario(textBoxUsuario.Text);
 
                 // Oculta el formulario de inicio de sesión actual
                 this.Hide();

@@ -7,12 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaPresentacion", "CapaPre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaEntidades", "CapaEntidades\CapaEntidades.csproj", "{E6B2E17C-34D0-4835-B353-99D2B25BC0D5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Archivos", "Archivos", "{B20C92F1-1FDA-4C48-BF99-40CB3E3CC939}"
-	ProjectSection(SolutionItems) = preProject
-		ConexionDB.json = ConexionDB.json
-		Usuarios.log = Usuarios.log
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaDatos", "CapaDatos\CapaDatos.csproj", "{93FFC29A-563E-4EAE-A111-88AB007B457D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaServicios", "CapaServicios\CapaServicios.csproj", "{05D032FD-C12D-459C-97CA-74ED970FDCEC}"

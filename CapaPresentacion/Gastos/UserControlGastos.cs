@@ -3,6 +3,7 @@ using CapaEntidades.Entidades;
 using CapaServicios;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -141,27 +142,25 @@ namespace CapaPresentacion
         /// <param name="e">Los datos del evento.</param>
         private void buttonAceptar_Click(object sender, EventArgs e)
         {
-            // Muestra un cuadro de diálogo para confirmar la operación
-            DialogResult result = MessageBox.Show("¿Quiere confirmar la operación?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            // Si el usuario hace clic en "Sí"
-            if (result == DialogResult.Yes)
+            const string GastoRegistrado = "Gasto registrado";
+            const string GastoModificado = "Gasto modificado";
+
+            // Registra el gasto
+            string mensaje = _csGasto.RegistrarGasto(Usuario.Id, textBoxImporte.Text, comboBoxGasto.Text, dateTimePickerFecha.Text, comboBoxPago.Text, textBoxDescripcion.Text, estadoModificacion, idGasto);
+
+            // Notificar que los fondos han sido actualizados
+            MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            if (mensaje == GastoRegistrado || mensaje == GastoModificado)
             {
-                // Registra el gasto
-                string mensaje = _csGasto.RegistrarGasto(Usuario.Id, textBoxImporte.Text, comboBoxGasto.Text, dateTimePickerFecha.Text, comboBoxPago.Text, textBoxDescripcion.Text, estadoModificacion, idGasto);
-
-                // Notificar que los fondos han sido actualizados
-                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                if (mensaje == "Gasto registrado" || mensaje == "Gasto modificado")
-                {
-                    //Vaciar los campos
-                    VaciarCampos();
-                    // Muestra y actualiza los gastos
-                    ActualizarGastos();
-                    // Cambia el estado de modificacion
-                    estadoModificacion = false;
-                }
+                //Vaciar los campos
+                VaciarCampos();
+                // Muestra y actualiza los gastos
+                ActualizarGastos();
+                // Cambia el estado de modificacion
+                estadoModificacion = false;
             }
+
         }
 
         /// <summary>
@@ -172,9 +171,9 @@ namespace CapaPresentacion
             // Limpiar el campo de texto de la descripción
             textBoxDescripcion.Text = "";
             // Limpiar la selección del comboBox de gasto
-            comboBoxGasto.Text = string.Empty;
+            comboBoxGasto.Text = "";
             // Limpiar la selección del comboBox de pago
-            comboBoxPago.Text = string.Empty;
+            comboBoxPago.Text = "";
             // Limpiar el campo de texto del importe
             textBoxImporte.Text = "";
             // Limpiar nuevamente el campo de texto de la descripción (esto es redundante)
@@ -205,6 +204,9 @@ namespace CapaPresentacion
         /// </summary>
         private string EliminarGasto()
         {
+            const string RegistroEliminado = "Registro eliminado exitosamente...";
+            const string ErrorAlEliminar = "No ha seleccionado ningun registro...";
+
             // Obtiene los elementos seleccionados en el dataGrid
             List<(int Id, double Importe)> gastosAEliminar = ObtenerSeleccionadosDataGrid(dataGridViewGastos);
             // Verifica si hay elementos seleccionados
@@ -219,12 +221,12 @@ namespace CapaPresentacion
                 // Actualiza el dataGrid
                 ActualizarGastos();
                 // Retorna un mensaje
-                return "Registro eliminado exitosamente...";
+                return RegistroEliminado;
             }
             else
             {
                 // Retorna un mensaje
-                return "No ha seleccionado ningun registro...";
+                return ErrorAlEliminar;
             }
         }
 
