@@ -111,7 +111,7 @@ namespace CapaPresentacion
             double fondosTotales = _csUsuario.ObtenerFondosTotales(Usuario);
 
             // Actualiza el texto del control labelCaja para mostrar los fondos totales formateados como moneda.
-            labelCaja.Text = _csUsuario.FormatearMoneda(fondosTotales); ;
+            labelCaja.Text = CS_Config.FormatearMoneda(fondosTotales);
         }
 
         /// <summary>
@@ -275,52 +275,13 @@ namespace CapaPresentacion
             if (radioButtonMovimientos.Checked)
             {
                 // Si está seleccionado, ordena los datos de movimientos
-                OrdenarDataGrid(e, Usuario.Movimientos);
+                CS_Config.OrdenarDataGrid(e, dataGridViewMovimientos, Usuario.Movimientos);
             }
             else
             {
                 // Si no está seleccionado, ordena los datos de reservas
-                OrdenarDataGrid(e, Usuario.Reservas);
+                CS_Config.OrdenarDataGrid(e, dataGridViewMovimientos, Usuario.Reservas);
             }
-        }
-
-        /// <summary>
-        /// Ordena los datos en el DataGridView según la columna clicada.
-        /// </summary>
-        /// <typeparam name="T">El tipo de los datos en la lista.</typeparam>
-        /// <param name="e">Los argumentos del evento del clic del encabezado de la columna.</param>
-        /// <param name="datos">La lista de datos a ordenar.</param>
-        private void OrdenarDataGrid<T>(DataGridViewCellMouseEventArgs e, List<T> datos)
-        {
-            // Obtiene la columna que se ha seleccionado
-            DataGridViewColumn columnaSeleccionada = dataGridViewMovimientos.Columns[e.ColumnIndex];
-
-            // Obtiene el nombre de la propiedad que corresponde a la columna seleccionada
-            string nombrePropiedad = columnaSeleccionada.DataPropertyName;
-
-            // Ordena los datos manualmente según la columna seleccionada
-            if (columnaSeleccionada.SortMode != DataGridViewColumnSortMode.NotSortable)
-            {
-                // Obtiene el estado actual de ordenación del DataGridView
-                SortOrder sortOrder = dataGridViewMovimientos.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection;
-
-                // Ordena los datos manualmente según la columna seleccionada
-                if (sortOrder == SortOrder.Ascending)
-                {
-                    // Ordena los datos de forma descendente
-                    dataGridViewMovimientos.DataSource = datos.OrderByDescending(x => x.GetType().GetProperty(nombrePropiedad).GetValue(x, null)).ToList();
-                    // Actualiza el estado de ordenación del DataGridView a descendente
-                    dataGridViewMovimientos.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Descending;
-                }
-                else
-                {
-                    // Ordena los datos de forma ascendente
-                    dataGridViewMovimientos.DataSource = datos.OrderBy(x => x.GetType().GetProperty(nombrePropiedad).GetValue(x, null)).ToList();
-                    // Actualiza el estado de ordenación del DataGridView a ascendente
-                    dataGridViewMovimientos.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Ascending;
-                }
-            }
-
         }
 
         /// <summary>

@@ -301,22 +301,5 @@ namespace CapaServicios
             return importeValidado;
 
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="cantidad"></param>
-        /// <returns></returns>
-        public string FormatearMoneda(double cantidad)
-        {
-            // Obtiene el formato de número específico para la cultura de Argentina (es-AR)
-            var nfi = new System.Globalization.CultureInfo("es-AR", false).NumberFormat;
-
-            // Configura para que no se muestren decimales en el formato de moneda
-            nfi.CurrencyDecimalDigits = 2;
-
-            // Convierte la cantidad a una cadena con formato de moneda utilizando la configuración de formato
-            return cantidad.ToString("C", nfi);
-        }
     }
 }

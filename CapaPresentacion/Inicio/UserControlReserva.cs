@@ -2,7 +2,6 @@
 using CapaEntidades.Enums;
 using CapaServicios;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace CapaPresentacion
@@ -39,7 +38,7 @@ namespace CapaPresentacion
             // Limpia el textBoxIngreso 
             textBoxReserva.Text = "";
             // Asigna el metodo para solamente poder ingresar numeros
-            textBoxReserva.KeyPress += textBox_KeyPress;
+            textBoxReserva.KeyPress += CS_Config.textBox_KeyPress;
             // Actualizar el label con los fondos formateados
             MostrarFondosActuales();
         }
@@ -100,33 +99,13 @@ namespace CapaPresentacion
             }
         }
 
-        /// <summary>
-        /// Maneja el evento KeyPress del textBoxIngreso para permitir solo números, un punto decimal y la tecla de retroceso.
-        /// </summary>
-        /// <param name="sender">El control que generó el evento.</param>
-        /// <param name="e">Los datos del evento KeyPress.</param>
-        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Verifica si el carácter no es una tecla de control, un dígito ni un punto decimal
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
-            {
-                e.Handled = true;
-            }
-
-            // Si ya hay un punto decimal en el texto y se presiona otro, se ignora el evento
-            if (e.KeyChar == ',' && (sender as TextBox).Text.Contains(','))
-            {
-                e.Handled = true;
-            }
-        }
-
         private void MostrarFondosActuales() 
         {
             // Obtiene los fondos actuales del usuario después del retiro
             double fondosActuales = _csUsuario.ObtenerFondosTotales(Usuario);
 
             // Formatea los fondos actuales a una representación de moneda
-            string fondosFormateados = _csUsuario.FormatearMoneda(fondosActuales);
+            string fondosFormateados =  CS_Config.FormatearMoneda(fondosActuales);
 
             // Actualizar el label con los fondos formateados
             labelFondos.Text = $"Fondos: {fondosFormateados}";

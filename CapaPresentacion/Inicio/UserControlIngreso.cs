@@ -2,7 +2,6 @@
 using CapaEntidades.Enums;
 using CapaServicios;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace CapaPresentacion
@@ -43,7 +42,7 @@ namespace CapaPresentacion
             // Limpia el textBoxIngreso 
             textBoxIngreso.Text = "";
             // Asigna el metodo para solamente poder ingresar numeros
-            textBoxIngreso.KeyPress += textBox_KeyPress;
+            textBoxIngreso.KeyPress += CS_Config.textBox_KeyPress;
 
         }
 
@@ -53,26 +52,6 @@ namespace CapaPresentacion
         private void textBoxIngreso_TextChanged(object sender, EventArgs e)
         {
             // Aquí puedes agregar código si deseas realizar alguna acción cuando cambia el texto del textBoxIngreso
-        }
-
-        /// <summary>
-        /// Maneja el evento KeyPress del textBoxIngreso para permitir solo números, un punto decimal y la tecla de retroceso.
-        /// </summary>
-        /// <param name="sender">El control que generó el evento.</param>
-        /// <param name="e">Los datos del evento KeyPress.</param>
-        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Verifica si el carácter no es una tecla de control, un dígito ni un punto decimal
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
-            {
-                e.Handled = true;
-            }
-
-            // Si ya hay un punto decimal en el texto y se presiona otro, se ignora el evento
-            if (e.KeyChar == ',' && (sender as TextBox).Text.Contains(','))
-            {
-                e.Handled = true;
-            }
         }
 
         /// <summary>

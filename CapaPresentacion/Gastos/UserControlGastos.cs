@@ -47,9 +47,9 @@ namespace CapaPresentacion
             // Registra el controlador de eventos para el evento ColumnHeaderMouseClick
             dataGridViewGastos.ColumnHeaderMouseClick += DataGridViewGastos_ColumnHeaderMouseClick;
             // Asigna el metodo para solamente poder ingresar numeros
-            textBoxImporte.KeyPress += textBox_KeyPress;
-            textBoxFiltroImporteMax.KeyPress += textBox_KeyPress;   
-            textBoxFiltroImporteMin.KeyPress += textBox_KeyPress;
+            textBoxImporte.KeyPress += CS_Config.textBox_KeyPress;
+            textBoxFiltroImporteMax.KeyPress += CS_Config.textBox_KeyPress;   
+            textBoxFiltroImporteMin.KeyPress += CS_Config.textBox_KeyPress;
         }
 
         /// <summary>
@@ -71,66 +71,7 @@ namespace CapaPresentacion
         private void DataGridViewGastos_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             // Llama al método OrdenarDataGrid con los parámetros del evento y la lista de gastos del usuario
-            OrdenarDataGrid(e, Usuario.Gastos);
-        }
-
-        /// <summary>
-        /// Ordena los datos del DataGridView según la columna seleccionada.
-        /// </summary>
-        /// <typeparam name="T">El tipo de los datos en la lista.</typeparam>
-        /// <param name="e">Los datos del evento del clic en el encabezado de columna del DataGridView.</param>
-        /// <param name="datos">La lista de datos que se va a ordenar.</param>
-        private void OrdenarDataGrid<T>(DataGridViewCellMouseEventArgs e, List<T> datos)
-        {
-            // Obtiene la columna que se ha seleccionado
-            DataGridViewColumn columnaSeleccionada = dataGridViewGastos.Columns[e.ColumnIndex];
-
-            // Obtiene el nombre de la propiedad que corresponde a la columna seleccionada
-            string nombrePropiedad = columnaSeleccionada.DataPropertyName;
-
-            // Ordena los datos manualmente según la columna seleccionada
-            if (columnaSeleccionada.SortMode != DataGridViewColumnSortMode.NotSortable)
-            {
-                // Obtiene el estado actual de ordenación del DataGridView
-                SortOrder sortOrder = dataGridViewGastos.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection;
-
-                // Ordena los datos manualmente según la columna seleccionada
-                if (sortOrder == SortOrder.Ascending)
-                {
-                    // Ordena los datos de forma descendente
-                    dataGridViewGastos.DataSource = datos.OrderByDescending(x => x.GetType().GetProperty(nombrePropiedad).GetValue(x, null)).ToList();
-                    // Actualiza el estado de ordenación del DataGridView a descendente
-                    dataGridViewGastos.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Descending;
-                }
-                else
-                {
-                    // Ordena los datos de forma ascendente
-                    dataGridViewGastos.DataSource = datos.OrderBy(x => x.GetType().GetProperty(nombrePropiedad).GetValue(x, null)).ToList();
-                    // Actualiza el estado de ordenación del DataGridView a ascendente
-                    dataGridViewGastos.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = SortOrder.Ascending;
-                }
-            }
-
-        }
-
-        /// <summary>
-        /// Maneja el evento KeyPress del textBoxIngreso para permitir solo números, un punto decimal y la tecla de retroceso.
-        /// </summary>
-        /// <param name="sender">El control que generó el evento.</param>
-        /// <param name="e">Los datos del evento KeyPress.</param>
-        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Verifica si el carácter no es una tecla de control, un dígito ni un punto decimal
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
-            {
-                e.Handled = true;
-            }
-
-            // Si ya hay un punto decimal en el texto y se presiona otro, se ignora el evento
-            if (e.KeyChar == ',' && (sender as System.Windows.Forms.TextBox).Text.Contains(','))
-            {
-                e.Handled = true;
-            }
+            CS_Config.OrdenarDataGrid(e, dataGridViewGastos, Usuario.Gastos);
         }
 
         /// <summary>
