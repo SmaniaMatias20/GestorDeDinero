@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace CapaServicios
 {
-    public abstract class CS_Config
+    public static class CS_Config
     {
         /// <summary>
         /// 

@@ -5,17 +5,9 @@ using System.Linq;
 
 namespace CapaServicios
 {
-    public class CS_Reserva
+    public static class CS_Reserva
     {
-        // Atributos
-        private CD_Reserva _cdReserva;
-
-        public CS_Reserva()
-        {
-            _cdReserva = new CD_Reserva();
-        }
-
-        public string RegistrarReserva(string nombre, double importe, int idUsuario = 0, int idReserva = 0, bool modificar = false)
+        public static string RegistrarReserva(string nombre, double importe, int idUsuario)
         {   
             if (ValidarNombreDeReserva(nombre) == nombre)
             {
@@ -23,15 +15,10 @@ namespace CapaServicios
                 if (ValidarImporteDeReserva(importe) == "Fondos actualizados correctamente")
                 {
                     Reserva reserva = new Reserva(nombre, importe);
-                    if (!modificar)
-                    {
-                        _cdReserva.AgregarReserva(idUsuario, reserva.Fecha, reserva.Importe, reserva.Nombre);
-                    }
-                    else 
-                    { 
-                        _cdReserva.ModificarReserva(idReserva, reserva.Nombre, reserva.Importe, reserva.Fecha);
-                    }
 
+                    CD_Reserva.AgregarReserva(idUsuario, reserva.Fecha, reserva.Importe, reserva.Nombre);
+
+                   
 
                     return ValidarImporteDeReserva(importe);
                 }
@@ -46,20 +33,44 @@ namespace CapaServicios
             }
         }
 
-        public List<Reserva> ObtenerReservasPorId(int idUsuario)
+        public static string RegistrarReserva(string nombre, double importe, Reserva reserva) 
         {
-            List<Reserva> listaDeReservas = _cdReserva.ListarReservas(idUsuario);
+
+            if (ValidarNombreDeReserva(nombre) == nombre)
+            {
+
+                if (ValidarImporteDeReserva(importe) == "Fondos actualizados correctamente")
+                {
+                    CD_Reserva.ModificarReserva(reserva.Id, nombre, importe, reserva.Fecha);
+
+                    return ValidarImporteDeReserva(importe);
+                }
+                else
+                {
+                    return ValidarImporteDeReserva(importe);
+                }
+            }
+            else
+            {
+                return ValidarNombreDeReserva(nombre);
+            }
+
+        }
+
+        public static List<Reserva> ObtenerReservasPorId(int idUsuario)
+        {
+            List<Reserva> listaDeReservas = CD_Reserva.ListarReservas(idUsuario);
 
             return listaDeReservas;
         }
 
-        public void EliminarReservaPorId(int idReserva)
+        public static void EliminarReservaPorId(int idReserva)
         {
-            _cdReserva.EliminarReserva(idReserva);
+            CD_Reserva.EliminarReserva(idReserva);
         }
 
 
-        private string ValidarImporteDeReserva(double importe) 
+        private static string ValidarImporteDeReserva(double importe) 
         {
             if (importe > 0)
             {
@@ -80,7 +91,7 @@ namespace CapaServicios
 
         }
 
-        private string ValidarNombreDeReserva(string nombreReserva) 
+        private static string ValidarNombreDeReserva(string nombreReserva) 
         {
             if (nombreReserva == "" || nombreReserva == null)
             {

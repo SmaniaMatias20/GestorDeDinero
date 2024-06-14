@@ -4,11 +4,15 @@ namespace CapaEntidades
 {
     public class Reserva
     {
+        // atributos
+        private bool _modificacion = false; 
+
         // Propiedades
         public int Id { get; set; }
         public string Nombre { get; set; }
         public double Importe { get; set; } 
         public string Fecha { get; set; }
+        public bool Modificacion { get { return _modificacion; } set { _modificacion = value; } }
 
         /// <summary>
         /// Constructor de la clase Reserva.
@@ -35,6 +39,12 @@ namespace CapaEntidades
             Nombre = nombre;
             // Asigna el importe especificado a la propiedad Importe de la reserva.
             Importe = importe;
+        }
+
+        public Reserva(string nombre, double importe, string fecha, int id) : this(nombre, importe)
+        {
+            Fecha = fecha; 
+            Id = id;    
         }
 
         /// <summary>

@@ -5,16 +5,14 @@ using System;
 
 namespace CapaDatos
 {
-    public class CD_Reserva
+    public static class CD_Reserva
     {
-        // Atributos
-        private Conexion conexion = new Conexion();
 
         /// <summary>
         /// Obtiene una lista de usuarios desde la base de datos.
         /// </summary>
         /// <returns>Una lista de objetos Usuario que contiene el nombre y la clave de cada usuario.</returns>
-        public List<Reserva> ListarReservas(int idUsuario)
+        public static List<Reserva> ListarReservas(int idUsuario)
         {
             // Nuevo objeto de tipo lista de movimientos
             List<Reserva> lista = new List<Reserva>();
@@ -22,7 +20,7 @@ namespace CapaDatos
             try
             {
                 // Abrir conexión
-                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
                     // Abrir la conexión a la base de datos
                     conexionDB.Open();
@@ -76,12 +74,12 @@ namespace CapaDatos
         /// <param name="importe">El importe de la reserva.</param>
         /// <param name="nombre">El nombre de la reserva.</param>
         /// <exception cref="Exception">Lanza una excepción si ocurre un error durante la inserción de la reserva.</exception>
-        public void AgregarReserva(int idUsuario, string fecha, double importe, string nombre)
+        public static void AgregarReserva(int idUsuario, string fecha, double importe, string nombre)
         {
             try
             {
                 // Obtener la conexión
-                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
                     // Abrir la conexión a la base de datos
                     conexionDB.Open();
@@ -115,12 +113,12 @@ namespace CapaDatos
         /// </summary>
         /// <param name="idReserva">El ID de la reserva a eliminar.</param>
         /// <exception cref="Exception">Lanza una excepción si ocurre un error durante la eliminación de la reserva.</exception>
-        public void EliminarReserva(int idReserva)
+        public static void EliminarReserva(int idReserva)
         {
             try
             {
                 // Establece una conexión con la base de datos
-                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
                     // Abre la conexión
                     conexionDB.Open();
@@ -151,12 +149,12 @@ namespace CapaDatos
         /// <param name="nuevoImporte">El nuevo importe de la reserva.</param>
         /// <param name="nuevaFecha">La nueva fecha de la reserva.</param>
         /// <exception cref="Exception">Lanza una excepción si ocurre un error durante la modificación de la reserva.</exception>
-        public void ModificarReserva(int idReserva, string nuevoNombre, double nuevoImporte, string nuevaFecha) 
+        public static void ModificarReserva(int idReserva, string nuevoNombre, double nuevoImporte, string nuevaFecha) 
         {
             try
             {
                 // Establece una conexión con la base de datos
-                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
                     // Abre la conexión
                     conexionDB.Open();

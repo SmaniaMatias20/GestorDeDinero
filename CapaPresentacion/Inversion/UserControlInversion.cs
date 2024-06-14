@@ -8,8 +8,8 @@ namespace CapaPresentacion
     public partial class UserControlInversion : UserControl
     {
         // Atributos
-        private CS_Usuario _csUsuario;
-        private CS_Movimiento _csMovimiento;
+        //private CS_Usuario _csUsuario;
+        //private CS_Movimiento _csMovimiento;
 
         // Propiedades
         public Usuario Usuario { get; set; }
@@ -20,9 +20,9 @@ namespace CapaPresentacion
             // Inicializa los componentes visuales del control de usuario
             InitializeComponent();
             // Crea una nueva instancia de CS_Usuario para manejar la lógica relacionada con el usuario
-            _csUsuario = new CS_Usuario();
+            //_csUsuario = new CS_Usuario();
             // Crea una nueva instancia de CS_Usuario para manejar la lógica relacionada con los movimientos
-            _csMovimiento = new CS_Movimiento();
+            //_csMovimiento = new CS_Movimiento();
             //
             textBoxImporte.KeyPress += CS_Config.textBox_KeyPress;
             textBoxMoneda.KeyPress += CS_Config.textBox_KeyPress;

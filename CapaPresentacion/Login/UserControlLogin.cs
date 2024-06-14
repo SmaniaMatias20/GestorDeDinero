@@ -8,7 +8,7 @@ namespace CapaPresentacion
     public partial class UserControlLogin : UserControl
     {
         // Atributos
-        private CS_Usuario _csUsuario;
+        //private CS_Usuario _csUsuario;
         private bool _claveVisible = false;
 
         // Propiedades
@@ -23,7 +23,7 @@ namespace CapaPresentacion
             // Inicializa los componentes visuales del control de usuario
             InitializeComponent();
             // Crea una nueva instancia de CS_Usuario para manejar la lógica relacionada con el usuario
-            _csUsuario = new CS_Usuario();
+            //_csUsuario = new CS_Usuario();
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace CapaPresentacion
         private bool ValidarUsuario()
         {
             // Utiliza el método ValidarUsuario de CS_Usuario para verificar las credenciales ingresadas
-            Usuario usuario = _csUsuario.ValidarUsuarioIniciarSesion(textBoxUsuario.Text, textBoxClave.Text);
+            Usuario usuario = CS_Usuario.ValidarUsuarioIniciarSesion(textBoxUsuario.Text, textBoxClave.Text);
             // Si se encontró un usuario válido, actualiza el atributo Usuario de la clase y devuelve true
             if (usuario != null)
             {

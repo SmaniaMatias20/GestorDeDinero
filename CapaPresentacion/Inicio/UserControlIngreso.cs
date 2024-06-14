@@ -8,10 +8,6 @@ namespace CapaPresentacion
 {
     public partial class UserControlIngreso : UserControl
     {
-        // Atributos
-        private CS_Usuario _csUsuario; 
-        private CS_Movimiento _csMovimiento;
-
         // Eventos
         public event EventHandler AceptarClick;
 
@@ -27,9 +23,6 @@ namespace CapaPresentacion
         {
             // Inicializa los componentes visuales del control de usuario
             InitializeComponent();
-            // Crea una nueva instancia de la clase CS_Usuario para manejar la lógica relacionada con el usuario
-            _csUsuario = new CS_Usuario();
-            _csMovimiento = new CS_Movimiento();
         }
 
         /// <summary>
@@ -72,10 +65,10 @@ namespace CapaPresentacion
             if (result == DialogResult.Yes)
             {
                 // Actualizar los fondos del usuario
-                double movimientoValidado =_csUsuario.ActualizarFondos(Usuario.Nombre, textBoxIngreso.Text, ETipoMovimiento.Ingreso);
+                double movimientoValidado =CS_Usuario.ActualizarFondos(Usuario.Nombre, textBoxIngreso.Text, ETipoMovimiento.Ingreso);
 
                 // Registra el movimiento
-                string mensaje = _csMovimiento.RegistrarMovimiento(Usuario.Id, movimientoValidado, ETipoMovimiento.Ingreso);
+                string mensaje = CS_Movimiento.RegistrarMovimiento(Usuario.Id, movimientoValidado, ETipoMovimiento.Ingreso);
 
                 // Notificar que los fondos han sido actualizados
                 MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);

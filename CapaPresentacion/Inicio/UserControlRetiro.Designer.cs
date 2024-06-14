@@ -45,7 +45,6 @@
             this.textBoxRetiro.Name = "textBoxRetiro";
             this.textBoxRetiro.Size = new System.Drawing.Size(160, 20);
             this.textBoxRetiro.TabIndex = 1;
-            this.textBoxRetiro.TextChanged += new System.EventHandler(this.textBoxRetiro_TextChanged);
             // 
             // buttonAceptarRetiro
             // 

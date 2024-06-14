@@ -8,29 +8,17 @@ using System.Text;
 
 namespace CapaServicios
 {
-    public class CS_Gasto
+    public static class CS_Gasto
     {
-        // Atributos
-        private CD_Gasto _cdGasto;
-
-        /// <summary>
-        /// Constructor de la clase CS_Gasto.
-        /// </summary>
-        public CS_Gasto() 
-        {
-            // Inicializa la instancia de CD_Gasto para manejar las operaciones de acceso a datos
-            _cdGasto = new CD_Gasto();
-        }
-
         /// <summary>
         /// Obtiene una lista de movimientos asociados a un usuario específico.
         /// </summary>
         /// <param name="idUsuario">El identificador único del usuario cuyos movimientos se desean obtener.</param>
         /// <returns>Una lista de movimientos asociados al usuario especificado.</returns>
-        public List<Gasto> ObtenerGastosPorId(int idUsuario)
+        public static List<Gasto> ObtenerGastosPorId(int idUsuario)
         {
             // Llama al método ListarMovimientos de la clase _cdMovimiento para obtener los movimientos del usuario especificado
-            List<Gasto> listaGastos = _cdGasto.ListarGastos(idUsuario);
+            List<Gasto> listaGastos = CD_Gasto.ListarGastos(idUsuario);
 
             // Devuelve la lista de movimientos obtenidos
             return listaGastos;
@@ -48,7 +36,7 @@ namespace CapaServicios
         /// <param name="estadoModificacion">Indica si se está modificando un gasto existente.</param>
         /// <param name="idGasto">El ID del gasto que se está modificando, si es aplicable.</param>
         /// <returns>Un mensaje que indica si la operación de registro o modificación fue exitosa o si hubo algún error.</returns>
-        public string RegistrarGasto(int idUsuario, string importe, string tipo, string fecha, string pago, string descripcion, bool estadoModificacion, int idGasto)
+        public static string RegistrarGasto(int idUsuario, string importe, string tipo, string fecha, string pago, string descripcion, bool estadoModificacion, int idGasto)
         {
             // Realiza la validación del gasto
             string mensaje = ValidarGasto(idUsuario, importe, tipo, fecha, pago, descripcion, estadoModificacion, idGasto);
@@ -70,7 +58,7 @@ namespace CapaServicios
         /// <param name="estadoModificacion">Indica si se está modificando un gasto existente.</param>
         /// <param name="idGasto">El ID del gasto que se está modificando, si es aplicable.</param>
         /// <returns>Un mensaje que indica el resultado de la operación de registro o modificación.</returns>
-        private string ValidarGasto(int idUsuario, string importe, string tipo, string fecha, string pago, string descripcion, bool estadoModificacion, int idGasto)
+        private static string ValidarGasto(int idUsuario, string importe, string tipo, string fecha, string pago, string descripcion, bool estadoModificacion, int idGasto)
         {
             // Mensajes de error
             const string ErrorImporte = "Ingrese un importe";
@@ -102,14 +90,14 @@ namespace CapaServicios
                     if (!estadoModificacion)
                     {
                         // Agrega el gasto a la capa de acceso a datos
-                        _cdGasto.AgregarGasto(idUsuario, gasto.Fecha, gasto.Importe, gasto.Tipo, gasto.Pago, gasto.Descripcion);
+                        CD_Gasto.AgregarGasto(idUsuario, gasto.Fecha, gasto.Importe, gasto.Tipo, gasto.Pago, gasto.Descripcion);
                         return "Gasto registrado";
                     }
                     else
                     {
                         // Establece el ID del gasto y lo actualiza en la capa de acceso a datos
                         gasto.Id = idGasto;
-                        _cdGasto.ActualizarGasto(gasto);
+                        CD_Gasto.ActualizarGasto(gasto);
                         return "Gasto modificado";
                     }
                 }
@@ -127,30 +115,30 @@ namespace CapaServicios
         /// </summary>
         /// <param name="idGasto">El ID del gasto que se desea obtener.</param>
         /// <returns>El objeto Gasto correspondiente al ID especificado.</returns>
-        public Gasto ObtenerGastoPorId(int idGasto) 
+        public static Gasto ObtenerGastoPorId(int idGasto) 
         {
             // Utiliza la instancia de CD_Gasto para obtener el gasto por su ID
-            return _cdGasto.ObtenerGasto(idGasto);
+            return CD_Gasto.ObtenerGasto(idGasto);
         }
 
         /// <summary>
         /// Elimina un gasto específico por su ID.
         /// </summary>
         /// <param name="idGasto">El ID del gasto que se desea eliminar.</param>
-        public void EliminarGastoPorId(int idGasto)
+        public static void EliminarGastoPorId(int idGasto)
         {
             // Utiliza la instancia de CD_Gasto para eliminar el gasto por su ID
-            _cdGasto.EliminarGasto(idGasto);
+            CD_Gasto.EliminarGasto(idGasto);
         }
 
-        public List<Gasto> BuscarGastoFiltrado(int idUsuario, string importeMin, string importeMax, string tipoGasto, string metodoPago) 
+        public static List<Gasto> BuscarGastoFiltrado(int idUsuario, string importeMin, string importeMax, string tipoGasto, string metodoPago) 
         {
             // Agregar validaciones, hay distintos listar gastos depende como filtre el usuario.
             string query = ConstruirConsultaGasto(idUsuario, importeMin, importeMax, tipoGasto, metodoPago, out List<SqlParameter> parametros);
-            return _cdGasto.ListarGastos(idUsuario, parametros, query);
+            return CD_Gasto.ListarGastos(idUsuario, parametros, query);
         }
 
-        private string ConstruirConsultaGasto(int idUsuario, string importeMin, string importeMax, string tipoGasto, string metodoPago, out List<SqlParameter> parametros)
+        private static string ConstruirConsultaGasto(int idUsuario, string importeMin, string importeMax, string tipoGasto, string metodoPago, out List<SqlParameter> parametros)
         {
             parametros = new List<SqlParameter>();
             StringBuilder query = new StringBuilder("SELECT id, tipo, importe, pago, descripcion, fecha FROM gasto WHERE id_usuario = @idUsuario");

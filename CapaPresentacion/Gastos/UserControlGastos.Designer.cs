@@ -64,6 +64,7 @@
             this.dataGridViewGastos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewGastos.Location = new System.Drawing.Point(13, 299);
             this.dataGridViewGastos.Name = "dataGridViewGastos";
+            this.dataGridViewGastos.ReadOnly = true;
             this.dataGridViewGastos.Size = new System.Drawing.Size(547, 179);
             this.dataGridViewGastos.TabIndex = 0;
             // 

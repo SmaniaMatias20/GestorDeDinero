@@ -1,8 +1,8 @@
-﻿using CapaEntidades;
+﻿using CapaDatos;
+using CapaEntidades;
 using CapaServicios;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace CapaPresentacion
@@ -10,9 +10,6 @@ namespace CapaPresentacion
     public partial class UserControlInicio : UserControl
     {
         // Atributos
-        private CS_Usuario _csUsuario;
-        private CS_Movimiento _csMovimiento;
-        private CS_Reserva _csReserva;
         private bool _fondosVisibles = true;
 
         // Propiedades
@@ -26,12 +23,6 @@ namespace CapaPresentacion
         {
             // Inicializa los componentes visuales del control de usuario
             InitializeComponent();
-            // Crea una nueva instancia de CS_Usuario para manejar la lógica relacionada con el usuario
-            _csUsuario = new CS_Usuario();
-            // Crea una nueva instancia de CS_Movimiento para manejar la lógica relacionada con los movimientos
-            _csMovimiento = new CS_Movimiento();
-            // Crea una nueva instancia de CS_Reserva para manejar la lógica relacionada con las reservas
-            _csReserva = new CS_Reserva();
         }
 
         /// <summary>
@@ -108,7 +99,7 @@ namespace CapaPresentacion
         private void ActualizarValorEnCaja()
         {
             // Utiliza el método ObtenerFondosTotales de CS_Usuario para obtener los fondos totales del usuario.
-            double fondosTotales = _csUsuario.ObtenerFondosTotales(Usuario);
+            double fondosTotales = CS_Usuario.ObtenerFondosTotales(Usuario);
 
             // Actualiza el texto del control labelCaja para mostrar los fondos totales formateados como moneda.
             labelCaja.Text = CS_Config.FormatearMoneda(fondosTotales);
@@ -122,7 +113,7 @@ namespace CapaPresentacion
         private void ActualizarMovimientos() 
         {
             // Obtener la lista de movimientos para el usuario actual
-            Usuario.Movimientos = _csMovimiento.ObtenerMovimientosPorId(Usuario.Id);
+            Usuario.Movimientos = CS_Movimiento.ObtenerMovimientosPorId(Usuario.Id);
             // Establecer la lista de movimientos como la fuente de datos del DataGridView
             dataGridViewMovimientos.DataSource = Usuario.Movimientos;
             // Deshabilita el boton modificar
@@ -131,11 +122,17 @@ namespace CapaPresentacion
         private void ActualizarReservas() 
         {
             // Obtener la lista de movimientos para el usuario actual
-            Usuario.Reservas = _csReserva.ObtenerReservasPorId(Usuario.Id);
+            Usuario.Reservas = CS_Reserva.ObtenerReservasPorId(Usuario.Id);
             // Establecer la lista de movimientos como la fuente de datos del DataGridView
             dataGridViewMovimientos.DataSource = Usuario.Reservas;
             // Habilita el boton modificar
             buttonModificar.Enabled = true;
+
+            // Ocultar la columna 'Modificacion'
+            if (dataGridViewMovimientos.Columns["Modificacion"] != null)
+            {
+                dataGridViewMovimientos.Columns["Modificacion"].Visible = false;
+            }
         }
 
         /// <summary>
@@ -181,7 +178,7 @@ namespace CapaPresentacion
             foreach (var Movimiento in MovimientosAEliminar)
             {
                 // Llamar al método para eliminar el movimiento por su ID de la base de datos
-                _csMovimiento.EliminarMovimientoPorId(Movimiento.Id);
+                CS_Movimiento.EliminarMovimientoPorId(Movimiento.Id);
             }
 
             // Actualizar el DataGridView
@@ -197,9 +194,9 @@ namespace CapaPresentacion
             foreach (var reserva in reservasAEliminar)
             {
                 // Llamar al método para eliminar la reserva por su ID de la base de datos
-                _csReserva.EliminarReservaPorId(reserva.IdReserva);
+                CS_Reserva.EliminarReservaPorId(reserva.IdReserva);
                 // Actualiza los fondos del usuario
-                _csUsuario.ActualizarFondos(Usuario.Nombre, reserva.Importe.ToString(), CapaEntidades.Enums.ETipoMovimiento.Ingreso);
+                CS_Usuario.ActualizarFondos(Usuario.Nombre, reserva.Importe.ToString(), CapaEntidades.Enums.ETipoMovimiento.Ingreso);
                 // Actualiza el valor de la caja
                 ActualizarValorEnCaja();
             }

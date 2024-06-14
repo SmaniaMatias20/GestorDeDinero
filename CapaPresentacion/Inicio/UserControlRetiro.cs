@@ -9,9 +9,8 @@ namespace CapaPresentacion
     public partial class UserControlRetiro : UserControl
     {
         // Atributos
-        private Usuario _usuario = new Usuario();
-        private CS_Usuario _csUsuario;
-        private CS_Movimiento _csMovimiento;
+        //private Usuario _usuario = new Usuario();
+
 
         // Eventos
         public event EventHandler AceptarClick;
@@ -27,9 +26,6 @@ namespace CapaPresentacion
         {
             // Llama al método que inicializa los componentes visuales del control de usuario.
             InitializeComponent();
-            // Crea una instancia de la clase CS_Usuario para manejar la lógica relacionada con el usuario.
-            _csUsuario = new CS_Usuario();
-            _csMovimiento = new CS_Movimiento();
         }
 
         /// <summary>
@@ -46,7 +42,7 @@ namespace CapaPresentacion
 
 
             // Actualizar el label con los fondos formateados
-            double fondosActuales = _csUsuario.ObtenerFondosTotales(Usuario);
+            double fondosActuales = CS_Usuario.ObtenerFondosTotales(Usuario);
             string fondosFormateados = CS_Config.FormatearMoneda(fondosActuales);
             labelFondos.Text = $"Fondos: {fondosFormateados}";
         }
@@ -63,11 +59,6 @@ namespace CapaPresentacion
             textBoxRetiro.Text = "";
         }
 
-        private void textBoxRetiro_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         /// <summary>
         /// Maneja el evento de clic del botón Aceptar Retiro.
         /// Valida el monto de retiro, actualiza los fondos del usuario,
@@ -82,10 +73,10 @@ namespace CapaPresentacion
             if (result == DialogResult.Yes) 
             { 
                 // Actualizar los fondos del usuario
-                double movimientoValidado = _csUsuario.ActualizarFondos(Usuario.Nombre, textBoxRetiro.Text, ETipoMovimiento.Retiro);
+                double movimientoValidado = CS_Usuario.ActualizarFondos(Usuario.Nombre, textBoxRetiro.Text, ETipoMovimiento.Retiro);
 
                 // Obtiene los fondos actuales del usuario después del retiro
-                double fondosActuales = _csUsuario.ObtenerFondosTotales(Usuario);
+                double fondosActuales = CS_Usuario.ObtenerFondosTotales(Usuario);
 
                 // Formatea los fondos actuales a una representación de moneda
                 string fondosFormateados = CS_Config.FormatearMoneda(fondosActuales);
@@ -94,7 +85,7 @@ namespace CapaPresentacion
                 labelFondos.Text = $"Fondos: {fondosFormateados}";
 
                 // Registra el movimiento
-                string mensaje = _csMovimiento.RegistrarMovimiento(Usuario.Id, movimientoValidado, ETipoMovimiento.Retiro);
+                string mensaje = CS_Movimiento.RegistrarMovimiento(Usuario.Id, movimientoValidado, ETipoMovimiento.Retiro);
 
                 // Notificar que los fondos han sido actualizados
                 MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);

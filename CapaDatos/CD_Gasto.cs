@@ -6,17 +6,13 @@ using CapaEntidades.Entidades;
 
 namespace CapaDatos
 {
-    public class CD_Gasto
+    public static class CD_Gasto
     {
-        // Atributos
-        private Conexion conexion = new Conexion();
-
-
         /// <summary>
         /// Obtiene una lista de usuarios desde la base de datos.
         /// </summary>
         /// <returns>Una lista de objetos Usuario que contiene el nombre y la clave de cada usuario.</returns>
-        public List<Gasto> ListarGastos(int idUsuario)
+        public static List<Gasto> ListarGastos(int idUsuario)
         {
             // Nuevo objeto de tipo lista de gastos
             List<Gasto> lista = new List<Gasto>();
@@ -24,7 +20,7 @@ namespace CapaDatos
             try
             {
                 // Abrir conexión
-                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
                     // Abrir la conexión a la base de datos
                     conexionDB.Open();
@@ -89,7 +85,7 @@ namespace CapaDatos
         /// <param name="fechaMin">Fecha mínima.</param>
         /// <param name="fechaMax">Fecha máxima.</param>
         /// <returns>Una lista de objetos Gasto que coinciden con los parámetros proporcionados.</returns>
-        public List<Gasto> ListarGastos(int idUsuario, List<SqlParameter> parametros, string query)
+        public static List<Gasto> ListarGastos(int idUsuario, List<SqlParameter> parametros, string query)
         {
             // Nuevo objeto de tipo lista de gastos
             List<Gasto> lista = new List<Gasto>();
@@ -97,7 +93,7 @@ namespace CapaDatos
             try
             {
                 // Abrir conexión
-                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
                     // Abrir la conexión a la base de datos
                     conexionDB.Open();
@@ -160,12 +156,12 @@ namespace CapaDatos
         /// <param name="pago">El método de pago del gasto.</param>
         /// <param name="descripcion">La descripción del gasto.</param>
         /// <exception cref="Exception">Se lanza una excepción si ocurre un error durante la inserción del gasto en la base de datos.</exception>
-        public void AgregarGasto(int idUsuario, string fecha, double importe, ETipoGasto tipo, ETipoPago pago, string descripcion)
+        public static void AgregarGasto(int idUsuario, string fecha, double importe, ETipoGasto tipo, ETipoPago pago, string descripcion)
         {
             try
             {
                 // Obtener la conexión
-                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
                     // Abrir la conexión a la base de datos
                     conexionDB.Open();
@@ -201,12 +197,12 @@ namespace CapaDatos
         /// </summary>
         /// <param name="idGasto">El ID del gasto que se desea eliminar.</param>
         /// <exception cref="Exception">Se lanza una excepción si ocurre un error durante la eliminación del gasto en la base de datos.</exception>
-        public void EliminarGasto(int idGasto)
+        public static void EliminarGasto(int idGasto)
         {
             try
             {
                 // Obtener la conexión a la base de datos
-                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
                     // Abrir la conexión a la base de datos
                     conexionDB.Open();
@@ -235,12 +231,12 @@ namespace CapaDatos
         /// <param name="idGasto">El ID del gasto que se desea obtener.</param>
         /// <returns>El objeto Gasto correspondiente al ID especificado.</returns>
         /// <exception cref="Exception">Se lanza una excepción si ocurre un error durante la obtención del gasto en la base de datos.</exception>
-        public Gasto ObtenerGasto(int idGasto)
+        public static Gasto ObtenerGasto(int idGasto)
         {
             try
             {
                 // Obtiene la conexión a la base de datos
-                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
                     // Abre la conexión a la base de datos
                     conexionDB.Open();
@@ -291,12 +287,12 @@ namespace CapaDatos
         /// </summary>
         /// <param name="gasto">El objeto Gasto con los nuevos valores.</param>
         /// <exception cref="Exception">Se lanza una excepción si ocurre un error durante la actualización del gasto en la base de datos.</exception>
-        public void ActualizarGasto(Gasto gasto)
+        public static void ActualizarGasto(Gasto gasto)
         {
             try
             {
                 // Obtener la conexión a la base de datos
-                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
                     // Abrir la conexión a la base de datos
                     conexionDB.Open();

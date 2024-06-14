@@ -8,10 +8,6 @@ namespace CapaPresentacion
 {
     public partial class UserControlReserva : UserControl
     {
-        // Atributos
-        private CS_Usuario _csUsuario;
-        private CS_Reserva _csReserva;
-        private bool modificarReserva = false;  
 
         // Eventos
         public event EventHandler AceptarClick;
@@ -25,10 +21,6 @@ namespace CapaPresentacion
         {
             //
             InitializeComponent();
-            // Crea una instancia de la clase CS_Usuario para manejar la lógica relacionada con el usuario
-            _csUsuario = new CS_Usuario();
-            // Crea una instancia de la clase CS_Reserva para manejar la lógica relacionada con las reservas
-            _csReserva = new CS_Reserva();
         }
 
         public UserControlReserva(Usuario usuario) : this() 
@@ -41,17 +33,20 @@ namespace CapaPresentacion
             textBoxReserva.KeyPress += CS_Config.textBox_KeyPress;
             // Actualizar el label con los fondos formateados
             MostrarFondosActuales();
+            //
+            Reserva = new Reserva();    
         }
 
         public UserControlReserva(Usuario usuario, Reserva reserva) : this(usuario)
         {
             // Asigna el valor de la reserva
-            Reserva = reserva;
+            Reserva = new Reserva(reserva.Nombre, reserva.Importe, reserva.Fecha, reserva.Id);
+            Reserva.Modificacion = true;
             // Asignar valores a los TextBox
             textBoxNombre.Text = reserva.Nombre;
             textBoxReserva.Text = reserva.Importe.ToString();
-            //
-            modificarReserva = true;
+
+            
         }
 
         private void textBoxReserva_TextChanged(object sender, EventArgs e)
@@ -102,7 +97,7 @@ namespace CapaPresentacion
         private void MostrarFondosActuales() 
         {
             // Obtiene los fondos actuales del usuario después del retiro
-            double fondosActuales = _csUsuario.ObtenerFondosTotales(Usuario);
+            double fondosActuales = CS_Usuario.ObtenerFondosTotales(Usuario);
 
             // Formatea los fondos actuales a una representación de moneda
             string fondosFormateados =  CS_Config.FormatearMoneda(fondosActuales);
@@ -114,21 +109,21 @@ namespace CapaPresentacion
         private string GestionarReserva() 
         {
             string mensaje = "";
-            if (!modificarReserva)
+            if (!Reserva.Modificacion)
             {
                 // Actualizar los fondos del usuario
-                double movimientoValidado = _csUsuario.ActualizarFondos(Usuario.Nombre, textBoxReserva.Text, ETipoMovimiento.Reserva);
+                double movimientoValidado = CS_Usuario.ActualizarFondos(Usuario.Nombre, textBoxReserva.Text, ETipoMovimiento.Reserva);
                 // Registra el movimiento
-                mensaje = _csReserva.RegistrarReserva(textBoxNombre.Text, movimientoValidado, Usuario.Id);
+                mensaje = CS_Reserva.RegistrarReserva(textBoxNombre.Text, movimientoValidado, Usuario.Id);
             }
             else
             {
                 //
-                _csUsuario.ActualizarFondos(Usuario.Nombre, Reserva.Importe.ToString(), ETipoMovimiento.Ingreso);
+                CS_Usuario.ActualizarFondos(Usuario.Nombre, Reserva.Importe.ToString(), ETipoMovimiento.Ingreso);
                 // Actualizar los fondos del usuario
-                double movimientoValidado = _csUsuario.ActualizarFondos(Usuario.Nombre, textBoxReserva.Text, ETipoMovimiento.Reserva);
+                double movimientoValidado = CS_Usuario.ActualizarFondos(Usuario.Nombre, textBoxReserva.Text, ETipoMovimiento.Reserva);
                 //
-                mensaje = _csReserva.RegistrarReserva(textBoxNombre.Text, movimientoValidado, Usuario.Id, Reserva.Id, modificar: modificarReserva);
+                mensaje = CS_Reserva.RegistrarReserva(textBoxNombre.Text, movimientoValidado, Reserva);
             }
 
             // Retorna el mensaje

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using CapaDatos;
 using CapaEntidades;
@@ -8,20 +7,8 @@ using CapaEntidades.Enums;
 
 namespace CapaServicios
 {
-    public class CS_Usuario
+    public static class CS_Usuario
     {
-        // Atributos
-        private CD_Usuario cdUsuario;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public CS_Usuario()
-        {
-            // Inicializa una nueva instancia de CD_Usuario para acceder a la capa de datos.
-            cdUsuario = new CD_Usuario();
-            
-        }
 
         /// <summary>
         /// Valida las credenciales del usuario ingresado contra una lista de usuarios registrados.
@@ -29,10 +16,10 @@ namespace CapaServicios
         /// <param name="nombreUsuario">Nombre del usuario</param>
         /// <param name="clave">Clave del usuario</param>
         /// <returns>El usuario validado si las credenciales son válidas; de lo contrario, null.</returns>
-        public Usuario ValidarUsuarioIniciarSesion(string nombreUsuario, string clave)
+        public static Usuario ValidarUsuarioIniciarSesion(string nombreUsuario, string clave)
         {
             // Obtener la lista de usuarios desde la base de datos
-            List<Usuario> listaDeUsuarios = cdUsuario.ListarUsuarios();
+            List<Usuario> listaDeUsuarios = CD_Usuario.ListarUsuarios();
 
             // Recorre la lista de usuarios para verificar las credenciales ingresadas
             foreach (Usuario usuario in listaDeUsuarios)
@@ -55,7 +42,7 @@ namespace CapaServicios
         /// <param name="clave"></param>
         /// <param name="segundaClave"></param>
         /// <returns></returns>
-        public string RegistrarUsuario(string nombre, string clave, string segundaClave)
+        public static string RegistrarUsuario(string nombre, string clave, string segundaClave)
         {
             // Crear una instancia de Usuario
             Usuario usuario = new Usuario
@@ -85,7 +72,7 @@ namespace CapaServicios
             }
 
             // Agregar el usuario a la capa de datos
-            cdUsuario.AgregarUsuario(usuario.Nombre, usuario.Clave);
+            CD_Usuario.AgregarUsuario(usuario.Nombre, usuario.Clave);
             return "Se registró exitosamente...";
         }
 
@@ -98,10 +85,10 @@ namespace CapaServicios
         /// Devuelve true si el nombre de usuario no está en uso y el registro puede proceder; 
         /// de lo contrario, devuelve false.
         /// </returns>
-        private bool ValidarUsuarioRegistrarse(Usuario nuevoUsuario) 
+        private static bool ValidarUsuarioRegistrarse(Usuario nuevoUsuario) 
         {
             // Obtener la lista de usuarios desde la base de datos
-            List<Usuario> listaDeUsuarios = cdUsuario.ListarUsuarios();
+            List<Usuario> listaDeUsuarios = CD_Usuario.ListarUsuarios();
 
             // Recorre la lista de usuarios para verificar las credenciales ingresadas
             foreach (Usuario usuario in listaDeUsuarios)
@@ -129,7 +116,7 @@ namespace CapaServicios
         /// Devuelve true si el nombre de usuario cumple con los requisitos;
         /// de lo contrario, devuelve false.
         /// </returns>
-        private string ValidarNombreUsuario(string nombreUsuario)
+        private static string ValidarNombreUsuario(string nombreUsuario)
         {
             // Constantes para mensajes de error
             const string ErrorNombreVacio = "Ingrese un nombre de usuario";
@@ -158,7 +145,7 @@ namespace CapaServicios
             return nombreUsuario;
         }
 
-        private string ValidarClave(string clave, string segundaClave)
+        private static string ValidarClave(string clave, string segundaClave)
         {
             // Constantes para mensajes de error
             const string ErrorClavesVacias = "Debe ingresar las claves";
@@ -200,10 +187,10 @@ namespace CapaServicios
         /// </summary>
         /// <param name="usuario">El usuario del cual obtener los fondos totales.</param>
         /// <returns>Los fondos totales del usuario.</returns>
-        public double ObtenerFondosTotales(Usuario usuario)
+        public static double ObtenerFondosTotales(Usuario usuario)
         { 
             // Supongamos que la base de datos devuelve una lista de usuarios donde podemos buscar al usuario específico.
-            List<Usuario> listaDeUsuarios = cdUsuario.ListarUsuarios();
+            List<Usuario> listaDeUsuarios = CD_Usuario.ListarUsuarios();
 
             // Buscamos al usuario específico en la lista
             Usuario usuarioEncontrado = listaDeUsuarios.Find(u => u.Nombre == usuario.Nombre);
@@ -220,19 +207,19 @@ namespace CapaServicios
         /// <param name="tipoMovimiento">El tipo de movimiento a realizar (Ingreso, Retiro, Reserva).</param>
         /// <returns>El importe validado que se ha agregado o retirado.</returns>
         /// <exception cref="Exception">Lanzada cuando el usuario no es encontrado.</exception>
-        public double ActualizarFondos(string nombreUsuario, string importe, ETipoMovimiento tipoMovimiento)
+        public static double ActualizarFondos(string nombreUsuario, string importe, ETipoMovimiento tipoMovimiento)
         {
             // Valida y convierte el importe ingresado a un valor double
             double importeValidado = ValidarImporteIngresado(importe);
 
             // Obtener el usuario desde la base de datos
-            Usuario usuario = cdUsuario.ObtenerUsuarioPorNombre(nombreUsuario);
+            Usuario usuario = CD_Usuario.ObtenerUsuarioPorNombre(nombreUsuario);
 
             // Si el usuario existe y el tipo de movimiento es Ingreso, actualizamos sus fondos sumando el importe validado
             if (usuario != null && tipoMovimiento == ETipoMovimiento.Ingreso)
             {
                 usuario.FondosTotales += importeValidado;
-                cdUsuario.ActualizarUsuario(usuario);
+                CD_Usuario.ActualizarUsuario(usuario);
                 // Devuelve el importe validado
                 return importeValidado;
             }
@@ -243,7 +230,7 @@ namespace CapaServicios
                 if (importeValidado <= usuario.FondosTotales)
                 {
                     usuario.FondosTotales -= importeValidado;
-                    cdUsuario.ActualizarUsuario(usuario);
+                    CD_Usuario.ActualizarUsuario(usuario);
                     // Devuelve el importe validado
                     return importeValidado;
                 }
@@ -265,7 +252,7 @@ namespace CapaServicios
         /// </summary>
         /// <param name="importeIngresado"></param>
         /// <returns></returns>
-        private double ValidarImporteIngresado(string importeIngresado) 
+        private static double ValidarImporteIngresado(string importeIngresado) 
         {
             // Verifica que el importe sea mayor a 0(cero)
             if (importeIngresado == "")

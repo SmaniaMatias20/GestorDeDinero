@@ -68,7 +68,7 @@ namespace CapaPresentacion
         private void FormInicio_Load(object sender, EventArgs e)
         {
             // Inicializa una nueva instancia de la clase Conexion
-            Conexion conexion = new Conexion();
+            //Conexion conexion = new Conexion();
 
             buttonInicio.MouseEnter += new EventHandler(button_MouseEnter);
             buttonInicio.MouseLeave += new EventHandler(button_MouseLeave);

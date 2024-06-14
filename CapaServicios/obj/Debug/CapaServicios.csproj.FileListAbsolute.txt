@@ -2,15 +2,6 @@ C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaServicios\bin\Debug\
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaServicios\bin\Debug\CapaServicios.pdb
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaServicios\bin\Debug\CapaDatos.dll
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaServicios\bin\Debug\CapaEntidades.dll
-C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaServicios\bin\Debug\System.Text.Json.dll
-C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaServicios\bin\Debug\System.Memory.dll
-C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaServicios\bin\Debug\System.ValueTuple.dll
-C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaServicios\bin\Debug\System.Text.Encodings.Web.dll
-C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaServicios\bin\Debug\System.Numerics.Vectors.dll
-C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaServicios\bin\Debug\System.Threading.Tasks.Extensions.dll
-C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaServicios\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaServicios\bin\Debug\System.Buffers.dll
-C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaServicios\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaServicios\bin\Debug\CapaDatos.pdb
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaServicios\bin\Debug\CapaEntidades.pdb
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaServicios\obj\Debug\CapaServicios.csproj.AssemblyReference.cache

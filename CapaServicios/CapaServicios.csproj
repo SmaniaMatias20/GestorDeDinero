@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="CS_Config.cs" />
     <Compile Include="CS_Gasto.cs" />
+    <Compile Include="CS_Inversion.cs" />
     <Compile Include="CS_Movimiento.cs" />
     <Compile Include="CS_Reserva.cs" />
     <Compile Include="CS_Usuario.cs" />

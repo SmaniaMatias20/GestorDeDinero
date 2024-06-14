@@ -6,17 +6,14 @@ using System.Collections;
 
 namespace CapaDatos
 {
-    public class CD_Usuario
+    public static class CD_Usuario
     {
-        // Atributos
-        private Conexion conexion = new Conexion();
-
-        public void AgregarUsuario(string nombre, string clave) 
+        public static void AgregarUsuario(string nombre, string clave) 
         {
             try
             {
                 // Abrir conexión
-                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
                     // Abrir la conexión a la base de datos
                     conexionDB.Open();
@@ -51,7 +48,7 @@ namespace CapaDatos
         /// Obtiene una lista de usuarios desde la base de datos.
         /// </summary>
         /// <returns>Una lista de objetos Usuario que contiene el nombre y la clave de cada usuario.</returns>
-        public List<Usuario> ListarUsuarios()
+        public static List<Usuario> ListarUsuarios()
         {
             // Nuevo objeto de tipo lista de usuarios
             List<Usuario> lista = new List<Usuario>();
@@ -59,7 +56,7 @@ namespace CapaDatos
             try
             {
                 // Abrir conexión
-                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
                     // Abrir la conexión a la base de datos
                     conexionDB.Open();
@@ -107,12 +104,12 @@ namespace CapaDatos
         /// </summary>
         /// <param name="idUsuario">ID del usuario cuyos fondos se van a actualizar.</param>
         /// <param name="nuevosFondos">Nuevos fondos del usuario.</param>
-        public void ActualizarFondos(string nombreUsuario, double nuevosFondos)
+        public static void ActualizarFondos(string nombreUsuario, double nuevosFondos)
         {
             try
             {
                 // Obtener la conexión
-                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
                     // Abrir la conexión a la base de datos
                     conexionDB.Open();
@@ -139,11 +136,11 @@ namespace CapaDatos
             }
         }
 
-        public void ActualizarFondosPorNombre(string nombreUsuario, double nuevosFondos)
+        public static void ActualizarFondosPorNombre(string nombreUsuario, double nuevosFondos)
         {
             try
             {
-                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
                     conexionDB.Open();
                     string query = "UPDATE Usuario SET fondos = @NuevosFondos WHERE nombre = @NombreUsuario";
@@ -161,11 +158,11 @@ namespace CapaDatos
             }
         }
 
-        public void ActualizarUsuario(Usuario usuario)
+        public static void ActualizarUsuario(Usuario usuario)
         {
             try
             {
-                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
                     conexionDB.Open();
                     string query = "UPDATE Usuario SET caja = @FondosTotales WHERE nombre = @NombreUsuario";
@@ -183,12 +180,12 @@ namespace CapaDatos
             }
         }
 
-        public Usuario ObtenerUsuarioPorNombre(string nombreUsuario)
+        public static Usuario ObtenerUsuarioPorNombre(string nombreUsuario)
         {
             Usuario usuario = null;
             try
             {
-                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
                     conexionDB.Open();
                     string query = "SELECT nombre, clave, caja FROM Usuario WHERE nombre = @NombreUsuario";

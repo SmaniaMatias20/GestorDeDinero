@@ -6,7 +6,7 @@ namespace CapaPresentacion
     public partial class UserControlRegistro : UserControl
     {
         // Atributos
-        private CS_Usuario csUsuario;
+        //private CS_Usuario csUsuario;
         private bool _claveVisible = false;
 
         /// <summary>
@@ -18,7 +18,7 @@ namespace CapaPresentacion
             InitializeComponent();
 
             // Crea una nueva instancia de CS_Usuario para manejar la lógica relacionada con el usuario
-            csUsuario = new CS_Usuario();
+            //csUsuario = new CS_Usuario();
            
         }
 
@@ -32,7 +32,7 @@ namespace CapaPresentacion
         private void buttonRegistrarse_Click(object sender, System.EventArgs e)
         {
             // Llama al método RegistrarUsuario de la clase csUsuario para registrar al usuario.
-            string mensaje = csUsuario.RegistrarUsuario(textBoxUsuario.Text, textBoxClave.Text, textBoxClave2.Text);
+            string mensaje = CS_Usuario.RegistrarUsuario(textBoxUsuario.Text, textBoxClave.Text, textBoxClave2.Text);
             // Muestra un cuadro de mensaje con el resultado del intento de registro.
             MessageBox.Show(mensaje, "Mensaje");  
         }

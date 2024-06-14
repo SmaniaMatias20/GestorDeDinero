@@ -6,16 +6,13 @@ using CapaEntidades.Enums;
 
 namespace CapaDatos
 {
-    public class CD_Movimiento
+    public static class CD_Movimiento
     {
-        // Atributos
-        private Conexion conexion = new Conexion();
-
         /// <summary>
         /// Obtiene una lista de usuarios desde la base de datos.
         /// </summary>
         /// <returns>Una lista de objetos Usuario que contiene el nombre y la clave de cada usuario.</returns>
-        public List<Movimiento> ListarMovimientos(int idUsuario)
+        public static List<Movimiento> ListarMovimientos(int idUsuario)
         {
             // Nuevo objeto de tipo lista de movimientos
             List<Movimiento> lista = new List<Movimiento>();
@@ -23,7 +20,7 @@ namespace CapaDatos
             try
             {
                 // Abrir conexión
-                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
                     // Abrir la conexión a la base de datos
                     conexionDB.Open();
@@ -72,12 +69,12 @@ namespace CapaDatos
             return lista;
         }
 
-        public void AgregarMovimiento(int idUsuario, string fecha, double importe, ETipoMovimiento tipo)
+        public static void AgregarMovimiento(int idUsuario, string fecha, double importe, ETipoMovimiento tipo)
         {
             try
             {
                 // Obtener la conexión
-                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
                     // Abrir la conexión a la base de datos
                     conexionDB.Open();
@@ -111,13 +108,13 @@ namespace CapaDatos
         /// </summary>
         /// <param name="idMovimiento">ID del movimiento que se desea eliminar.</param>
         /// <exception cref="Exception">Se lanza si ocurre un error al intentar eliminar el movimiento.</exception>
-        public void EliminarMovimiento(int idMovimiento)
+        public static void EliminarMovimiento(int idMovimiento)
         {
             // Se utiliza un bloque try-catch para capturar cualquier excepción que pueda ocurrir durante la ejecución
             try
             {
                 // Se utiliza la clase SqlConnection para establecer una conexión a la base de datos utilizando el método ObtenerConexion()
-                using (SqlConnection conexionDB = conexion.ObtenerConexion())
+                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
                     // Se abre la conexión a la base de datos.
                     conexionDB.Open();

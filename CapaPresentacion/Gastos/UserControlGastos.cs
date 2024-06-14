@@ -3,8 +3,6 @@ using CapaEntidades.Entidades;
 using CapaServicios;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 
@@ -12,9 +10,6 @@ namespace CapaPresentacion
 {
     public partial class UserControlGastos : UserControl
     {
-        // Atributos
-        private CS_Usuario _csUsuario;
-        private CS_Gasto _csGasto;
         public bool estadoModificacion = false;
         public int idGasto = 0;
 
@@ -28,10 +23,6 @@ namespace CapaPresentacion
         {
             // Inicializa los componentes visuales del control de usuario
             InitializeComponent();
-            // Crea una nueva instancia de CS_Usuario para manejar la lógica relacionada con el usuario
-            _csUsuario = new CS_Usuario();
-            // Crea una nueva instancia de CS_Usuario para manejar la lógica relacionada con los gastos
-            _csGasto = new CS_Gasto();
         }
 
         /// <summary>
@@ -58,7 +49,7 @@ namespace CapaPresentacion
         private void ActualizarGastos()
         {
             // Obtener la lista de gastos para el usuario actual
-            Usuario.Gastos = _csGasto.ObtenerGastosPorId(Usuario.Id);
+            Usuario.Gastos = CS_Gasto.ObtenerGastosPorId(Usuario.Id);
             // Establecer la lista de gastos como la fuente de datos del DataGridView
             dataGridViewGastos.DataSource = Usuario.Gastos;
         }
@@ -85,7 +76,7 @@ namespace CapaPresentacion
             const string GastoModificado = "Gasto modificado";
 
             // Registra el gasto
-            string mensaje = _csGasto.RegistrarGasto(Usuario.Id, textBoxImporte.Text, comboBoxGasto.Text, dateTimePickerFecha.Text, comboBoxPago.Text, textBoxDescripcion.Text, estadoModificacion, idGasto);
+            string mensaje = CS_Gasto.RegistrarGasto(Usuario.Id, textBoxImporte.Text, comboBoxGasto.Text, dateTimePickerFecha.Text, comboBoxPago.Text, textBoxDescripcion.Text, estadoModificacion, idGasto);
 
             // Notificar que los fondos han sido actualizados
             MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -155,7 +146,7 @@ namespace CapaPresentacion
                 foreach (var gasto in gastosAEliminar)
                 {
                     // Elimina cada elemento seleccionado por su ID
-                    _csGasto.EliminarGastoPorId(gasto.Id);
+                    CS_Gasto.EliminarGastoPorId(gasto.Id);
                 }
                 // Actualiza el dataGrid
                 ActualizarGastos();
@@ -224,7 +215,7 @@ namespace CapaPresentacion
                 // Obtiene el ID del gasto seleccionado de la celda "id"
                 int idGastoSeleccionado = Convert.ToInt32(filaSeleccionada.Cells["id"].Value);
                 // Obtiene el gasto de la base de datos utilizando el ID
-                Gasto gasto = _csGasto.ObtenerGastoPorId(idGastoSeleccionado);
+                Gasto gasto = CS_Gasto.ObtenerGastoPorId(idGastoSeleccionado);
 
                 // Llena los campos del formulario con los datos del gasto obtenido
                 textBoxImporte.Text = gasto.Importe.ToString();
@@ -241,7 +232,7 @@ namespace CapaPresentacion
 
         private void buttonFiltrar_Click(object sender, EventArgs e)
         {
-            dataGridViewGastos.DataSource = _csGasto.BuscarGastoFiltrado(
+            dataGridViewGastos.DataSource = CS_Gasto.BuscarGastoFiltrado(
                 Usuario.Id,
                 textBoxFiltroImporteMin.Text,
                 textBoxFiltroImporteMax.Text,

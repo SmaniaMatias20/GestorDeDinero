@@ -10,8 +10,7 @@ namespace CapaPresentacion
         // Atributos
         private UserControlIngreso _userControlIngreso;
         private UserControlReserva _userControlReserva;
-        private UserControlRetiro _userControlRetiro;
-        //private Usuario _usuario = new Usuario();    
+        private UserControlRetiro _userControlRetiro;    
 
         // Propiedades
         public Usuario Usuario { get; set; }
@@ -57,7 +56,8 @@ namespace CapaPresentacion
         private void FormMovimientos_Load(object sender, EventArgs e)
         {
             // Inicializa una nueva instancia de la clase Conexion
-            Conexion conexion = new Conexion(); 
+            //Conexion conexion = new Conexion(); 
+            Conexion.ObtenerConexion();
         }
 
 
