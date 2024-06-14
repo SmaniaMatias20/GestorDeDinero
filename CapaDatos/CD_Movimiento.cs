@@ -106,25 +106,36 @@ namespace CapaDatos
             }
         }
 
+        /// <summary>
+        /// Elimina un movimiento de la base de datos dado su ID.
+        /// </summary>
+        /// <param name="idMovimiento">ID del movimiento que se desea eliminar.</param>
+        /// <exception cref="Exception">Se lanza si ocurre un error al intentar eliminar el movimiento.</exception>
         public void EliminarMovimiento(int idMovimiento)
         {
+            // Se utiliza un bloque try-catch para capturar cualquier excepción que pueda ocurrir durante la ejecución
             try
             {
+                // Se utiliza la clase SqlConnection para establecer una conexión a la base de datos utilizando el método ObtenerConexion()
                 using (SqlConnection conexionDB = conexion.ObtenerConexion())
                 {
+                    // Se abre la conexión a la base de datos.
                     conexionDB.Open();
-
+                    // Se define la consulta SQL para eliminar el movimiento utilizando parámetros para evitar inyección SQL.
                     string query = "DELETE FROM movimiento WHERE id = @idMovimiento";
-
+                    // Se utiliza la clase SqlCommand para ejecutar la consulta SQL definida.
                     using (SqlCommand comando = new SqlCommand(query, conexionDB))
                     {
+                        // Se agregan parámetros al comando SQL para asignar valores a la consulta.
                         comando.Parameters.AddWithValue("@idMovimiento", idMovimiento);
+                        // Se ejecuta la consulta y se obtiene el número de filas afectadas en la base de datos.
                         int filasAfectadas = comando.ExecuteNonQuery();
                     }
                 }
             }
             catch 
             {
+                // Si ocurre una excepción durante la ejecución del bloque try, se lanza una nueva excepción con un mensaje descriptivo.
                 throw new Exception("Error al eliminar el movimiento");
             }
         }

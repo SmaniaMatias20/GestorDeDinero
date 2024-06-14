@@ -60,7 +60,7 @@ namespace CapaServicios
             }
             else
             {
-                return "No se aceptan transacciones mayores a $1.000.000";
+                return "No se aceptan transacciones mayores a $5.000.000";
             }
 
         }

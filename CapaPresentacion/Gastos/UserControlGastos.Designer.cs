@@ -105,7 +105,7 @@
             this.buttonEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonEliminar.FlatAppearance.BorderSize = 0;
             this.buttonEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonEliminar.Location = new System.Drawing.Point(217, 146);
+            this.buttonEliminar.Location = new System.Drawing.Point(210, 146);
             this.buttonEliminar.Name = "buttonEliminar";
             this.buttonEliminar.Size = new System.Drawing.Size(104, 23);
             this.buttonEliminar.TabIndex = 13;
@@ -119,7 +119,7 @@
             this.buttonModificar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonModificar.FlatAppearance.BorderSize = 0;
             this.buttonModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonModificar.Location = new System.Drawing.Point(217, 97);
+            this.buttonModificar.Location = new System.Drawing.Point(210, 97);
             this.buttonModificar.Name = "buttonModificar";
             this.buttonModificar.Size = new System.Drawing.Size(104, 23);
             this.buttonModificar.TabIndex = 12;
@@ -134,7 +134,7 @@
             this.buttonAceptar.FlatAppearance.BorderSize = 0;
             this.buttonAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonAceptar.Location = new System.Drawing.Point(217, 49);
+            this.buttonAceptar.Location = new System.Drawing.Point(210, 49);
             this.buttonAceptar.Name = "buttonAceptar";
             this.buttonAceptar.Size = new System.Drawing.Size(104, 23);
             this.buttonAceptar.TabIndex = 11;
@@ -394,7 +394,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "UserControlGastos";
             this.Size = new System.Drawing.Size(577, 490);
-            this.Load += new System.EventHandler(this.UserControlGastos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGastos)).EndInit();
             this.groupBoxGastos.ResumeLayout(false);
             this.groupBoxGastos.PerformLayout();

@@ -26,11 +26,6 @@ namespace CapaPresentacion
             _csUsuario = new CS_Usuario();
         }
 
-        private void textBoxUsuario_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         /// <summary>
         /// Maneja el evento de clic en el botón "buttonIniciar".
         /// Valida las credenciales del usuario y muestra el formulario principal si son correctas.

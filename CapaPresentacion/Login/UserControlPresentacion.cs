@@ -13,10 +13,12 @@ namespace CapaPresentacion.Login
         public event EventHandler CargaFinalizada;
 
         /// <summary>
-        /// 
+        /// Constructor de la clase UserControlPresentacion.
+        /// Inicializa los componentes y configura el temporizador y la barra de progreso.
         /// </summary>
         public UserControlPresentacion()
         {
+            // Llama al método InitializeComponent para inicializar todos los controles visuales definidos en el diseñador.
             InitializeComponent();
             // Intervalo del Timer en milisegundos (1 segundo)
             timer1.Interval = 1000;

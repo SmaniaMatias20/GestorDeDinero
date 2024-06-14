@@ -48,10 +48,8 @@ namespace CapaPresentacion
             dataGridViewGastos.ColumnHeaderMouseClick += DataGridViewGastos_ColumnHeaderMouseClick;
             // Asigna el metodo para solamente poder ingresar numeros
             textBoxImporte.KeyPress += textBox_KeyPress;
-        }
-        private void UserControlGastos_Load(object sender, EventArgs e)
-        {
-
+            textBoxFiltroImporteMax.KeyPress += textBox_KeyPress;   
+            textBoxFiltroImporteMin.KeyPress += textBox_KeyPress;
         }
 
         /// <summary>
@@ -310,6 +308,7 @@ namespace CapaPresentacion
                 comboBoxFiltroPago.Text
             );
         }
+
         
         
     }

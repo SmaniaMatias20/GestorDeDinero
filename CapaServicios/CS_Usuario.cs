@@ -291,8 +291,8 @@ namespace CapaServicios
                 return 0;
             }
 
-            // Verifica que el importe sea menor o igual a $1.000.000
-            if (importeValidado > 1000000)
+            // Verifica que el importe sea menor o igual a $5.000.000
+            if (importeValidado > 5000000)
             {
                 return -2;
             }
