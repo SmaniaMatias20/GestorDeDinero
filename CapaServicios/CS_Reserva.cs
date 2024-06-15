@@ -1,5 +1,6 @@
 ﻿using CapaDatos;
 using CapaEntidades;
+using CapaEntidades.Enums;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,54 +8,92 @@ namespace CapaServicios
 {
     public static class CS_Reserva
     {
-        public static string RegistrarReserva(string nombre, double importe, int idUsuario)
-        {   
-            if (ValidarNombreDeReserva(nombre) == nombre)
+        public static (bool, string) RegistrarReserva(Usuario usuario, string nombreReserva, string importeReserva)
+        {
+            double movimientoValidado = CS_Usuario.ActualizarFondos(usuario.Nombre, importeReserva, ETipoMovimiento.Reserva);
+
+            var (nombreValido, mensajeNombre) = ValidarNombreDeReserva(nombreReserva);
+            if (!nombreValido)
             {
+                return (false, mensajeNombre);
+            }
 
-                if (ValidarImporteDeReserva(importe) == "Fondos actualizados correctamente")
-                {
-                    Reserva reserva = new Reserva(nombre, importe);
+            var (importeValido, mensajeImporte) = ValidarImporteDeReserva(movimientoValidado);
+            if (!importeValido)
+            {
+                return (false, mensajeImporte);
+            }
 
-                    CD_Reserva.AgregarReserva(idUsuario, reserva.Fecha, reserva.Importe, reserva.Nombre);
+            Reserva reserva = new Reserva(nombreReserva, movimientoValidado);
+            CD_Reserva.AgregarReserva(usuario.Id, reserva.Fecha, reserva.Importe, reserva.Nombre);
 
-                   
+            return (true, "Reserva registrada correctamente");
+        }
 
-                    return ValidarImporteDeReserva(importe);
-                }
-                else
-                {
-                    return ValidarImporteDeReserva(importe);
-                }
+        public static (bool, string) RegistrarReserva(Usuario usuario, string nombreReserva, string importeReserva, Reserva reserva)
+        {
+            /////////////////////////////////////////////////////////////////////////////////////////////////////
+            // Agrega el total de la reserva seleccionada y en la linea siguiente resta la nueva reserva /// modificar logica ////
+            CS_Usuario.ActualizarFondos(usuario.Nombre, reserva.Importe.ToString(), ETipoMovimiento.Ingreso);
+            // Actualiza los fondos del usuario
+            double movimientoValidado = CS_Usuario.ActualizarFondos(usuario.Nombre, importeReserva, ETipoMovimiento.Reserva);
+            /////////////////////////////////////////////////////////////////////////////////////////////////////     
+
+            var (nombreValido, mensajeNombre) = ValidarNombreDeReserva(nombreReserva);
+            if (!nombreValido)
+            {
+                return (false, mensajeNombre);
+            }
+
+            var (importeValido, mensajeImporte) = ValidarImporteDeReserva(movimientoValidado);
+            if (!importeValido)
+            {
+                return (false, mensajeImporte);
+            }
+
+            CD_Reserva.ModificarReserva(reserva.Id, nombreReserva, movimientoValidado, reserva.Fecha);
+
+            return (true, "Reserva modificada correctamente");
+        }
+
+        public static (bool, string) ValidarImporteDeReserva(double importe)
+        {
+            if (importe > 0 && importe <= 1000000)
+            {
+                return (true, "Fondos actualizados correctamente");
+            }
+            else if (importe == 0)
+            {
+                return (false, "Ingrese un importe mayor a 0 (cero)");
+            }
+            else if (importe < 0)
+            {
+                return (false, "Ingrese un importe mayor a los fondos totales");
             }
             else
             {
-                return ValidarNombreDeReserva(nombre);
+                return (false, "No se aceptan transacciones mayores a $1.000.000");
             }
         }
 
-        public static string RegistrarReserva(string nombre, double importe, Reserva reserva) 
+        public static (bool, string) ValidarNombreDeReserva(string nombreReserva)
         {
-
-            if (ValidarNombreDeReserva(nombre) == nombre)
+            if (string.IsNullOrEmpty(nombreReserva))
             {
-
-                if (ValidarImporteDeReserva(importe) == "Fondos actualizados correctamente")
-                {
-                    CD_Reserva.ModificarReserva(reserva.Id, nombre, importe, reserva.Fecha);
-
-                    return ValidarImporteDeReserva(importe);
-                }
-                else
-                {
-                    return ValidarImporteDeReserva(importe);
-                }
+                return (false, "Ingrese un nombre para su reserva");
+            }
+            else if (!nombreReserva.All(char.IsLetterOrDigit))
+            {
+                return (false, "El nombre no debe contener caracteres especiales");
+            }
+            else if (nombreReserva.Length < 3 || nombreReserva.Length > 20)
+            {
+                return (false, "El nombre debe contener entre 3 y 20 caracteres");
             }
             else
             {
-                return ValidarNombreDeReserva(nombre);
+                return (true, "OK");
             }
-
         }
 
         public static List<Reserva> ObtenerReservasPorId(int idUsuario)
@@ -70,46 +109,6 @@ namespace CapaServicios
         }
 
 
-        private static string ValidarImporteDeReserva(double importe) 
-        {
-            if (importe > 0)
-            {
-                return "Fondos actualizados correctamente";
-            }
-            else if (importe == 0)
-            {
-                return "Ingrese un importe mayor a 0(cero)";
-            }
-            else if (importe == -1)
-            {
-                return "Ingrese un importe menor a los fondos totales";
-            }
-            else
-            {
-                return "No se aceptan transacciones mayores a $1.000.000";
-            }
 
-        }
-
-        private static string ValidarNombreDeReserva(string nombreReserva) 
-        {
-            if (nombreReserva == "" || nombreReserva == null)
-            {
-                return "Ingrese un nombre para su reserva";
-            }
-            else if (!nombreReserva.All(char.IsLetterOrDigit))
-            {
-                return "El nombre no debe contener caracteres especiales";
-            }
-            else if (nombreReserva.Length > 20 || nombreReserva.Length < 3)
-            {
-                return "El nombre debe contener entre 3 y 20 caracteres";
-            }
-            else
-            {
-                return nombreReserva;
-            }
-
-        }
     }
 }

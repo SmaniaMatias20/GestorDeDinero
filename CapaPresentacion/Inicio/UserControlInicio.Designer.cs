@@ -115,7 +115,6 @@
             this.dataGridViewMovimientos.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dataGridViewMovimientos.Name = "dataGridViewMovimientos";
             this.dataGridViewMovimientos.ReadOnly = true;
-            this.dataGridViewMovimientos.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dataGridViewMovimientos.Size = new System.Drawing.Size(529, 216);
             this.dataGridViewMovimientos.TabIndex = 8;
             // 

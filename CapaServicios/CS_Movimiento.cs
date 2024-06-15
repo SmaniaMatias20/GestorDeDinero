@@ -8,9 +8,6 @@ namespace CapaServicios
 
     public static class CS_Movimiento
     {
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase CS_Movimiento.
-        /// </summary>
 
         /// <summary>
         /// Registra un movimiento para un usuario específico.

@@ -8,6 +8,11 @@ namespace CapaDatos
 {
     public static class CD_Usuario
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="clave"></param>
         public static void AgregarUsuario(string nombre, string clave) 
         {
             try
@@ -136,6 +141,11 @@ namespace CapaDatos
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nombreUsuario"></param>
+        /// <param name="nuevosFondos"></param>
         public static void ActualizarFondosPorNombre(string nombreUsuario, double nuevosFondos)
         {
             try
@@ -158,45 +168,72 @@ namespace CapaDatos
             }
         }
 
+        /// <summary>
+        /// Método para actualizar los datos de un usuario en la base de datos.
+        /// </summary>
+        /// <param name="usuario">El objeto Usuario que contiene los datos actualizados.</param>
         public static void ActualizarUsuario(Usuario usuario)
         {
+            // Bloque try-catch para manejar excepciones.
             try
             {
+                // Utiliza una conexión a la base de datos obtenida desde el método Conexion.ObtenerConexion().
                 using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
+                    // Abre la conexión a la base de datos.
                     conexionDB.Open();
+                    // Define la consulta SQL para actualizar los datos del usuario.
                     string query = "UPDATE Usuario SET caja = @FondosTotales WHERE nombre = @NombreUsuario";
+                    // Crea un comando SQL con la consulta y la conexión a la base de datos.
                     using (SqlCommand comando = new SqlCommand(query, conexionDB))
                     {
+                        // Agrega los parámetros al comando SQL para prevenir inyección de SQL.
                         comando.Parameters.AddWithValue("@FondosTotales", usuario.FondosTotales);
                         comando.Parameters.AddWithValue("@NombreUsuario", usuario.Nombre);
+                        // Ejecuta el comando SQL para actualizar los datos.
                         comando.ExecuteNonQuery();
                     }
                 }
             }
-            catch (Exception ex)
+            catch 
             {
-                Console.WriteLine("Error al actualizar los datos del usuario: " + ex.Message);
+                throw new Exception("Error al actualizar el usuario");
             }
         }
 
+        /// <summary>
+        /// Método para obtener un usuario por su nombre de usuario.
+        /// </summary>
+        /// <param name="nombreUsuario">El nombre del usuario que se quiere obtener.</param>
+        /// <returns>Un objeto Usuario con los datos del usuario si se encuentra; de lo contrario, null.</returns>
         public static Usuario ObtenerUsuarioPorNombre(string nombreUsuario)
         {
+            // Inicializa el objeto usuario como null.
             Usuario usuario = null;
+            // Bloque try-catch para manejar excepciones.
             try
             {
+                // Utiliza una conexión a la base de datos obtenida desde el método Conexion.ObtenerConexion().
                 using (SqlConnection conexionDB = Conexion.ObtenerConexion())
                 {
+                    // Abre la conexión a la base de datos.
                     conexionDB.Open();
+                    // Define la consulta SQL para obtener los datos del usuario.
                     string query = "SELECT nombre, clave, caja FROM Usuario WHERE nombre = @NombreUsuario";
+                    // Crea un comando SQL con la consulta y la conexión a la base de datos.
                     using (SqlCommand comando = new SqlCommand(query, conexionDB))
                     {
+                        // Agrega el parámetro @NombreUsuario al comando SQL para prevenir inyección de SQL.
                         comando.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
+                        // Ejecuta la consulta y obtiene un lector de datos.
                         using (SqlDataReader reader = comando.ExecuteReader())
                         {
+                            // Verifica si se encontró un registro.
                             if (reader.Read())
                             {
+                                // Si se encontró un registro, crea una nueva instancia del objeto Usuario.
                                 usuario = new Usuario();
+                                // Asigna los valores del lector de datos a las propiedades del objeto Usuario.
                                 usuario.Nombre = Convert.ToString(reader["nombre"]);
                                 usuario.Clave = Convert.ToString(reader["clave"]);
                                 usuario.FondosTotales = Convert.ToDouble(reader["caja"]);
@@ -205,13 +242,16 @@ namespace CapaDatos
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine("Error al obtener el usuario por nombre: " + ex.Message);
+                // Lanza una excepción 
+                throw new Exception("Error al obtener el usuario");
             }
+            // Retorna el usuario
             return usuario;
         }
 
     }
+
 }
 

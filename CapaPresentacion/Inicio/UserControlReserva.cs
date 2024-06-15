@@ -2,6 +2,7 @@
 using CapaEntidades.Enums;
 using CapaServicios;
 using System;
+using System.Messaging;
 using System.Windows.Forms;
 
 namespace CapaPresentacion
@@ -77,16 +78,16 @@ namespace CapaPresentacion
             if (result == DialogResult.Yes)
             {
                 //
-                string mensaje = GestionarReserva();
+                var (registroReserva, mensaje) = GestionarReserva();
 
-                //
+                // Muestra los fondos actuales
                 MostrarFondosActuales();
 
                 // Notificar que los fondos han sido actualizados
                 MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Si el mensaje coincide con "Fondos actualizados correctamente" cerramos el formulario movimientos
-                if (mensaje == "Fondos actualizados correctamente")
+                // Si se registro la reserva disparamos el evento y cerramos el formulario
+                if (registroReserva)
                 {
                     // Dispara el evento AceptarClick cuando se presiona el botón "Aceptar"
                     AceptarClick?.Invoke(this, EventArgs.Empty);
@@ -106,28 +107,22 @@ namespace CapaPresentacion
             labelFondos.Text = $"Fondos: {fondosFormateados}";
         }
 
-        private string GestionarReserva() 
+        private (bool, string) GestionarReserva() 
         {
-            string mensaje = "";
             if (!Reserva.Modificacion)
             {
-                // Actualizar los fondos del usuario
-                double movimientoValidado = CS_Usuario.ActualizarFondos(Usuario.Nombre, textBoxReserva.Text, ETipoMovimiento.Reserva);
-                // Registra el movimiento
-                mensaje = CS_Reserva.RegistrarReserva(textBoxNombre.Text, movimientoValidado, Usuario.Id);
+                var(registroReserva, mensaje) = CS_Reserva.RegistrarReserva(Usuario, textBoxNombre.Text, textBoxReserva.Text);
+                // Retorna el mensaje
+                return (registroReserva, mensaje);
             }
             else
             {
-                //
-                CS_Usuario.ActualizarFondos(Usuario.Nombre, Reserva.Importe.ToString(), ETipoMovimiento.Ingreso);
-                // Actualizar los fondos del usuario
-                double movimientoValidado = CS_Usuario.ActualizarFondos(Usuario.Nombre, textBoxReserva.Text, ETipoMovimiento.Reserva);
-                //
-                mensaje = CS_Reserva.RegistrarReserva(textBoxNombre.Text, movimientoValidado, Reserva);
+                var (registroReserva, mensaje) = CS_Reserva.RegistrarReserva(Usuario, textBoxNombre.Text, textBoxReserva.Text, Reserva);
+                // Retorna el mensaje
+                return (registroReserva, mensaje);
             }
 
-            // Retorna el mensaje
-            return mensaje;
+            
         }
     }
 }

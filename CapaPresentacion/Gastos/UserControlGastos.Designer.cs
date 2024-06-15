@@ -209,28 +209,29 @@
             this.comboBoxGasto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxGasto.FormattingEnabled = true;
             this.comboBoxGasto.Items.AddRange(new object[] {
+            "",
+            "Ahorro",
+            "Alimentacion",
             "Alquiler",
+            "Deudas",
+            "Educacion",
+            "Electronica",
+            "Entretenimiento",
+            "Hobbies",
+            "Mantenimiento",
+            "Mascotas",
+            "Mobiliario",
+            "Otros",
+            "Regalos",
+            "Ropa",
+            "Salud",
             "Servicios",
             "Transporte",
-            "Alimentacion",
-            "Ropa",
-            "Entretenimiento",
-            "Vacaciones",
-            "Hobbies",
-            "Electronica",
-            "Salud",
-            "Educacion",
-            "Ahorro",
-            "Deudas",
-            "Mantenimiento",
-            "Mobiliario",
-            "Regalos",
-            "Mascotas",
-            "Otros",
-            ""});
+            "Vacaciones"});
             this.comboBoxGasto.Location = new System.Drawing.Point(15, 98);
             this.comboBoxGasto.Name = "comboBoxGasto";
             this.comboBoxGasto.Size = new System.Drawing.Size(177, 23);
+            this.comboBoxGasto.Sorted = true;
             this.comboBoxGasto.TabIndex = 3;
             // 
             // comboBoxPago
@@ -239,15 +240,16 @@
             this.comboBoxPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPago.FormattingEnabled = true;
             this.comboBoxPago.Items.AddRange(new object[] {
-            "Efectivo",
+            "",
             "Credito",
             "Debito",
-            "Transferencia",
+            "Efectivo",
             "MercadoPago",
-            ""});
+            "Transferencia"});
             this.comboBoxPago.Location = new System.Drawing.Point(15, 147);
             this.comboBoxPago.Name = "comboBoxPago";
             this.comboBoxPago.Size = new System.Drawing.Size(177, 23);
+            this.comboBoxPago.Sorted = true;
             this.comboBoxPago.TabIndex = 2;
             // 
             // groupBoxFiltro
@@ -319,28 +321,29 @@
             this.comboBoxFiltroGasto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFiltroGasto.FormattingEnabled = true;
             this.comboBoxFiltroGasto.Items.AddRange(new object[] {
+            "",
+            "Ahorro",
+            "Alimentacion",
             "Alquiler",
+            "Deudas",
+            "Educacion",
+            "Electronica",
+            "Entretenimiento",
+            "Hobbies",
+            "Mantenimiento",
+            "Mascotas",
+            "Mobiliario",
+            "Otros",
+            "Regalos",
+            "Ropa",
+            "Salud",
             "Servicios",
             "Transporte",
-            "Alimentacion",
-            "Ropa",
-            "Entretenimiento",
-            "Vacaciones",
-            "Hobbies",
-            "Electronica",
-            "Salud",
-            "Educacion",
-            "Ahorro",
-            "Deudas",
-            "Mantenimiento",
-            "Mobiliario",
-            "Regalos",
-            "Mascotas",
-            "Otros",
-            ""});
+            "Vacaciones"});
             this.comboBoxFiltroGasto.Location = new System.Drawing.Point(42, 109);
             this.comboBoxFiltroGasto.Name = "comboBoxFiltroGasto";
             this.comboBoxFiltroGasto.Size = new System.Drawing.Size(134, 23);
+            this.comboBoxFiltroGasto.Sorted = true;
             this.comboBoxFiltroGasto.TabIndex = 24;
             // 
             // textBoxFiltroImporteMax
@@ -356,15 +359,16 @@
             this.comboBoxFiltroPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFiltroPago.FormattingEnabled = true;
             this.comboBoxFiltroPago.Items.AddRange(new object[] {
-            "Efectivo",
+            "",
             "Credito",
             "Debito",
-            "Transferencia",
+            "Efectivo",
             "MercadoPago",
-            ""});
+            "Transferencia"});
             this.comboBoxFiltroPago.Location = new System.Drawing.Point(42, 61);
             this.comboBoxFiltroPago.Name = "comboBoxFiltroPago";
             this.comboBoxFiltroPago.Size = new System.Drawing.Size(134, 23);
+            this.comboBoxFiltroPago.Sorted = true;
             this.comboBoxFiltroPago.TabIndex = 20;
             // 
             // buttonFiltrar

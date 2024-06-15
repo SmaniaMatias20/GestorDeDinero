@@ -85,7 +85,10 @@ namespace CapaDatos
         /// <param name="fechaMin">Fecha mínima.</param>
         /// <param name="fechaMax">Fecha máxima.</param>
         /// <returns>Una lista de objetos Gasto que coinciden con los parámetros proporcionados.</returns>
-        public static List<Gasto> ListarGastos(int idUsuario, List<SqlParameter> parametros, string query)
+        /// 
+
+        /////        SAQUE EL ID DE USUARIO DEL PARAMETRO             ////////
+        public static List<Gasto> ListarGastos(List<SqlParameter> parametros, string query)
         {
             // Nuevo objeto de tipo lista de gastos
             List<Gasto> lista = new List<Gasto>();

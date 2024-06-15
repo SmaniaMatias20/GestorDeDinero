@@ -135,7 +135,7 @@ namespace CapaServicios
         {
             // Agregar validaciones, hay distintos listar gastos depende como filtre el usuario.
             string query = ConstruirConsultaGasto(idUsuario, importeMin, importeMax, tipoGasto, metodoPago, out List<SqlParameter> parametros);
-            return CD_Gasto.ListarGastos(idUsuario, parametros, query);
+            return CD_Gasto.ListarGastos(parametros, query);
         }
 
         private static string ConstruirConsultaGasto(int idUsuario, string importeMin, string importeMax, string tipoGasto, string metodoPago, out List<SqlParameter> parametros)

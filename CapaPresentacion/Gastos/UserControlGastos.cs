@@ -11,7 +11,6 @@ namespace CapaPresentacion
     public partial class UserControlGastos : UserControl
     {
         public bool estadoModificacion = false;
-        public int idGasto = 0;
 
         // Propiedades
         public Usuario Usuario { get; set; } 
@@ -76,7 +75,7 @@ namespace CapaPresentacion
             const string GastoModificado = "Gasto modificado";
 
             // Registra el gasto
-            string mensaje = CS_Gasto.RegistrarGasto(Usuario.Id, textBoxImporte.Text, comboBoxGasto.Text, dateTimePickerFecha.Text, comboBoxPago.Text, textBoxDescripcion.Text, estadoModificacion, idGasto);
+            string mensaje = CS_Gasto.RegistrarGasto(Usuario.Id, textBoxImporte.Text, comboBoxGasto.Text, dateTimePickerFecha.Text, comboBoxPago.Text, textBoxDescripcion.Text, estadoModificacion, ModificarGasto());
 
             // Notificar que los fondos han sido actualizados
             MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -197,8 +196,7 @@ namespace CapaPresentacion
         {
             // Cambia el estado de modificación a verdadero
             estadoModificacion = true;
-            // Obtiene el ID del gasto a modificar llamando al método ModificarGasto
-            idGasto = ModificarGasto();
+            ModificarGasto();
         }
 
         /// <summary>
