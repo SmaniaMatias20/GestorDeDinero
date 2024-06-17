@@ -21,6 +21,10 @@ namespace CapaServicios
             {
                 return (validacionImporte, mensaje);
             }
+            if (importe > usuario.FondosTotales)
+            {
+                return (false, "No puede ingresar un importe superior a los fondos");
+            }
 
 
             Reserva reserva = new Reserva(nombre, importe);

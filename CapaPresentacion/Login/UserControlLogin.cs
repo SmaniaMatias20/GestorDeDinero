@@ -46,7 +46,7 @@ namespace CapaPresentacion
                 this.Hide();
 
                 // Agrega un manejador para el evento de cierre del formulario principal
-                formInicio.FormClosing += frm_closing;
+                formInicio.FormClosing += Frm_closing;
             }
             else
             {
@@ -61,7 +61,7 @@ namespace CapaPresentacion
         /// </summary>
         /// <param name="sender">El objeto que generó el evento.</param>
         /// <param name="e">Los datos del evento de cierre del formulario.</param>
-        private void frm_closing(object sender, FormClosingEventArgs e)
+        private void Frm_closing(object sender, FormClosingEventArgs e)
         {
             // Limpia el contenido del cuadro de texto de usuario
             textBoxUsuario.Text = "";
@@ -95,7 +95,7 @@ namespace CapaPresentacion
         private bool ValidarUsuario()
         {
             // Utiliza el método ValidarUsuario de CS_Usuario para verificar las credenciales ingresadas
-            Usuario usuario = CS_Usuario.ValidarUsuarioIniciarSesion(textBoxUsuario.Text, textBoxClave.Text);
+            Usuario usuario = CS_Usuario.IniciarSesion(textBoxUsuario.Text, textBoxClave.Text);
             // Si se encontró un usuario válido, actualiza el atributo Usuario de la clase y devuelve true
             if (usuario != null)
             {

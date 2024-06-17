@@ -16,7 +16,7 @@ namespace CapaServicios
         /// <param name="nombreUsuario">Nombre del usuario</param>
         /// <param name="clave">Clave del usuario</param>
         /// <returns>El usuario validado si las credenciales son válidas; de lo contrario, null.</returns>
-        public static Usuario ValidarUsuario(string nombreUsuario, string clave)
+        public static Usuario IniciarSesion(string nombreUsuario, string clave)
         {
             // Obtener la lista de usuarios desde la base de datos
             List<Usuario> listaDeUsuarios = CD_Usuario.ListarUsuarios();
@@ -33,77 +33,6 @@ namespace CapaServicios
             }
             // Retorna null
             return null;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="nombre"></param>
-        /// <param name="clave"></param>
-        /// <param name="segundaClave"></param>
-        /// <returns></returns>
-        public static string RegistrarUsuario(string nombre, string clave, string segundaClave)
-        {
-            // Crear una instancia de Usuario
-            Usuario usuario = new Usuario
-            {
-                Nombre = nombre,
-                Clave = clave
-            };
-
-            // Verificar si el usuario ya está registrado
-            if (!ValidarUsuario(usuario))
-            {
-                return "Ya existe el Usuario registrado";
-            }
-
-            // Validar el nombre de usuario
-            string validacionNombre = ValidarNombreUsuario(usuario.Nombre);
-            if (validacionNombre != usuario.Nombre)
-            {
-                return validacionNombre;
-            }
-
-            // Validar la clave del usuario
-            string validacionClave = ValidarClave(usuario.Clave, segundaClave);
-            if (validacionClave != usuario.Clave)
-            {
-                return validacionClave;
-            }
-
-            // Agregar el usuario a la capa de datos
-            CD_Usuario.AgregarUsuario(usuario.Nombre, usuario.Clave);
-            return "Se registró exitosamente...";
-        }
-
-        /// <summary>
-        /// Valida si un nuevo usuario puede registrarse.
-        /// Verifica que el nombre de usuario no esté ya registrado en la base de datos.
-        /// </summary>
-        /// <param name="nuevoUsuario">El objeto Usuario que contiene los datos del nuevo usuario a registrar.</param>
-        /// <returns>
-        /// Devuelve true si el nombre de usuario no está en uso y el registro puede proceder; 
-        /// de lo contrario, devuelve false.
-        /// </returns>
-        private static bool ValidarUsuario(Usuario nuevoUsuario) 
-        {
-            // Obtener la lista de usuarios desde la base de datos
-            List<Usuario> listaDeUsuarios = CD_Usuario.ListarUsuarios();
-
-            // Recorre la lista de usuarios para verificar las credenciales ingresadas
-            foreach (Usuario usuario in listaDeUsuarios)
-            {
-                // Comprueba si el nombre del nuevo usuario ya existe en la lista de usuarios.
-                if (nuevoUsuario.Nombre == usuario.Nombre)
-                {
-                    // Si se encuentra un nombre de usuario coincidente, devuelve false indicando que el usuario no puede registrarse.
-                    return false;
-                }
-            }
-
-            // Si no se encuentra un nombre de usuario coincidente, devuelve true indicando que el usuario puede registrarse.
-            return true;
-
         }
 
         /// <summary>
@@ -181,6 +110,79 @@ namespace CapaServicios
             return clave;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="clave"></param>
+        /// <param name="segundaClave"></param>
+        /// <returns></returns>
+        public static string RegistrarUsuario(string nombre, string clave, string segundaClave)
+        {
+            // Crear una instancia de Usuario
+            Usuario usuario = new Usuario
+            {
+                Nombre = nombre,
+                Clave = clave
+            };
+
+            // Verificar si el usuario ya está registrado
+            if (!ValidarUsuario(usuario))
+            {
+                return "Ya existe el Usuario registrado";
+            }
+
+            // Validar el nombre de usuario
+            string validacionNombre = ValidarNombreUsuario(usuario.Nombre);
+            if (validacionNombre != usuario.Nombre)
+            {
+                return validacionNombre;
+            }
+
+            // Validar la clave del usuario
+            string validacionClave = ValidarClave(usuario.Clave, segundaClave);
+            if (validacionClave != usuario.Clave)
+            {
+                return validacionClave;
+            }
+
+            // Agregar el usuario a la capa de datos
+            CD_Usuario.AgregarUsuario(usuario.Nombre, usuario.Clave);
+            return "Se registró exitosamente...";
+        }
+
+        /// <summary>
+        /// Valida si un nuevo usuario puede registrarse.
+        /// Verifica que el nombre de usuario no esté ya registrado en la base de datos.
+        /// </summary>
+        /// <param name="nuevoUsuario">El objeto Usuario que contiene los datos del nuevo usuario a registrar.</param>
+        /// <returns>
+        /// Devuelve true si el nombre de usuario no está en uso y el registro puede proceder; 
+        /// de lo contrario, devuelve false.
+        /// </returns>
+        private static bool ValidarUsuario(Usuario nuevoUsuario) 
+        {
+            // Obtener la lista de usuarios desde la base de datos
+            List<Usuario> listaDeUsuarios = CD_Usuario.ListarUsuarios();
+
+            // Recorre la lista de usuarios para verificar las credenciales ingresadas
+            foreach (Usuario usuario in listaDeUsuarios)
+            {
+                // Comprueba si el nombre del nuevo usuario ya existe en la lista de usuarios.
+                if (nuevoUsuario.Nombre == usuario.Nombre)
+                {
+                    // Si se encuentra un nombre de usuario coincidente, devuelve false indicando que el usuario no puede registrarse.
+                    return false;
+                }
+            }
+
+            // Si no se encuentra un nombre de usuario coincidente, devuelve true indicando que el usuario puede registrarse.
+            return true;
+
+        }
+
+
+
 
         /// <summary>
         /// Obtiene los fondos totales del usuario.
@@ -207,7 +209,7 @@ namespace CapaServicios
         /// <param name="tipoMovimiento">El tipo de movimiento a realizar (Ingreso, Retiro, Reserva).</param>
         /// <returns>El importe validado que se ha agregado o retirado.</returns>
         /// <exception cref="Exception">Lanzada cuando el usuario no es encontrado.</exception>
-        public static void ActualizarFondos(string nombreUsuario, double importe, ETipoMovimiento tipoMovimiento)
+        public static Usuario ActualizarFondos(string nombreUsuario, double importe, ETipoMovimiento tipoMovimiento)
         {
 
             // Obtener el usuario desde la base de datos
@@ -235,6 +237,8 @@ namespace CapaServicios
                 // Si el usuario no es encontrado, lanzamos una excepción
                 throw new Exception("Usuario no encontrado.");
             }
+
+            return usuario; 
         }
 
     }

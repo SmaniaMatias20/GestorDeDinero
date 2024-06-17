@@ -5,8 +5,6 @@ namespace CapaPresentacion
 {
     public partial class UserControlRegistro : UserControl
     {
-        // Atributos
-        //private CS_Usuario csUsuario;
         private bool _claveVisible = false;
 
         /// <summary>
@@ -16,10 +14,6 @@ namespace CapaPresentacion
         {
             // Inicializa los componentes visuales del control de usuario.
             InitializeComponent();
-
-            // Crea una nueva instancia de CS_Usuario para manejar la lógica relacionada con el usuario
-            //csUsuario = new CS_Usuario();
-           
         }
 
         /// <summary>

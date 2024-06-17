@@ -12,16 +12,24 @@ namespace CapaServicios
         /// <summary>
         /// Registra un movimiento para un usuario específico.
         /// </summary>
-        /// <param name="idUsuario">El identificador único del usuario para quien se registrará el movimiento.</param>
-        /// <param name="importe">La cantidad del movimiento, que debe ser mayor a cero para ser válido.</param>
+        /// <param name="usuario">El objeto Usuario para quien se registrará el movimiento.</param>
+        /// <param name="importeMovimiento">La cantidad del movimiento, que debe ser mayor a cero para ser válido.</param>
         /// <param name="tipo">El tipo de movimiento a registrar (Ingreso, Retiro, Reserva).</param>
-        /// <returns>Un mensaje indicando el resultado de la operación.</returns>
-        public static string RegistrarMovimiento(Usuario usuario, string importeMovimiento, ETipoMovimiento tipo) 
+        /// <returns>Un mensaje indicando el resultado de la operación y el objeto Usuario actualizado.</returns>
+        public static (string, Usuario) RegistrarMovimiento(Usuario usuario, string importeMovimiento, ETipoMovimiento tipo) 
         {
+            // Validar que el importe sea un valor numérico y mayor a cero
             var (validacionImporte, importe, mensaje) = CS_Config.ValidarTextBoxNumerico(importeMovimiento);
             if (!validacionImporte)
             {
-                return mensaje;
+                // Retorna mensaje de error si la validación falla
+                return (mensaje, usuario);
+            }
+            // Verificar que el importe no exceda los fondos del usuario si es un Retiro
+            if (importe > usuario.FondosTotales && tipo == ETipoMovimiento.Retiro)
+            {
+                // Retorna mensaje de error si los fondos son insuficientes
+                return ("No puede ingresar un importe superior a los fondos", usuario);
             }
 
             // Crea una nueva instancia de Movimiento con el tipo y el importe especificados
@@ -29,9 +37,10 @@ namespace CapaServicios
             //Agrega el movimiento a la base de datos para el usuario especificado
             CD_Movimiento.AgregarMovimiento(usuario.Id, movimiento.Fecha, movimiento.Importe, movimiento.Tipo);
             // Actualizar los fondos del usuario
-            CS_Usuario.ActualizarFondos(usuario.Nombre, importe, tipo);
+            usuario = CS_Usuario.ActualizarFondos(usuario.Nombre, importe, tipo);
 
-            return mensaje;
+            // Retorna el mensaje de éxito o cualquier mensaje asociado y el objeto Usuario actualizado
+            return (mensaje, usuario);
         }
 
         /// <summary>

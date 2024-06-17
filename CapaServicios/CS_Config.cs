@@ -106,9 +106,8 @@ namespace CapaServicios
         {
             if (string.IsNullOrWhiteSpace(ingreso) || string.IsNullOrWhiteSpace(ingreso))
             {
-                return (false, "La cadena no puede estar vacía");
+                return (false, "El campo no puede estar vacio");
             }
-
 
             return (true, ingreso);
 

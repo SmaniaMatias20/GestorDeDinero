@@ -8,10 +8,6 @@ namespace CapaPresentacion
 {
     public partial class UserControlRetiro : UserControl
     {
-        // Atributos
-        //private Usuario _usuario = new Usuario();
-
-
         // Eventos
         public event EventHandler AceptarClick;
 
@@ -73,10 +69,10 @@ namespace CapaPresentacion
             if (result == DialogResult.Yes) 
             { 
                 // Registra el movimiento
-                string mensaje = CS_Movimiento.RegistrarMovimiento(Usuario, textBoxRetiro.Text, ETipoMovimiento.Retiro);
+                var (mensaje, usuario) = CS_Movimiento.RegistrarMovimiento(Usuario, textBoxRetiro.Text, ETipoMovimiento.Retiro);
 
                 // Obtiene los fondos actuales del usuario después del retiro
-                double fondosActuales = CS_Usuario.ObtenerFondosTotales(Usuario);
+                double fondosActuales = CS_Usuario.ObtenerFondosTotales(usuario);
 
                 // Formatea los fondos actuales a una representación de moneda
                 string fondosFormateados = CS_Config.FormatearMoneda(fondosActuales);
