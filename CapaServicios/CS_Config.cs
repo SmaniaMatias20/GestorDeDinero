@@ -82,5 +82,37 @@ namespace CapaServicios
 
         }
 
+        public static (bool, double, string) ValidarTextBoxNumerico(string importe) 
+        {
+            if (string.IsNullOrWhiteSpace(importe) || string.IsNullOrWhiteSpace(importe))
+            {
+                return (false, 0, "Ingrese un importe");
+            }
+
+            if (!double.TryParse(importe, out double importeValidado))
+            {
+                return (false, 0, "Ingrese un numero");
+            }
+
+            if (importeValidado <= 0)
+            {
+                return (false, 0, "Ingrese un numero mayor a 0(cero)");
+            }
+
+            return (true, importeValidado, "Ok");
+        }
+
+        public static (bool, string) ValidarTextBoxAlfaNumerico(string ingreso)
+        {
+            if (string.IsNullOrWhiteSpace(ingreso) || string.IsNullOrWhiteSpace(ingreso))
+            {
+                return (false, "La cadena no puede estar vacía");
+            }
+
+
+            return (true, ingreso);
+
+        }
+
     }
 }

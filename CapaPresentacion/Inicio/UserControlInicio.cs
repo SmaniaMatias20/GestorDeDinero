@@ -196,7 +196,7 @@ namespace CapaPresentacion
                 // Llamar al método para eliminar la reserva por su ID de la base de datos
                 CS_Reserva.EliminarReservaPorId(reserva.IdReserva);
                 // Actualiza los fondos del usuario
-                CS_Usuario.ActualizarFondos(Usuario.Nombre, reserva.Importe.ToString(), CapaEntidades.Enums.ETipoMovimiento.Ingreso);
+                CS_Usuario.ActualizarFondos(Usuario.Nombre, reserva.Importe, CapaEntidades.Enums.ETipoMovimiento.Ingreso);
                 // Actualiza el valor de la caja
                 ActualizarValorEnCaja();
             }

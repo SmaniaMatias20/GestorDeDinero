@@ -77,7 +77,7 @@ namespace CapaPresentacion
             // Si el usuario hace clic en "Sí"
             if (result == DialogResult.Yes)
             {
-                //
+                // Gestiona y registra la reserva
                 var (registroReserva, mensaje) = GestionarReserva();
 
                 // Muestra los fondos actuales

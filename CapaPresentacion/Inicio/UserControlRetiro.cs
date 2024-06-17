@@ -72,8 +72,8 @@ namespace CapaPresentacion
             // Si el usuario hace clic en "Sí"
             if (result == DialogResult.Yes) 
             { 
-                // Actualizar los fondos del usuario
-                double movimientoValidado = CS_Usuario.ActualizarFondos(Usuario.Nombre, textBoxRetiro.Text, ETipoMovimiento.Retiro);
+                // Registra el movimiento
+                string mensaje = CS_Movimiento.RegistrarMovimiento(Usuario, textBoxRetiro.Text, ETipoMovimiento.Retiro);
 
                 // Obtiene los fondos actuales del usuario después del retiro
                 double fondosActuales = CS_Usuario.ObtenerFondosTotales(Usuario);
@@ -84,13 +84,10 @@ namespace CapaPresentacion
                 // Actualizar el label con los fondos formateados
                 labelFondos.Text = $"Fondos: {fondosFormateados}";
 
-                // Registra el movimiento
-                string mensaje = CS_Movimiento.RegistrarMovimiento(Usuario.Id, movimientoValidado, ETipoMovimiento.Retiro);
-
                 // Notificar que los fondos han sido actualizados
                 MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                if (mensaje == "Fondos actualizados correctamente")
+                if (mensaje == "Ok")
                 {
                     // Dispara el evento AceptarClick cuando se presiona el botón "Aceptar"
                     AceptarClick?.Invoke(this, EventArgs.Empty);

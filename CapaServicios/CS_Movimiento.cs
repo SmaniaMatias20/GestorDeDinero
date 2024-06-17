@@ -16,42 +16,22 @@ namespace CapaServicios
         /// <param name="importe">La cantidad del movimiento, que debe ser mayor a cero para ser válido.</param>
         /// <param name="tipo">El tipo de movimiento a registrar (Ingreso, Retiro, Reserva).</param>
         /// <returns>Un mensaje indicando el resultado de la operación.</returns>
-        public static string RegistrarMovimiento(int idUsuario, double importe, ETipoMovimiento tipo) 
+        public static string RegistrarMovimiento(Usuario usuario, string importeMovimiento, ETipoMovimiento tipo) 
         {
-            if (ValidarImporteDeMovimiento(importe) == "Fondos actualizados correctamente")
+            var (validacionImporte, importe, mensaje) = CS_Config.ValidarTextBoxNumerico(importeMovimiento);
+            if (!validacionImporte)
             {
-                // Crea una nueva instancia de Movimiento con el tipo y el importe especificados
-                Movimiento movimiento = new Movimiento(tipo, importe);
-                //Agrega el movimiento a la base de datos para el usuario especificado
-                CD_Movimiento.AgregarMovimiento(idUsuario, movimiento.Fecha, movimiento.Importe, movimiento.Tipo);
-                // Devuelve un mensaje indicando que los fondos han sido actualizados correctamente
-                return ValidarImporteDeMovimiento(importe);
-            }
-            else
-            {
-                return ValidarImporteDeMovimiento(importe);
-            }
-        }
-
-        private static string ValidarImporteDeMovimiento(double importe) 
-        {
-            if (importe > 0)
-            {
-                return "Fondos actualizados correctamente";
-            }
-            else if (importe == 0)
-            {
-                return "Ingrese un importe mayor a 0(cero)";
-            }
-            else if (importe == -1)
-            {
-                return "Ingrese un importe menor a los fondos totales";
-            }
-            else
-            {
-                return "No se aceptan transacciones mayores a $5.000.000";
+                return mensaje;
             }
 
+            // Crea una nueva instancia de Movimiento con el tipo y el importe especificados
+            Movimiento movimiento = new Movimiento(tipo, importe);
+            //Agrega el movimiento a la base de datos para el usuario especificado
+            CD_Movimiento.AgregarMovimiento(usuario.Id, movimiento.Fecha, movimiento.Importe, movimiento.Tipo);
+            // Actualizar los fondos del usuario
+            CS_Usuario.ActualizarFondos(usuario.Nombre, importe, tipo);
+
+            return mensaje;
         }
 
         /// <summary>

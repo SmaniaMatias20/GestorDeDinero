@@ -196,6 +196,7 @@ namespace CapaPresentacion
             // Modifica el titulo 
             labelTitulo.Text = "Inversiones";
         }
+
         private void buttonAjustes_Click(object sender, EventArgs e)
         {
             // Crea una instancia del control de usuario para la pantalla de inicio
@@ -209,6 +210,11 @@ namespace CapaPresentacion
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSalir_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("¿Está seguro que quieres salir?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

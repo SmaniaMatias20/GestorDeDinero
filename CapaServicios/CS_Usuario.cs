@@ -16,7 +16,7 @@ namespace CapaServicios
         /// <param name="nombreUsuario">Nombre del usuario</param>
         /// <param name="clave">Clave del usuario</param>
         /// <returns>El usuario validado si las credenciales son válidas; de lo contrario, null.</returns>
-        public static Usuario ValidarUsuarioIniciarSesion(string nombreUsuario, string clave)
+        public static Usuario ValidarUsuario(string nombreUsuario, string clave)
         {
             // Obtener la lista de usuarios desde la base de datos
             List<Usuario> listaDeUsuarios = CD_Usuario.ListarUsuarios();
@@ -52,7 +52,7 @@ namespace CapaServicios
             };
 
             // Verificar si el usuario ya está registrado
-            if (!ValidarUsuarioRegistrarse(usuario))
+            if (!ValidarUsuario(usuario))
             {
                 return "Ya existe el Usuario registrado";
             }
@@ -85,7 +85,7 @@ namespace CapaServicios
         /// Devuelve true si el nombre de usuario no está en uso y el registro puede proceder; 
         /// de lo contrario, devuelve false.
         /// </returns>
-        private static bool ValidarUsuarioRegistrarse(Usuario nuevoUsuario) 
+        private static bool ValidarUsuario(Usuario nuevoUsuario) 
         {
             // Obtener la lista de usuarios desde la base de datos
             List<Usuario> listaDeUsuarios = CD_Usuario.ListarUsuarios();
@@ -207,10 +207,8 @@ namespace CapaServicios
         /// <param name="tipoMovimiento">El tipo de movimiento a realizar (Ingreso, Retiro, Reserva).</param>
         /// <returns>El importe validado que se ha agregado o retirado.</returns>
         /// <exception cref="Exception">Lanzada cuando el usuario no es encontrado.</exception>
-        public static double ActualizarFondos(string nombreUsuario, string importe, ETipoMovimiento tipoMovimiento)
+        public static void ActualizarFondos(string nombreUsuario, double importe, ETipoMovimiento tipoMovimiento)
         {
-            // Valida y convierte el importe ingresado a un valor double
-            double importeValidado = ValidarImporteIngresado(importe);
 
             // Obtener el usuario desde la base de datos
             Usuario usuario = CD_Usuario.ObtenerUsuarioPorNombre(nombreUsuario);
@@ -218,27 +216,19 @@ namespace CapaServicios
             // Si el usuario existe y el tipo de movimiento es Ingreso, actualizamos sus fondos sumando el importe validado
             if (usuario != null && tipoMovimiento == ETipoMovimiento.Ingreso)
             {
-                usuario.FondosTotales += importeValidado;
+                usuario.FondosTotales += importe;
                 CD_Usuario.ActualizarUsuario(usuario);
-                // Devuelve el importe validado
-                return importeValidado;
             }
             // Si el usuario existe y el tipo de movimiento es Retiro o Reserva, restamos el importe validado de los fondos
             else if (usuario != null && (tipoMovimiento == ETipoMovimiento.Retiro || tipoMovimiento == ETipoMovimiento.Reserva))
             {
                 // Verificamos que el usuario tenga fondos suficientes antes de realizar la operación
-                if (importeValidado <= usuario.FondosTotales)
+                if (importe <= usuario.FondosTotales)
                 {
-                    usuario.FondosTotales -= importeValidado;
+                    usuario.FondosTotales -= importe;
                     CD_Usuario.ActualizarUsuario(usuario);
-                    // Devuelve el importe validado
-                    return importeValidado;
                 }
-                else
-                {
-                    // Devuelve -1 si el importe ingresado es mayor que los fondos totales del usuario
-                    return -1;
-                }
+
             }
             else 
             {
@@ -247,46 +237,5 @@ namespace CapaServicios
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="importeIngresado"></param>
-        /// <returns></returns>
-        private static double ValidarImporteIngresado(string importeIngresado) 
-        {
-            // Verifica que el importe sea mayor a 0(cero)
-            if (importeIngresado == "")
-            {
-                return 0;
-            }
-
-            // Verifica que el campo de ingreso no esté vacío
-            if (string.IsNullOrWhiteSpace(importeIngresado))
-            {
-                return 0;
-            }
-
-            // Verifica que el campo de ingreso contenga un número válido
-            if (!double.TryParse(importeIngresado, out double importeValidado))
-            {
-                return 0;
-            }
-
-            // Verifica que el importe sea mayor a 0(cero)
-            if (importeValidado == 0)
-            {
-                return 0;
-            }
-
-            // Verifica que el importe sea menor o igual a $5.000.000
-            if (importeValidado > 5000000)
-            {
-                return -2;
-            }
-
-            // Si todas las validaciones son exitosas, devuelve el valor numérico del ingreso
-            return importeValidado;
-
-        }
     }
 }
