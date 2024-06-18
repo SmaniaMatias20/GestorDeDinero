@@ -41,14 +41,15 @@
             this.labelHasta = new System.Windows.Forms.Label();
             this.labelGanancias = new System.Windows.Forms.Label();
             this.labelTNA = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelTotal = new System.Windows.Forms.Label();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.pictureBoxImagen = new System.Windows.Forms.PictureBox();
             this.textBoxImporte = new System.Windows.Forms.TextBox();
             this.labelImporte = new System.Windows.Forms.Label();
             this.labelDias = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBoxSimulador = new System.Windows.Forms.GroupBox();
+            this.dateTimePickerFecha = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBoxConversion.SuspendLayout();
             this.panelResultado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagen)).BeginInit();
@@ -127,7 +128,7 @@
             this.panelResultado.Controls.Add(this.labelHasta);
             this.panelResultado.Controls.Add(this.labelGanancias);
             this.panelResultado.Controls.Add(this.labelTNA);
-            this.panelResultado.Controls.Add(this.label2);
+            this.panelResultado.Controls.Add(this.labelTotal);
             this.panelResultado.Controls.Add(this.labelTitulo);
             this.panelResultado.Controls.Add(this.pictureBoxImagen);
             this.panelResultado.Location = new System.Drawing.Point(19, 168);
@@ -142,9 +143,9 @@
             this.labelFecha.ForeColor = System.Drawing.SystemColors.ControlText;
             this.labelFecha.Location = new System.Drawing.Point(371, 114);
             this.labelFecha.Name = "labelFecha";
-            this.labelFecha.Size = new System.Drawing.Size(85, 15);
+            this.labelFecha.Size = new System.Drawing.Size(87, 15);
             this.labelFecha.TabIndex = 8;
-            this.labelFecha.Text = "10/07/2024";
+            this.labelFecha.Text = "dd/MM/yyyy";
             // 
             // labelInteres
             // 
@@ -162,7 +163,7 @@
             this.labelTasa.AutoSize = true;
             this.labelTasa.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTasa.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.labelTasa.Location = new System.Drawing.Point(183, 114);
+            this.labelTasa.Location = new System.Drawing.Point(179, 114);
             this.labelTasa.Name = "labelTasa";
             this.labelTasa.Size = new System.Drawing.Size(28, 15);
             this.labelTasa.TabIndex = 6;
@@ -201,16 +202,16 @@
             this.labelTNA.TabIndex = 3;
             this.labelTNA.Text = "TNA";
             // 
-            // label2
+            // labelTotal
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Cambria", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(176, 46);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(153, 32);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "$1.000.000";
+            this.labelTotal.AutoSize = true;
+            this.labelTotal.Font = new System.Drawing.Font("Cambria", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.labelTotal.Location = new System.Drawing.Point(176, 46);
+            this.labelTotal.Name = "labelTotal";
+            this.labelTotal.Size = new System.Drawing.Size(45, 32);
+            this.labelTotal.TabIndex = 2;
+            this.labelTotal.Text = "$0";
             // 
             // labelTitulo
             // 
@@ -236,7 +237,7 @@
             // 
             this.textBoxImporte.Location = new System.Drawing.Point(19, 68);
             this.textBoxImporte.Name = "textBoxImporte";
-            this.textBoxImporte.Size = new System.Drawing.Size(179, 23);
+            this.textBoxImporte.Size = new System.Drawing.Size(211, 23);
             this.textBoxImporte.TabIndex = 2;
             // 
             // labelImporte
@@ -259,19 +260,10 @@
             this.labelDias.TabIndex = 4;
             this.labelDias.Text = "¿A cuántos días?";
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dateTimePicker1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(19, 132);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(179, 23);
-            this.dateTimePicker1.TabIndex = 5;
-            // 
             // groupBoxSimulador
             // 
-            this.groupBoxSimulador.Controls.Add(this.dateTimePicker1);
+            this.groupBoxSimulador.Controls.Add(this.label1);
+            this.groupBoxSimulador.Controls.Add(this.dateTimePickerFecha);
             this.groupBoxSimulador.Controls.Add(this.labelDias);
             this.groupBoxSimulador.Controls.Add(this.labelImporte);
             this.groupBoxSimulador.Controls.Add(this.textBoxImporte);
@@ -285,6 +277,29 @@
             this.groupBoxSimulador.TabIndex = 1;
             this.groupBoxSimulador.TabStop = false;
             this.groupBoxSimulador.Text = "Simulador de Plazo Fijo";
+            // 
+            // dateTimePickerFecha
+            // 
+            this.dateTimePickerFecha.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dateTimePickerFecha.CustomFormat = "dd-MM-yyyy";
+            this.dateTimePickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerFecha.Location = new System.Drawing.Point(19, 132);
+            this.dateTimePickerFecha.MinDate = new System.DateTime(2023, 12, 10, 0, 0, 0, 0);
+            this.dateTimePickerFecha.Name = "dateTimePickerFecha";
+            this.dateTimePickerFecha.Size = new System.Drawing.Size(116, 23);
+            this.dateTimePickerFecha.TabIndex = 5;
+            this.dateTimePickerFecha.Value = new System.DateTime(2024, 6, 18, 10, 47, 58, 0);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(141, 132);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 24);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "0 días";
             // 
             // UserControlInversion
             // 
@@ -322,13 +337,14 @@
         private System.Windows.Forms.Label labelHasta;
         private System.Windows.Forms.Label labelGanancias;
         private System.Windows.Forms.Label labelTNA;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelTotal;
         private System.Windows.Forms.Label labelTitulo;
         private System.Windows.Forms.PictureBox pictureBoxImagen;
         private System.Windows.Forms.TextBox textBoxImporte;
         private System.Windows.Forms.Label labelImporte;
         private System.Windows.Forms.Label labelDias;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.GroupBox groupBoxSimulador;
+        private System.Windows.Forms.DateTimePicker dateTimePickerFecha;
+        private System.Windows.Forms.Label label1;
     }
 }

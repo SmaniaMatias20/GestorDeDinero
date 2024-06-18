@@ -87,26 +87,31 @@ namespace CapaServicios
 
                 try
                 {
+                    // Si no está en estado de modificacion 
                     if (!estadoModificacion)
                     {
                         // Agrega el gasto a la capa de acceso a datos
                         CD_Gasto.AgregarGasto(idUsuario, gasto.Fecha, gasto.Importe, gasto.Tipo, gasto.Pago, gasto.Descripcion);
+                        // Retorna un mensaje
                         return "Gasto registrado";
                     }
                     else
                     {
                         // Establece el ID del gasto y lo actualiza en la capa de acceso a datos
                         gasto.Id = idGasto;
+                        // Actualiza el gasto
                         CD_Gasto.ActualizarGasto(gasto);
+                        // Retorna un mensaje
                         return "Gasto modificado";
                     }
                 }
                 catch (Exception ex)
                 {
+                    //
                     return $"{ErrorProceso}: {ex.Message}";
                 }
             }
-
+            //
             return ErrorRegistro;
         }
 
@@ -131,16 +136,47 @@ namespace CapaServicios
             CD_Gasto.EliminarGasto(idGasto);
         }
 
+        /// <summary>
+        /// Busca y retorna una lista de gastos filtrados según los criterios proporcionados.
+        /// </summary>
+        /// <param name="idUsuario">El ID del usuario cuyos gastos se desean consultar.</param>
+        /// <param name="importeMin">El importe mínimo de los gastos a incluir en la consulta (opcional).</param>
+        /// <param name="importeMax">El importe máximo de los gastos a incluir en la consulta (opcional).</param>
+        /// <param name="tipoGasto">El tipo de gasto a filtrar (opcional).</param>
+        /// <param name="metodoPago">El método de pago a filtrar (opcional).</param>
+        /// <returns>Una lista de objetos <see cref="Gasto"/> que cumplen con los criterios de búsqueda.</returns>
+        /// <remarks>
+        /// Este método construye una consulta SQL utilizando los parámetros proporcionados
+        /// y luego llama a <see cref="CD_Gasto.ListarGastos"/> para ejecutar la consulta y retornar los resultados.
+        /// </remarks>
         public static List<Gasto> BuscarGastoFiltrado(int idUsuario, string importeMin, string importeMax, string tipoGasto, string metodoPago) 
         {
-            // Agregar validaciones, hay distintos listar gastos depende como filtre el usuario.
+            // Construye la consulta SQL con los filtros proporcionados y obtener la lista de parámetros SQL.
             string query = ConstruirConsultaGasto(idUsuario, importeMin, importeMax, tipoGasto, metodoPago, out List<SqlParameter> parametros);
+            // Ejecuta la consulta utilizando CD_Gasto.ListarGastos y retornar los resultados.
             return CD_Gasto.ListarGastos(parametros, query);
         }
 
+        /// <summary>
+        /// Construye una consulta SQL para filtrar gastos de un usuario específico según varios criterios.
+        /// </summary>
+        /// <param name="idUsuario">El ID del usuario cuyos gastos se desean consultar.</param>
+        /// <param name="importeMin">El importe mínimo de los gastos a incluir en la consulta (opcional).</param>
+        /// <param name="importeMax">El importe máximo de los gastos a incluir en la consulta (opcional).</param>
+        /// <param name="tipoGasto">El tipo de gasto a filtrar (opcional).</param>
+        /// <param name="metodoPago">El método de pago a filtrar (opcional).</param>
+        /// <param name="parametros">Salida. Lista de parámetros SQL para la consulta construida.</param>
+        /// <returns>Una cadena con la consulta SQL construida.</returns>
+        /// <remarks>
+        /// Este método construye dinámicamente una consulta SQL basada en los parámetros proporcionados.
+        /// Los parámetros opcionales que no se especifican se omiten de la consulta.
+        /// Los parámetros se agregan a una lista de parámetros SQL, que se retorna a través del parámetro de salida `parametros`.
+        /// </remarks>
         private static string ConstruirConsultaGasto(int idUsuario, string importeMin, string importeMax, string tipoGasto, string metodoPago, out List<SqlParameter> parametros)
         {
+            // Inicializa la lista de parámetros
             parametros = new List<SqlParameter>();
+            // Construye la consulta básica con el ID del usuario
             StringBuilder query = new StringBuilder("SELECT id, tipo, importe, pago, descripcion, fecha FROM gasto WHERE id_usuario = @idUsuario");
             parametros.Add(new SqlParameter("@idUsuario", idUsuario));
 
@@ -171,7 +207,7 @@ namespace CapaServicios
                 query.Append(" AND pago = @metodoPago");
                 parametros.Add(new SqlParameter("@metodoPago", metodoPago));
             }
-
+            // Retorna la consulta SQL construida como una cadena
             return query.ToString();
         }
     }

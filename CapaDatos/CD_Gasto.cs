@@ -75,19 +75,12 @@ namespace CapaDatos
         }
 
         /// <summary>
-        /// Obtiene una lista de gastos desde la base de datos según los parámetros proporcionados.
-        /// </summary>
-        /// <param name="idUsuario">ID del usuario.</param>
-        /// <param name="tipo">Tipo de gasto.</param>
-        /// <param name="pago">Tipo de pago.</param>
-        /// <param name="importeMin">Importe mínimo.</param>
-        /// <param name="importeMax">Importe máximo.</param>
-        /// <param name="fechaMin">Fecha mínima.</param>
-        /// <param name="fechaMax">Fecha máxima.</param>
-        /// <returns>Una lista de objetos Gasto que coinciden con los parámetros proporcionados.</returns>
         /// 
-
-        /////        SAQUE EL ID DE USUARIO DEL PARAMETRO             ////////
+        /// </summary>
+        /// <param name="parametros"></param>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static List<Gasto> ListarGastos(List<SqlParameter> parametros, string query)
         {
             // Nuevo objeto de tipo lista de gastos
@@ -125,10 +118,12 @@ namespace CapaDatos
                                 // Asignar los valores de las columnas del resultado a las propiedades del objeto Gasto
                                 if (Enum.TryParse(reader["tipo"].ToString(), out ETipoGasto tipoGasto))
                                 {
+                                    //
                                     gasto.Tipo = tipoGasto;
                                 }
                                 if (Enum.TryParse(reader["pago"].ToString(), out ETipoPago tipoPago))
                                 {
+                                    //
                                     gasto.Pago = tipoPago;
                                 }
 
