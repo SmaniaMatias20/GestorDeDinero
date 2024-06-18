@@ -44,7 +44,8 @@ namespace CapaPresentacion
         /// </summary>
         private void textBoxIngreso_TextChanged(object sender, EventArgs e)
         {
-            // Aquí puedes agregar código si deseas realizar alguna acción cuando cambia el texto del textBoxIngreso
+
+
         }
 
         /// <summary>
@@ -52,6 +53,7 @@ namespace CapaPresentacion
         /// </summary>
         private void buttonBorrarIngreso_Click(object sender, EventArgs e)
         {
+            // Vacia el TextBox de ingreso
             textBoxIngreso.Text = "";
         }
 
@@ -60,13 +62,17 @@ namespace CapaPresentacion
         /// </summary>
         private void buttonAceptarIngreso_Click(object sender, EventArgs e)
         {
+            // Pregunta si queremos realizar el ingreso
             DialogResult result = MessageBox.Show("¿Está seguro que quieres realizar el ingreso?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             // Si el usuario hace clic en "Sí"
             if (result == DialogResult.Yes)
             {
 
                 // Registra el movimiento
-                string mensaje = CS_Movimiento.RegistrarMovimiento(Usuario, textBoxIngreso.Text, ETipoMovimiento.Ingreso);
+                var (mensaje, usuario) = CS_Movimiento.RegistrarMovimiento(Usuario, textBoxIngreso.Text, ETipoMovimiento.Ingreso);
+
+                // Hacer algo con el usuario
+
 
                 // Notificar que los fondos han sido actualizados
                 MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -17,7 +17,7 @@ namespace CapaServicios
             var nfi = new System.Globalization.CultureInfo("es-AR", false).NumberFormat;
 
             // Configura para que no se muestren decimales en el formato de moneda
-            nfi.CurrencyDecimalDigits = 2;
+            nfi.CurrencyDecimalDigits = 2; //2
 
             // Convierte la cantidad a una cadena con formato de moneda utilizando la configuración de formato
             return cantidad.ToString("C", nfi);
@@ -41,6 +41,9 @@ namespace CapaServicios
             {
                 e.Handled = true;
             }
+
+
+
         }
 
         /// <summary>
@@ -82,33 +85,56 @@ namespace CapaServicios
 
         }
 
+        /// <summary>
+        /// Valida que un string no esté vacío, sea numérico y mayor a cero.
+        /// </summary>
+        /// <param name="importe">El string que representa el importe a validar.</param>
+        /// <returns>Un tuple que contiene un booleano indicando si la validación pasó, 
+        /// el importe validado como double y un mensaje descriptivo.</returns>
         public static (bool, double, string) ValidarTextBoxNumerico(string importe) 
         {
+            // Verificar si el string está vacío o contiene solo espacios en blanco
             if (string.IsNullOrWhiteSpace(importe) || string.IsNullOrWhiteSpace(importe))
             {
+                // Retorna false, 0 y un mensaje de error si el string está vacío
                 return (false, 0, "Ingrese un importe");
             }
-
+            // Intentar convertir el string a un valor numérico de tipo double
             if (!double.TryParse(importe, out double importeValidado))
             {
+                // Retorna false, 0 y un mensaje de error si la conversión falla
                 return (false, 0, "Ingrese un numero");
             }
-
+            // Verificar si el valor numérico es mayor a 0
             if (importeValidado <= 0)
             {
+                // Retorna false, 0 y un mensaje de error si el valor es menor o igual a 0
                 return (false, 0, "Ingrese un numero mayor a 0(cero)");
             }
-
+            // Si pasa las validaciones, retorna true, el valor numérico validado y "Ok"
             return (true, importeValidado, "Ok");
         }
 
+        /// <summary>
+        /// Valida que un string no esté vacío, sea alfanumérico y no contenga más de 20 caracteres.
+        /// </summary>
+        /// <param name="ingreso">El string a validar.</param>
+        /// <returns>Un tuple que contiene un booleano indicando si la validación pasó y un mensaje.</returns>
         public static (bool, string) ValidarTextBoxAlfaNumerico(string ingreso)
         {
+            // Verificar si el string está vacío o contiene solo espacios en blanco
             if (string.IsNullOrWhiteSpace(ingreso) || string.IsNullOrWhiteSpace(ingreso))
             {
+                // Retorna false con un mensaje de error si el string está vacío
                 return (false, "El campo no puede estar vacio");
             }
-
+            // Verificar si el string contiene más de 20 caracteres
+            if (ingreso.Length > 20)
+            {
+                // Retorna false con un mensaje de error si el string tiene más de 20 caracteres
+                return (false, "El campo no puede contener más de 20 caracteres");
+            }
+            // Si pasa las validaciones, retorna true con el string de entrada
             return (true, ingreso);
 
         }
