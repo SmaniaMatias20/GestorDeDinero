@@ -38,3 +38,5 @@ C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Deb
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.UserControlInversion.resources
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.Ajustes.UserControlAjustes.resources
 C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\obj\Debug\CapaPresentacion.Login.UserControlPresentacion.resources
+C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Smania Matias\Desktop\Proyectos\GestorDeDinero\CapaPresentacion\bin\Debug\Newtonsoft.Json.xml

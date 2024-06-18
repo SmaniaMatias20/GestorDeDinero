@@ -2,14 +2,20 @@
 using CapaServicios;
 using System.Globalization;
 using System;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
+using System.Text;
+using System.Text.Json.Nodes;
+
 
 namespace CapaPresentacion
 {
     public partial class UserControlInversion : UserControl
     {
+        private const double _tasa = 29.50;
+
+
         // Propiedades
         public Usuario Usuario { get; set; }
 
@@ -24,21 +30,32 @@ namespace CapaPresentacion
             textBoxConversion.KeyPress += CS_Config.textBox_KeyPress;
 
             // Tasa de interés actual
-            labelTasa.Text = "29,50%";
+            labelTasa.Text = $"{_tasa}%";
+            // Configura el calendario
+            ConfigurarDateTimePicker();
 
-            // Calcula la fecha mínima permitida (por ejemplo, un mes a partir de hoy)
-            DateTime fechaMinima = DateTime.Today.AddMonths(1);
-
-            // Configura el DateTimePicker para que permita seleccionar fechas a partir de la fecha mínima
-            dateTimePickerFecha.MinDate = fechaMinima;
-
-
+            JsonObject datosMonedas = (JsonObject)ConexionConAPI();
         }
 
         public UserControlInversion(Usuario usuario) : this()
         {
             // Asigna el usuario recibido por parámetro al atributo de la clase
             Usuario = usuario;
+        }
+
+        private void Convertir() 
+        {
+            var (validacion, importeIngresado, mensaje) = CS_Config.ValidarTextBoxNumerico(textBoxMoneda.Text);
+            if (validacion)
+            {
+
+                
+            }
+            else
+            {
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
         }
 
 
@@ -48,39 +65,32 @@ namespace CapaPresentacion
             Simular();
         }
 
-        private double ConvertirLabelTasa() 
-        {
-            string tasa = "";
-            if (labelTasa.Text.Contains("%"))
-            {
-                tasa = labelTasa.Text.Replace("%", "");
-            }
-
-            if (double.TryParse(tasa, out double importeTasa))
-            {
-            }
-
-            return importeTasa;
-        }
-
         private void Simular() 
         {
-            // Obtiene la fecha de final
-            labelFecha.Text = dateTimePickerFecha.Text;
-            // Obtiene los dias transcurridos
-            double dias = ObtenerDias();
-            // Convierte la tasa en importe
-            double importeTasa = ConvertirLabelTasa();
-            // Obtiene los intereses anuales
-            double interesesAnuales = (double.Parse(textBoxImporte.Text) * importeTasa) / 100;
-            // Obtiene los intereses de acuerdo a los dias ingresados 
-            double interesesGanados = (dias * interesesAnuales) / 365;
-            // Obtiene el total de la suma del importe mas los intereses
-            double total = double.Parse(textBoxImporte.Text) + interesesGanados;
-            // Muestra el total en el label
-            labelTotal.Text = CS_Config.FormatearMoneda(total);
-            // Muestra los intereses en el label
-            labelInteres.Text = CS_Config.FormatearMoneda(interesesGanados);
+            var(validacion, importeIngresado, mensaje) = CS_Config.ValidarTextBoxNumerico(textBoxImporte.Text);
+            if (validacion)
+            {
+                // Obtiene la fecha de final
+                labelFecha.Text = dateTimePickerFecha.Text;
+                // Obtiene los dias transcurridos
+                double dias = ObtenerDias();
+                // Muestra el total de dias
+                labelTotalDias.Text = $"{dias} días";
+                // Obtiene los intereses anuales
+                double interesesAnuales = (double.Parse(textBoxImporte.Text) * _tasa) / 100;
+                // Obtiene los intereses de acuerdo a los dias ingresados 
+                double interesesGanados = (dias * interesesAnuales) / 365;
+                // Obtiene el total de la suma del importe mas los intereses
+                double total = importeIngresado + interesesGanados;
+                // Muestra el total en el label
+                labelTotal.Text = CS_Config.FormatearMoneda(total);
+                // Muestra los intereses en el label
+                labelInteres.Text = CS_Config.FormatearMoneda(interesesGanados);
+            }
+            else
+            {
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private double ObtenerDias() 
@@ -101,5 +111,48 @@ namespace CapaPresentacion
 
             return 30;
         }
+
+        private void ConfigurarDateTimePicker() 
+        {
+            // Calcula la fecha mínima permitida (por ejemplo, un mes a partir de hoy)
+            DateTime fechaMinima = DateTime.Today.AddMonths(1);
+
+            // Configura el DateTimePicker para que permita seleccionar fechas a partir de la fecha mínima
+            dateTimePickerFecha.MinDate = fechaMinima;
+
+            // Calcula la fecha máxima permitida (un año a partir de hoy)
+            DateTime fechaMaxima = DateTime.Today.AddYears(1);
+
+            // Configura el DateTimePicker para que permita seleccionar fechas hasta la fecha máxima
+            dateTimePickerFecha.MaxDate = fechaMaxima;
+        }
+
+        private string ConexionConAPI() 
+        {
+            string apiKey = "1dfd46d7fc-f346d50da8-sfa65n"; // Reemplaza con tu clave API de Open Exchange Rates
+
+            // URL de la API de Open Exchange Rates para obtener las últimas tasas de cambio
+            string apiUrl = $"https://api.fastforex.io/fetch-all?api_key={apiKey}";
+
+            // Realizar la solicitud HTTP GET a la API
+            using (HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage response = client.GetAsync(apiUrl).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Leer la respuesta JSON
+                    string json = response.Content.ReadAsStringAsync().Result;
+                    return json;
+                }
+                else
+                {
+                    MessageBox.Show("Error");
+                    return "";
+                }
+            }
+
+        }
+
     }
 }

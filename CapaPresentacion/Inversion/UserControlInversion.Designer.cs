@@ -48,8 +48,8 @@
             this.labelImporte = new System.Windows.Forms.Label();
             this.labelDias = new System.Windows.Forms.Label();
             this.groupBoxSimulador = new System.Windows.Forms.GroupBox();
+            this.labelTotalDias = new System.Windows.Forms.Label();
             this.dateTimePickerFecha = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBoxConversion.SuspendLayout();
             this.panelResultado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagen)).BeginInit();
@@ -68,6 +68,7 @@
             this.textBoxConversion.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxConversion.Location = new System.Drawing.Point(285, 19);
             this.textBoxConversion.Name = "textBoxConversion";
+            this.textBoxConversion.ReadOnly = true;
             this.textBoxConversion.Size = new System.Drawing.Size(130, 22);
             this.textBoxConversion.TabIndex = 1;
             // 
@@ -75,6 +76,59 @@
             // 
             this.comboBoxMoneda.Cursor = System.Windows.Forms.Cursors.Hand;
             this.comboBoxMoneda.FormattingEnabled = true;
+            this.comboBoxMoneda.Items.AddRange(new object[] {
+            "AED",
+            "ARS",
+            "AUD",
+            "BGN",
+            "BRL",
+            "BSD",
+            "CAD",
+            "CHF",
+            "CLP",
+            "CNY",
+            "COP",
+            "CZK",
+            "DKK",
+            "DOP",
+            "EGP",
+            "EUR",
+            "FJD",
+            "GBP",
+            "GTQ",
+            "HKD",
+            "HRK",
+            "HUF",
+            "IDR",
+            "ILS",
+            "INR",
+            "ISK",
+            "JPY",
+            "KRW",
+            "KZT",
+            "MXN",
+            "MYR",
+            "NOK",
+            "NZD",
+            "PAB",
+            "PEN",
+            "PHP",
+            "PKR",
+            "PLN",
+            "PYG",
+            "RON",
+            "RUB",
+            "SAR",
+            "SEK",
+            "SGD",
+            "THB",
+            "TRY",
+            "TWD",
+            "UAH",
+            "USD",
+            "UYU",
+            "VND",
+            "ZAR"});
             this.comboBoxMoneda.Location = new System.Drawing.Point(155, 20);
             this.comboBoxMoneda.Name = "comboBoxMoneda";
             this.comboBoxMoneda.Size = new System.Drawing.Size(100, 22);
@@ -84,6 +138,59 @@
             // 
             this.comboBoxConversion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.comboBoxConversion.FormattingEnabled = true;
+            this.comboBoxConversion.Items.AddRange(new object[] {
+            "AED",
+            "ARS",
+            "AUD",
+            "BGN",
+            "BRL",
+            "BSD",
+            "CAD",
+            "CHF",
+            "CLP",
+            "CNY",
+            "COP",
+            "CZK",
+            "DKK",
+            "DOP",
+            "EGP",
+            "EUR",
+            "FJD",
+            "GBP",
+            "GTQ",
+            "HKD",
+            "HRK",
+            "HUF",
+            "IDR",
+            "ILS",
+            "INR",
+            "ISK",
+            "JPY",
+            "KRW",
+            "KZT",
+            "MXN",
+            "MYR",
+            "NOK",
+            "NZD",
+            "PAB",
+            "PEN",
+            "PHP",
+            "PKR",
+            "PLN",
+            "PYG",
+            "RON",
+            "RUB",
+            "SAR",
+            "SEK",
+            "SGD",
+            "THB",
+            "TRY",
+            "TWD",
+            "UAH",
+            "USD",
+            "UYU",
+            "VND",
+            "ZAR"});
             this.comboBoxConversion.Location = new System.Drawing.Point(421, 19);
             this.comboBoxConversion.Name = "comboBoxConversion";
             this.comboBoxConversion.Size = new System.Drawing.Size(100, 22);
@@ -262,7 +369,7 @@
             // 
             // groupBoxSimulador
             // 
-            this.groupBoxSimulador.Controls.Add(this.label1);
+            this.groupBoxSimulador.Controls.Add(this.labelTotalDias);
             this.groupBoxSimulador.Controls.Add(this.dateTimePickerFecha);
             this.groupBoxSimulador.Controls.Add(this.labelDias);
             this.groupBoxSimulador.Controls.Add(this.labelImporte);
@@ -278,6 +385,17 @@
             this.groupBoxSimulador.TabStop = false;
             this.groupBoxSimulador.Text = "Simulador de Plazo Fijo";
             // 
+            // labelTotalDias
+            // 
+            this.labelTotalDias.AutoSize = true;
+            this.labelTotalDias.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.labelTotalDias.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotalDias.Location = new System.Drawing.Point(141, 132);
+            this.labelTotalDias.Name = "labelTotalDias";
+            this.labelTotalDias.Size = new System.Drawing.Size(63, 24);
+            this.labelTotalDias.TabIndex = 6;
+            this.labelTotalDias.Text = "0 días";
+            // 
             // dateTimePickerFecha
             // 
             this.dateTimePickerFecha.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -289,17 +407,6 @@
             this.dateTimePickerFecha.Size = new System.Drawing.Size(116, 23);
             this.dateTimePickerFecha.TabIndex = 5;
             this.dateTimePickerFecha.Value = new System.DateTime(2024, 6, 18, 10, 47, 58, 0);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(141, 132);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 24);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "0 días";
             // 
             // UserControlInversion
             // 
@@ -345,6 +452,6 @@
         private System.Windows.Forms.Label labelDias;
         private System.Windows.Forms.GroupBox groupBoxSimulador;
         private System.Windows.Forms.DateTimePicker dateTimePickerFecha;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelTotalDias;
     }
 }

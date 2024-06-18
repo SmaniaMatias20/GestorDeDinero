@@ -37,7 +37,7 @@ namespace CapaServicios
             }
 
             // Si ya hay un punto decimal en el texto y se presiona otro, se ignora el evento
-            if (e.KeyChar == ',' && (sender as System.Windows.Forms.TextBox).Text.Contains(','))
+            if (e.KeyChar == ',' && (sender as TextBox).Text.Contains(','))
             {
                 e.Handled = true;
             }
