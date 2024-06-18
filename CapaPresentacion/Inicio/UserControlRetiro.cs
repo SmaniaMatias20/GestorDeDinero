@@ -39,7 +39,7 @@ namespace CapaPresentacion
 
             // Actualizar el label con los fondos formateados
             double fondosActuales = CS_Usuario.ObtenerFondosTotales(Usuario);
-            string fondosFormateados = CS_Config.FormatearMoneda(fondosActuales);
+            string fondosFormateados = CS_Config.FormatearMoneda(fondosActuales, 2);
             labelFondos.Text = $"Fondos: {fondosFormateados}";
         }
 
@@ -75,7 +75,7 @@ namespace CapaPresentacion
                 double fondosActuales = CS_Usuario.ObtenerFondosTotales(usuario);
 
                 // Formatea los fondos actuales a una representación de moneda
-                string fondosFormateados = CS_Config.FormatearMoneda(fondosActuales);
+                string fondosFormateados = CS_Config.FormatearMoneda(fondosActuales, 2);
 
                 // Actualizar el label con los fondos formateados
                 labelFondos.Text = $"Fondos: {fondosFormateados}";

@@ -50,6 +50,8 @@
             this.groupBoxSimulador = new System.Windows.Forms.GroupBox();
             this.labelTotalDias = new System.Windows.Forms.Label();
             this.dateTimePickerFecha = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBoxConversion.SuspendLayout();
             this.panelResultado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagen)).BeginInit();
@@ -58,15 +60,16 @@
             // 
             // textBoxMoneda
             // 
-            this.textBoxMoneda.Location = new System.Drawing.Point(19, 20);
+            this.textBoxMoneda.Location = new System.Drawing.Point(19, 43);
             this.textBoxMoneda.Name = "textBoxMoneda";
             this.textBoxMoneda.Size = new System.Drawing.Size(130, 22);
             this.textBoxMoneda.TabIndex = 0;
             // 
             // textBoxConversion
             // 
+            this.textBoxConversion.BackColor = System.Drawing.SystemColors.ControlDark;
             this.textBoxConversion.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxConversion.Location = new System.Drawing.Point(285, 19);
+            this.textBoxConversion.Location = new System.Drawing.Point(283, 43);
             this.textBoxConversion.Name = "textBoxConversion";
             this.textBoxConversion.ReadOnly = true;
             this.textBoxConversion.Size = new System.Drawing.Size(130, 22);
@@ -75,6 +78,7 @@
             // comboBoxMoneda
             // 
             this.comboBoxMoneda.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboBoxMoneda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxMoneda.FormattingEnabled = true;
             this.comboBoxMoneda.Items.AddRange(new object[] {
             "AED",
@@ -129,14 +133,17 @@
             "UYU",
             "VND",
             "ZAR"});
-            this.comboBoxMoneda.Location = new System.Drawing.Point(155, 20);
+            this.comboBoxMoneda.Location = new System.Drawing.Point(155, 43);
             this.comboBoxMoneda.Name = "comboBoxMoneda";
             this.comboBoxMoneda.Size = new System.Drawing.Size(100, 22);
             this.comboBoxMoneda.TabIndex = 2;
+            this.comboBoxMoneda.SelectedIndexChanged += new System.EventHandler(this.comboBoxMoneda_SelectedIndexChanged);
             // 
             // comboBoxConversion
             // 
+            this.comboBoxConversion.BackColor = System.Drawing.SystemColors.ControlDark;
             this.comboBoxConversion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboBoxConversion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxConversion.FormattingEnabled = true;
             this.comboBoxConversion.Items.AddRange(new object[] {
             "AED",
@@ -191,22 +198,25 @@
             "UYU",
             "VND",
             "ZAR"});
-            this.comboBoxConversion.Location = new System.Drawing.Point(421, 19);
+            this.comboBoxConversion.Location = new System.Drawing.Point(419, 43);
             this.comboBoxConversion.Name = "comboBoxConversion";
             this.comboBoxConversion.Size = new System.Drawing.Size(100, 22);
             this.comboBoxConversion.TabIndex = 3;
+            this.comboBoxConversion.SelectedIndexChanged += new System.EventHandler(this.comboBoxConversion_SelectedIndexChanged);
             // 
             // groupBoxConversion
             // 
+            this.groupBoxConversion.Controls.Add(this.label2);
+            this.groupBoxConversion.Controls.Add(this.label1);
             this.groupBoxConversion.Controls.Add(this.comboBoxConversion);
             this.groupBoxConversion.Controls.Add(this.comboBoxMoneda);
             this.groupBoxConversion.Controls.Add(this.textBoxConversion);
             this.groupBoxConversion.Controls.Add(this.textBoxMoneda);
             this.groupBoxConversion.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxConversion.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBoxConversion.Location = new System.Drawing.Point(16, 17);
+            this.groupBoxConversion.Location = new System.Drawing.Point(16, 12);
             this.groupBoxConversion.Name = "groupBoxConversion";
-            this.groupBoxConversion.Size = new System.Drawing.Size(542, 57);
+            this.groupBoxConversion.Size = new System.Drawing.Size(542, 88);
             this.groupBoxConversion.TabIndex = 0;
             this.groupBoxConversion.TabStop = false;
             this.groupBoxConversion.Text = "Conversión de moneda";
@@ -218,7 +228,7 @@
             this.buttonContinuar.FlatAppearance.BorderSize = 0;
             this.buttonContinuar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonContinuar.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonContinuar.Location = new System.Drawing.Point(19, 328);
+            this.buttonContinuar.Location = new System.Drawing.Point(19, 323);
             this.buttonContinuar.Name = "buttonContinuar";
             this.buttonContinuar.Size = new System.Drawing.Size(161, 37);
             this.buttonContinuar.TabIndex = 0;
@@ -238,7 +248,7 @@
             this.panelResultado.Controls.Add(this.labelTotal);
             this.panelResultado.Controls.Add(this.labelTitulo);
             this.panelResultado.Controls.Add(this.pictureBoxImagen);
-            this.panelResultado.Location = new System.Drawing.Point(19, 168);
+            this.panelResultado.Location = new System.Drawing.Point(19, 163);
             this.panelResultado.Name = "panelResultado";
             this.panelResultado.Size = new System.Drawing.Size(502, 154);
             this.panelResultado.TabIndex = 1;
@@ -342,7 +352,7 @@
             // 
             // textBoxImporte
             // 
-            this.textBoxImporte.Location = new System.Drawing.Point(19, 68);
+            this.textBoxImporte.Location = new System.Drawing.Point(19, 63);
             this.textBoxImporte.Name = "textBoxImporte";
             this.textBoxImporte.Size = new System.Drawing.Size(211, 23);
             this.textBoxImporte.TabIndex = 2;
@@ -351,7 +361,7 @@
             // 
             this.labelImporte.AutoSize = true;
             this.labelImporte.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelImporte.Location = new System.Drawing.Point(15, 33);
+            this.labelImporte.Location = new System.Drawing.Point(15, 28);
             this.labelImporte.Name = "labelImporte";
             this.labelImporte.Size = new System.Drawing.Size(223, 22);
             this.labelImporte.TabIndex = 3;
@@ -361,7 +371,7 @@
             // 
             this.labelDias.AutoSize = true;
             this.labelDias.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDias.Location = new System.Drawing.Point(15, 97);
+            this.labelDias.Location = new System.Drawing.Point(15, 92);
             this.labelDias.Name = "labelDias";
             this.labelDias.Size = new System.Drawing.Size(152, 22);
             this.labelDias.TabIndex = 4;
@@ -378,9 +388,9 @@
             this.groupBoxSimulador.Controls.Add(this.buttonContinuar);
             this.groupBoxSimulador.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxSimulador.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBoxSimulador.Location = new System.Drawing.Point(16, 93);
+            this.groupBoxSimulador.Location = new System.Drawing.Point(16, 106);
             this.groupBoxSimulador.Name = "groupBoxSimulador";
-            this.groupBoxSimulador.Size = new System.Drawing.Size(542, 380);
+            this.groupBoxSimulador.Size = new System.Drawing.Size(542, 367);
             this.groupBoxSimulador.TabIndex = 1;
             this.groupBoxSimulador.TabStop = false;
             this.groupBoxSimulador.Text = "Simulador de Plazo Fijo";
@@ -388,9 +398,9 @@
             // labelTotalDias
             // 
             this.labelTotalDias.AutoSize = true;
-            this.labelTotalDias.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.labelTotalDias.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelTotalDias.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalDias.Location = new System.Drawing.Point(141, 132);
+            this.labelTotalDias.Location = new System.Drawing.Point(141, 127);
             this.labelTotalDias.Name = "labelTotalDias";
             this.labelTotalDias.Size = new System.Drawing.Size(63, 24);
             this.labelTotalDias.TabIndex = 6;
@@ -401,12 +411,30 @@
             this.dateTimePickerFecha.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dateTimePickerFecha.CustomFormat = "dd-MM-yyyy";
             this.dateTimePickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerFecha.Location = new System.Drawing.Point(19, 132);
+            this.dateTimePickerFecha.Location = new System.Drawing.Point(19, 127);
             this.dateTimePickerFecha.MinDate = new System.DateTime(2023, 12, 10, 0, 0, 0, 0);
             this.dateTimePickerFecha.Name = "dateTimePickerFecha";
             this.dateTimePickerFecha.Size = new System.Drawing.Size(116, 23);
             this.dateTimePickerFecha.TabIndex = 5;
             this.dateTimePickerFecha.Value = new System.DateTime(2024, 6, 18, 10, 47, 58, 0);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 14);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Convertir de...";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(280, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 14);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Convertir a...";
             // 
             // UserControlInversion
             // 
@@ -453,5 +481,7 @@
         private System.Windows.Forms.GroupBox groupBoxSimulador;
         private System.Windows.Forms.DateTimePicker dateTimePickerFecha;
         private System.Windows.Forms.Label labelTotalDias;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

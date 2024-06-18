@@ -102,7 +102,7 @@ namespace CapaPresentacion
             double fondosTotales = CS_Usuario.ObtenerFondosTotales(Usuario);
 
             // Actualiza el texto del control labelCaja para mostrar los fondos totales formateados como moneda.
-            labelCaja.Text = CS_Config.FormatearMoneda(fondosTotales);
+            labelCaja.Text = CS_Config.FormatearMoneda(fondosTotales, 2);
         }
 
         /// <summary>
