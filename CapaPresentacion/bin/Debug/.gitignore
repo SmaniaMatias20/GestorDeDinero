@@ -1,1 +1,6 @@
 api_key.txt
+cadena_conexion.txt
+*.dll
+*.pdb
+*.xml
+

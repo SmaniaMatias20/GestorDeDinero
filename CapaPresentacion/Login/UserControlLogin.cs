@@ -21,8 +21,6 @@ namespace CapaPresentacion
         {
             // Inicializa los componentes visuales del control de usuario
             InitializeComponent();
-            // Crea una nueva instancia de CS_Usuario para manejar la lógica relacionada con el usuario
-            //_csUsuario = new CS_Usuario();
         }
 
         /// <summary>

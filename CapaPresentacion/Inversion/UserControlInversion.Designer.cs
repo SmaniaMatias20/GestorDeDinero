@@ -33,6 +33,8 @@
             this.comboBoxMoneda = new System.Windows.Forms.ComboBox();
             this.comboBoxConversion = new System.Windows.Forms.ComboBox();
             this.groupBoxConversion = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.buttonContinuar = new System.Windows.Forms.Button();
             this.panelResultado = new System.Windows.Forms.Panel();
             this.labelFecha = new System.Windows.Forms.Label();
@@ -50,8 +52,6 @@
             this.groupBoxSimulador = new System.Windows.Forms.GroupBox();
             this.labelTotalDias = new System.Windows.Forms.Label();
             this.dateTimePickerFecha = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBoxConversion.SuspendLayout();
             this.panelResultado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagen)).BeginInit();
@@ -221,6 +221,24 @@
             this.groupBoxConversion.TabStop = false;
             this.groupBoxConversion.Text = "Conversión de moneda";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(280, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 14);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Convertir a...";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 14);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Convertir de...";
+            // 
             // buttonContinuar
             // 
             this.buttonContinuar.BackColor = System.Drawing.Color.Green;
@@ -343,10 +361,12 @@
             // 
             // pictureBoxImagen
             // 
-            this.pictureBoxImagen.BackColor = System.Drawing.Color.Navy;
+            this.pictureBoxImagen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
+            this.pictureBoxImagen.Image = global::CapaPresentacion.Properties.Resources.pf;
             this.pictureBoxImagen.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxImagen.Name = "pictureBoxImagen";
             this.pictureBoxImagen.Size = new System.Drawing.Size(161, 154);
+            this.pictureBoxImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxImagen.TabIndex = 0;
             this.pictureBoxImagen.TabStop = false;
             // 
@@ -417,24 +437,6 @@
             this.dateTimePickerFecha.Size = new System.Drawing.Size(116, 23);
             this.dateTimePickerFecha.TabIndex = 5;
             this.dateTimePickerFecha.Value = new System.DateTime(2024, 6, 18, 10, 47, 58, 0);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 14);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Convertir de...";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(280, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 14);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Convertir a...";
             // 
             // UserControlInversion
             // 

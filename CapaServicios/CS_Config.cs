@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -6,18 +8,37 @@ namespace CapaServicios
 {
     public static class CS_Config
     {
+
+        public static string ObtenerApiKey()
+        {
+            // Leer la API key desde el archivo
+            string filePath = "api_key.txt";
+            if (File.Exists(filePath))
+            {
+                return File.ReadAllText(filePath).Trim();
+            }
+            else
+            {
+                throw new FileNotFoundException("El archivo de la clave API no se encontró.");
+            }
+        }
+
+
+
+
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="cantidad"></param>
         /// <returns></returns>
-        public static string FormatearMoneda(double cantidad)
+        public static string FormatearMoneda(double cantidad, int decimales)
         {
             // Obtiene el formato de número específico para la cultura de Argentina (es-AR)
             var nfi = new System.Globalization.CultureInfo("es-AR", false).NumberFormat;
 
             // Configura para que no se muestren decimales en el formato de moneda
-            nfi.CurrencyDecimalDigits = 2; //2
+            nfi.CurrencyDecimalDigits = decimales; //2
 
             // Convierte la cantidad a una cadena con formato de moneda utilizando la configuración de formato
             return cantidad.ToString("C", nfi);
@@ -137,6 +158,42 @@ namespace CapaServicios
             // Si pasa las validaciones, retorna true con el string de entrada
             return (true, ingreso);
 
+        }
+
+        public static void ConfigurarDateTimePicker(DateTimePicker dateTimePickerFecha)
+        {
+            // Calcula la fecha mínima permitida (por ejemplo, un mes a partir de hoy)
+            DateTime fechaMinima = DateTime.Today.AddMonths(1);
+
+            // Configura el DateTimePicker para que permita seleccionar fechas a partir de la fecha mínima
+            dateTimePickerFecha.MinDate = fechaMinima;
+
+            // Calcula la fecha máxima permitida (un año a partir de hoy)
+            DateTime fechaMaxima = DateTime.Today.AddYears(1);
+
+            // Configura el DateTimePicker para que permita seleccionar fechas hasta la fecha máxima
+            dateTimePickerFecha.MaxDate = fechaMaxima;
+        }
+
+        public static int ObtenerDecimales(double cantidad) 
+        {
+            int decimales;
+            if (cantidad < 1)
+            {
+                double valor = cantidad;
+                decimales = 0;
+                while (valor < 1)
+                {
+                    valor = valor * 10;
+                    decimales++;
+                }
+                return decimales;
+            }
+            else
+            {
+                decimales = 2;
+                return decimales;   
+            }
         }
 
     }

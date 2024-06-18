@@ -94,10 +94,9 @@ namespace CapaDatos
                     }
                 }
             }
-            catch (Exception ex)
+            catch 
             {
-                // Manejo de excepciones: Mostrar un mensaje de error en la consola
-                Console.WriteLine("Error al listar usuarios: " + ex.Message);
+                throw new Exception("Error al listar los usuarios"); 
             }
 
             // Devolver la lista de usuarios

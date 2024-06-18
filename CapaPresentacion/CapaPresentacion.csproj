@@ -201,22 +201,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Resources\usuario.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ajustes.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\home.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\gastos.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\inversion.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\salir.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\nuevoLogo.png" />
@@ -235,6 +219,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ingreso.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ajustes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gastos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inversion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usuario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\salir.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

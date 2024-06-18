@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInicio));
             this.panelVertical = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -132,13 +133,13 @@
             this.buttonSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSalir.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSalir.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonSalir.Image = global::CapaPresentacion.Properties.Resources.salir;
+            this.buttonSalir.Image = ((System.Drawing.Image)(resources.GetObject("buttonSalir.Image")));
+            this.buttonSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonSalir.Location = new System.Drawing.Point(0, 412);
             this.buttonSalir.Name = "buttonSalir";
             this.buttonSalir.Size = new System.Drawing.Size(150, 50);
             this.buttonSalir.TabIndex = 4;
             this.buttonSalir.Text = "Salir";
-            this.buttonSalir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonSalir.UseVisualStyleBackColor = false;
             this.buttonSalir.Click += new System.EventHandler(this.buttonSalir_Click);
@@ -153,7 +154,8 @@
             this.buttonAjustes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAjustes.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAjustes.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonAjustes.Image = global::CapaPresentacion.Properties.Resources.ajustes;
+            this.buttonAjustes.Image = ((System.Drawing.Image)(resources.GetObject("buttonAjustes.Image")));
+            this.buttonAjustes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonAjustes.Location = new System.Drawing.Point(0, 356);
             this.buttonAjustes.Name = "buttonAjustes";
             this.buttonAjustes.Size = new System.Drawing.Size(150, 50);
@@ -173,7 +175,7 @@
             this.buttonInversiones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonInversiones.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonInversiones.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonInversiones.Image = global::CapaPresentacion.Properties.Resources.inversion;
+            this.buttonInversiones.Image = ((System.Drawing.Image)(resources.GetObject("buttonInversiones.Image")));
             this.buttonInversiones.Location = new System.Drawing.Point(0, 299);
             this.buttonInversiones.Margin = new System.Windows.Forms.Padding(0);
             this.buttonInversiones.Name = "buttonInversiones";
@@ -194,8 +196,9 @@
             this.buttonGastos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonGastos.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonGastos.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonGastos.Image = global::CapaPresentacion.Properties.Resources.gastos;
-            this.buttonGastos.Location = new System.Drawing.Point(0, 240);
+            this.buttonGastos.Image = ((System.Drawing.Image)(resources.GetObject("buttonGastos.Image")));
+            this.buttonGastos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonGastos.Location = new System.Drawing.Point(0, 246);
             this.buttonGastos.Margin = new System.Windows.Forms.Padding(0);
             this.buttonGastos.Name = "buttonGastos";
             this.buttonGastos.Size = new System.Drawing.Size(150, 50);
@@ -216,7 +219,8 @@
             this.buttonInicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonInicio.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonInicio.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonInicio.Image = global::CapaPresentacion.Properties.Resources.home;
+            this.buttonInicio.Image = ((System.Drawing.Image)(resources.GetObject("buttonInicio.Image")));
+            this.buttonInicio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonInicio.Location = new System.Drawing.Point(0, 190);
             this.buttonInicio.Margin = new System.Windows.Forms.Padding(0);
             this.buttonInicio.Name = "buttonInicio";
@@ -246,7 +250,7 @@
             // 
             this.labelFecha.AutoSize = true;
             this.labelFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFecha.Location = new System.Drawing.Point(447, 39);
+            this.labelFecha.Location = new System.Drawing.Point(448, 39);
             this.labelFecha.Name = "labelFecha";
             this.labelFecha.Size = new System.Drawing.Size(51, 12);
             this.labelFecha.TabIndex = 3;
@@ -271,9 +275,9 @@
             this.pictureBoxUsuario.Cursor = System.Windows.Forms.Cursors.No;
             this.pictureBoxUsuario.ImageLocation = "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Resource" +
     "s\\usuario.png";
-            this.pictureBoxUsuario.Location = new System.Drawing.Point(395, 12);
+            this.pictureBoxUsuario.Location = new System.Drawing.Point(397, 12);
             this.pictureBoxUsuario.Name = "pictureBoxUsuario";
-            this.pictureBoxUsuario.Size = new System.Drawing.Size(46, 48);
+            this.pictureBoxUsuario.Size = new System.Drawing.Size(44, 39);
             this.pictureBoxUsuario.TabIndex = 0;
             this.pictureBoxUsuario.TabStop = false;
             // 
@@ -281,7 +285,7 @@
             // 
             this.labelNombreUsuario.AutoSize = true;
             this.labelNombreUsuario.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNombreUsuario.Location = new System.Drawing.Point(446, 21);
+            this.labelNombreUsuario.Location = new System.Drawing.Point(447, 21);
             this.labelNombreUsuario.Name = "labelNombreUsuario";
             this.labelNombreUsuario.Size = new System.Drawing.Size(98, 15);
             this.labelNombreUsuario.TabIndex = 1;

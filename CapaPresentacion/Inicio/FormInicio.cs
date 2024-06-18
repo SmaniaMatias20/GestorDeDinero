@@ -194,7 +194,7 @@ namespace CapaPresentacion
             MostrarUserControl(_userControlInversion);
 
             // Modifica el titulo 
-            labelTitulo.Text = "Inversiones";
+            labelTitulo.Text = "Inversion";
         }
 
         private void buttonAjustes_Click(object sender, EventArgs e)
