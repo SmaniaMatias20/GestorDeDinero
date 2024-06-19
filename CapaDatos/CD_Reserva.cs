@@ -56,10 +56,10 @@ namespace CapaDatos
                     }
                 }
             }
-            catch 
+            catch (Exception e)
             {
-                // Manejo de excepciones: Mostrar un mensaje de error en la consola
-                throw new Exception("Error al listar las reservas");
+                // Lanza una nueva excepción con un mensaje específico
+                throw new Exception("Error al listar las reservas" + e.Message);
             }
 
             // Devolver la lista de reservas
@@ -101,10 +101,10 @@ namespace CapaDatos
                     }
                 }
             }
-            catch
+            catch (Exception e)
             {
-                // Manejo de excepciones: Lanzar una excepción si ocurre un error
-                throw new Exception("Error al insertar la reserva");
+                // Lanza una nueva excepción con un mensaje específico
+                throw new Exception("Error al insertar la reserva" + e.Message);
             }
         }
 
@@ -134,10 +134,10 @@ namespace CapaDatos
                     }
                 }
             }
-            catch 
+            catch (Exception e)
             {
-                // Lanza una excepción si ocurre un error
-                throw new Exception("Error al eliminar la reserva");  
+                // Lanza una nueva excepción con un mensaje específico
+                throw new Exception("Error al eliminar la reserva" + e.Message);  
             }
         }
 
@@ -174,10 +174,10 @@ namespace CapaDatos
                     }
                 }
             }
-            catch
+            catch (Exception e)
             {
-                // Lanza una excepción si ocurre un error
-                throw new Exception("Error al modificar la reserva");
+                // Lanza una nueva excepción con un mensaje específico
+                throw new Exception("Error al modificar la reserva" + e.Message);
             }
 
         }

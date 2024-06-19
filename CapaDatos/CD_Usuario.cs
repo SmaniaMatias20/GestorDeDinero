@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using CapaEntidades;
 using System.Data.SqlClient;
-using System.Collections;
 
 namespace CapaDatos
 {
     public static class CD_Usuario
     {
         /// <summary>
-        /// 
+        /// Método para agregar un nuevo usuario a la base de datos.
         /// </summary>
-        /// <param name="nombre"></param>
-        /// <param name="clave"></param>
+        /// <param name="nombre">El nombre del usuario.</param>
+        /// <param name="clave">La clave del usuario.</param>
         public static void AgregarUsuario(string nombre, string clave) 
         {
             try
@@ -40,10 +39,10 @@ namespace CapaDatos
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                // Manejo de excepciones: Mostrar un mensaje de error en la consola
-                Console.WriteLine("Error al agregar usuario: " + ex.Message);
+                // Lanza una nueva excepción con un mensaje específico
+                throw new Exception("Error al agregar el usuario" + e.Message);
             }
 
         }
@@ -94,77 +93,14 @@ namespace CapaDatos
                     }
                 }
             }
-            catch 
+            catch (Exception e) 
             {
-                throw new Exception("Error al listar los usuarios"); 
+                // Lanza una nueva excepción con un mensaje específico
+                throw new Exception("Error al listar los usuarios" + e.Message);  
             }
 
-            // Devolver la lista de usuarios
+            // Devuelve la lista de usuarios
             return lista;
-        }
-
-        /// <summary>
-        /// Actualiza los fondos totales de un usuario en la base de datos.
-        /// </summary>
-        /// <param name="idUsuario">ID del usuario cuyos fondos se van a actualizar.</param>
-        /// <param name="nuevosFondos">Nuevos fondos del usuario.</param>
-        public static void ActualizarFondos(string nombreUsuario, double nuevosFondos)
-        {
-            try
-            {
-                // Obtener la conexión
-                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
-                {
-                    // Abrir la conexión a la base de datos
-                    conexionDB.Open();
-
-                    // Consulta SQL para actualizar los fondos del usuario
-                    string query = "UPDATE Usuario SET fondos = @NuevosFondos WHERE nombre = @NombreUsuario";
-
-                    // Crear un comando SQL para ejecutar la consulta
-                    using (SqlCommand comando = new SqlCommand(query, conexionDB))
-                    {
-                        // Agregar los parámetros
-                        comando.Parameters.AddWithValue("@NuevosFondos", nuevosFondos);
-                        comando.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
-
-                        // Ejecutar la consulta
-                        comando.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Manejo de excepciones
-                Console.WriteLine("Error al actualizar los fondos del usuario: " + ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="nombreUsuario"></param>
-        /// <param name="nuevosFondos"></param>
-        public static void ActualizarFondosPorNombre(string nombreUsuario, double nuevosFondos)
-        {
-            try
-            {
-                using (SqlConnection conexionDB = Conexion.ObtenerConexion())
-                {
-                    conexionDB.Open();
-                    string query = "UPDATE Usuario SET fondos = @NuevosFondos WHERE nombre = @NombreUsuario";
-                    using (SqlCommand comando = new SqlCommand(query, conexionDB))
-                    {
-                        comando.Parameters.AddWithValue("@NuevosFondos", nuevosFondos);
-                        comando.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
-                        comando.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al actualizar los fondos del usuario: " + ex.Message);
-            }
         }
 
         /// <summary>
@@ -194,9 +130,9 @@ namespace CapaDatos
                     }
                 }
             }
-            catch 
+            catch (Exception e) 
             {
-                throw new Exception("Error al actualizar el usuario");
+                throw new Exception("Error al actualizar el usuario" + e.Message);
             }
         }
 
@@ -241,10 +177,10 @@ namespace CapaDatos
                     }
                 }
             }
-            catch
+            catch (Exception e)
             {
-                // Lanza una excepción 
-                throw new Exception("Error al obtener el usuario");
+                // Lanza una nueva excepción con un mensaje específico
+                throw new Exception("Error al obtener el usuario" + e.Message);
             }
             // Retorna el usuario
             return usuario;

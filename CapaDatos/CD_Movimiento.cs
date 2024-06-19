@@ -59,16 +59,24 @@ namespace CapaDatos
                     }
                 }
             }
-            catch
+            catch (Exception e) 
             {
-                // Manejo de excepciones: Mostrar un mensaje de error en la consola
-                throw new Exception("Entra aca");
+                // Lanza una nueva excepción con un mensaje específico
+                throw new Exception("Error al listar los movimientos" + e.Message); 
             }
 
             // Devolver la lista de movimientos
             return lista;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idUsuario"></param>
+        /// <param name="fecha"></param>
+        /// <param name="importe"></param>
+        /// <param name="tipo"></param>
+        /// <exception cref="Exception"></exception>
         public static void AgregarMovimiento(int idUsuario, string fecha, double importe, ETipoMovimiento tipo)
         {
             try
@@ -96,10 +104,10 @@ namespace CapaDatos
                     }
                 }
             }
-            catch 
+            catch (Exception e)
             {
-                // Manejo de excepciones
-                throw new Exception("Error al agregar el movimiento");
+                // Lanza una nueva excepción con un mensaje específico
+                throw new Exception("Error al agregar el movimiento" + e.Message);
             }
         }
 
@@ -130,10 +138,10 @@ namespace CapaDatos
                     }
                 }
             }
-            catch 
+            catch (Exception e)
             {
-                // Si ocurre una excepción durante la ejecución del bloque try, se lanza una nueva excepción con un mensaje descriptivo.
-                throw new Exception("Error al eliminar el movimiento");
+                // Lanza una nueva excepción con un mensaje específico
+                throw new Exception("Error al eliminar el movimiento" + e.Message);
             }
         }
     }

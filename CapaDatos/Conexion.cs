@@ -8,7 +8,6 @@ namespace CapaDatos
 {
     public static class Conexion
     {
-        //private static string cadenaConexion = "Data Source=DESKTOP-HEJ5SS0\\SQLEXPRESS;Initial Catalog=GestorDeDineroDB;Integrated Security=True;";
         private static string cadenaConexion = ObtenerCadenaConexion();
         public static string Cadena { get; set; }
 
@@ -23,6 +22,11 @@ namespace CapaDatos
             return new SqlConnection(cadenaConexion);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="FileNotFoundException"></exception>
         public static string ObtenerCadenaConexion()
         {
             // Leer la API key desde el archivo
