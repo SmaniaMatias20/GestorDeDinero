@@ -113,6 +113,11 @@ namespace CapaServicios
         /// el importe validado como double y un mensaje descriptivo.</returns>
         public static (bool, double, string) ValidarTextBoxNumerico(string importe) 
         {
+            if (importe.Contains("$"))
+            {
+                importe = importe.Replace("$", "");
+            }
+
             // Verificar si el string está vacío o contiene solo espacios en blanco
             if (string.IsNullOrWhiteSpace(importe) || string.IsNullOrWhiteSpace(importe))
             {

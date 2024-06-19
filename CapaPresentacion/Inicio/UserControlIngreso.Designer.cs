@@ -48,6 +48,7 @@ namespace CapaPresentacion
             this.textBoxIngreso.Size = new System.Drawing.Size(160, 20);
             this.textBoxIngreso.TabIndex = 1;
             this.textBoxIngreso.TextChanged += new System.EventHandler(this.textBoxIngreso_TextChanged);
+            this.textBoxIngreso.Leave += new System.EventHandler(this.textBoxIngreso_Leave);
             // 
             // buttonAceptarIngreso
             // 

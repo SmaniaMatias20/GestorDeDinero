@@ -93,9 +93,19 @@ namespace CapaPresentacion
 
         }
 
-        private void UserControlRetiro_Load(object sender, EventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxRetiro_Leave(object sender, EventArgs e)
         {
-
+            // Verificar si el texto es un número válido
+            if (Double.TryParse(textBoxRetiro.Text, out double valor))
+            {
+                //
+                textBoxRetiro.Text = CS_Config.FormatearMoneda(valor, 2);
+            }
         }
     }
 }

@@ -45,6 +45,7 @@
             this.textBoxRetiro.Name = "textBoxRetiro";
             this.textBoxRetiro.Size = new System.Drawing.Size(160, 20);
             this.textBoxRetiro.TabIndex = 1;
+            this.textBoxRetiro.Leave += new System.EventHandler(this.textBoxRetiro_Leave);
             // 
             // buttonAceptarRetiro
             // 
@@ -134,7 +135,6 @@
             this.Controls.Add(this.textBoxRetiro);
             this.Name = "UserControlRetiro";
             this.Size = new System.Drawing.Size(530, 258);
-            this.Load += new System.EventHandler(this.UserControlRetiro_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

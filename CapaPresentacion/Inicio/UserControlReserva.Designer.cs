@@ -90,7 +90,7 @@
             this.textBoxReserva.Name = "textBoxReserva";
             this.textBoxReserva.Size = new System.Drawing.Size(160, 20);
             this.textBoxReserva.TabIndex = 6;
-            this.textBoxReserva.TextChanged += new System.EventHandler(this.textBoxReserva_TextChanged);
+            this.textBoxReserva.Leave += new System.EventHandler(this.textBoxReserva_Leave);
             // 
             // labelReserva
             // 

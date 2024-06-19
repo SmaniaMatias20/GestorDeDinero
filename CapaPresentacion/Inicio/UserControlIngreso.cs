@@ -40,11 +40,24 @@ namespace CapaPresentacion
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxIngreso_Leave(object sender, EventArgs e)
+        {
+            // Verificar si el texto es un número válido
+            if (Double.TryParse(textBoxIngreso.Text, out double valor))
+            {
+                textBoxIngreso.Text = CS_Config.FormatearMoneda(valor, 2);
+            }
+        }
+
+        /// <summary>
         /// Maneja el evento TextChanged del textBoxIngreso
         /// </summary>
         private void textBoxIngreso_TextChanged(object sender, EventArgs e)
         {
-
 
         }
 
@@ -89,7 +102,6 @@ namespace CapaPresentacion
 
         }
 
-       
 
     }
 }

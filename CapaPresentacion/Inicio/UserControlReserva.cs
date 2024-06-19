@@ -17,13 +17,19 @@ namespace CapaPresentacion
         public Usuario Usuario { get; set; }
         public Reserva Reserva { get; set; }
 
-
+        /// <summary>
+        /// Constructor de la clase UserControlReserva.
+        /// </summary>
         public UserControlReserva()
         {
-            //
+            // Inicializa los componentes del control de usuario
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Constructor de la clase UserControlReserva que inicializa el control de usuario con un usuario específico.
+        /// </summary>
+        /// <param name="usuario">El usuario para el cual se está mostrando el control de reserva.</param>
         public UserControlReserva(Usuario usuario) : this() 
         {
             // Asigna el valor a Usuario
@@ -34,10 +40,15 @@ namespace CapaPresentacion
             textBoxReserva.KeyPress += CS_Config.textBox_KeyPress;
             // Actualizar el label con los fondos formateados
             MostrarFondosActuales();
-            //
+            // Inicializa una nueva instancia de Reserva
             Reserva = new Reserva();    
         }
 
+        /// <summary>
+        /// Constructor de la clase UserControlReserva que inicializa el control de usuario con un usuario y una reserva específicos.
+        /// </summary>
+        /// <param name="usuario">El usuario para el cual se está mostrando el control de reserva.</param>
+        /// <param name="reserva">La reserva que se está modificando o mostrando en el control.</param>
         public UserControlReserva(Usuario usuario, Reserva reserva) : this(usuario)
         {
             // Asigna el valor de la reserva
@@ -46,13 +57,20 @@ namespace CapaPresentacion
             // Asignar valores a los TextBox
             textBoxNombre.Text = reserva.Nombre;
             textBoxReserva.Text = reserva.Importe.ToString();
-
-            
         }
 
-        private void textBoxReserva_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxReserva_Leave(object sender, EventArgs e)
         {
-
+            // Verificar si el texto es un número válido
+            if (Double.TryParse(textBoxReserva.Text, out double valor))
+            {
+                textBoxReserva.Text = CS_Config.FormatearMoneda(valor, 2);
+            }
         }
 
         /// <summary>
@@ -121,8 +139,8 @@ namespace CapaPresentacion
                 // Retorna el mensaje
                 return (registroReserva, mensaje);
             }
-
-            
         }
+
+
     }
 }
