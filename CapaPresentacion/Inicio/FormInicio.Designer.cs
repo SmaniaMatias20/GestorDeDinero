@@ -47,10 +47,12 @@
             this.pictureBoxUsuario = new System.Windows.Forms.PictureBox();
             this.labelNombreUsuario = new System.Windows.Forms.Label();
             this.panelInicio = new System.Windows.Forms.Panel();
+            this.panelUsuario = new System.Windows.Forms.Panel();
             this.panelVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelHorizontal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUsuario)).BeginInit();
+            this.panelUsuario.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelVertical
@@ -235,10 +237,8 @@
             // panelHorizontal
             // 
             this.panelHorizontal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
-            this.panelHorizontal.Controls.Add(this.labelFecha);
+            this.panelHorizontal.Controls.Add(this.panelUsuario);
             this.panelHorizontal.Controls.Add(this.labelTitulo);
-            this.panelHorizontal.Controls.Add(this.pictureBoxUsuario);
-            this.panelHorizontal.Controls.Add(this.labelNombreUsuario);
             this.panelHorizontal.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.panelHorizontal.Location = new System.Drawing.Point(150, 0);
             this.panelHorizontal.Margin = new System.Windows.Forms.Padding(0);
@@ -250,7 +250,7 @@
             // 
             this.labelFecha.AutoSize = true;
             this.labelFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFecha.Location = new System.Drawing.Point(448, 39);
+            this.labelFecha.Location = new System.Drawing.Point(65, 36);
             this.labelFecha.Name = "labelFecha";
             this.labelFecha.Size = new System.Drawing.Size(51, 12);
             this.labelFecha.TabIndex = 3;
@@ -272,10 +272,11 @@
             // 
             this.pictureBoxUsuario.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxUsuario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxUsuario.Cursor = System.Windows.Forms.Cursors.No;
             this.pictureBoxUsuario.ImageLocation = "C:\\Users\\Smania Matias\\Desktop\\Proyectos\\GestorDeDinero\\CapaPresentacion\\Resource" +
     "s\\usuario.png";
-            this.pictureBoxUsuario.Location = new System.Drawing.Point(397, 12);
+            this.pictureBoxUsuario.Location = new System.Drawing.Point(14, 9);
             this.pictureBoxUsuario.Name = "pictureBoxUsuario";
             this.pictureBoxUsuario.Size = new System.Drawing.Size(44, 39);
             this.pictureBoxUsuario.TabIndex = 0;
@@ -285,7 +286,7 @@
             // 
             this.labelNombreUsuario.AutoSize = true;
             this.labelNombreUsuario.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNombreUsuario.Location = new System.Drawing.Point(447, 21);
+            this.labelNombreUsuario.Location = new System.Drawing.Point(64, 18);
             this.labelNombreUsuario.Name = "labelNombreUsuario";
             this.labelNombreUsuario.Size = new System.Drawing.Size(98, 15);
             this.labelNombreUsuario.TabIndex = 1;
@@ -298,6 +299,17 @@
             this.panelInicio.Name = "panelInicio";
             this.panelInicio.Size = new System.Drawing.Size(577, 490);
             this.panelInicio.TabIndex = 2;
+            // 
+            // panelUsuario
+            // 
+            this.panelUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelUsuario.Controls.Add(this.pictureBoxUsuario);
+            this.panelUsuario.Controls.Add(this.labelFecha);
+            this.panelUsuario.Controls.Add(this.labelNombreUsuario);
+            this.panelUsuario.Location = new System.Drawing.Point(393, 3);
+            this.panelUsuario.Name = "panelUsuario";
+            this.panelUsuario.Size = new System.Drawing.Size(175, 58);
+            this.panelUsuario.TabIndex = 4;
             // 
             // FormInicio
             // 
@@ -319,6 +331,8 @@
             this.panelHorizontal.ResumeLayout(false);
             this.panelHorizontal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUsuario)).EndInit();
+            this.panelUsuario.ResumeLayout(false);
+            this.panelUsuario.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -343,6 +357,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panelUsuario;
     }
 }
 

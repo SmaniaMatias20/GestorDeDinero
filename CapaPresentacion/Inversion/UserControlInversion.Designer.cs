@@ -279,9 +279,9 @@
             this.labelFecha.ForeColor = System.Drawing.SystemColors.ControlText;
             this.labelFecha.Location = new System.Drawing.Point(371, 114);
             this.labelFecha.Name = "labelFecha";
-            this.labelFecha.Size = new System.Drawing.Size(87, 15);
+            this.labelFecha.Size = new System.Drawing.Size(85, 15);
             this.labelFecha.TabIndex = 8;
-            this.labelFecha.Text = "dd/MM/yyyy";
+            this.labelFecha.Text = "00/00/0000";
             // 
             // labelInteres
             // 

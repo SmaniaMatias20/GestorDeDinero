@@ -146,6 +146,12 @@ namespace CapaPresentacion
             this.Close();
         }
 
+        /// <summary>
+        /// Maneja el evento de clic en el botón "Aceptar" en el control de usuario de reserva.
+        /// Cierra el formulario principal.
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento (en este caso, el botón "Aceptar").</param>
+        /// <param name="e">Los argumentos del evento.</param>
         public void UserControlReserva_AceptarClick(object sender, EventArgs e)
         {
             // Cierra el formulario principal cuando se presiona el botón "Aceptar" en el control de usuario de reserva

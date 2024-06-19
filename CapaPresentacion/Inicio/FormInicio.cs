@@ -1,5 +1,4 @@
-﻿using CapaDatos;
-using CapaEntidades;
+﻿using CapaEntidades;
 using CapaPresentacion.Ajustes;
 using System;
 using System.Windows.Forms;
@@ -61,32 +60,33 @@ namespace CapaPresentacion
 
         /// <summary>
         /// Maneja el evento de carga del formulario FormInicio.
-        /// Inicializa una nueva instancia de la clase Conexion.
+        /// Configura los eventos MouseEnter y MouseLeave para varios botones.
         /// </summary>
         /// <param name="sender">El origen del evento.</param>
         /// <param name="e">Los datos del evento.</param>
         private void FormInicio_Load(object sender, EventArgs e)
         {
-            // Inicializa una nueva instancia de la clase Conexion
-            //Conexion conexion = new Conexion();
-
+            // Asocia el evento MouseEnter de cada botón con el método button_MouseEnter
             buttonInicio.MouseEnter += new EventHandler(button_MouseEnter);
-            buttonInicio.MouseLeave += new EventHandler(button_MouseLeave);
             buttonGastos.MouseEnter += new EventHandler(button_MouseEnter);
-            buttonGastos.MouseLeave += new EventHandler(button_MouseLeave);
             buttonAjustes.MouseEnter += new EventHandler(button_MouseEnter);
-            buttonAjustes.MouseLeave += new EventHandler(button_MouseLeave);
             buttonInversiones.MouseEnter += new EventHandler(button_MouseEnter);
-            buttonInversiones.MouseLeave += new EventHandler(button_MouseLeave);
             buttonSalir.MouseEnter += new EventHandler(button_MouseEnter);
+
+            // Asocia el evento MouseLeave de cada botón con el método button_MouseLeave
+            buttonInicio.MouseLeave += new EventHandler(button_MouseLeave);
+            buttonGastos.MouseLeave += new EventHandler(button_MouseLeave);
+            buttonAjustes.MouseLeave += new EventHandler(button_MouseLeave);
+            buttonInversiones.MouseLeave += new EventHandler(button_MouseLeave);
             buttonSalir.MouseLeave += new EventHandler(button_MouseLeave);
         }
 
         /// <summary>
-        /// 
+        /// Maneja el evento cuando el cursor entra en un botón en el formulario.
+        /// Hace visible el panel correspondiente al botón.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">El objeto que desencadenó el evento (en este caso, el botón).</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void button_MouseEnter(object sender, EventArgs e)
         {
             // Obtener el botón que activó el evento
@@ -114,10 +114,11 @@ namespace CapaPresentacion
         }
 
         /// <summary>
-        /// 
+        /// Maneja el evento cuando el cursor sale de un botón en el formulario.
+        /// Oculta el panel correspondiente al botón.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">El objeto que desencadenó el evento (en este caso, el botón).</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void button_MouseLeave(object sender, EventArgs e)
         {
             // Obtener el botón que activó el evento
@@ -159,6 +160,11 @@ namespace CapaPresentacion
             panelInicio.Controls.Add(control);
         }
 
+        /// <summary>
+        /// Maneja el evento de clic en el botón "Gastos".
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento (en este caso, el botón).</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void buttonGastos_Click(object sender, EventArgs e)
         {
             // Crea una instancia del control de usuario para la pantalla de gastos
@@ -172,6 +178,11 @@ namespace CapaPresentacion
 
         }
 
+        /// <summary>
+        /// Maneja el evento de clic en el botón "Inicio".
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento (en este caso, el botón).</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void buttonInicio_Click(object sender, EventArgs e)
         {
             // Crea una instancia del control de usuario para la pantalla de inicio
@@ -185,6 +196,11 @@ namespace CapaPresentacion
 
         }
 
+        /// <summary>
+        /// Maneja el evento de clic en el botón "Inversiones".
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento (en este caso, el botón).</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void buttonInversiones_Click(object sender, EventArgs e)
         {
             // Crea una instancia del control de usuario para la pantalla de inicio
@@ -194,9 +210,14 @@ namespace CapaPresentacion
             MostrarUserControl(_userControlInversion);
 
             // Modifica el titulo 
-            labelTitulo.Text = "Inversion";
+            labelTitulo.Text = "Inversión";
         }
 
+        /// <summary>
+        /// Maneja el evento de clic en el botón "Ajustes".
+        /// </summary>
+        /// <param name="sender">El objeto que desencadenó el evento (en este caso, el botón).</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void buttonAjustes_Click(object sender, EventArgs e)
         {
             // Crea una instancia del control de usuario para la pantalla de inicio
@@ -211,17 +232,19 @@ namespace CapaPresentacion
         }
 
         /// <summary>
-        /// 
+        /// Maneja el evento de clic en el botón "Salir".
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">El objeto que desencadenó el evento (en este caso, el botón).</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void buttonSalir_Click(object sender, EventArgs e)
         {
+            // Muestra un cuadro de diálogo para confirmar si el usuario quiere salir
             DialogResult result = MessageBox.Show("¿Está seguro que quieres salir?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             // Si el usuario hace clic en "Sí", cerrar la aplicación
             if (result == DialogResult.Yes)
             {
-                Application.Exit();
+                // Cierra la ventana actual del formulario
+                this.Close();
             }
         }
     }
