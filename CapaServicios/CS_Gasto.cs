@@ -107,11 +107,11 @@ namespace CapaServicios
                 }
                 catch (Exception ex)
                 {
-                    //
+                    // Retorna un mensaje de la excepcion capturada
                     return $"{ErrorProceso}: {ex.Message}";
                 }
             }
-            //
+            // Retorna un mensaje de error
             return ErrorRegistro;
         }
 

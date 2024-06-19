@@ -8,7 +8,6 @@ namespace CapaServicios
 
     public static class CS_Movimiento
     {
-
         /// <summary>
         /// Registra un movimiento para un usuario específico.
         /// </summary>
@@ -20,6 +19,7 @@ namespace CapaServicios
         {
             // Validar que el importe sea un valor numérico y mayor a cero
             var (validacionImporte, importe, mensaje) = CS_Config.ValidarTextBoxNumerico(importeMovimiento);
+            // Si falla la validación 
             if (!validacionImporte)
             {
                 // Retorna mensaje de error si la validación falla

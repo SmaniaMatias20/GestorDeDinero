@@ -55,18 +55,21 @@ namespace CapaServicios
             // Verifica si el nombre de usuario está vacío o contiene solo espacios en blanco
             if (string.IsNullOrWhiteSpace(nombreUsuario))
             {
+                // Retorna un mensaje de error
                 return ErrorNombreVacio;
             }
 
             // Verifica la longitud del nombre de usuario
             if (nombreUsuario.Length > 20 || nombreUsuario.Length < 10)
             {
+                // Retorna un mensaje de error
                 return ErrorLongitudNombre;
             }
 
             // Verifica si el nombre de usuario contiene espacios o caracteres especiales
             if (nombreUsuario.Contains(" ") || !nombreUsuario.All(char.IsLetterOrDigit))
             {
+                // Retorna un mensaje de error
                 return ErrorCaracteresNombre;
             }
 
@@ -74,6 +77,12 @@ namespace CapaServicios
             return nombreUsuario;
         }
 
+        /// <summary>
+        /// Valida las claves proporcionadas según ciertos criterios.
+        /// </summary>
+        /// <param name="clave">La primera clave a validar.</param>
+        /// <param name="segundaClave">La segunda clave para comparar con la primera.</param>
+        /// <returns>La clave validada si todas las condiciones se cumplen, o un mensaje de error si alguna validación falla.</returns>
         private static string ValidarClave(string clave, string segundaClave)
         {
             // Constantes para mensajes de error
@@ -85,24 +94,28 @@ namespace CapaServicios
             // Verifica si las claves están vacías o contienen solo espacios en blanco
             if (string.IsNullOrWhiteSpace(clave) || string.IsNullOrWhiteSpace(segundaClave))
             {
+                // Retorna un mensaje de error
                 return ErrorClavesVacias;
             }
 
             // Verifica si las claves coinciden
             if (clave != segundaClave)
             {
+                // Retorna un mensaje de error
                 return ErrorClavesNoCoinciden;
             }
 
             // Verifica la longitud de la clave
             if (clave.Length > 20 || clave.Length < 5)
             {
+                // Retorna un mensaje de error
                 return ErrorLongitudClave;
             }
 
             // Verifica si la clave contiene espacios
             if (clave.Contains(" "))
             {
+                // Retorna un mensaje de error
                 return ErrorClaveConEspacios;
             }
 
@@ -111,15 +124,15 @@ namespace CapaServicios
         }
 
         /// <summary>
-        /// 
+        /// Registra un nuevo usuario en el sistema.
         /// </summary>
-        /// <param name="nombre"></param>
-        /// <param name="clave"></param>
-        /// <param name="segundaClave"></param>
-        /// <returns></returns>
+        /// <param name="nombre">El nombre del usuario a registrar.</param>
+        /// <param name="clave">La clave del usuario a registrar.</param>
+        /// <param name="segundaClave">La segunda clave para confirmar la primera clave.</param>
+        /// <returns>Un mensaje indicando el resultado del registro.</returns>
         public static string RegistrarUsuario(string nombre, string clave, string segundaClave)
         {
-            // Crear una instancia de Usuario
+            // Crear una instancia de Usuario con el nombre y la clave proporcionados
             Usuario usuario = new Usuario
             {
                 Nombre = nombre,
@@ -129,25 +142,31 @@ namespace CapaServicios
             // Verificar si el usuario ya está registrado
             if (!ValidarUsuario(usuario))
             {
+                // Si el usuario ya está registrado, retornar un mensaje de error
                 return "Ya existe el Usuario registrado";
             }
 
             // Validar el nombre de usuario
             string validacionNombre = ValidarNombreUsuario(usuario.Nombre);
+
             if (validacionNombre != usuario.Nombre)
             {
+                // Si la validación del nombre falla, retornar el mensaje de error correspondiente
                 return validacionNombre;
             }
 
             // Validar la clave del usuario
             string validacionClave = ValidarClave(usuario.Clave, segundaClave);
+
             if (validacionClave != usuario.Clave)
             {
+                // Si la validación de la clave falla, retornar el mensaje de error correspondiente
                 return validacionClave;
             }
 
             // Agregar el usuario a la capa de datos
             CD_Usuario.AgregarUsuario(usuario.Nombre, usuario.Clave);
+            // Retornar un mensaje indicando que el registro fue exitoso
             return "Se registró exitosamente...";
         }
 
@@ -211,14 +230,15 @@ namespace CapaServicios
         /// <exception cref="Exception">Lanzada cuando el usuario no es encontrado.</exception>
         public static Usuario ActualizarFondos(string nombreUsuario, double importe, ETipoMovimiento tipoMovimiento)
         {
-
             // Obtener el usuario desde la base de datos
             Usuario usuario = CD_Usuario.ObtenerUsuarioPorNombre(nombreUsuario);
 
             // Si el usuario existe y el tipo de movimiento es Ingreso, actualizamos sus fondos sumando el importe validado
             if (usuario != null && tipoMovimiento == ETipoMovimiento.Ingreso)
             {
+                // Sumar el importe al fondo total del usuario
                 usuario.FondosTotales += importe;
+                // Actualizar el usuario en la base de datos
                 CD_Usuario.ActualizarUsuario(usuario);
             }
             // Si el usuario existe y el tipo de movimiento es Retiro o Reserva, restamos el importe validado de los fondos
@@ -227,7 +247,9 @@ namespace CapaServicios
                 // Verificamos que el usuario tenga fondos suficientes antes de realizar la operación
                 if (importe <= usuario.FondosTotales)
                 {
+                    // Restar el importe del fondo total del usuario
                     usuario.FondosTotales -= importe;
+                    // Actualizar el usuario en la base de datos
                     CD_Usuario.ActualizarUsuario(usuario);
                 }
 
@@ -238,6 +260,7 @@ namespace CapaServicios
                 throw new Exception("Usuario no encontrado.");
             }
 
+            // Retornar el usuario actualizado con los fondos modificados
             return usuario; 
         }
 

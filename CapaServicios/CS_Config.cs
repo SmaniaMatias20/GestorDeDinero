@@ -16,14 +16,17 @@ namespace CapaServicios
         /// <exception cref="FileNotFoundException"></exception>
         public static string ObtenerApiKey()
         {
-            // Leer la API key desde el archivo
+            // Ruta del archivo donde se encuentra almacenada la API key
             string filePath = "api_key.txt";
+            // Verificar si el archivo existe
             if (File.Exists(filePath))
             {
+                // Leer y devolver la API key desde el archivo, eliminando espacios en blanco al inicio y al final
                 return File.ReadAllText(filePath).Trim();
             }
             else
             {
+                // Lanzar una excepción si el archivo no se encuentra
                 throw new FileNotFoundException("El archivo de la clave API no se encontró.");
             }
         }

@@ -79,7 +79,6 @@ namespace CapaServicios
                 // Retorna los dias transcurridos
                 return diasTranscurridos;
             }
-
             // Retorna 30 dias por defecto
             return 30;
         }
@@ -99,7 +98,8 @@ namespace CapaServicios
             // Asegúrate de que _monedas esté inicializado y contenga datos
             if (_monedas == null || _monedas.Count == 0)
             {
-                MessageBox.Show("No se han cargado las tasas de cambio.");
+                // Mensaje de advertencia
+                MessageBox.Show("No se han cargado las tasas de cambio.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -111,14 +111,16 @@ namespace CapaServicios
             string monedaDestino = comboBox2.Text;
             if (!double.TryParse(importe, out double cantidad))
             {
-                MessageBox.Show("Cantidad inválida.");
+                // Mensaje de advertencia
+                MessageBox.Show("Cantidad inválida.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             // Verificar que ambas monedas existen en la lista de tasas de cambio
             if (!tasasDeCambio.ContainsKey(monedaOrigen) || !tasasDeCambio.ContainsKey(monedaDestino))
             {
-                MessageBox.Show("Moneda no encontrada en las tasas de cambio.");
+                // Mensaje de advertencia
+                MessageBox.Show("Moneda no encontrada en las tasas de cambio.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -163,7 +165,8 @@ namespace CapaServicios
                 else
                 {
                     // Mensaje de error al conectar con la API
-                    MessageBox.Show("Error al conectar con la API");
+                    MessageBox.Show("Error al conectar con la API", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
                     // Retorna un null
                     return null;
                 }
@@ -186,6 +189,7 @@ namespace CapaServicios
                 // Verifica que el JSON no esté vacío o nulo
                 if (string.IsNullOrEmpty(json))
                 {
+                    // Lanza una excepcion con un mensaje
                     throw new Exception("El JSON recibido está vacío o es nulo.");
                 }
 
@@ -209,27 +213,6 @@ namespace CapaServicios
                 // Captura cualquier excepción y la lanza de nuevo con un mensaje específico
                 throw new Exception("Error al obtener el listado de monedas desde la API.", ex);
             }
-
-            //string json = ConexionConAPI();
-
-            //// Verificar que el JSON no esté vacío o nulo
-            //if (string.IsNullOrEmpty(json))
-            //{
-            //    throw new Exception("El JSON recibido está vacío o es nulo.");
-            //}
-
-            //// Deserializar solo el objeto "results" del JSON en un diccionario
-            //var resultados = JObject.Parse(json)["results"].ToObject<Dictionary<string, double>>();
-
-            //// Crear una lista de Moneda
-            //List<Moneda> listaMonedas = new List<Moneda>();
-
-            //foreach (var item in resultados)
-            //{
-            //    listaMonedas.Add(new Moneda { Nombre = item.Key, Valor = item.Value });
-            //}
-
-            //return listaMonedas;
         }
 
     }

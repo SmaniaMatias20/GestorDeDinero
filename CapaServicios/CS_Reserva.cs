@@ -24,16 +24,19 @@ namespace CapaServicios
             // Verificar si la validación del nombre falló
             if (!validacionNombre)
             {
+                // Retornar la validación fallida junto con el nombre
                 return (validacionNombre, nombre);
             }
             // Verificar si la validación del importe falló
             if (!validacionImporte)
             {
+                // Retornar la validación fallida junto con el mensaje de error
                 return (validacionImporte, mensaje);
             }
             // Verificar si el importe excede los fondos totales del usuario
             if (importe > usuario.FondosTotales)
             {
+                // Retornar indicando que el importe es superior a los fondos disponibles
                 return (false, "No puede ingresar un importe superior a los fondos");
             }
 
@@ -41,10 +44,9 @@ namespace CapaServicios
             Reserva reserva = new Reserva(nombre, importe);
             // Agregar la reserva a la base de datos
             CD_Reserva.AgregarReserva(usuario.Id, reserva.Fecha, reserva.Importe, reserva.Nombre);
-
             // Actualizar los fondos del usuario
             CS_Usuario.ActualizarFondos(usuario.Nombre, reserva.Importe, ETipoMovimiento.Reserva);
-
+            // Retornar indicando que la reserva se registró correctamente
             return (true, "Reserva registrada correctamente");
         }
 
@@ -69,11 +71,13 @@ namespace CapaServicios
             // Verificar si la validación del nombre falló
             if (!validacionNombre)
             {
+                // Retornar la validación fallida junto con el nombre
                 return (validacionNombre, nombre);
             }
             // Verificar si la validación del importe falló
             if (!validacionImporte)
             {
+                // Retornar la validación fallida junto con el mensaje de error
                 return (validacionImporte, mensaje);
             }
 
@@ -81,7 +85,7 @@ namespace CapaServicios
             CD_Reserva.ModificarReserva(reserva.Id, nombreReserva, importe, reserva.Fecha);
             // Actualizar los fondos del usuario con el nuevo importe de la reserva
             CS_Usuario.ActualizarFondos(usuario.Nombre, importe, ETipoMovimiento.Reserva);
-
+            // Retornar indicando que la reserva se modificó correctamente
             return (true, "Reserva modificada correctamente");
         }
 
@@ -94,7 +98,7 @@ namespace CapaServicios
         {
             // Obtener la lista de reservas desde la base de datos
             List<Reserva> listaDeReservas = CD_Reserva.ListarReservas(idUsuario);
-
+            // Retorna la lista de reservas
             return listaDeReservas;
         }
 
