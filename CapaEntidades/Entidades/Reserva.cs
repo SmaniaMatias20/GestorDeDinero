@@ -41,9 +41,18 @@ namespace CapaEntidades
             Importe = importe;
         }
 
+        /// <summary>
+        /// Constructor de la clase Reserva que inicializa el nombre, importe, fecha y ID de la reserva.
+        /// </summary>
+        /// <param name="nombre">Nombre de la reserva.</param>
+        /// <param name="importe">Importe de la reserva.</param>
+        /// <param name="fecha">Fecha de la reserva.</param>
+        /// <param name="id">ID de la reserva.</param>
         public Reserva(string nombre, double importe, string fecha, int id) : this(nombre, importe)
         {
-            Fecha = fecha; 
+            // Asigna el nombre especificado a la propiedad Fecha de la reserva.
+            Fecha = fecha;
+            // Asigna el nombre especificado a la propiedad Id de la reserva.
             Id = id;    
         }
 

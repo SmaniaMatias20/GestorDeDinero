@@ -64,6 +64,7 @@
             this.textBoxMoneda.Name = "textBoxMoneda";
             this.textBoxMoneda.Size = new System.Drawing.Size(130, 22);
             this.textBoxMoneda.TabIndex = 0;
+            this.textBoxMoneda.TextChanged += new System.EventHandler(this.textBoxMoneda_TextChanged);
             // 
             // textBoxConversion
             // 

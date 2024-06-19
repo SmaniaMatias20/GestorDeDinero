@@ -9,9 +9,11 @@ namespace CapaDatos
     public static class CD_Gasto
     {
         /// <summary>
-        /// Obtiene una lista de usuarios desde la base de datos.
+        /// Lista los gastos de un usuario específico.
         /// </summary>
-        /// <returns>Una lista de objetos Usuario que contiene el nombre y la clave de cada usuario.</returns>
+        /// <param name="idUsuario">El ID del usuario.</param>
+        /// <returns>Una lista de objetos Gasto.</returns>
+        /// <exception cref="Exception">Lanzada si ocurre un error al listar los gastos.</exception>
         public static List<Gasto> ListarGastos(int idUsuario)
         {
             // Nuevo objeto de tipo lista de gastos
@@ -75,12 +77,12 @@ namespace CapaDatos
         }
 
         /// <summary>
-        /// 
+        /// Lista los gastos basados en los parámetros y la consulta SQL proporcionados.
         /// </summary>
-        /// <param name="parametros"></param>
-        /// <param name="query"></param>
-        /// <returns></returns>
-        /// <exception cref="Exception"></exception>
+        /// <param name="parametros">Lista de parámetros SQL para la consulta.</param>
+        /// <param name="query">Consulta SQL para obtener los gastos.</param>
+        /// <returns>Una lista de objetos Gasto.</returns>
+        /// <exception cref="Exception">Lanzada si ocurre un error al listar los gastos.</exception>
         public static List<Gasto> ListarGastos(List<SqlParameter> parametros, string query)
         {
             // Nuevo objeto de tipo lista de gastos
@@ -118,12 +120,10 @@ namespace CapaDatos
                                 // Asignar los valores de las columnas del resultado a las propiedades del objeto Gasto
                                 if (Enum.TryParse(reader["tipo"].ToString(), out ETipoGasto tipoGasto))
                                 {
-                                    //
                                     gasto.Tipo = tipoGasto;
                                 }
                                 if (Enum.TryParse(reader["pago"].ToString(), out ETipoPago tipoPago))
                                 {
-                                    //
                                     gasto.Pago = tipoPago;
                                 }
 

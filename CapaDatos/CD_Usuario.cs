@@ -49,9 +49,10 @@ namespace CapaDatos
 
 
         /// <summary>
-        /// Obtiene una lista de usuarios desde la base de datos.
+        /// Obtiene la lista completa de usuarios desde la base de datos.
         /// </summary>
-        /// <returns>Una lista de objetos Usuario que contiene el nombre y la clave de cada usuario.</returns>
+        /// <returns>Una lista de objetos Usuario.</returns>
+        /// <exception cref="Exception">Lanzada si ocurre un error al listar los usuarios.</exception>
         public static List<Usuario> ListarUsuarios()
         {
             // Nuevo objeto de tipo lista de usuarios
@@ -104,9 +105,10 @@ namespace CapaDatos
         }
 
         /// <summary>
-        /// Método para actualizar los datos de un usuario en la base de datos.
+        /// Actualiza los fondos totales de un usuario en la base de datos.
         /// </summary>
-        /// <param name="usuario">El objeto Usuario que contiene los datos actualizados.</param>
+        /// <param name="usuario">El objeto Usuario con los datos actualizados.</param>
+        /// <exception cref="Exception">Lanzada si ocurre un error al actualizar el usuario.</exception>
         public static void ActualizarUsuario(Usuario usuario)
         {
             // Bloque try-catch para manejar excepciones.
@@ -132,15 +134,17 @@ namespace CapaDatos
             }
             catch (Exception e) 
             {
+                // Lanza una nueva excepción con un mensaje específico
                 throw new Exception("Error al actualizar el usuario" + e.Message);
             }
         }
 
         /// <summary>
-        /// Método para obtener un usuario por su nombre de usuario.
+        /// Obtiene un usuario específico por su nombre desde la base de datos.
         /// </summary>
-        /// <param name="nombreUsuario">El nombre del usuario que se quiere obtener.</param>
-        /// <returns>Un objeto Usuario con los datos del usuario si se encuentra; de lo contrario, null.</returns>
+        /// <param name="nombreUsuario">El nombre del usuario.</param>
+        /// <returns>El objeto Usuario correspondiente al nombre especificado.</returns>
+        /// <exception cref="Exception">Lanzada si ocurre un error al obtener el usuario.</exception>
         public static Usuario ObtenerUsuarioPorNombre(string nombreUsuario)
         {
             // Inicializa el objeto usuario como null.

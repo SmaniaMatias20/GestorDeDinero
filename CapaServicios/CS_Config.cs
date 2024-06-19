@@ -9,6 +9,11 @@ namespace CapaServicios
     public static class CS_Config
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="FileNotFoundException"></exception>
         public static string ObtenerApiKey()
         {
             // Leer la API key desde el archivo
@@ -23,15 +28,12 @@ namespace CapaServicios
             }
         }
 
-
-
-
-
         /// <summary>
-        /// 
+        /// Formatea una cantidad numérica como una cadena en formato de moneda para la cultura de Argentina (es-AR).
         /// </summary>
-        /// <param name="cantidad"></param>
-        /// <returns></returns>
+        /// <param name="cantidad">La cantidad numérica a formatear.</param>
+        /// <param name="decimales">El número de decimales a mostrar en el formato de moneda.</param>
+        /// <returns>Una cadena que representa la cantidad formateada como moneda.</returns>
         public static string FormatearMoneda(double cantidad, int decimales)
         {
             // Obtiene el formato de número específico para la cultura de Argentina (es-AR)
@@ -62,9 +64,6 @@ namespace CapaServicios
             {
                 e.Handled = true;
             }
-
-
-
         }
 
         /// <summary>
@@ -160,6 +159,10 @@ namespace CapaServicios
 
         }
 
+        /// <summary>
+        /// Configura un control DateTimePicker para limitar las fechas seleccionables entre un mes a partir de hoy y un año a partir de hoy.
+        /// </summary>
+        /// <param name="dateTimePickerFecha">El control DateTimePicker que se va a configurar.</param>
         public static void ConfigurarDateTimePicker(DateTimePicker dateTimePickerFecha)
         {
             // Calcula la fecha mínima permitida (por ejemplo, un mes a partir de hoy)
@@ -175,24 +178,37 @@ namespace CapaServicios
             dateTimePickerFecha.MaxDate = fechaMaxima;
         }
 
+        /// <summary>
+        /// Obtiene el número de decimales de una cantidad numérica.
+        /// </summary>
+        /// <param name="cantidad">La cantidad numérica de la cual se desea conocer los decimales.</param>
+        /// <returns>El número de decimales de la cantidad.</returns>
         public static int ObtenerDecimales(double cantidad) 
         {
+            // Declara la variable decimales
             int decimales;
+            // Si la cantidad es menor que 1, se determina el número de decimales necesarios para representarla
             if (cantidad < 1)
             {
+                // Asigna el valor de la cantidad recibida por parametro
                 double valor = cantidad;
+                // Inicializa la variable en 0
                 decimales = 0;
+                // Se incrementa el número de decimales hasta que el valor sea mayor o igual a 1
                 while (valor < 1)
                 {
+                    // Multiplica por 10 el valor en cada vuelta
                     valor = valor * 10;
+                    // Incrementa en 1 la variable en cada vuelta
                     decimales++;
                 }
+                // Retorna la cantidad de decimales
                 return decimales;
             }
             else
             {
-                decimales = 2;
-                return decimales;   
+                // Retorna 2 decimales por defecto
+                return 2;   
             }
         }
 

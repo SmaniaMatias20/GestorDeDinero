@@ -12,19 +12,20 @@ namespace CapaServicios
 {
     public static class CS_Inversion
     {
+        // Atributos
         private const double _tasa = 29.50;
         private static List<Moneda> _monedas;
 
         /// <summary>
-        /// 
+        /// Realiza una simulación de cálculo de intereses y muestra los resultados en controles específicos.
         /// </summary>
-        /// <param name="textBoxImporte"></param>
-        /// <param name="labelFecha"></param>
-        /// <param name="dateTimePickerFecha"></param>
-        /// <param name="labelTotalDias"></param>
-        /// <param name="labelTotal"></param>
-        /// <param name="labelInteres"></param>
-        /// <param name="labelTasa"></param>
+        /// <param name="textBoxImporte">El TextBox que contiene el importe a simular.</param>
+        /// <param name="labelFecha">El Label donde se mostrará la fecha seleccionada.</param>
+        /// <param name="dateTimePickerFecha">El DateTimePicker que proporciona la fecha seleccionada.</param>
+        /// <param name="labelTotalDias">El Label donde se mostrará el total de días calculados.</param>
+        /// <param name="labelTotal">El Label donde se mostrará el total calculado (importe + intereses).</param>
+        /// <param name="labelInteres">El Label donde se mostrarán los intereses calculados.</param>
+        /// <param name="labelTasa">El Label donde se mostrará la tasa de interés utilizada.</param>
         public static void Simular(TextBox textBoxImporte, Label labelFecha, DateTimePicker dateTimePickerFecha, Label labelTotalDias, Label labelTotal, Label labelInteres, Label labelTasa)
         {
             // Valida lo ingresado en el textbox
@@ -59,10 +60,10 @@ namespace CapaServicios
         }
 
         /// <summary>
-        /// 
+        /// Obtiene el número de días transcurridos entre la fecha seleccionada en un DateTimePicker y la fecha actual.
         /// </summary>
-        /// <param name="dateTimePickerFecha"></param>
-        /// <returns></returns>
+        /// <param name="dateTimePickerFecha">El DateTimePicker que proporciona la fecha seleccionada.</param>
+        /// <returns>El número de días transcurridos como un valor double.</returns>
         private static double ObtenerDias(DateTimePicker dateTimePickerFecha)
         {
             // Obtener la fecha de hoy
@@ -79,16 +80,17 @@ namespace CapaServicios
                 return diasTranscurridos;
             }
 
+            // Retorna 30 dias por defecto
             return 30;
         }
 
         /// <summary>
-        /// 
+        /// Realiza la conversión de una cantidad de dinero de una moneda a otra, utilizando las tasas de cambio disponibles.
         /// </summary>
-        /// <param name="comboBox"></param>
-        /// <param name="textBox"></param>
-        /// <param name="comboBox2"></param>
-        /// <param name="textBox2"></param>
+        /// <param name="comboBox">El ComboBox que contiene la selección de la moneda de origen.</param>
+        /// <param name="textBox">El TextBox que contiene la cantidad a convertir.</param>
+        /// <param name="comboBox2">El ComboBox que contiene la selección de la moneda de destino.</param>
+        /// <param name="textBox2">El TextBox donde se mostrará el resultado de la conversión.</param>
         public static void Convertir(ComboBox comboBox, TextBox textBox, ComboBox comboBox2, TextBox textBox2)
         {
             // Obtiene el listado de monedas
@@ -134,9 +136,9 @@ namespace CapaServicios
         }
 
         /// <summary>
-        /// 
+        /// Realiza una conexión a una API externa para obtener las últimas tasas de cambio utilizando una clave de API.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Una cadena JSON que contiene las tasas de cambio o null si hay un error.</returns>
         public static string ConexionConAPI()
         {
             // Obtiene la APIKEY
@@ -148,9 +150,9 @@ namespace CapaServicios
             // Realizar la solicitud HTTP GET a la API
             using (HttpClient client = new HttpClient())
             {
-
+                // Realiza la solicitud GET asincrónica
                 HttpResponseMessage response = client.GetAsync(apiUrl).Result;
-
+                // Verifica si la solicitud fue exitosa
                 if (response.IsSuccessStatusCode)
                 {
                     // Leer la respuesta JSON
@@ -169,29 +171,65 @@ namespace CapaServicios
 
         }
 
+        /// <summary>
+        /// Obtiene un listado de monedas con sus valores de cambio desde una API externa.
+        /// </summary>
+        /// <returns>Una lista de objetos Moneda que representa las monedas y sus valores.</returns>
+        /// <exception cref="Exception">Se lanza si el JSON recibido está vacío o nulo.</exception>
         public static List<Moneda> ObtenerListadoDeMonedas() 
         {
-
-            string json = ConexionConAPI();
-
-            // Verificar que el JSON no esté vacío o nulo
-            if (string.IsNullOrEmpty(json))
+            try
             {
-                throw new Exception("El JSON recibido está vacío o es nulo.");
+                // Realiza la conexión a la API para obtener el JSON con las tasas de cambio
+                string json = ConexionConAPI();
+
+                // Verifica que el JSON no esté vacío o nulo
+                if (string.IsNullOrEmpty(json))
+                {
+                    throw new Exception("El JSON recibido está vacío o es nulo.");
+                }
+
+                // Deserializa solo el objeto "results" del JSON en un diccionario de string (nombre de la moneda) a double (valor de cambio)
+                var resultados = JObject.Parse(json)["results"].ToObject<Dictionary<string, double>>();
+
+                // Crea una lista para almacenar las monedas
+                List<Moneda> listaMonedas = new List<Moneda>();
+
+                // Recorre el diccionario de resultados y crea objetos Moneda con cada par nombre-valor
+                foreach (var item in resultados)
+                {
+                    listaMonedas.Add(new Moneda { Nombre = item.Key, Valor = item.Value });
+                }
+
+                // Retorna la lista de monedas
+                return listaMonedas;
+            }
+            catch (Exception ex)
+            {
+                // Captura cualquier excepción y la lanza de nuevo con un mensaje específico
+                throw new Exception("Error al obtener el listado de monedas desde la API.", ex);
             }
 
-            // Deserializar solo el objeto "results" del JSON en un diccionario
-            var resultados = JObject.Parse(json)["results"].ToObject<Dictionary<string, double>>();
+            //string json = ConexionConAPI();
 
-            // Crear una lista de Moneda
-            List<Moneda> listaMonedas = new List<Moneda>();
+            //// Verificar que el JSON no esté vacío o nulo
+            //if (string.IsNullOrEmpty(json))
+            //{
+            //    throw new Exception("El JSON recibido está vacío o es nulo.");
+            //}
 
-            foreach (var item in resultados)
-            {
-                listaMonedas.Add(new Moneda { Nombre = item.Key, Valor = item.Value });
-            }
+            //// Deserializar solo el objeto "results" del JSON en un diccionario
+            //var resultados = JObject.Parse(json)["results"].ToObject<Dictionary<string, double>>();
 
-            return listaMonedas;
+            //// Crear una lista de Moneda
+            //List<Moneda> listaMonedas = new List<Moneda>();
+
+            //foreach (var item in resultados)
+            //{
+            //    listaMonedas.Add(new Moneda { Nombre = item.Key, Valor = item.Value });
+            //}
+
+            //return listaMonedas;
         }
 
     }

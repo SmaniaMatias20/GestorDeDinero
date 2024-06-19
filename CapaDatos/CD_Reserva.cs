@@ -9,9 +9,11 @@ namespace CapaDatos
     {
 
         /// <summary>
-        /// Obtiene una lista de usuarios desde la base de datos.
+        /// Lista las reservas de un usuario específico.
         /// </summary>
-        /// <returns>Una lista de objetos Usuario que contiene el nombre y la clave de cada usuario.</returns>
+        /// <param name="idUsuario">El ID del usuario.</param>
+        /// <returns>Una lista de objetos Reserva.</returns>
+        /// <exception cref="Exception">Lanzada si ocurre un error al listar las reservas.</exception>
         public static List<Reserva> ListarReservas(int idUsuario)
         {
             // Nuevo objeto de tipo lista de movimientos

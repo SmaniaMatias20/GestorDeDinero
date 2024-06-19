@@ -1,8 +1,5 @@
-﻿using System;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.IO;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace CapaDatos
 {

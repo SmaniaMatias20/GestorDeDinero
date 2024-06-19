@@ -8,10 +8,13 @@ namespace CapaDatos
 {
     public static class CD_Movimiento
     {
+
         /// <summary>
-        /// Obtiene una lista de usuarios desde la base de datos.
+        /// Lista los movimientos de un usuario específico.
         /// </summary>
-        /// <returns>Una lista de objetos Usuario que contiene el nombre y la clave de cada usuario.</returns>
+        /// <param name="idUsuario">El ID del usuario.</param>
+        /// <returns>Una lista de objetos Movimiento.</returns>
+        /// <exception cref="Exception">Lanzada si ocurre un error al listar los movimientos.</exception>
         public static List<Movimiento> ListarMovimientos(int idUsuario)
         {
             // Nuevo objeto de tipo lista de movimientos
@@ -70,13 +73,13 @@ namespace CapaDatos
         }
 
         /// <summary>
-        /// 
+        /// Agrega un nuevo movimiento a la base de datos.
         /// </summary>
-        /// <param name="idUsuario"></param>
-        /// <param name="fecha"></param>
-        /// <param name="importe"></param>
-        /// <param name="tipo"></param>
-        /// <exception cref="Exception"></exception>
+        /// <param name="idUsuario">El ID del usuario.</param>
+        /// <param name="fecha">La fecha del movimiento.</param>
+        /// <param name="importe">El importe del movimiento.</param>
+        /// <param name="tipo">El tipo de movimiento.</param>
+        /// <exception cref="Exception">Lanzada si ocurre un error al agregar el movimiento.</exception>
         public static void AgregarMovimiento(int idUsuario, string fecha, double importe, ETipoMovimiento tipo)
         {
             try
