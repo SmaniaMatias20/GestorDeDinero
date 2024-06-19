@@ -65,6 +65,7 @@
             this.textBoxMoneda.Size = new System.Drawing.Size(130, 22);
             this.textBoxMoneda.TabIndex = 0;
             this.textBoxMoneda.TextChanged += new System.EventHandler(this.textBoxMoneda_TextChanged);
+            this.textBoxMoneda.Leave += new System.EventHandler(this.textBoxMoneda_Leave);
             // 
             // textBoxConversion
             // 
@@ -377,6 +378,7 @@
             this.textBoxImporte.Name = "textBoxImporte";
             this.textBoxImporte.Size = new System.Drawing.Size(211, 23);
             this.textBoxImporte.TabIndex = 2;
+            this.textBoxImporte.Leave += new System.EventHandler(this.textBoxImporte_Leave);
             // 
             // labelImporte
             // 

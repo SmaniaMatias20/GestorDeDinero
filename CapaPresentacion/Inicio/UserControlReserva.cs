@@ -1,8 +1,6 @@
 ﻿using CapaEntidades;
-using CapaEntidades.Enums;
 using CapaServicios;
 using System;
-using System.Messaging;
 using System.Windows.Forms;
 
 namespace CapaPresentacion
@@ -53,31 +51,34 @@ namespace CapaPresentacion
         {
             // Asigna el valor de la reserva
             Reserva = new Reserva(reserva.Nombre, reserva.Importe, reserva.Fecha, reserva.Id);
+            // Indica que la reserva está en modo de modificación
             Reserva.Modificacion = true;
-            // Asignar valores a los TextBox
+            // Asignar valores a los TextBoxNombre
             textBoxNombre.Text = reserva.Nombre;
+            //  // Asignar valores a los TextBoxReserva
             textBoxReserva.Text = reserva.Importe.ToString();
         }
 
         /// <summary>
-        /// 
+        /// Maneja el evento de salir del cuadro de texto "textBoxReserva".
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">El origen del evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void textBoxReserva_Leave(object sender, EventArgs e)
         {
             // Verificar si el texto es un número válido
             if (Double.TryParse(textBoxReserva.Text, out double valor))
             {
+                // Formatea el número como moneda con 2 decimales y actualiza el texto del cuadro de texto
                 textBoxReserva.Text = CS_Config.FormatearMoneda(valor, 2);
             }
         }
 
         /// <summary>
-        /// 
+        /// Maneja el evento de clic en el botón "Borrar".
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">El origen del evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void buttonBorrar_Click(object sender, EventArgs e)
         {
             // Establece el texto del cuadro de texto textBoxReserva a una cadena vacía, limpiando su contenido.
@@ -85,10 +86,10 @@ namespace CapaPresentacion
         }
 
         /// <summary>
-        /// 
+        /// Maneja el evento de clic en el botón "Aceptar Reserva".
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">El origen del evento.</param>
+        /// <param name="e">Los datos del evento.</param>
         private void buttonAceptarReserva_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("¿Está seguro que quieres realizar la reserva?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -113,6 +114,9 @@ namespace CapaPresentacion
             }
         }
 
+        /// <summary>
+        /// Muestra los fondos actuales del usuario después de realizar un retiro.
+        /// </summary>
         private void MostrarFondosActuales() 
         {
             // Obtiene los fondos actuales del usuario después del retiro
@@ -125,22 +129,27 @@ namespace CapaPresentacion
             labelFondos.Text = $"Fondos: {fondosFormateados}";
         }
 
+        /// <summary>
+        /// Gestiona el proceso de reserva, ya sea registrando una nueva reserva o modificando una existente.
+        /// </summary>
+        /// <returns>Una tupla que contiene un booleano que indica éxito y un string con un mensaje.</returns>
         private (bool, string) GestionarReserva() 
         {
+            // Verifica si la reserva no está en modo de modificación
             if (!Reserva.Modificacion)
             {
-                var(registroReserva, mensaje) = CS_Reserva.RegistrarReserva(Usuario, textBoxNombre.Text, textBoxReserva.Text);
-                // Retorna el mensaje
+                // Registra una nueva reserva y obtiene el resultado y el mensaje
+                var (registroReserva, mensaje) = CS_Reserva.RegistrarReserva(Usuario, textBoxNombre.Text, textBoxReserva.Text);
+                // Retorna el resultado del registro y el mensaje
                 return (registroReserva, mensaje);
             }
             else
             {
+                // Modifica una reserva existente y obtiene el resultado y el mensaje
                 var (registroReserva, mensaje) = CS_Reserva.RegistrarReserva(Usuario, textBoxNombre.Text, textBoxReserva.Text, Reserva);
-                // Retorna el mensaje
+                // Retorna el resultado de la modificación y el mensaje
                 return (registroReserva, mensaje);
             }
         }
-
-
     }
 }

@@ -42,7 +42,7 @@ namespace CapaServicios
                 // Muestra el total de dias
                 labelTotalDias.Text = $"{dias} días";
                 // Obtiene los intereses anuales
-                double interesesAnuales = (double.Parse(textBoxImporte.Text) * _tasa) / 100;
+                double interesesAnuales = (importeIngresado * _tasa) / 100;
                 // Obtiene los intereses de acuerdo a los dias ingresados 
                 double interesesGanados = (dias * interesesAnuales) / 365;
                 // Obtiene el total de la suma del importe mas los intereses
@@ -91,7 +91,7 @@ namespace CapaServicios
         /// <param name="textBox">El TextBox que contiene la cantidad a convertir.</param>
         /// <param name="comboBox2">El ComboBox que contiene la selección de la moneda de destino.</param>
         /// <param name="textBox2">El TextBox donde se mostrará el resultado de la conversión.</param>
-        public static void Convertir(ComboBox comboBox, TextBox textBox, ComboBox comboBox2, TextBox textBox2)
+        public static void Convertir(ComboBox comboBox, TextBox textBox, ComboBox comboBox2, TextBox textBox2, string importe)
         {
             // Obtiene el listado de monedas
             _monedas = ObtenerListadoDeMonedas();
@@ -109,7 +109,7 @@ namespace CapaServicios
             // Obtener las monedas seleccionadas y la cantidad a convertir
             string monedaOrigen = comboBox.Text;
             string monedaDestino = comboBox2.Text;
-            if (!double.TryParse(textBox.Text, out double cantidad))
+            if (!double.TryParse(importe, out double cantidad))
             {
                 MessageBox.Show("Cantidad inválida.");
                 return;
@@ -132,7 +132,7 @@ namespace CapaServicios
             int decimales = CS_Config.ObtenerDecimales(cantidadConvertida);
             // Muestra el resultado en el textbox
             textBox2.Text = CS_Config.FormatearMoneda(cantidadConvertida, decimales);
-
+            textBox.Text = CS_Config.FormatearMoneda(cantidad, 2);
         }
 
         /// <summary>

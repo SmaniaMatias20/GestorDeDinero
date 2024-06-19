@@ -47,7 +47,7 @@
             this.buttonMovimiento.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonMovimiento.FlatAppearance.BorderSize = 0;
             this.buttonMovimiento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonMovimiento.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonMovimiento.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonMovimiento.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.buttonMovimiento.Location = new System.Drawing.Point(24, 162);
             this.buttonMovimiento.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
