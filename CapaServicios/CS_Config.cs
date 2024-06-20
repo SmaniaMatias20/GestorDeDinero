@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -250,6 +251,35 @@ namespace CapaServicios
                 }
             }
 
+        }
+
+        public static void HabilitarControles(List<Control> lista) 
+        {
+            foreach (Control control in lista)
+            {
+                control.Enabled = true;    
+            }
+        }
+
+        public static void DeshabilitarControles(List<Control> lista)
+        {
+            foreach (Control control in lista)
+            {
+                control.Enabled = false;
+            }
+        }
+
+        public static void ModificarBoton(Button boton, string texto = null, Color? color = null)
+        {
+            if (texto != null)
+            {
+                boton.Text = texto;
+            }
+
+            if (color.HasValue)
+            {
+                boton.BackColor = color.Value;
+            }
         }
 
     }

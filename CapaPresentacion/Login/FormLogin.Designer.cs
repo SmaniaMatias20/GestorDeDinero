@@ -58,14 +58,14 @@
             // iniciarSesiónToolStripMenuItem
             // 
             this.iniciarSesiónToolStripMenuItem.Name = "iniciarSesiónToolStripMenuItem";
-            this.iniciarSesiónToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.iniciarSesiónToolStripMenuItem.Text = "Iniciar Sesión";
+            this.iniciarSesiónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.iniciarSesiónToolStripMenuItem.Text = "Iniciar sesión";
             this.iniciarSesiónToolStripMenuItem.Click += new System.EventHandler(this.iniciarSesiónToolStripMenuItem_Click);
             // 
             // registrarseToolStripMenuItem
             // 
             this.registrarseToolStripMenuItem.Name = "registrarseToolStripMenuItem";
-            this.registrarseToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.registrarseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.registrarseToolStripMenuItem.Text = "Registrarse";
             this.registrarseToolStripMenuItem.Click += new System.EventHandler(this.registrarseToolStripMenuItem_Click);
             // 

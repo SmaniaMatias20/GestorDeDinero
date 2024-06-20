@@ -224,6 +224,68 @@ namespace CapaDatos
                 }
             }
         }
+
+        public static string EliminarUsuario(int idUsuario)
+        {
+            // Definir las consultas SQL para eliminar registros relacionados
+            string queryEliminarGastos = "DELETE FROM gasto WHERE id_usuario = @IdUsuario";
+            string queryEliminarMovimientos = "DELETE FROM movimiento WHERE id_usuario = @IdUsuario";
+            string queryEliminarReservas = "DELETE FROM reserva WHERE id_usuario = @IdUsuario";
+            // Consulta para eliminar al usuario principal
+            string queryEliminarUsuario = "DELETE FROM Usuario WHERE id = @IdUsuario";
+
+            // Crear una conexión a la base de datos
+            using (SqlConnection conexionDB = Conexion.ObtenerConexion())
+            {
+                // Iniciar la transacción
+                SqlTransaction transaccion = null;
+                try
+                {
+                    // Abrir la conexión
+                    conexionDB.Open();
+
+                    // Iniciar la transacción
+                    transaccion = conexionDB.BeginTransaction();
+
+                    // Eliminar registros relacionados en otras tablas
+                    using (SqlCommand command = new SqlCommand(queryEliminarGastos, conexionDB, transaccion))
+                    {
+                        command.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                        command.ExecuteNonQuery();
+                    }
+
+                    using (SqlCommand command = new SqlCommand(queryEliminarMovimientos, conexionDB, transaccion))
+                    {
+                        command.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                        command.ExecuteNonQuery();
+                    }
+
+                    using (SqlCommand command = new SqlCommand(queryEliminarReservas, conexionDB, transaccion))
+                    {
+                        command.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                        command.ExecuteNonQuery();
+                    }
+
+                    // Eliminar al usuario principal
+                    using (SqlCommand command = new SqlCommand(queryEliminarUsuario, conexionDB, transaccion))
+                    {
+                        command.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                        command.ExecuteNonQuery();
+                    }
+
+                    // Commit (confirmar) la transacción
+                    transaccion.Commit();
+
+                    return "Usuario y registros relacionados eliminados correctamente.";
+                }
+                catch (Exception ex)
+                {
+                    // Rollback (deshacer) la transacción en caso de error
+                    transaccion?.Rollback();
+                    return "Ocurrió un error al eliminar el usuario y registros relacionados: " + ex.Message;
+                }
+            }
+        }
     }
 
 }

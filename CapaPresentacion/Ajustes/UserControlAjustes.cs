@@ -1,5 +1,6 @@
 ﻿using CapaEntidades;
 using CapaServicios;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -9,7 +10,8 @@ namespace CapaPresentacion.Ajustes
     {
         // Atributos
         private bool _claveVisible = false;
-        private bool _modificar = false;    
+        private bool _modificar = false;
+        private List<Control> _listaDeControles;
 
         // Propiedades
         public Usuario Usuario { get; set; }
@@ -21,6 +23,14 @@ namespace CapaPresentacion.Ajustes
         {
             // Inicializa los componentes visuales del control de usuario
             InitializeComponent();
+            // Inicializa la lista de controles (para habilitar/deshabilitar)
+            _listaDeControles = new List<Control>
+            {
+                textBoxUsuario,
+                textBoxClave,
+                textBoxClave2,
+                buttonAceptar
+            };   
         }
 
         /// <summary>
@@ -43,28 +53,6 @@ namespace CapaPresentacion.Ajustes
             textBoxUsuario.Text = Usuario.Nombre;
             textBoxClave.Text = Usuario.Clave;
             textBoxClave2.Text = Usuario.Clave;
-        }
-
-        /// <summary>
-        /// Habilita los campos para poder modificarlos
-        /// </summary>
-        private void HabilitarCampos() 
-        {
-            textBoxUsuario.Enabled = true; 
-            textBoxClave.Enabled = true;   
-            textBoxClave2.Enabled = true;
-            buttonAceptar.Enabled = true;
-        }
-
-        /// <summary>
-        /// Deshabilita los campos para que no se puedan modificar
-        /// </summary>
-        private void DeshabilitarCampos()
-        {
-            textBoxUsuario.Enabled = false;
-            textBoxClave.Enabled = false;
-            textBoxClave2.Enabled = false;
-            buttonAceptar.Enabled = false;
         }
 
         /// <summary>
@@ -93,22 +81,18 @@ namespace CapaPresentacion.Ajustes
             if (_modificar) 
             {
                 // Llama al método para habilitar los campos de entrada.
-                HabilitarCampos();
-                // Cambia el texto del botón a "Cancelar".
-                buttonModificar.Text = "Cancelar";
-                // Cambia el color de fondo del botón a color marrón.
-                buttonModificar.BackColor = Color.Maroon;
+                CS_Config.HabilitarControles(_listaDeControles);
+                // Modifica la apariencia del boton
+                CS_Config.ModificarBoton(buttonModificar, "Cancelar", Color.Maroon);
             }
             else
             {
                 // Llama al método para deshabilitar los campos de entrada.
-                DeshabilitarCampos();
+                CS_Config.DeshabilitarControles(_listaDeControles);
                 // Restaura los datos del usuario en los campos.
                 MostrarDatosUsuario();
-                // Cambia el texto del botón a "Modificar".
-                buttonModificar.Text = "Modificar";
-                // Cambia el color de fondo del botón a color amarillo.
-                buttonModificar.BackColor = Color.Yellow;
+                // Modifica la apariencia del boton
+                CS_Config.ModificarBoton(buttonModificar, "Modificar", Color.FromArgb(192, 192, 0));
             }
         }
 
@@ -138,6 +122,23 @@ namespace CapaPresentacion.Ajustes
                     MessageBox.Show("Debe modificar el nombre de usuario o la clave", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+        }
+
+        private void buttonEliminar_Click(object sender, System.EventArgs e)
+        {
+            // Muestra un cuadro de diálogo de confirmación para asegurar que el usuario desea actualizar los datos.
+            DialogResult result = MessageBox.Show("¿Está seguro que desea eliminar su cuenta?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            // Verifica si el usuario seleccionó "Sí" en el cuadro de diálogo de confirmación.
+            if (result == DialogResult.Yes)
+            {
+                string mensaje = CS_Usuario.EliminarUsuarioPorId(Usuario.Id);
+                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                
+            }
+
+            // Salir de la sesion
+
+
         }
     }
 }

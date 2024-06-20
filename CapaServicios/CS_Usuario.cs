@@ -285,5 +285,11 @@ namespace CapaServicios
             return "Se actualizaron correctamente los datos del usuario";
         }
 
+        public static string EliminarUsuarioPorId(int idUsuario) 
+        {
+            string mensaje = CD_Usuario.EliminarUsuario(idUsuario);
+            return mensaje;
+        }
+
     }
 }

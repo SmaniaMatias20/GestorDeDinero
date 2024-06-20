@@ -77,6 +77,7 @@
             this.buttonEliminar.TabIndex = 9;
             this.buttonEliminar.Text = "Eliminar usuario";
             this.buttonEliminar.UseVisualStyleBackColor = false;
+            this.buttonEliminar.Click += new System.EventHandler(this.buttonEliminar_Click);
             // 
             // buttonAceptar
             // 
