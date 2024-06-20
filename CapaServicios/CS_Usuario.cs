@@ -200,9 +200,6 @@ namespace CapaServicios
 
         }
 
-
-
-
         /// <summary>
         /// Obtiene los fondos totales del usuario.
         /// </summary>
@@ -239,7 +236,7 @@ namespace CapaServicios
                 // Sumar el importe al fondo total del usuario
                 usuario.FondosTotales += importe;
                 // Actualizar el usuario en la base de datos
-                CD_Usuario.ActualizarUsuario(usuario);
+                CD_Usuario.ActualizarFondos(usuario);
             }
             // Si el usuario existe y el tipo de movimiento es Retiro o Reserva, restamos el importe validado de los fondos
             else if (usuario != null && (tipoMovimiento == ETipoMovimiento.Retiro || tipoMovimiento == ETipoMovimiento.Reserva))
@@ -250,7 +247,7 @@ namespace CapaServicios
                     // Restar el importe del fondo total del usuario
                     usuario.FondosTotales -= importe;
                     // Actualizar el usuario en la base de datos
-                    CD_Usuario.ActualizarUsuario(usuario);
+                    CD_Usuario.ActualizarFondos(usuario);
                 }
 
             }
@@ -262,6 +259,30 @@ namespace CapaServicios
 
             // Retornar el usuario actualizado con los fondos modificados
             return usuario; 
+        }
+
+        public static string ActualizarUsuarioPorId(int idUsuario, string nuevoNombre, string nuevaClave, string segundaClave) 
+        {
+            // Validar el nombre de usuario
+            string validacionNombre = ValidarNombreUsuario(nuevoNombre);
+            //
+            if (validacionNombre != nuevoNombre)
+            {
+                // Si la validación del nombre falla, retornar el mensaje de error correspondiente
+                return validacionNombre;
+            }
+
+            // Validar la clave del usuario
+            string validacionClave = ValidarClave(nuevaClave, segundaClave);
+            //
+            if (validacionClave != nuevaClave)
+            {
+                // Si la validación de la clave falla, retornar el mensaje de error correspondiente
+                return validacionClave;
+            }
+
+            CD_Usuario.ActualizarUsuario(idUsuario, nuevoNombre, nuevaClave);
+            return "Se actualizaron correctamente los datos del usuario";
         }
 
     }

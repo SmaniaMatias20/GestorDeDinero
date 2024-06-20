@@ -79,13 +79,14 @@ namespace CapaDatos
                             while (reader.Read())
                             {
                                 // Crear una nueva instancia de Usuario
-                                Usuario usuario = new Usuario();
-
-                                // Asignar los valores de las columnas del resultado a las propiedades del objeto Usuario
-                                usuario.Id = Convert.ToInt32(reader["id"]); 
-                                usuario.Nombre = Convert.ToString(reader["nombre"]);
-                                usuario.Clave = Convert.ToString(reader["clave"]);
-                                usuario.FondosTotales = Convert.ToDouble(reader["caja"]);
+                                Usuario usuario = new Usuario
+                                {
+                                    // Asignar los valores de las columnas del resultado a las propiedades del objeto Usuario
+                                    Id = Convert.ToInt32(reader["id"]),
+                                    Nombre = Convert.ToString(reader["nombre"]),
+                                    Clave = Convert.ToString(reader["clave"]),
+                                    FondosTotales = Convert.ToDouble(reader["caja"])
+                                };
 
                                 // Agregar el usuario a la lista
                                 lista.Add(usuario);
@@ -109,7 +110,7 @@ namespace CapaDatos
         /// </summary>
         /// <param name="usuario">El objeto Usuario con los datos actualizados.</param>
         /// <exception cref="Exception">Lanzada si ocurre un error al actualizar el usuario.</exception>
-        public static void ActualizarUsuario(Usuario usuario)
+        public static void ActualizarFondos(Usuario usuario)
         {
             // Bloque try-catch para manejar excepciones.
             try
@@ -171,11 +172,13 @@ namespace CapaDatos
                             if (reader.Read())
                             {
                                 // Si se encontró un registro, crea una nueva instancia del objeto Usuario.
-                                usuario = new Usuario();
-                                // Asigna los valores del lector de datos a las propiedades del objeto Usuario.
-                                usuario.Nombre = Convert.ToString(reader["nombre"]);
-                                usuario.Clave = Convert.ToString(reader["clave"]);
-                                usuario.FondosTotales = Convert.ToDouble(reader["caja"]);
+                                usuario = new Usuario
+                                {
+                                    // Asigna los valores del lector de datos a las propiedades del objeto Usuario.
+                                    Nombre = Convert.ToString(reader["nombre"]),
+                                    Clave = Convert.ToString(reader["clave"]),
+                                    FondosTotales = Convert.ToDouble(reader["caja"])
+                                };
                             }
                         }
                     }
@@ -190,7 +193,39 @@ namespace CapaDatos
             return usuario;
         }
 
+        public static void ActualizarUsuario(int idUsuario, string nuevoNombre, string nuevaClave)
+        {
+            // Definir la consulta SQL para actualizar el usuario
+            string query = "UPDATE Usuario SET nombre = @Nombre, clave = @Clave WHERE id = @IdUsuario";
+
+            // Crear una conexión a la base de datos
+            using (SqlConnection conexionDB = Conexion.ObtenerConexion())
+            {
+                try
+                {
+                    // Abrir la conexión
+                    conexionDB.Open();
+
+                    // Crear un comando SQL
+                    using (SqlCommand command = new SqlCommand(query, conexionDB))
+                    {
+                        // Agregar los parámetros al comando
+                        command.Parameters.AddWithValue("@Nombre", nuevoNombre);
+                        command.Parameters.AddWithValue("@Clave", nuevaClave);
+                        command.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                        //
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //
+                    throw new Exception("Ocurrió un error al actualizar el usuario: " + ex.Message);
+                }
+            }
+        }
     }
 
 }
+
 

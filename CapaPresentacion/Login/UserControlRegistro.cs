@@ -5,6 +5,7 @@ namespace CapaPresentacion
 {
     public partial class UserControlRegistro : UserControl
     {
+        // Atributos
         private bool _claveVisible = false;
 
         /// <summary>
@@ -57,20 +58,8 @@ namespace CapaPresentacion
         {
             // Alterna el estado de visibilidad de la contraseña
             _claveVisible = !_claveVisible;
-
-            // Verifica el estado de visibilidad de la contraseña y ajusta la propiedad PasswordChar en consecuencia.
-            if (!_claveVisible)
-            {
-                // Si la contraseña no está visible, se establece un carácter de contraseña para ocultarla.
-                textBoxClave.PasswordChar = 'o';
-                textBoxClave2.PasswordChar = 'o';
-            }
-            else
-            {
-                // Si la contraseña está visible, se elimina cualquier carácter de contraseña para que sea visible.
-                textBoxClave.PasswordChar = '\0';
-                textBoxClave2.PasswordChar = '\0';
-            }
+            // Oculta-Muestra las claves
+            CS_Config.OcultarMostrarClave(_claveVisible, textBoxClave, textBoxClave2);
         }
 
     }

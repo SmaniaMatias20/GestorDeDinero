@@ -42,17 +42,17 @@
             this.buttonGastos = new System.Windows.Forms.Button();
             this.buttonInicio = new System.Windows.Forms.Button();
             this.panelHorizontal = new System.Windows.Forms.Panel();
-            this.labelFecha = new System.Windows.Forms.Label();
-            this.labelTitulo = new System.Windows.Forms.Label();
-            this.pictureBoxUsuario = new System.Windows.Forms.PictureBox();
-            this.labelNombreUsuario = new System.Windows.Forms.Label();
-            this.panelInicio = new System.Windows.Forms.Panel();
             this.panelUsuario = new System.Windows.Forms.Panel();
+            this.pictureBoxUsuario = new System.Windows.Forms.PictureBox();
+            this.labelFecha = new System.Windows.Forms.Label();
+            this.labelNombreUsuario = new System.Windows.Forms.Label();
+            this.labelTitulo = new System.Windows.Forms.Label();
+            this.panelInicio = new System.Windows.Forms.Panel();
             this.panelVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelHorizontal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUsuario)).BeginInit();
             this.panelUsuario.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUsuario)).BeginInit();
             this.SuspendLayout();
             // 
             // panelVertical
@@ -183,7 +183,7 @@
             this.buttonInversiones.Name = "buttonInversiones";
             this.buttonInversiones.Size = new System.Drawing.Size(150, 50);
             this.buttonInversiones.TabIndex = 2;
-            this.buttonInversiones.Text = "Inversion";
+            this.buttonInversiones.Text = "Inversión";
             this.buttonInversiones.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonInversiones.UseVisualStyleBackColor = false;
             this.buttonInversiones.Click += new System.EventHandler(this.buttonInversiones_Click);
@@ -246,27 +246,16 @@
             this.panelHorizontal.Size = new System.Drawing.Size(580, 64);
             this.panelHorizontal.TabIndex = 1;
             // 
-            // labelFecha
+            // panelUsuario
             // 
-            this.labelFecha.AutoSize = true;
-            this.labelFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFecha.Location = new System.Drawing.Point(65, 36);
-            this.labelFecha.Name = "labelFecha";
-            this.labelFecha.Size = new System.Drawing.Size(51, 12);
-            this.labelFecha.TabIndex = 3;
-            this.labelFecha.Text = "03/26/2024";
-            // 
-            // labelTitulo
-            // 
-            this.labelTitulo.AutoSize = true;
-            this.labelTitulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelTitulo.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitulo.Location = new System.Drawing.Point(15, 12);
-            this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(102, 39);
-            this.labelTitulo.TabIndex = 2;
-            this.labelTitulo.Text = "Inicio";
-            this.labelTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.panelUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelUsuario.Controls.Add(this.pictureBoxUsuario);
+            this.panelUsuario.Controls.Add(this.labelFecha);
+            this.panelUsuario.Controls.Add(this.labelNombreUsuario);
+            this.panelUsuario.Location = new System.Drawing.Point(393, 3);
+            this.panelUsuario.Name = "panelUsuario";
+            this.panelUsuario.Size = new System.Drawing.Size(175, 58);
+            this.panelUsuario.TabIndex = 4;
             // 
             // pictureBoxUsuario
             // 
@@ -282,6 +271,16 @@
             this.pictureBoxUsuario.TabIndex = 0;
             this.pictureBoxUsuario.TabStop = false;
             // 
+            // labelFecha
+            // 
+            this.labelFecha.AutoSize = true;
+            this.labelFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFecha.Location = new System.Drawing.Point(65, 36);
+            this.labelFecha.Name = "labelFecha";
+            this.labelFecha.Size = new System.Drawing.Size(51, 12);
+            this.labelFecha.TabIndex = 3;
+            this.labelFecha.Text = "03/26/2024";
+            // 
             // labelNombreUsuario
             // 
             this.labelNombreUsuario.AutoSize = true;
@@ -292,6 +291,18 @@
             this.labelNombreUsuario.TabIndex = 1;
             this.labelNombreUsuario.Text = "Nombre Usuario";
             // 
+            // labelTitulo
+            // 
+            this.labelTitulo.AutoSize = true;
+            this.labelTitulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelTitulo.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitulo.Location = new System.Drawing.Point(15, 12);
+            this.labelTitulo.Name = "labelTitulo";
+            this.labelTitulo.Size = new System.Drawing.Size(102, 39);
+            this.labelTitulo.TabIndex = 2;
+            this.labelTitulo.Text = "Inicio";
+            this.labelTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // panelInicio
             // 
             this.panelInicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
@@ -299,17 +310,6 @@
             this.panelInicio.Name = "panelInicio";
             this.panelInicio.Size = new System.Drawing.Size(577, 490);
             this.panelInicio.TabIndex = 2;
-            // 
-            // panelUsuario
-            // 
-            this.panelUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelUsuario.Controls.Add(this.pictureBoxUsuario);
-            this.panelUsuario.Controls.Add(this.labelFecha);
-            this.panelUsuario.Controls.Add(this.labelNombreUsuario);
-            this.panelUsuario.Location = new System.Drawing.Point(393, 3);
-            this.panelUsuario.Name = "panelUsuario";
-            this.panelUsuario.Size = new System.Drawing.Size(175, 58);
-            this.panelUsuario.TabIndex = 4;
             // 
             // FormInicio
             // 
@@ -330,9 +330,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelHorizontal.ResumeLayout(false);
             this.panelHorizontal.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUsuario)).EndInit();
             this.panelUsuario.ResumeLayout(false);
             this.panelUsuario.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUsuario)).EndInit();
             this.ResumeLayout(false);
 
         }

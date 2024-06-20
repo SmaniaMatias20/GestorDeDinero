@@ -116,24 +116,26 @@ namespace CapaServicios
         /// el importe validado como double y un mensaje descriptivo.</returns>
         public static (bool, double, string) ValidarTextBoxNumerico(string importe) 
         {
+            // Si el importe contiene $
             if (importe.Contains("$"))
             {
+                // Reemplaza el $ por una cadena vacia
                 importe = importe.Replace("$", "");
             }
 
-            // Verificar si el string está vacío o contiene solo espacios en blanco
+            // Verifica si el string está vacío o contiene solo espacios en blanco
             if (string.IsNullOrWhiteSpace(importe) || string.IsNullOrWhiteSpace(importe))
             {
                 // Retorna false, 0 y un mensaje de error si el string está vacío
                 return (false, 0, "Ingrese un importe");
             }
-            // Intentar convertir el string a un valor numérico de tipo double
+            // Intenta convertir el string a un valor numérico de tipo double
             if (!double.TryParse(importe, out double importeValidado))
             {
                 // Retorna false, 0 y un mensaje de error si la conversión falla
                 return (false, 0, "Ingrese un numero");
             }
-            // Verificar si el valor numérico es mayor a 0
+            // Verifica si el valor numérico es mayor a 0
             if (importeValidado <= 0)
             {
                 // Retorna false, 0 y un mensaje de error si el valor es menor o igual a 0
@@ -150,13 +152,13 @@ namespace CapaServicios
         /// <returns>Un tuple que contiene un booleano indicando si la validación pasó y un mensaje.</returns>
         public static (bool, string) ValidarTextBoxAlfaNumerico(string ingreso)
         {
-            // Verificar si el string está vacío o contiene solo espacios en blanco
+            // Verifica si el string está vacío o contiene solo espacios en blanco
             if (string.IsNullOrWhiteSpace(ingreso) || string.IsNullOrWhiteSpace(ingreso))
             {
                 // Retorna false con un mensaje de error si el string está vacío
                 return (false, "El campo no puede estar vacio");
             }
-            // Verificar si el string contiene más de 20 caracteres
+            // Verifica si el string contiene más de 20 caracteres
             if (ingreso.Length > 20)
             {
                 // Retorna false con un mensaje de error si el string tiene más de 20 caracteres
@@ -206,7 +208,7 @@ namespace CapaServicios
                 while (valor < 1)
                 {
                     // Multiplica por 10 el valor en cada vuelta
-                    valor = valor * 10;
+                    valor *= 10;
                     // Incrementa en 1 la variable en cada vuelta
                     decimales++;
                 }
@@ -218,6 +220,36 @@ namespace CapaServicios
                 // Retorna 2 decimales por defecto
                 return 2;   
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="claveVisible"></param>
+        /// <param name="textBoxClave"></param>
+        /// <param name="textBoxClave2"></param>
+        public static void OcultarMostrarClave(bool claveVisible, TextBox textBoxClave, TextBox textBoxClave2 = null) 
+        {
+            // Verifica el estado de visibilidad de la contraseña y ajusta la propiedad PasswordChar en consecuencia.
+            if (!claveVisible)
+            {
+                // Si la contraseña no está visible, se establece un carácter de contraseña para ocultarla.
+                textBoxClave.PasswordChar = 'o';
+                if (textBoxClave2 != null)
+                {
+                    textBoxClave2.PasswordChar = 'o';
+                }
+            }
+            else
+            {
+                // Si la contraseña está visible, se elimina cualquier carácter de contraseña para que sea visible.
+                textBoxClave.PasswordChar = '\0';
+                if (textBoxClave2 != null)
+                {
+                    textBoxClave2.PasswordChar = '\0';
+                }
+            }
+
         }
 
     }

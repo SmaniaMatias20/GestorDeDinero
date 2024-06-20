@@ -43,57 +43,60 @@
             // 
             // textBoxUsuario
             // 
+            this.textBoxUsuario.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxUsuario.Location = new System.Drawing.Point(209, 85);
             this.textBoxUsuario.Name = "textBoxUsuario";
-            this.textBoxUsuario.Size = new System.Drawing.Size(160, 20);
+            this.textBoxUsuario.Size = new System.Drawing.Size(160, 23);
             this.textBoxUsuario.TabIndex = 1;
             // 
             // textBoxClave
             // 
+            this.textBoxClave.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxClave.Location = new System.Drawing.Point(209, 145);
             this.textBoxClave.Name = "textBoxClave";
             this.textBoxClave.PasswordChar = 'o';
-            this.textBoxClave.Size = new System.Drawing.Size(160, 20);
+            this.textBoxClave.Size = new System.Drawing.Size(160, 23);
             this.textBoxClave.TabIndex = 2;
             // 
             // textBoxClave2
             // 
+            this.textBoxClave2.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxClave2.Location = new System.Drawing.Point(209, 205);
             this.textBoxClave2.Name = "textBoxClave2";
             this.textBoxClave2.PasswordChar = 'o';
-            this.textBoxClave2.Size = new System.Drawing.Size(160, 20);
+            this.textBoxClave2.Size = new System.Drawing.Size(160, 23);
             this.textBoxClave2.TabIndex = 3;
             // 
             // labelUsuario
             // 
             this.labelUsuario.AutoSize = true;
-            this.labelUsuario.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUsuario.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelUsuario.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.labelUsuario.Location = new System.Drawing.Point(206, 58);
             this.labelUsuario.Name = "labelUsuario";
-            this.labelUsuario.Size = new System.Drawing.Size(50, 15);
+            this.labelUsuario.Size = new System.Drawing.Size(54, 15);
             this.labelUsuario.TabIndex = 4;
             this.labelUsuario.Text = "Usuario";
             // 
             // labelClave
             // 
             this.labelClave.AutoSize = true;
-            this.labelClave.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelClave.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelClave.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.labelClave.Location = new System.Drawing.Point(206, 116);
             this.labelClave.Name = "labelClave";
-            this.labelClave.Size = new System.Drawing.Size(37, 15);
+            this.labelClave.Size = new System.Drawing.Size(39, 15);
             this.labelClave.TabIndex = 5;
             this.labelClave.Text = "Clave";
             // 
             // labelClave2
             // 
             this.labelClave2.AutoSize = true;
-            this.labelClave2.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelClave2.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelClave2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.labelClave2.Location = new System.Drawing.Point(209, 178);
             this.labelClave2.Name = "labelClave2";
-            this.labelClave2.Size = new System.Drawing.Size(79, 15);
+            this.labelClave2.Size = new System.Drawing.Size(87, 15);
             this.labelClave2.TabIndex = 6;
             this.labelClave2.Text = "Repetir clave";
             // 
@@ -132,9 +135,9 @@
             // buttonOcultar
             // 
             this.buttonOcultar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonOcultar.Location = new System.Drawing.Point(371, 205);
+            this.buttonOcultar.Location = new System.Drawing.Point(375, 205);
             this.buttonOcultar.Name = "buttonOcultar";
-            this.buttonOcultar.Size = new System.Drawing.Size(23, 20);
+            this.buttonOcultar.Size = new System.Drawing.Size(23, 23);
             this.buttonOcultar.TabIndex = 9;
             this.buttonOcultar.UseVisualStyleBackColor = true;
             this.buttonOcultar.Click += new System.EventHandler(this.buttonOcultar_Click);
