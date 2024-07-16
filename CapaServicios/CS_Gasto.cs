@@ -64,7 +64,6 @@ namespace CapaServicios
             const string ErrorImporte = "Ingrese un importe";
             const string ErrorTipo = "Ingrese un tipo de gasto";
             const string ErrorPago = "Ingrese un método de pago";
-            const string ErrorImporteInvalido = "El importe no es válido";
             const string ErrorProceso = "Error al procesar el gasto";
             const string ErrorRegistro = "No se pudo registrar el gasto. Tipo o método de pago inválido";
 
@@ -80,10 +79,14 @@ namespace CapaServicios
             if (Enum.TryParse(tipo, out ETipoGasto tipoGasto) && Enum.TryParse(pago, out ETipoPago tipoPago))
             {
                 // Verifica si el importe es un número válido
-                if (!double.TryParse(importe, out double importeParsed)) return ErrorImporteInvalido;
+                var (validacion, importeValidado, mensaje) = CS_Config.ValidarTextBoxNumerico(importe);
+                if (!validacion)
+                {
+                    return mensaje;
+                }
 
                 // Crea un nuevo objeto Gasto con los datos proporcionados
-                Gasto gasto = new Gasto(tipoGasto, importeParsed, tipoPago, descripcion, fecha);
+                Gasto gasto = new Gasto(tipoGasto, importeValidado, tipoPago, descripcion, fecha);
 
                 try
                 {

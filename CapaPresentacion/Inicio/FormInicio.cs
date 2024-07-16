@@ -24,10 +24,8 @@ namespace CapaPresentacion
         {
             // Inicializa los componentes del formulario
             InitializeComponent();
-
-            DateTime ahora = DateTime.Now;
-            labelFecha.Text = ahora.ToString("yyyy-MM-dd HH:mm");
-
+            // Asociación manual del evento Tick
+            timer1.Tick += new EventHandler(timer1_Tick);
         }
 
         /// <summary>
@@ -79,6 +77,17 @@ namespace CapaPresentacion
             buttonAjustes.MouseLeave += new EventHandler(button_MouseLeave);
             buttonInversiones.MouseLeave += new EventHandler(button_MouseLeave);
             buttonSalir.MouseLeave += new EventHandler(button_MouseLeave);
+
+            timer1.Interval = 1000;
+            timer1.Start();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            // Obtener la hora y fecha actuales
+            DateTime ahora = DateTime.Now;
+            // Actualizar el Label con la fecha y hora actuales
+            labelFecha.Text = ahora.ToString("dd/mm/yyyy hh:mm"); 
         }
 
         /// <summary>
@@ -247,5 +256,6 @@ namespace CapaPresentacion
                 this.Close();
             }
         }
+
     }
 }

@@ -10,13 +10,15 @@ namespace CapaPresentacion
 {
     public partial class UserControlGastos : UserControl
     {
+        // Atributos
         public bool estadoModificacion = false;
 
         // Propiedades
-        public Usuario Usuario { get; set; } 
+        public Usuario Usuario { get; set; }
 
         /// <summary>
-        /// 
+        /// Constructor sin parámetros de la clase UserControlGastos.
+        /// Inicializa los componentes visuales del control de usuario.
         /// </summary>
         public UserControlGastos()
         {
@@ -25,9 +27,11 @@ namespace CapaPresentacion
         }
 
         /// <summary>
-        /// 
+        /// Constructor de la clase UserControlGastos.
+        /// Inicializa una nueva instancia de la clase y configura el usuario, actualiza los gastos,
+        /// y asigna métodos y controladores de eventos necesarios.
         /// </summary>
-        /// <param name="usuario"></param>
+        /// <param name="usuario">El usuario que se asignará al control de usuario.</param>
         public UserControlGastos(Usuario usuario) : this()
         {
             // Asigna el usuario recibido por parámetro al atributo de la clase
@@ -38,7 +42,9 @@ namespace CapaPresentacion
             dataGridViewGastos.ColumnHeaderMouseClick += DataGridViewGastos_ColumnHeaderMouseClick;
             // Asigna el metodo para solamente poder ingresar numeros
             textBoxImporte.KeyPress += CS_Config.textBox_KeyPress;
-            textBoxFiltroImporteMax.KeyPress += CS_Config.textBox_KeyPress;   
+            // Asigna el metodo para solamente poder ingresar numeros
+            textBoxFiltroImporteMax.KeyPress += CS_Config.textBox_KeyPress;
+            // Asigna el metodo para solamente poder ingresar numeros
             textBoxFiltroImporteMin.KeyPress += CS_Config.textBox_KeyPress;
         }
 
@@ -129,10 +135,12 @@ namespace CapaPresentacion
         }
 
         /// <summary>
-        /// 
+        /// Elimina los registros seleccionados de gastos.
         /// </summary>
+        /// <returns>Mensaje indicando si la eliminación fue exitosa o si no se seleccionó ningún registro.</returns>
         private string EliminarGasto()
         {
+            // Crea los mensajes
             const string RegistroEliminado = "Registro eliminado exitosamente...";
             const string ErrorAlEliminar = "No ha seleccionado ningun registro...";
 
@@ -196,6 +204,7 @@ namespace CapaPresentacion
         {
             // Cambia el estado de modificación a verdadero
             estadoModificacion = true;
+            // Modifica el gasto
             ModificarGasto();
         }
 
@@ -228,8 +237,15 @@ namespace CapaPresentacion
             return 0;
         }
 
+        /// <summary>
+        /// Maneja el evento de clic para el botón de filtrar.
+        /// Aplica los filtros especificados y actualiza la cuadrícula de datos con los gastos filtrados.
+        /// </summary>
+        /// <param name="sender">El origen del evento</param>
+        /// <param name="e">Los datos del evento</param>
         private void buttonFiltrar_Click(object sender, EventArgs e)
         {
+            // Establece la fuente de datos del DataGridView con los gastos filtrados
             dataGridViewGastos.DataSource = CS_Gasto.BuscarGastoFiltrado(
                 Usuario.Id,
                 textBoxFiltroImporteMin.Text,
@@ -239,7 +255,49 @@ namespace CapaPresentacion
             );
         }
 
-        
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxImporte_Leave(object sender, EventArgs e)
+        {
+            // Verificar si el texto es un número válido
+            if (Double.TryParse(textBoxImporte.Text, out double valor))
+            {
+                // Formatea el número como moneda con 2 decimales y actualiza el texto del cuadro de texto
+                textBoxImporte.Text = CS_Config.FormatearMoneda(valor, 2);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxFiltroImporteMin_Leave(object sender, EventArgs e)
+        {
+            // Verificar si el texto es un número válido
+            if (Double.TryParse(textBoxImporte.Text, out double valor))
+            {
+                // Formatea el número como moneda con 2 decimales y actualiza el texto del cuadro de texto
+                textBoxImporte.Text = CS_Config.FormatearMoneda(valor, 2);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxFiltroImporteMax_Leave(object sender, EventArgs e)
+        {
+            // Verificar si el texto es un número válido
+            if (Double.TryParse(textBoxImporte.Text, out double valor))
+            {
+                // Formatea el número como moneda con 2 decimales y actualiza el texto del cuadro de texto
+                textBoxImporte.Text = CS_Config.FormatearMoneda(valor, 2);
+            }
+        }
     }
 }

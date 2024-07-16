@@ -134,6 +134,7 @@ namespace CapaServicios
             int decimales = CS_Config.ObtenerDecimales(cantidadConvertida);
             // Muestra el resultado en el textbox
             textBox2.Text = CS_Config.FormatearMoneda(cantidadConvertida, decimales);
+            // Cambia el formato en el textbox
             textBox.Text = CS_Config.FormatearMoneda(cantidad, 2);
         }
 

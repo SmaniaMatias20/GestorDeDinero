@@ -14,7 +14,6 @@ namespace CapaPresentacion
         // Propiedades
         public Usuario Usuario { get; set; }
 
-
         /// <summary>
         /// Constructor por defecto de la clase UserControlIngreso.
         /// Inicializa los componentes visuales y crea una nueva instancia de la clase CS_Usuario.
@@ -23,6 +22,8 @@ namespace CapaPresentacion
         {
             // Inicializa los componentes visuales del control de usuario
             InitializeComponent();
+            // Asigna el metodo para solamente poder ingresar numeros
+            textBoxIngreso.KeyPress += CS_Config.textBox_KeyPress;
         }
 
         /// <summary>
@@ -31,11 +32,11 @@ namespace CapaPresentacion
         /// <param name="usuario">El usuario actual</param>
         public UserControlIngreso(Usuario usuario) : this()
         {
+            // Inicializa el Usuario
             Usuario = usuario;
             // Limpia el textBoxIngreso 
             textBoxIngreso.Text = "";
-            // Asigna el metodo para solamente poder ingresar numeros
-            textBoxIngreso.KeyPress += CS_Config.textBox_KeyPress;
+
 
         }
 
@@ -51,14 +52,6 @@ namespace CapaPresentacion
             {
                 textBoxIngreso.Text = CS_Config.FormatearMoneda(valor, 2);
             }
-        }
-
-        /// <summary>
-        /// Maneja el evento TextChanged del textBoxIngreso
-        /// </summary>
-        private void textBoxIngreso_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         /// <summary>
@@ -80,12 +73,8 @@ namespace CapaPresentacion
             // Si el usuario hace clic en "Sí"
             if (result == DialogResult.Yes)
             {
-
                 // Registra el movimiento
                 var (mensaje, usuario) = CS_Movimiento.RegistrarMovimiento(Usuario, textBoxIngreso.Text, ETipoMovimiento.Ingreso);
-
-                // Hacer algo con el usuario
-
 
                 // Notificar que los fondos han sido actualizados
                 MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -97,7 +97,7 @@ namespace CapaDatos
                     using (SqlCommand comando = new SqlCommand(query, conexionDB))
                     {
                         // Agregar los parámetros
-                        comando.Parameters.AddWithValue("@tipo", tipo);
+                        comando.Parameters.AddWithValue("@tipo", tipo.ToString());
                         comando.Parameters.AddWithValue("@importe", importe);
                         comando.Parameters.AddWithValue("@fecha", fecha);
                         comando.Parameters.AddWithValue("@idUsuario", idUsuario);

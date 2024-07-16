@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInicio));
             this.panelVertical = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -48,6 +49,7 @@
             this.labelNombreUsuario = new System.Windows.Forms.Label();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.panelInicio = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelHorizontal.SuspendLayout();
@@ -252,9 +254,9 @@
             this.panelUsuario.Controls.Add(this.pictureBoxUsuario);
             this.panelUsuario.Controls.Add(this.labelFecha);
             this.panelUsuario.Controls.Add(this.labelNombreUsuario);
-            this.panelUsuario.Location = new System.Drawing.Point(393, 3);
+            this.panelUsuario.Location = new System.Drawing.Point(348, 3);
             this.panelUsuario.Name = "panelUsuario";
-            this.panelUsuario.Size = new System.Drawing.Size(175, 58);
+            this.panelUsuario.Size = new System.Drawing.Size(220, 58);
             this.panelUsuario.TabIndex = 4;
             // 
             // pictureBoxUsuario
@@ -274,20 +276,20 @@
             // labelFecha
             // 
             this.labelFecha.AutoSize = true;
-            this.labelFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFecha.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFecha.Location = new System.Drawing.Point(65, 36);
             this.labelFecha.Name = "labelFecha";
-            this.labelFecha.Size = new System.Drawing.Size(51, 12);
+            this.labelFecha.Size = new System.Drawing.Size(106, 12);
             this.labelFecha.TabIndex = 3;
-            this.labelFecha.Text = "03/26/2024";
+            this.labelFecha.Text = "03/26/2024 00:00";
             // 
             // labelNombreUsuario
             // 
             this.labelNombreUsuario.AutoSize = true;
-            this.labelNombreUsuario.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNombreUsuario.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNombreUsuario.Location = new System.Drawing.Point(64, 18);
             this.labelNombreUsuario.Name = "labelNombreUsuario";
-            this.labelNombreUsuario.Size = new System.Drawing.Size(98, 15);
+            this.labelNombreUsuario.Size = new System.Drawing.Size(106, 15);
             this.labelNombreUsuario.TabIndex = 1;
             this.labelNombreUsuario.Text = "Nombre Usuario";
             // 
@@ -358,6 +360,7 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panelUsuario;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

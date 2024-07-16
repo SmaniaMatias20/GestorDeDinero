@@ -201,6 +201,7 @@
             this.textBoxImporte.Name = "textBoxImporte";
             this.textBoxImporte.Size = new System.Drawing.Size(177, 23);
             this.textBoxImporte.TabIndex = 4;
+            this.textBoxImporte.Leave += new System.EventHandler(this.textBoxImporte_Leave);
             // 
             // comboBoxGasto
             // 
@@ -287,6 +288,7 @@
             this.textBoxFiltroImporteMin.Name = "textBoxFiltroImporteMin";
             this.textBoxFiltroImporteMin.Size = new System.Drawing.Size(134, 23);
             this.textBoxFiltroImporteMin.TabIndex = 32;
+            this.textBoxFiltroImporteMin.Leave += new System.EventHandler(this.textBoxFiltroImporteMin_Leave);
             // 
             // labelFiltroImporteMax
             // 
@@ -352,6 +354,7 @@
             this.textBoxFiltroImporteMax.Name = "textBoxFiltroImporteMax";
             this.textBoxFiltroImporteMax.Size = new System.Drawing.Size(134, 23);
             this.textBoxFiltroImporteMax.TabIndex = 23;
+            this.textBoxFiltroImporteMax.Leave += new System.EventHandler(this.textBoxFiltroImporteMax_Leave);
             // 
             // comboBoxFiltroPago
             // 

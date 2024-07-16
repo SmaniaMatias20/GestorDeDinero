@@ -121,7 +121,7 @@
   <data name="buttonSalir.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DwAACw8BkvkDpQAABBtJREFUWEftmFtIFFEYx62Q6KJSPlnRRa3WTOtBIzG1zEyiwG5Ca0UmEShaUCG4
+        DQAACw0B7QfALAAABBtJREFUWEftmFtIFFEYx62Q6KJSPlnRRa3WTOtBIzG1zEyiwG5Ca0UmEShaUCG4
         WQ8WgSVG9lIW5UNJ1EuUWJTrLbVMEbMyUSy8rqUW5a28fO13PLs7Z2bOzq7Nog/94A875/vOnP/OzDnn
         m3GCac5/g/+KTQaDgqLBwyNAdb19W0dH4GOTQW/vUHByWqq6ysur6Qh8bDQYIjuAkoKD90BS0jmIiUmA
         uXNXS+JTajA9/RrtPUF9/Sdwd1/H5Kho0L5bHBCwE8bHx2lvC1lZt5i8KTN49OgZ2pNFry9n8hxmcMEC
@@ -267,4 +267,7 @@
         5dRqNwnrypmc/C599RPVV6nU8A87ksh0yXuHxwAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

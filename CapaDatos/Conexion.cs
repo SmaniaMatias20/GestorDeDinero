@@ -6,11 +6,7 @@ namespace CapaDatos
     public static class Conexion
     {
         // Atributos
-        private static string cadenaConexion = ObtenerCadenaConexion();
-
-        // Propiedades
-        public static string Cadena { get; set; }
-
+        private static string _cadenaConexion = ObtenerCadenaConexion();
 
         /// <summary>
         /// Devuelve una nueva instancia de SqlConnection utilizando la cadena de conexión especificada.
@@ -19,7 +15,7 @@ namespace CapaDatos
         public static SqlConnection ObtenerConexion()
         {
             // Devuelve una nueva instancia de SqlConnection utilizando la cadena de conexión especificada.
-            return new SqlConnection(cadenaConexion);
+            return new SqlConnection(_cadenaConexion);
         }
 
         /// <summary>

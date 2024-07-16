@@ -9,7 +9,6 @@ namespace CapaServicios
 {
     public static class CS_Config
     {
-
         /// <summary>
         /// 
         /// </summary>
