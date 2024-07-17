@@ -31,7 +31,7 @@ La aplicación cuenta con un sistema robusto de autenticación para asegurar la 
 - **Registro de Usuarios**: Nuevos usuarios pueden registrarse creando una cuenta personal, lo que les permite acceder a todas las funcionalidades de la aplicación.
 - **Inicio de Sesión**: Los usuarios registrados pueden iniciar sesión de manera segura para acceder a su información y gestionar sus finanzas.
 
-## Imagenes
+### Imagenes
 
 ![](https://github.com/SmaniaMatias20/GestorDeDinero/blob/master/imagenes/imagen.png)
 ![](https://github.com/SmaniaMatias20/GestorDeDinero/blob/master/imagenes/imagen1.png)
