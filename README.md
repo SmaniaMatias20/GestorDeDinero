@@ -10,6 +10,8 @@ La sección de inicio permite a los usuarios tener una visión general de su sit
 - **Movimientos Financieros**: Los usuarios pueden consultar un historial detallado de todas sus transacciones financieras, ayudándoles a rastrear sus ingresos y gastos.
 - **Reservas**: Permite a los usuarios visualizar las reservas financieras que han establecido, como ahorros o fondos específicos.
 
+![](https://github.com/SmaniaMatias20/GestorDeDinero/blob/master/imagenes/imagen.png)
+
 ### Gastos
 En esta sección, los usuarios pueden gestionar todos sus gastos mediante operaciones CRUD (Crear, Leer, Actualizar, Eliminar):
 - **Crear**: Añadir nuevos gastos a la base de datos, especificando detalles como la cantidad, categoría y fecha.
@@ -17,10 +19,14 @@ En esta sección, los usuarios pueden gestionar todos sus gastos mediante operac
 - **Actualizar**: Modificar detalles de gastos existentes, permitiendo a los usuarios mantener su información actualizada.
 - **Eliminar**: Borrar gastos que ya no son relevantes, ayudando a mantener la base de datos limpia y precisa.
 
+![](https://github.com/SmaniaMatias20/GestorDeDinero/blob/master/imagenes/imagen1.png)
+
 ### Inversiones
 La sección de inversiones ofrece herramientas avanzadas para gestionar y simular inversiones:
 - **Simulación de Plazos Fijos**: Permite a los usuarios simular inversiones en plazos fijos, calculando intereses y proyecciones a futuro.
 - **Conversión de Monedas**: Facilita la conversión de diferentes monedas según el valor real del mercado, ayudando a los usuarios a entender el valor de sus inversiones en diversas divisas.
+
+![](https://github.com/SmaniaMatias20/GestorDeDinero/blob/master/imagenes/imagen2.png)
 
 ### Ajustes
 En la sección de ajustes, los usuarios pueden personalizar su experiencia y gestionar su información personal:
