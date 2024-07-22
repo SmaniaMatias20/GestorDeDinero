@@ -1,6 +1,6 @@
-# Gestor de Gastos
+# Gestor de Dinero
 
-Esta es una aplicación de gestión de gastos desarrollada en C# .NET y SQL Server. La aplicación está diseñada para ayudar a los usuarios a llevar un control detallado de sus finanzas personales, proporcionando una interfaz intuitiva y funcionalidades robustas para gestionar diferentes aspectos de sus finanzas. A continuación, se describen las principales funcionalidades y secciones de la aplicación:
+Esta es una aplicación de gestión de dinero desarrollada en C# .NET y SQL Server. La aplicación está diseñada para ayudar a los usuarios a llevar un control detallado de sus finanzas personales, proporcionando una interfaz intuitiva y funcionalidades robustas para gestionar diferentes aspectos de sus finanzas. A continuación, se describen las principales funcionalidades y secciones de la aplicación:
 
 ## Funcionalidades Principales
 
